@@ -103,7 +103,7 @@ const Footer = () => {
 
             <div className="w-full md:w-1/4">
               <h4 className="text-lg font-bold mb-2">Address</h4>
-              <address className="not-italic">
+              <address className="italic">
                 PITHDIYA ROAD,
                 <br />
                 near SHIV FELT,
@@ -130,7 +130,7 @@ const Footer = () => {
                 href="https://www.facebook.com/too.more.142"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
               >
                 <i className="fab fa-facebook-f text-xl" />
               </a>
@@ -138,7 +138,7 @@ const Footer = () => {
                 href="https://www.instagram.com/too_more1/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
               >
                 <i className="fab fa-instagram text-xl" />
               </a>
@@ -146,7 +146,7 @@ const Footer = () => {
                 href="https://www.youtube.com/@toomorebeverages9253"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
               >
                 <i className="fab fa-youtube text-xl" />
               </a>
@@ -154,23 +154,23 @@ const Footer = () => {
                 href="https://wa.me/+918780499433"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
               >
                 <i className="fab fa-whatsapp text-xl" />
               </a>
               <a
-                href="mailto:harshalgondaliya07@gmail.com"
+                href="mailto:toomore343@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
               >
                 <i className="fas fa-envelope text-xl" />
               </a>
               <a
-                href="https://www.twitter.com/"
+                href="https://x.com/too_more343"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black border border-black rounded-full p- w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p- w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
               >
                 <i className="fa-brands fa-x-twitter text-xl" />
               </a>

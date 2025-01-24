@@ -65,7 +65,7 @@ const Navbar = () => {
             </li>
             <li className="relative group">
               <Link
-                to="/Juice"
+                to="/Juices"
                 className="text-black text-lg hover:text-yellow-300"
               >
                 Products
@@ -74,7 +74,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-blue-700 rounded">
                   <span>🍹</span>
                   <Link
-                    to="/Juice"
+                    to="/Juices"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Juices
@@ -83,7 +83,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-blue-700 rounded">
                   <span>🥤</span>
                   <Link
-                    to="/"
+                    to="soft-drinks"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Soft Drinks
@@ -92,7 +92,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-blue-700 rounded">
                   <span>⚡</span>
                   <Link
-                    to="/"
+                    to="/energy-drinks"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Energy Drinks
@@ -101,7 +101,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-blue-700 rounded">
                   <span>💧</span>
                   <Link
-                    to="/"
+                    to="/drinking-Water"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Drinking Water
@@ -110,16 +110,19 @@ const Navbar = () => {
               </ul>
             </li>
 
-            {/* Investors Dropdown - Green to Yellow Gradient */}
+            {/* Investors Dropdown */}
             <li className="relative group">
-              <Link to="/" className="text-black text-lg hover:text-yellow-300">
+              <Link
+                to="/investor-relations"
+                className="text-black text-lg hover:text-yellow-300"
+              >
                 Investors
               </Link>
               <ul className="absolute top-[165%] left-0 bg-gradient-to-r from-green-500 to-yellow-500 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out">
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
                   <span>📈</span>
                   <Link
-                    to="/"
+                    to="/investor-relations"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Investor Relations
@@ -128,7 +131,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
                   <span>📊</span>
                   <Link
-                    to="/"
+                    to="/financial-reports"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Financial Reports
@@ -137,7 +140,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
                   <span>📰</span>
                   <Link
-                    to="/"
+                    to="/press-releases"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Press Releases
@@ -146,7 +149,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
                   <span>🗒️</span>
                   <Link
-                    to="/"
+                    to="/stockholder-info"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Stockholder Information
@@ -155,7 +158,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
                   <span>❓</span>
                   <Link
-                    to="/"
+                    to="/investor-FAQs"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     FAQs for Investors
@@ -164,16 +167,19 @@ const Navbar = () => {
               </ul>
             </li>
 
-            {/* Sustainability Dropdown - Light Green to Dark Green Gradient */}
+            {/* Sustainability Dropdown */}
             <li className="relative group">
-              <Link to="/" className="text-black text-lg hover:text-yellow-300">
+              <Link
+                to="/env-impact"
+                className="text-black text-lg hover:text-yellow-300"
+              >
                 Sustainability
               </Link>
               <ul className="absolute top-[165%] left-0 bg-gradient-to-r from-green-400 to-green-800 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out">
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
                   <span>🌍</span>
                   <Link
-                    to="/"
+                    to="/env-impact"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Environmental Impact
@@ -182,7 +188,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
                   <span>💧</span>
                   <Link
-                    to="/"
+                    to="/water-conservation"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Water Conservation
@@ -191,7 +197,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
                   <span>🤝</span>
                   <Link
-                    to="/"
+                    to="/community-support"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Community Support
@@ -200,7 +206,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
                   <span>📜</span>
                   <Link
-                    to="/"
+                    to="/sustainability-reports"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Sustainability Reports
@@ -209,7 +215,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
                   <span>🏆</span>
                   <Link
-                    to="/"
+                    to="/certifications"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Certifications & Achievements
@@ -218,16 +224,19 @@ const Navbar = () => {
               </ul>
             </li>
 
-            {/* Join Us Dropdown - Purple to Indigo Gradient */}
+            {/* Join Us Dropdown */}
             <li className="relative group">
-              <Link to="/" className="text-black text-lg hover:text-yellow-300">
+              <Link
+                to="/careers"
+                className="text-black text-lg hover:text-yellow-300"
+              >
                 Join Us
               </Link>
               <ul className="absolute top-[165%] left-0 bg-gradient-to-r from-purple-700 to-indigo-800 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out">
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-purple-800 rounded">
                   <span>👨‍💼</span>
                   <Link
-                    to="/"
+                    to="/careers"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Careers
@@ -236,7 +245,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-purple-800 rounded">
                   <span>🎓</span>
                   <Link
-                    to="/"
+                    to="/internship-opportunities"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Internship Opportunities
@@ -245,7 +254,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-purple-800 rounded">
                   <span>🌟</span>
                   <Link
-                    to="/"
+                    to="/life-at-toomore"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Life at Toomore Beverages
@@ -254,7 +263,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-purple-800 rounded">
                   <span>💼</span>
                   <Link
-                    to="/"
+                    to="job-openings"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Job Openings
@@ -263,16 +272,19 @@ const Navbar = () => {
               </ul>
             </li>
 
-            {/* Support Dropdown - Red to Orange Gradient */}
+            {/* Support Dropdown */}
             <li className="relative group">
-              <Link to="/" className="text-black text-lg hover:text-yellow-300">
+              <Link
+                to="/contact-us"
+                className="text-black text-lg hover:text-yellow-300"
+              >
                 Support
               </Link>
               <ul className="absolute top-[165%] left-0 bg-gradient-to-r from-red-700 to-orange-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out">
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-red-800 rounded">
                   <span>📞</span>
                   <Link
-                    to="/"
+                    to="/contact-us"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Contact Us
@@ -281,7 +293,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-red-800 rounded">
                   <span>📝</span>
                   <Link
-                    to="/"
+                    to="/feedback"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Feedback
@@ -290,7 +302,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-red-800 rounded">
                   <span>❓</span>
                   <Link
-                    to="/"
+                    to="/FAQs"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     FAQs
@@ -299,7 +311,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-red-800 rounded">
                   <span>🛒</span>
                   <Link
-                    to="/"
+                    to="/distributor-support"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Distributor Support
@@ -308,7 +320,7 @@ const Navbar = () => {
                 <li className="px-4 py-2 flex items-center space-x-2 hover:bg-red-800 rounded">
                   <span>🙋‍♂️</span>
                   <Link
-                    to="/"
+                    to="/customer-care"
                     className="block text-white text-xs font-bold hover:text-yellow-300"
                   >
                     Customer Care
@@ -329,7 +341,7 @@ const Navbar = () => {
           <Link to="/" className="text-black hover:text-yellow-300">
             <i className="fas fa-shopping-cart text-xl"></i>
           </Link>
-          <Link to="/" className="text-black hover:text-yellow-300">
+          <Link to="/states" className="text-black hover:text-yellow-300">
             <i className="fas fa-globe text-xl"></i>
           </Link>
           {userData ? (
