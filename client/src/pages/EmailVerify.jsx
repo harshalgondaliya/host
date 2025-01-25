@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { assets } from '../assets/assets'
+import logo from '../assets/logo1.png'
 import axios from 'axios'
 import { AppContent } from '../context/AppContext'
 import { useNavigate } from 'react-router-dom'
@@ -65,8 +65,13 @@ const EmailVerify = () => {
   },[isLoggedin,userData])
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 to-purple-400'>
-      <img onClick={()=> navigate('/')} src={assets.logo} alt="" className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer'/>
+    <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-orange-950 via-green-900 to-orange-950">
+      <img
+            onClick={() => navigate("/")}
+            src={logo}
+            alt="Logo"
+            className="absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer"
+          />
       <form onSubmit={onSubmitHandler} className='bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm'>
         <h1 className='text-white text-2xl font-semibold text-center mb-4'>Email Verify OTP</h1>
         <p className='text-center mb-6 text-indigo-300'>Enter the 6-digit code sent to your email id.</p>
