@@ -57,14 +57,14 @@ const login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-orange-950 via-green-900 to-orange-950">
+    <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-orange-900 via-green-400 to-orange-600">
       <img
         onClick={() => navigate("/")}
         src={logo}
         alt="Logo"
         className="absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer"
       />
-      <div className="bg-orange-500 p-10 rounded-lg shadow-lg w-full sm:w-96 text-green-950 text-sm">
+      <div className="bg-orange-600 p-10 rounded-lg shadow-lg w-full sm:w-96 text-green-950 text-sm">
         <h2 className="text-3xl font-semibold text-green text-center mb-3">
           {state === "Sign Up" ? "Create account" : "Login"}
         </h2>
