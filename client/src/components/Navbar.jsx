@@ -332,9 +332,6 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center space-x-5">
-          <Link to="/" className="text-white hover:text-orange-600">
-            <i className="fas fa-search text-xl"></i>
-          </Link>
           <Link to="/cart" className="text-white hover:text-orange-600">
             <i className="fas fa-shopping-cart text-xl"></i>
           </Link>
@@ -345,24 +342,24 @@ const Navbar = () => {
             <div className="w-6 h-6 flex justify-center items-center bg-black text-white rounded-full relative group mb-1">
               {userData.name[0].toUpperCase()}
               <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-white rounded pt-10">
-                <ul className="list-none m-0 p-2 bg-gray-100 text-sm">
+                <ul className="list-none m-0 p-2 bg-gray-900 text-sm">
                   {!userData.isAccountVerified && (
                     <li
                       onClick={sendVerificationOtp}
-                      className="py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10"
+                      className="py-1 px-2 hover:bg-black cursor-pointer pr-10 hover:text-orange-600"
                     >
                       Verify Account
                     </li>
                   )}
                   <li
                     onClick={logout}
-                    className="py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10"
+                    className="py-1 px-2 hover:bg-black cursor-pointer pr-10 hover:text-orange-600"
                   >
                     Logout
                   </li>
                   <li
                     onClick={() => navigate("/reset-password")}
-                    className="py-1 px-2 w-full hover:bg-gray-200 cursor-pointer pr-10"
+                    className="py-1 px-2 w-full hover:bg-black cursor-pointer pr-10 hover:text-orange-600"
                   >
                     Reset Password
                   </li>

@@ -5,7 +5,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css"; // Import Font Awesome s
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-200">
+    <footer className="bg-green-950 text-white">
       <div className="container mx-auto px-11 py-14">
         <div className="grid grid-cols-12 md:grid-cols-1 gap-7 ml-14">
           <div className="flex justify-between mb-4 ml-24">
@@ -119,7 +119,7 @@ const Footer = () => {
             <div>
               <Link
                 to="/states"
-                className="border border-black rounded-full py-2 px-4 hover:bg-black hover:text-cyan-400"
+                className="border border-black rounded-full py-2 px-4 hover:bg-black hover:text-orange-600"
               >
                 <i className="fas fa-map-marker-alt" /> &nbsp;&nbsp;Indian |
                 States
@@ -130,7 +130,7 @@ const Footer = () => {
                 href="https://www.facebook.com/too.more.142"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black  hover:text-orange-600"
               >
                 <i className="fab fa-facebook-f text-xl" />
               </a>
@@ -138,7 +138,7 @@ const Footer = () => {
                 href="https://www.instagram.com/too_more1/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black  hover:text-orange-600"
               >
                 <i className="fab fa-instagram text-xl" />
               </a>
@@ -146,7 +146,7 @@ const Footer = () => {
                 href="https://www.youtube.com/@toomorebeverages9253"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black  hover:text-orange-600"
               >
                 <i className="fab fa-youtube text-xl" />
               </a>
@@ -154,7 +154,7 @@ const Footer = () => {
                 href="https://wa.me/+918780499433"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black  hover:text-orange-600"
               >
                 <i className="fab fa-whatsapp text-xl" />
               </a>
@@ -162,7 +162,7 @@ const Footer = () => {
                 href="mailto:toomore343@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black  hover:text-orange-600"
               >
                 <i className="fas fa-envelope text-xl" />
               </a>
@@ -170,7 +170,7 @@ const Footer = () => {
                 href="https://x.com/too_more343"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white border border-black rounded-full p- w-10 h-10 flex items-center justify-center hover:bg-black hover:text-cyan-400"
+                className="text-white border border-black rounded-full p- w-10 h-10 flex items-center justify-center hover:bg-black  hover:text-orange-600"
               >
                 <i className="fa-brands fa-x-twitter text-xl" />
               </a>
