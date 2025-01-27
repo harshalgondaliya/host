@@ -1,0 +1,757 @@
+{
+  "products": {
+    "subJuice": [
+      {
+        "id": 1,
+        "name": "Pineapple Juice",
+        "description": "TooMore Pineapple Juice",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 50,
+            "cutoffPrice": 40,
+            "discount": 10,
+            "pricePerUnit": "₹0.16 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 90,
+            "cutoffPrice": 75,
+            "discount": 15,
+            "pricePerUnit": "₹0.15 / ml"
+          },
+          {
+            "size": "1L",
+            "originalPrice": 170,
+            "cutoffPrice": 150,
+            "discount": 20,
+            "pricePerUnit": "₹0.15 / ml"
+          }
+        ],
+        "image": "./src/assets/images/products/pineapple.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Mango Juice",
+        "description": "TooMore Mango Juice",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 60,
+            "cutoffPrice": 50,
+            "discount": 10,
+            "pricePerUnit": "₹0.20 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 100,
+            "cutoffPrice": 85,
+            "discount": 15,
+            "pricePerUnit": "₹0.18 / ml"
+          },
+          {
+            "size": "1L",
+            "originalPrice": 180,
+            "cutoffPrice": 155,
+            "discount": 25,
+            "pricePerUnit": "₹0.16 / ml"
+          }
+        ],
+        "image": "./src/assets/images/products/mango.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Grape Juice",
+        "description": "TooMore Grape Juice",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 55,
+            "cutoffPrice": 45,
+            "discount": 10,
+            "pricePerUnit": "₹0.18 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 95,
+            "cutoffPrice": 80,
+            "discount": 15,
+            "pricePerUnit": "₹0.17 / ml"
+          },
+          {
+            "size": "1L",
+            "originalPrice": 175,
+            "cutoffPrice": 150,
+            "discount": 25,
+            "pricePerUnit": "₹0.15 / ml"
+          }
+        ],
+        "image": "./src/assets/images/products/grapes.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Lychee Juice",
+        "description": "TooMore Lychee Juice",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 65,
+            "cutoffPrice": 55,
+            "discount": 10,
+            "pricePerUnit": "₹0.22 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 110,
+            "cutoffPrice": 95,
+            "discount": 15,
+            "pricePerUnit": "₹0.19 / ml"
+          },
+          {
+            "size": "1L",
+            "originalPrice": 200,
+            "cutoffPrice": 175,
+            "discount": 25,
+            "pricePerUnit": "₹0.18 / ml"
+          }
+        ],
+        "image": "./src/assets/images/products/lychee.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Strawberry Juice",
+        "description": "TooMore Strawberry Juice",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 70,
+            "cutoffPrice": 60,
+            "discount": 10,
+            "pricePerUnit": "₹0.24 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 120,
+            "cutoffPrice": 100,
+            "discount": 20,
+            "pricePerUnit": "₹0.20 / ml"
+          },
+          {
+            "size": "1L",
+            "originalPrice": 220,
+            "cutoffPrice": 190,
+            "discount": 30,
+            "pricePerUnit": "₹0.19 / ml"
+          }
+        ],
+        "image": "./src/assets/images/products/strawberry.jpg"
+      }
+    ],
+    "subSoftDrink": [
+      {
+        "id": 6,
+        "name": "Remix",
+        "description": "TooMore Remix",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 55,
+            "cutoffPrice": 45,
+            "discount": 10,
+            "pricePerUnit": "₹0.15 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 75,
+            "cutoffPrice": 65,
+            "discount": 10,
+            "pricePerUnit": "₹0.13 / ml"
+          },
+          {
+            "size": "1L",
+            "originalPrice": 140,
+            "cutoffPrice": 120,
+            "discount": 20,
+            "pricePerUnit": "₹0.12 / ml"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Kiwi",
+        "description": "TooMore Kiwi",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 50,
+            "cutoffPrice": 40,
+            "discount": 10,
+            "pricePerUnit": "₹0.14 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 70,
+            "cutoffPrice": 60,
+            "discount": 10,
+            "pricePerUnit": "₹0.12 / ml"
+          },
+          {
+            "size": "1L",
+            "originalPrice": 130,
+            "cutoffPrice": 115,
+            "discount": 15,
+            "pricePerUnit": "₹0.11 / ml"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Lemon Twist",
+        "description": "TooMore Lemon Twist",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 45,
+            "cutoffPrice": 35,
+            "discount": 10,
+            "pricePerUnit": "₹0.12 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 65,
+            "cutoffPrice": 55,
+            "discount": 10,
+            "pricePerUnit": "₹0.11 / ml"
+          },
+          {
+            "size": "1L",
+            "originalPrice": 120,
+            "cutoffPrice": 100,
+            "discount": 20,
+            "pricePerUnit": "₹0.10 / ml"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "King Orange",
+        "description": "TooMore King Orange : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 55,
+            "cutoffPrice": 45,
+            "discount": 10,
+            "pricePerUnit": "₹0.16 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 75,
+            "cutoffPrice": 65,
+            "discount": 10,
+            "pricePerUnit": "₹0.14 / ml"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "name": "King Pineapple",
+        "description": "TooMore King Pineapple : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 50,
+            "cutoffPrice": 40,
+            "discount": 10,
+            "pricePerUnit": "₹0.15 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 70,
+            "cutoffPrice": 60,
+            "discount": 10,
+            "pricePerUnit": "₹0.13 / ml"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Pepyo",
+        "description": "TooMore Pepyo : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 60,
+            "cutoffPrice": 50,
+            "discount": 10,
+            "pricePerUnit": "₹0.18 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 90,
+            "cutoffPrice": 75,
+            "discount": 15,
+            "pricePerUnit": "₹0.15 / ml"
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Muskmelon Juice",
+        "description": "TooMore Muskmelon Juice : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 65,
+            "cutoffPrice": 55,
+            "discount": 10,
+            "pricePerUnit": "₹0.22 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 100,
+            "cutoffPrice": 85,
+            "discount": 15,
+            "pricePerUnit": "₹0.19 / ml"
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "name": "Orange Cool",
+        "description": "TooMore Orange Cool : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 55,
+            "cutoffPrice": 45,
+            "discount": 10,
+            "pricePerUnit": "₹0.16 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 75,
+            "cutoffPrice": 65,
+            "discount": 10,
+            "pricePerUnit": "₹0.14 / ml"
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "name": "Cola",
+        "description": "TooMore Cola : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 50,
+            "cutoffPrice": 40,
+            "discount": 10,
+            "pricePerUnit": "₹0.14 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 70,
+            "cutoffPrice": 60,
+            "discount": 10,
+            "pricePerUnit": "₹0.12 / ml"
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "Apple",
+        "description": "TooMore Apple : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 60,
+            "cutoffPrice": 50,
+            "discount": 10,
+            "pricePerUnit": "₹0.18 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 90,
+            "cutoffPrice": 75,
+            "discount": 15,
+            "pricePerUnit": "₹0.15 / ml"
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "name": "Jeera",
+        "description": "TooMore Jeera : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 55,
+            "cutoffPrice": 45,
+            "discount": 10,
+            "pricePerUnit": "₹0.16 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 75,
+            "cutoffPrice": 65,
+            "discount": 10,
+            "pricePerUnit": "₹0.14 / ml"
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "name": "Lemon",
+        "description": "TooMore Lemon : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 50,
+            "cutoffPrice": 40,
+            "discount": 10,
+            "pricePerUnit": "₹0.15 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 70,
+            "cutoffPrice": 60,
+            "discount": 10,
+            "pricePerUnit": "₹0.13 / ml"
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "name": "Guava",
+        "description": "TooMore Guava : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 50,
+            "cutoffPrice": 40,
+            "discount": 10,
+            "pricePerUnit": "₹0.15 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 70,
+            "cutoffPrice": 60,
+            "discount": 10,
+            "pricePerUnit": "₹0.13 / ml"
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "name": "Mazica Mango",
+        "description": "TooMore Mazica Mango : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 50,
+            "cutoffPrice": 40,
+            "discount": 10,
+            "pricePerUnit": "₹0.15 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 70,
+            "cutoffPrice": 60,
+            "discount": 10,
+            "pricePerUnit": "₹0.13 / ml"
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "name": "Pineapple Juice",
+        "description": "TooMore Pineapple Juice : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 50,
+            "cutoffPrice": 40,
+            "discount": 10,
+            "pricePerUnit": "₹0.15 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 70,
+            "cutoffPrice": 60,
+            "discount": 10,
+            "pricePerUnit": "₹0.13 / ml"
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "name": "Fresh Guava Soda",
+        "description": "TooMore Fresh Guava Soda : 300ml",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "300ml",
+            "originalPrice": 50,
+            "cutoffPrice": 40,
+            "discount": 10,
+            "pricePerUnit": "₹0.15 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 70,
+            "cutoffPrice": 60,
+            "discount": 10,
+            "pricePerUnit": "₹0.13 / ml"
+          }
+        ]
+      }
+    ],
+    "subEnergyDrink": [
+      {
+        "id": 20,
+        "name": "Cobra",
+        "description": "TooMore Cobra",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 80,
+            "cutoffPrice": 70,
+            "discount": 10,
+            "pricePerUnit": "₹0.28 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 150,
+            "cutoffPrice": 130,
+            "discount": 20,
+            "pricePerUnit": "₹0.26 / ml"
+          }
+        ]
+      }
+    ],
+    "subNaatuNaatu": [
+      {
+        "id": 21,
+        "name": "Lemon Tetrapack",
+        "description": "TooMore Lemon Tetrapack",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 70,
+            "cutoffPrice": 60,
+            "discount": 10,
+            "pricePerUnit": "₹0.24 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 130,
+            "cutoffPrice": 110,
+            "discount": 20,
+            "pricePerUnit": "₹0.22 / ml"
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "name": "Pineapple Tetrapack",
+        "description": "TooMore Pineapple Tetrapack",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 75,
+            "cutoffPrice": 65,
+            "discount": 10,
+            "pricePerUnit": "₹0.26 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 140,
+            "cutoffPrice": 120,
+            "discount": 20,
+            "pricePerUnit": "₹0.24 / ml"
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "name": "Pomegranate Tetrapack",
+        "description": "TooMore Pomegranate Tetrapack",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 80,
+            "cutoffPrice": 70,
+            "discount": 10,
+            "pricePerUnit": "₹0.28 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 150,
+            "cutoffPrice": 130,
+            "discount": 20,
+            "pricePerUnit": "₹0.26 / ml"
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "name": "SkyBerry Tetrapack",
+        "description": "TooMore SkyBerry Tetrapack",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 85,
+            "cutoffPrice": 75,
+            "discount": 10,
+            "pricePerUnit": "₹0.30 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 160,
+            "cutoffPrice": 140,
+            "discount": 20,
+            "pricePerUnit": "₹0.28 / ml"
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "name": "Grapes Tetrapack",
+        "description": "TooMore Grapes Tetrapack",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 90,
+            "cutoffPrice": 80,
+            "discount": 10,
+            "pricePerUnit": "₹0.32 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 170,
+            "cutoffPrice": 150,
+            "discount": 20,
+            "pricePerUnit": "₹0.30 / ml"
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "name": "Guava Tetrapack",
+        "description": "TooMore Guava Tetrapack",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+            "size": "250ml",
+            "originalPrice": 95,
+            "cutoffPrice": 85,
+            "discount": 10,
+            "pricePerUnit": "₹0.34 / ml"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 180,
+            "cutoffPrice": 160,
+            "discount": 20,
+            "pricePerUnit": "₹0.32 / ml"
+          }
+        ]
+      }
+    ],
+    "subDrinkingWater": [
+      {
+      "id": 27,
+      "name": "Polypropylene Water Jug 20L",
+      "description": "Polypropylene Water Jug : 10L",
+      "vegetarianSymbol": false,
+      "sizes": [
+        {
+        "size": "10L",
+        "originalPrice": 200,
+        "cutoffPrice": 180,
+        "discount": 20,
+        "pricePerUnit": "₹18 / L"
+        },
+        {
+        "size": "20L",
+        "originalPrice": 340,
+        "cutoffPrice": 320,
+        "discount": 20,
+        "pricePerUnit": "₹17 / L"
+        }
+      ]
+      },
+      {
+      "id": 28,
+      "name": "20 L Water Jug",
+      "description": "20 L Water Jug",
+      "vegetarianSymbol": false,
+      "sizes": [
+        {
+        "size": "20L",
+        "originalPrice": 250,
+        "cutoffPrice": 230,
+        "discount": 20,
+        "pricePerUnit": "₹11.5 / L"
+        }
+      ]
+      },
+      {
+      "id": 29,
+      "name": "Water Bottle",
+      "description": "Water Bottle : 1L",
+      "vegetarianSymbol": false,
+      "sizes": [
+        {
+        "size": "1L",
+        "originalPrice": 20,
+        "cutoffPrice": 18,
+        "discount": 2,
+        "pricePerUnit": "₹18 / L"
+        },
+        {
+        "size": "2L",
+        "originalPrice": 35,
+        "cutoffPrice": 30,
+        "discount": 5,
+        "pricePerUnit": "₹17 / L"
+        },
+        {
+        "size": "500ml",
+        "originalPrice": 10,
+        "cutoffPrice": 9,
+        "discount": 1,
+        "pricePerUnit": "₹18 / L"
+        }
+      ]
+      }
+    ]
+  }
+}

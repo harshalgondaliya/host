@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import cartData from "./data.json";
 
 import pineappleImage from "../assets/images/products/pineapple.jpg";
 import MangoImage from "../assets/images/products/mango.jpg";
@@ -141,438 +142,6 @@ const Navbar = () => {
   );
 };
 
-const cartData = {
-  products: {
-    subJuice: [
-      {
-        id: 1,
-        name: "Pineapple Juice",
-        description: "TooMore Pineapple Juice : 250ml",
-        vegetarianSymbol: true,
-        originalPrice: 50,
-        cutoffPrice: 40,
-        discount: 10,
-        sizes: [
-          { size: "250ml", pricePerUnit: "₹0.16 / ml" },
-          { size: "500ml", pricePerUnit: "₹0.15 / ml" },
-        ],
-        image: pineappleImage,
-      },
-      {
-        id: 2,
-        name: "Mango Juice",
-        description: "TooMore Mango Juice : 250ml",
-        vegetarianSymbol: true,
-        originalPrice: 60,
-        cutoffPrice: 50,
-        discount: 10,
-        sizes: [
-          { size: "250ml", pricePerUnit: "₹0.20 / ml" },
-          { size: "500ml", pricePerUnit: "₹0.18 / ml" },
-        ],
-        image: MangoImage,
-      },
-      {
-        id: 3,
-        name: "Grape Juice",
-        description: "TooMore Grape Juice : 250ml",
-        vegetarianSymbol: true,
-        originalPrice: 55,
-        cutoffPrice: 45,
-        discount: 10,
-        sizes: [
-          { size: "250ml", pricePerUnit: "₹0.18 / ml" },
-          { size: "500ml", pricePerUnit: "₹0.17 / ml" },
-        ],
-        image: grapeImage,
-      },
-      {
-        id: 4,
-        name: "Lychee Juice",
-        description: "TooMore Lychee Juice : 250ml",
-        vegetarianSymbol: true,
-        originalPrice: 65,
-        cutoffPrice: 55,
-        discount: 10,
-        sizes: [
-          { size: "250ml", pricePerUnit: "₹0.22 / ml" },
-          { size: "500ml", pricePerUnit: "₹0.20 / ml" },
-        ],
-        image: lycheeImage,
-      },
-      {
-        id: 5,
-        name: "Strawberry Juice",
-        description: "TooMore Strawberry Juice : 250ml",
-        vegetarianSymbol: true,
-        originalPrice: 70,
-        cutoffPrice: 60,
-        discount: 10,
-        sizes: [
-          { size: "250ml", pricePerUnit: "₹0.24 / ml" },
-          { size: "500ml", pricePerUnit: "₹0.22 / ml" },
-        ],
-        image: strawberryImage,
-      },
-    ],
-      subSoftDrink: [
-        {
-          id: 6,
-          name: "Remix",
-          description: "TooMore Remix : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 55,
-          cutoffPrice: 45,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-          ],
-          // image: remixImage,
-        },
-        {
-          id: 7,
-          name: "Kiwi",
-          description: "TooMore Kivi : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 50,
-          cutoffPrice: 40,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.14 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.12 / ml" },
-          ],
-          // image: kiviImage,
-        },
-        {
-          id: 8,
-          name: "King Orange",
-          description: "TooMore King Orange : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 55,
-          cutoffPrice: 45,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.16 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.14 / ml" },
-          ],
-          // image: kingOrangeImage,
-        },
-        {
-          id: 9,
-          name: "King Pineapple",
-          description: "TooMore King Pineapple : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 50,
-          cutoffPrice: 40,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-          ],
-          // image: pineappleImage,
-        },
-        {
-          id: 10,
-          name: "Pepyo",
-          description: "TooMore Pepyo : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 60,
-          cutoffPrice: 50,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.18 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.15 / ml" },
-          ],
-          // image: pepyoImage,
-        },
-        {
-          id: 11,
-          name: "Muskmelon Juice",
-          description: "TooMore Muskmelon Juice : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 65,
-          cutoffPrice: 55,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.22 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.19 / ml" },
-          ],
-          // image: muskmelonImage,
-        },
-        {
-          id: 12,
-          name: "Orange Cool",
-          description: "TooMore Orange Cool : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 55,
-          cutoffPrice: 45,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.16 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.14 / ml" },
-          ],
-          // image: orangeCoolImage,
-        },
-        {
-          id: 13,
-          name: "Cola",
-          description: "TooMore Cola : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 50,
-          cutoffPrice: 40,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.14 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.12 / ml" },
-          ],
-          // image: colaImage,
-        },
-        {
-          id: 14,
-          name: "Apple",
-          description: "TooMore Apple : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 60,
-          cutoffPrice: 50,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.18 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.15 / ml" },
-          ],
-          // image: appleImage,
-        },
-        {
-          id: 15,
-          name: "Jeera",
-          description: "TooMore Jeera : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 55,
-          cutoffPrice: 45,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.16 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.14 / ml" },
-          ],
-          // image: jeeraImage,
-        },
-        {
-          id: 16,
-          name: "Lemon",
-          description: "TooMore Lemon : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 50,
-          cutoffPrice: 40,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-          ],
-          // image: lemonImage,
-        },
-        {
-          id: 17,
-          name: "Guava",
-          description: "TooMore Lemon : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 50,
-          cutoffPrice: 40,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-          ],
-          // image: guavaImage,
-        },
-        {
-          id: 17,
-          name: "Mazica Mango",
-          description: "TooMore Lemon : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 50,
-          cutoffPrice: 40,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-          ],
-          // image: mazicaMangoImage,
-        },
-        {
-          id: 18,
-          name: "pineapple juice",
-          description: "TooMore Lemon : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 50,
-          cutoffPrice: 40,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-          ],
-          // image: pineappleImage,
-        },
-        {
-          id: 19,
-          name: "fresh guava soda",
-          description: "TooMore Lemon : 300ml",
-          vegetarianSymbol: true,
-          originalPrice: 50,
-          cutoffPrice: 40,
-          discount: 10,
-          sizes: [
-            { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-          ],
-          // image: freshGuavaSodaImage,
-        },
-      ],
-      subEnergyDrink: [
-        {
-          id: 20,
-          name: "Cobra",
-          description: "TooMore Cobra : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 80,
-          cutoffPrice: 70,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.28 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.26 / ml" },
-          ],
-          // image: cobraImage,
-        },
-      ],
-      subNaatuNaatu: [
-        {
-          id: 21,
-          name: "Lemon Tetrapack",
-          description: "TooMore Lemon Tetrapack : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 70,
-          cutoffPrice: 60,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.24 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.22 / ml" },
-          ],
-          // image: lemonImage,
-        },
-        {
-          id: 22,
-          name: "Pineapple Tetrapack",
-          description: "TooMore Pineapple Tetrapack : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 75,
-          cutoffPrice: 65,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.26 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.24 / ml" },
-          ],
-          // image: pineappleImage,
-        },
-        {
-          id: 23,
-          name: "Pomegranate Tetrapack",
-          description: "TooMore Pomegranate Tetrapack : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 80,
-          cutoffPrice: 70,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.28 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.26 / ml" },
-          ],
-          // image: pomegranateImage,
-        },
-        {
-          id: 24,
-          name: "SkyBerry Tetrapack",
-          description: "TooMore SkyBerry Tetrapack : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 85,
-          cutoffPrice: 75,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.30 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.28 / ml" },
-          ],
-          // image: skyBerryImage,
-        },
-        {
-          id: 25,
-          name: "Grapes Tetrapack",
-          description: "TooMore Grapes Tetrapack : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 90,
-          cutoffPrice: 80,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.32 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.30 / ml" },
-          ],
-          // image: grapeImage,
-        },
-        {
-          id: 26,
-          name: "Guava Tetrapack",
-          description: "TooMore Guava Tetrapack : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 95,
-          cutoffPrice: 85,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.34 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.32 / ml" },
-          ],
-          // image: guavaImage,
-        },
-      ],
-      subDrinkingWater: [
-        {
-          id: 27,
-          name: "Polypropylene Water Jug 20L",
-          description: "Polypropylene Water Jug : 10L",
-          vegetarianSymbol: false,
-          originalPrice: 200,
-          cutoffPrice: 180,
-          discount: 20,
-          sizes: [
-            { size: "10L", pricePerUnit: "₹18 / L" },
-            { size: "20L", pricePerUnit: "₹17 / L" },
-          ],
-          // image: polypropyleneWaterJugImage,
-        },
-        {
-          id: 28,
-          name: "20 L Water Jug",
-          description: "20 L Water Jug",
-          vegetarianSymbol: false,
-          originalPrice: 250,
-          cutoffPrice: 230,
-          discount: 20,
-          sizes: [{ size: "20L", pricePerUnit: "₹11.5 / L" }],
-          // image: waterJugImage,
-        },
-        {
-          id: 29,
-          name: "Water Bottle",
-          description: "Water Bottle : 1L",
-          vegetarianSymbol: false,
-          originalPrice: 20,
-          cutoffPrice: 18,
-          discount: 2,
-          sizes: [
-            { size: "1L", pricePerUnit: "₹18 / L" },
-            { size: "2L", pricePerUnit: "₹17 / L" },
-          ],
-          // image: waterBottleImage,
-        },
-      ],
-  },
-};
-
 const Aside = () => {
   const [openCategory, setOpenCategory] = useState(null);
 
@@ -591,11 +160,13 @@ const Aside = () => {
 
       <ul className="space-y-2">
         {/* Juice Category */}
-        <li>
+        <li
+          onMouseEnter={() => setOpenCategory("juice")}
+          onMouseLeave={() => setOpenCategory(null)}
+        >
           <button
             className="w-full text-left p-2 rounded hover:bg-gray-200 cursor-pointer flex justify-between items-center"
-            onMouseEnter={() => toggleCategory("juice")}
-            onMouseLeave={() => toggleCategory(null)}
+            onClick={() => toggleCategory("juice")}
           >
             Juice ({cartData.products.subJuice.length})
             <svg
@@ -618,21 +189,25 @@ const Aside = () => {
           {openCategory === "juice" && (
             <ul className="bg-gray-50 border rounded shadow-md mt-2 p-2 space-y-1">
               {cartData.products.subJuice.map((item) => (
-                <li key={item.id} className="p-2 rounded hover:bg-gray-200 cursor-pointer">
+                <li
+                  key={item.id}
+                  className="p-2 rounded hover:bg-gray-200 cursor-pointer"
+                >
                   {item.name}
                 </li>
               ))}
             </ul>
           )}
         </li>
-        
 
         {/* Soft Drink Category */}
-        <li>
+        <li
+          onMouseEnter={() => setOpenCategory("softDrink")}
+          onMouseLeave={() => setOpenCategory(null)}
+        >
           <button
             className="w-full text-left p-2 rounded hover:bg-gray-200 cursor-pointer flex justify-between items-center"
-            onMouseEnter={() => toggleCategory("softDrink")}
-            onMouseLeave={() => toggleCategory(null)}
+            onClick={() => toggleCategory("softDrink")}
           >
             Soft Drinks ({cartData.products.subSoftDrink.length})
             <svg
@@ -655,7 +230,10 @@ const Aside = () => {
           {openCategory === "softDrink" && (
             <ul className="bg-gray-50 border rounded shadow-md mt-2 p-2 space-y-1">
               {cartData.products.subSoftDrink.map((item) => (
-                <li key={item.id} className="p-2 rounded hover:bg-gray-200 cursor-pointer">
+                <li
+                  key={item.id}
+                  className="p-2 rounded hover:bg-gray-200 cursor-pointer"
+                >
                   {item.name}
                 </li>
               ))}
@@ -664,11 +242,13 @@ const Aside = () => {
         </li>
 
         {/* Energy Drink Category */}
-        <li>
+        <li
+          onMouseEnter={() => setOpenCategory("energyDrink")}
+          onMouseLeave={() => setOpenCategory(null)}
+        >
           <button
             className="w-full text-left p-2 rounded hover:bg-gray-200 cursor-pointer flex justify-between items-center"
-            onMouseEnter={() => toggleCategory("energyDrink")}
-            onMouseLeave={() => toggleCategory(null)}
+            onClick={() => toggleCategory("energyDrink")}
           >
             Energy Drinks ({cartData.products.subEnergyDrink.length})
             <svg
@@ -691,7 +271,10 @@ const Aside = () => {
           {openCategory === "energyDrink" && (
             <ul className="bg-gray-50 border rounded shadow-md mt-2 p-2 space-y-1">
               {cartData.products.subEnergyDrink.map((item) => (
-                <li key={item.id} className="p-2 rounded hover:bg-gray-200 cursor-pointer">
+                <li
+                  key={item.id}
+                  className="p-2 rounded hover:bg-gray-200 cursor-pointer"
+                >
                   {item.name}
                 </li>
               ))}
@@ -700,11 +283,13 @@ const Aside = () => {
         </li>
 
         {/* Naatu Naatu Category */}
-        <li>
+        <li
+          onMouseEnter={() => setOpenCategory("naatuNaatu")}
+          onMouseLeave={() => setOpenCategory(null)}
+        >
           <button
             className="w-full text-left p-2 rounded hover:bg-gray-200 cursor-pointer flex justify-between items-center"
-            onMouseEnter={() => toggleCategory("naatuNaatu")}
-            onMouseLeave={() => toggleCategory(null)}
+            onClick={() => toggleCategory("naatuNaatu")}
           >
             Naatu Naatu ({cartData.products.subNaatuNaatu.length})
             <svg
@@ -727,7 +312,10 @@ const Aside = () => {
           {openCategory === "naatuNaatu" && (
             <ul className="bg-gray-50 border rounded shadow-md mt-2 p-2 space-y-1">
               {cartData.products.subNaatuNaatu.map((item) => (
-                <li key={item.id} className="p-2 rounded hover:bg-gray-200 cursor-pointer">
+                <li
+                  key={item.id}
+                  className="p-2 rounded hover:bg-gray-200 cursor-pointer"
+                >
                   {item.name}
                 </li>
               ))}
@@ -736,11 +324,13 @@ const Aside = () => {
         </li>
 
         {/* Drinking Water Category */}
-        <li>
+        <li
+          onMouseEnter={() => setOpenCategory("drinkingWater")}
+          onMouseLeave={() => setOpenCategory(null)}
+        >
           <button
             className="w-full text-left p-2 rounded hover:bg-gray-200 cursor-pointer flex justify-between items-center"
-            onMouseEnter={() => toggleCategory("drinkingWater")}
-            onMouseLeave={() => toggleCategory(null)}
+            onClick={() => toggleCategory("drinkingWater")}
           >
             Drinking Water ({cartData.products.subDrinkingWater.length})
             <svg
@@ -763,7 +353,10 @@ const Aside = () => {
           {openCategory === "drinkingWater" && (
             <ul className="bg-gray-50 border rounded shadow-md mt-2 p-2 space-y-1">
               {cartData.products.subDrinkingWater.map((item) => (
-                <li key={item.id} className="p-2 rounded hover:bg-gray-200 cursor-pointer">
+                <li
+                  key={item.id}
+                  className="p-2 rounded hover:bg-gray-200 cursor-pointer"
+                >
                   {item.name}
                 </li>
               ))}
@@ -777,436 +370,13 @@ const Aside = () => {
 
 // Sample Cart Component
 const Cart = () => {
-  const cartData = {
-    products: {
-      subJuice: [
-        {
-          id: 1,
-          name: "Pineapple Juice",
-          description: "TooMore Pineapple Juice : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 50,
-          cutoffPrice: 40,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.16 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.15 / ml" },
-          ],
-          image: pineappleImage,
-        },
-        {
-          id: 2,
-          name: "Mango Juice",
-          description: "TooMore Mango Juice : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 60,
-          cutoffPrice: 50,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.20 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.18 / ml" },
-          ],
-          image: MangoImage,
-        },
-        {
-          id: 3,
-          name: "Grape Juice",
-          description: "TooMore Grape Juice : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 55,
-          cutoffPrice: 45,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.18 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.17 / ml" },
-          ],
-          image: grapeImage,
-        },
-        {
-          id: 4,
-          name: "Lychee Juice",
-          description: "TooMore Lychee Juice : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 65,
-          cutoffPrice: 55,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.22 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.20 / ml" },
-          ],
-          image: lycheeImage,
-        },
-        {
-          id: 5,
-          name: "Strawberry Juice",
-          description: "TooMore Strawberry Juice : 250ml",
-          vegetarianSymbol: true,
-          originalPrice: 70,
-          cutoffPrice: 60,
-          discount: 10,
-          sizes: [
-            { size: "250ml", pricePerUnit: "₹0.24 / ml" },
-            { size: "500ml", pricePerUnit: "₹0.22 / ml" },
-          ],
-          image: strawberryImage,
-        },
-      ],
-      // subSoftDrink: [
-      //   {
-      //     id: 6,
-      //     name: "Remix",
-      //     description: "TooMore Remix : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 55,
-      //     cutoffPrice: 45,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-      //     ],
-      //     image: remixImage,
-      //   },
-      //   {
-      //     id: 7,
-      //     name: "Kiwi",
-      //     description: "TooMore Kivi : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 50,
-      //     cutoffPrice: 40,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.14 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.12 / ml" },
-      //     ],
-      //     image: kiviImage,
-      //   },
-      //   {
-      //     id: 8,
-      //     name: "King Orange",
-      //     description: "TooMore King Orange : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 55,
-      //     cutoffPrice: 45,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.16 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.14 / ml" },
-      //     ],
-      //     image: kingOrangeImage,
-      //   },
-      //   {
-      //     id: 9,
-      //     name: "King Pineapple",
-      //     description: "TooMore King Pineapple : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 50,
-      //     cutoffPrice: 40,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-      //     ],
-      //     image: pineappleImage,
-      //   },
-      //   {
-      //     id: 10,
-      //     name: "Pepyo",
-      //     description: "TooMore Pepyo : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 60,
-      //     cutoffPrice: 50,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.18 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.15 / ml" },
-      //     ],
-      //     image: pepyoImage,
-      //   },
-      //   {
-      //     id: 11,
-      //     name: "Muskmelon Juice",
-      //     description: "TooMore Muskmelon Juice : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 65,
-      //     cutoffPrice: 55,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.22 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.19 / ml" },
-      //     ],
-      //     image: muskmelonImage,
-      //   },
-      //   {
-      //     id: 12,
-      //     name: "Orange Cool",
-      //     description: "TooMore Orange Cool : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 55,
-      //     cutoffPrice: 45,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.16 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.14 / ml" },
-      //     ],
-      //     image: orangeCoolImage,
-      //   },
-      //   {
-      //     id: 13,
-      //     name: "Cola",
-      //     description: "TooMore Cola : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 50,
-      //     cutoffPrice: 40,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.14 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.12 / ml" },
-      //     ],
-      //     image: colaImage,
-      //   },
-      //   {
-      //     id: 14,
-      //     name: "Apple",
-      //     description: "TooMore Apple : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 60,
-      //     cutoffPrice: 50,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.18 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.15 / ml" },
-      //     ],
-      //     image: appleImage,
-      //   },
-      //   {
-      //     id: 15,
-      //     name: "Jeera",
-      //     description: "TooMore Jeera : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 55,
-      //     cutoffPrice: 45,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.16 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.14 / ml" },
-      //     ],
-      //     image: jeeraImage,
-      //   },
-      //   {
-      //     id: 16,
-      //     name: "Lemon",
-      //     description: "TooMore Lemon : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 50,
-      //     cutoffPrice: 40,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-      //     ],
-      //     image: lemonImage,
-      //   },
-      //   {
-      //     id: 17,
-      //     name: "Guava",
-      //     description: "TooMore Lemon : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 50,
-      //     cutoffPrice: 40,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-      //     ],
-      //     image: guavaImage,
-      //   },
-      //   {
-      //     id: 17,
-      //     name: "Mazica Mango",
-      //     description: "TooMore Lemon : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 50,
-      //     cutoffPrice: 40,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-      //     ],
-      //     image: mazicaMangoImage,
-      //   },
-      //   {
-      //     id: 18,
-      //     name: "pineapple juice",
-      //     description: "TooMore Lemon : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 50,
-      //     cutoffPrice: 40,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-      //     ],
-      //     image: pineappleImage,
-      //   },
-      //   {
-      //     id: 19,
-      //     name: "fresh guava soda",
-      //     description: "TooMore Lemon : 300ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 50,
-      //     cutoffPrice: 40,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "300ml", pricePerUnit: "₹0.15 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.13 / ml" },
-      //     ],
-      //     image: freshGuavaSodaImage,
-      //   },
-      // ],
-      // subEnergyDrink: [
-      //   {
-      //     id: 20,
-      //     name: "Cobra",
-      //     description: "TooMore Cobra : 250ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 80,
-      //     cutoffPrice: 70,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "250ml", pricePerUnit: "₹0.28 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.26 / ml" },
-      //     ],
-      //     image: cobraImage,
-      //   },
-      // ],
-      // subNaatuNaatu: [
-      //   {
-      //     id: 21,
-      //     name: "Lemon Tetrapack",
-      //     description: "TooMore Lemon Tetrapack : 250ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 70,
-      //     cutoffPrice: 60,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "250ml", pricePerUnit: "₹0.24 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.22 / ml" },
-      //     ],
-      //     image: lemonImage,
-      //   },
-      //   {
-      //     id: 22,
-      //     name: "Pineapple Tetrapack",
-      //     description: "TooMore Pineapple Tetrapack : 250ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 75,
-      //     cutoffPrice: 65,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "250ml", pricePerUnit: "₹0.26 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.24 / ml" },
-      //     ],
-      //     image: pineappleImage,
-      //   },
-      //   {
-      //     id: 23,
-      //     name: "Pomegranate Tetrapack",
-      //     description: "TooMore Pomegranate Tetrapack : 250ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 80,
-      //     cutoffPrice: 70,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "250ml", pricePerUnit: "₹0.28 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.26 / ml" },
-      //     ],
-      //     image: pomegranateImage,
-      //   },
-      //   {
-      //     id: 24,
-      //     name: "SkyBerry Tetrapack",
-      //     description: "TooMore SkyBerry Tetrapack : 250ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 85,
-      //     cutoffPrice: 75,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "250ml", pricePerUnit: "₹0.30 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.28 / ml" },
-      //     ],
-      //     image: skyBerryImage,
-      //   },
-      //   {
-      //     id: 25,
-      //     name: "Grapes Tetrapack",
-      //     description: "TooMore Grapes Tetrapack : 250ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 90,
-      //     cutoffPrice: 80,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "250ml", pricePerUnit: "₹0.32 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.30 / ml" },
-      //     ],
-      //     image: grapeImage,
-      //   },
-      //   {
-      //     id: 26,
-      //     name: "Guava Tetrapack",
-      //     description: "TooMore Guava Tetrapack : 250ml",
-      //     vegetarianSymbol: true,
-      //     originalPrice: 95,
-      //     cutoffPrice: 85,
-      //     discount: 10,
-      //     sizes: [
-      //       { size: "250ml", pricePerUnit: "₹0.34 / ml" },
-      //       { size: "500ml", pricePerUnit: "₹0.32 / ml" },
-      //     ],
-      //     image: guavaImage,
-      //   },
-      // ],
-      // subDrinkingWater: [
-      //   {
-      //     id: 27,
-      //     name: "Polypropylene Water Jug",
-      //     description: "Polypropylene Water Jug : 10L",
-      //     vegetarianSymbol: false,
-      //     originalPrice: 200,
-      //     cutoffPrice: 180,
-      //     discount: 20,
-      //     sizes: [
-      //       { size: "10L", pricePerUnit: "₹18 / L" },
-      //       { size: "20L", pricePerUnit: "₹17 / L" },
-      //     ],
-      //     image: polypropyleneWaterJugImage,
-      //   },
-      //   {
-      //     id: 28,
-      //     name: "20 L Water Jug",
-      //     description: "20 L Water Jug",
-      //     vegetarianSymbol: false,
-      //     originalPrice: 250,
-      //     cutoffPrice: 230,
-      //     discount: 20,
-      //     sizes: [{ size: "20L", pricePerUnit: "₹11.5 / L" }],
-      //     image: waterJugImage,
-      //   },
-      //   {
-      //     id: 29,
-      //     name: "Water Bottle",
-      //     description: "Water Bottle : 1L",
-      //     vegetarianSymbol: false,
-      //     originalPrice: 20,
-      //     cutoffPrice: 18,
-      //     discount: 2,
-      //     sizes: [
-      //       { size: "1L", pricePerUnit: "₹18 / L" },
-      //       { size: "2L", pricePerUnit: "₹17 / L" },
-      //     ],
-      //     image: waterBottleImage,
-      //   },
-      // ],
-    },
+  const [selectedSizes, setSelectedSizes] = useState({});
+
+  const handleSizeChange = (itemId, sizeIndex) => {
+    setSelectedSizes((prevSizes) => ({
+      ...prevSizes,
+      [itemId]: sizeIndex,
+    }));
   };
 
   return (
@@ -1221,61 +391,90 @@ const Cart = () => {
           >
             Shopping Cart
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cartData.products.subJuice.map((item) => (
-              <div
-                key={item.id}
-                className="border rounded-lg shadow-lg p-4 flex flex-col justify-between"
-              >
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-sm font-semibold text-gray-800">
-                    {item.description}
-                  </h3>
-                  {item.vegetarianSymbol && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {cartData.products.subJuice.map((item) => {
+              const selectedSizeIndex = selectedSizes[item.id] || 0;
+              const selectedSize = item.sizes[selectedSizeIndex];
+
+              return (
+                <div
+                  key={item.id}
+                  className="border rounded-lg shadow-md p-1 flex flex-col w-[rem]"
+                >
+                  {/* Product Header */}
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-sm font-semibold text-gray-800">
+                      {item.description}
+                    </h3>
+                    {item.vegetarianSymbol && (
+                      <img
+                        src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
+                        alt="Vegetarian Symbol"
+                        className="h-10 w-10"
+                        title="Vegetarian"
+                      />
+                    )}
+                  </div>
+
+                  {/* Product Image */}
+                  <div className="flex justify-center my-1">
                     <img
-                      src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
-                      alt="Vegetarian Symbol"
-                      className="h-5 w-5"
+                      src={item.image}
+                      alt={item.name}
+                      className="w-32 h-32 object-contain rounded-lg"
                     />
-                  )}
-                </div>
+                  </div>
 
-                <div className="flex justify-center mb-4">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-32 h-32 object-cover rounded-lg"
-                  />
-                </div>
+                  {/* Price Information */}
+                  <div className="mb-4 flex justify-between items-center">
+                    <div>
+                      <p className="text-gray-500 text-sm">
+                        <span className="font-semibold">MRP: </span>
+                        <span className="line-through">
+                          ₹{selectedSize.originalPrice}
+                        </span>
+                      </p>
+                      <p className="text-green-600 text-lg font-bold">
+                        TooMore: ₹{selectedSize.cutoffPrice}
+                      </p>
+                      <p className="text-gray-500 text-xs">
+                        Inclusive of all taxes
+                      </p>
+                    </div>
+                    <div>
+                      <span className="bg-green-500 text-white text-sm font-bold px-2 py-1 rounded">
+                        ₹{selectedSize.discount} OFF
+                      </span>
+                    </div>
+                  </div>
 
-                <div className="mb-4">
-                  <p className="text-gray-500 text-sm line-through">
-                    ₹{item.originalPrice}
-                  </p>
-                  <p className="text-green-600 text-lg font-bold">
-                    ₹{item.cutoffPrice}
-                  </p>
-                  <p className="text-sm text-gray-500">Save ₹{item.discount}</p>
-                </div>
+                  {/* Size Selection */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Select Size:
+                    </label>
+                    <select
+                      className="border border-gray-300 rounded p-2 w-full text-sm"
+                      value={selectedSizeIndex}
+                      onChange={(e) =>
+                        handleSizeChange(item.id, parseInt(e.target.value))
+                      }
+                    >
+                      {item.sizes.map((size, index) => (
+                        <option key={index} value={index}>
+                          {size.size} ({size.pricePerUnit})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-                <div className="mb-4">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Select Size:
-                  </label>
-                  <select className="border border-gray-300 rounded p-2 w-full text-sm">
-                    {item.sizes.map((size, index) => (
-                      <option key={index} value={size.size}>
-                        {size.size} ({size.pricePerUnit})
-                      </option>
-                    ))}
-                  </select>
+                  {/* Add to Cart Button */}
+                  <button className="w-full bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition">
+                    Add to Cart
+                  </button>
                 </div>
-
-                <button className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">
-                  Add to Cart
-                </button>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </main>
       </div>
