@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Pineapple Juice",
+      "description": "TooMore Pineapple Juice : 250ml",
+      "vegetarianSymbol": true,
+      "originalPrice": 50,
+      "cutoffPrice": 40,
+      "discount": 10,
+      "sizes": [
+        { "size": "250ml", "pricePerUnit": "₹0.16 / ml" },
+        { "size": "500ml", "pricePerUnit": "₹0.15 / ml" }
+      ],
+      "image": "pineappleImage"
+    },
+    {
+      "id": 2,
+      "name": "Mango Juice",
+      "description": "TooMore Mango Juice : 250ml",
+      "vegetarianSymbol": true,
+      "originalPrice": 60,
+      "cutoffPrice": 50,
+      "discount": 10,
+      "sizes": [
+        { "size": "250ml", "pricePerUnit": "₹0.20 / ml" },
+        { "size": "500ml", "pricePerUnit": "₹0.18 / ml" }
+      ],
+      "image": "MangoImage"
+    },
+    {
+      "id": 3,
+      "name": "Grape Juice",
+      "description": "TooMore Grape Juice : 250ml",
+      "vegetarianSymbol": true,
+      "originalPrice": 55,
+      "cutoffPrice": 45,
+      "discount": 10,
+      "sizes": [
+        { "size": "250ml", "pricePerUnit": "₹0.18 / ml" },
+        { "size": "500ml", "pricePerUnit": "₹0.17 / ml" }
+      ],
+      "image": "grapeImage"
+    },
+    {
+      "id": 4,
+      "name": "Lychee Juice",
+      "description": "TooMore Lychee Juice : 250ml",
+      "vegetarianSymbol": true,
+      "originalPrice": 65,
+      "cutoffPrice": 55,
+      "discount": 10,
+      "sizes": [
+        { "size": "250ml", "pricePerUnit": "₹0.22 / ml" },
+        { "size": "500ml", "pricePerUnit": "₹0.20 / ml" }
+      ],
+      "image": "lycheeImage"
+    },
+    {
+      "id": 5,
+      "name": "Strawberry Juice",
+      "description": "TooMore Strawberry Juice : 250ml",
+      "vegetarianSymbol": true,
+      "originalPrice": 70,
+      "cutoffPrice": 60,
+      "discount": 10,
+      "sizes": [
+        { "size": "250ml", "pricePerUnit": "₹0.24 / ml" },
+        { "size": "500ml", "pricePerUnit": "₹0.22 / ml" }
+      ],
+      "image": "strawberryImage"
+    }
+  ]
+}

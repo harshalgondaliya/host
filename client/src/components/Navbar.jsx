@@ -47,18 +47,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-orange-500 dark:bg-blue-700 fixed w-full z-20 top-0 start-0 border-b border-orange-600 dark:border-blue-600">
+    <nav className="bg-orange-500 dark:bg-green-950 fixed w-full z-20 top-0 start-0 border-b border-orange-600 dark:border-green-950">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-0">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={logo} alt="Toomore Juice Logo" className="h-16 w-16" />
         </a>
 
-        <div className="bg-blue-700 hidden md:flex items-center space-x-6">
+        <div className="dark:bg-green-950 hidden md:flex items-center space-x-6">
           <ul className="flex items-center space-x-10">
             <li>
               <Link
                 to="/our-story"
-                className="text-black text-lg hover:text-yellow-300"
+                className="text-white text-lg hover:text-orange-600"
               >
                 Our Story
               </Link>
@@ -66,7 +66,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/Juices"
-                className="text-black text-lg hover:text-yellow-300"
+                className="text-white text-lg hover:text-orange-600"
               >
                 Products
               </Link>
@@ -75,7 +75,7 @@ const Navbar = () => {
                   <span>🍹</span>
                   <Link
                     to="/Juices"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Juices
                   </Link>
@@ -84,7 +84,7 @@ const Navbar = () => {
                   <span>🥤</span>
                   <Link
                     to="soft-drinks"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Soft Drinks
                   </Link>
@@ -93,7 +93,7 @@ const Navbar = () => {
                   <span>⚡</span>
                   <Link
                     to="/energy-drinks"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Energy Drinks
                   </Link>
@@ -102,7 +102,7 @@ const Navbar = () => {
                   <span>💧</span>
                   <Link
                     to="/drinking-Water"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Drinking Water
                   </Link>
@@ -114,7 +114,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/investor-relations"
-                className="text-black text-lg hover:text-yellow-300"
+                className="text-white text-lg hover:text-orange-600"
               >
                 Investors
               </Link>
@@ -123,7 +123,7 @@ const Navbar = () => {
                   <span>📈</span>
                   <Link
                     to="/investor-relations"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Investor Relations
                   </Link>
@@ -132,7 +132,7 @@ const Navbar = () => {
                   <span>📊</span>
                   <Link
                     to="/financial-reports"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Financial Reports
                   </Link>
@@ -141,7 +141,7 @@ const Navbar = () => {
                   <span>📰</span>
                   <Link
                     to="/press-releases"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Press Releases
                   </Link>
@@ -150,7 +150,7 @@ const Navbar = () => {
                   <span>🗒️</span>
                   <Link
                     to="/stockholder-info"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Stockholder Information
                   </Link>
@@ -159,7 +159,7 @@ const Navbar = () => {
                   <span>❓</span>
                   <Link
                     to="/investor-FAQs"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     FAQs for Investors
                   </Link>
@@ -171,7 +171,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/env-impact"
-                className="text-black text-lg hover:text-yellow-300"
+                className="text-white text-lg hover:text-orange-600"
               >
                 Sustainability
               </Link>
@@ -180,7 +180,7 @@ const Navbar = () => {
                   <span>🌍</span>
                   <Link
                     to="/env-impact"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Environmental Impact
                   </Link>
@@ -189,7 +189,7 @@ const Navbar = () => {
                   <span>💧</span>
                   <Link
                     to="/water-conservation"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Water Conservation
                   </Link>
@@ -198,7 +198,7 @@ const Navbar = () => {
                   <span>🤝</span>
                   <Link
                     to="/community-support"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Community Support
                   </Link>
@@ -207,7 +207,7 @@ const Navbar = () => {
                   <span>📜</span>
                   <Link
                     to="/sustainability-reports"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Sustainability Reports
                   </Link>
@@ -216,7 +216,7 @@ const Navbar = () => {
                   <span>🏆</span>
                   <Link
                     to="/certifications"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Certifications & Achievements
                   </Link>
@@ -228,7 +228,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/careers"
-                className="text-black text-lg hover:text-yellow-300"
+                className="text-white text-lg hover:text-orange-600"
               >
                 Join Us
               </Link>
@@ -237,7 +237,7 @@ const Navbar = () => {
                   <span>👨‍💼</span>
                   <Link
                     to="/careers"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Careers
                   </Link>
@@ -246,7 +246,7 @@ const Navbar = () => {
                   <span>🎓</span>
                   <Link
                     to="/internship-opportunities"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Internship Opportunities
                   </Link>
@@ -255,7 +255,7 @@ const Navbar = () => {
                   <span>🌟</span>
                   <Link
                     to="/life-at-toomore"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Life at Toomore Beverages
                   </Link>
@@ -264,7 +264,7 @@ const Navbar = () => {
                   <span>💼</span>
                   <Link
                     to="job-openings"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Job Openings
                   </Link>
@@ -276,7 +276,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/contact-us"
-                className="text-black text-lg hover:text-yellow-300"
+                className="text-white text-lg hover:text-orange-600"
               >
                 Support
               </Link>
@@ -285,7 +285,7 @@ const Navbar = () => {
                   <span>📞</span>
                   <Link
                     to="/contact-us"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Contact Us
                   </Link>
@@ -294,7 +294,7 @@ const Navbar = () => {
                   <span>📝</span>
                   <Link
                     to="/feedback"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Feedback
                   </Link>
@@ -303,7 +303,7 @@ const Navbar = () => {
                   <span>❓</span>
                   <Link
                     to="/FAQs"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     FAQs
                   </Link>
@@ -312,7 +312,7 @@ const Navbar = () => {
                   <span>🛒</span>
                   <Link
                     to="/distributor-support"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Distributor Support
                   </Link>
@@ -321,7 +321,7 @@ const Navbar = () => {
                   <span>🙋‍♂️</span>
                   <Link
                     to="/customer-care"
-                    className="block text-white text-xs font-bold hover:text-yellow-300"
+                    className="block text-white text-xs font-bold hover:text-orange-600"
                   >
                     Customer Care
                   </Link>
@@ -332,19 +332,19 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center space-x-5">
-          <Link to="/" className="text-black hover:text-yellow-300">
+          <Link to="/" className="text-white hover:text-orange-600">
             <i className="fas fa-search text-xl"></i>
           </Link>
-          <Link to="/cart" className="text-black hover:text-yellow-300">
+          <Link to="/cart" className="text-white hover:text-orange-600">
             <i className="fas fa-shopping-cart text-xl"></i>
           </Link>
-          <Link to="/states" className="text-black hover:text-yellow-300">
+          <Link to="/states" className="text-white hover:text-orange-600">
             <i className="fas fa-globe text-xl"></i>
           </Link>
           {userData ? (
             <div className="w-6 h-6 flex justify-center items-center bg-black text-white rounded-full relative group mb-1">
               {userData.name[0].toUpperCase()}
-              <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-10">
+              <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-white rounded pt-10">
                 <ul className="list-none m-0 p-2 bg-gray-100 text-sm">
                   {!userData.isAccountVerified && (
                     <li
@@ -370,13 +370,13 @@ const Navbar = () => {
               </div>
             </div>
           ) : (
-            <Link to="/login" className="text-black hover:text-yellow-300">
+            <Link to="/login" className="text-white hover:text-orange-600">
               <i className="fas fa-user text-xl"></i>
             </Link>
           )}
         </div>
 
-        <button className="md:hidden text-black">
+        <button className="md:hidden text-white">
           <i className="fas fa-bars text-xl"></i>
         </button>
       </div>
