@@ -335,10 +335,7 @@ const Navbar = () => {
           <Link to="/" className="text-black hover:text-yellow-300">
             <i className="fas fa-search text-xl"></i>
           </Link>
-          <Link to="/" className="text-black hover:text-yellow-300">
-            <i className="fas fa-heart text-xl"></i>
-          </Link>
-          <Link to="/" className="text-black hover:text-yellow-300">
+          <Link to="/cart" className="text-black hover:text-yellow-300">
             <i className="fas fa-shopping-cart text-xl"></i>
           </Link>
           <Link to="/states" className="text-black hover:text-yellow-300">

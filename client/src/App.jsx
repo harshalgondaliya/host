@@ -30,6 +30,7 @@ import Juices from './pages/Products/Juices';
 import SoftDrinks from './pages/Products/SoftDrinks';
 import EnergyDrinks from './pages/Products/EnergyDrinks';
 import DrinkingWater from './pages/Products/DrinkingWater';
+import Cart from './pages/Cart';
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/email-verify" element={<EmailVerify />} />
         <Route path="/our-story" element={<OurStory />} />
+        <Route path="/cart" element={<Cart />} />
 
         {/* products */}
         <Route path="/Juices" element={<Juices />} />
