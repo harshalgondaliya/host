@@ -1,127 +1,208 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import cartData from "./data.json";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
-import Aside from "./Aside";
+import { AppContent } from "../context/AppContext"; // Import your context
 
 const ShoppingCartPage = () => {
-  const [selectedSizes, setSelectedSizes] = useState({});
-  const [coupon, setCoupon] = useState("");
-
-  const handleSizeChange = (itemId, sizeIndex) => {
-    setSelectedSizes((prevSizes) => ({
-      ...prevSizes,
-      [itemId]: sizeIndex,
-    }));
-  };
-
-  const calculateTotal = () => {
-    return cartData.products.subJuice.reduce((total, item) => {
-      const selectedSizeIndex = selectedSizes[item.id] || 0;
-      const selectedSize = item.sizes[selectedSizeIndex];
-      return total + selectedSize.cutoffPrice;
-    }, 0);
-  };
-
   const navigate = useNavigate();
+  const { cartItems, addToCart, removeFromCart } = useContext(AppContent); // Use cartItems and functions from context
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
+
+  const applyCoupon = () => {
+    if (coupon === "SAVE10") {
+      setDiscount(10); // Apply 10% discount
+    } else {
+      alert("Invalid Coupon Code");
+    }
+  };
+
+  // Handle increment for an item
+  const handleIncrement = (itemId) => {
+    const existingItem = cartItems.find((item) => item.id === itemId);
+    if (existingItem) {
+      handleQuantityChange(itemId, existingItem.quantity + 1);
+    }
+  };
+
+  const handleDecrement = (itemId) => {
+    const existingItem = cartItems.find((item) => item.id === itemId);
+    if (existingItem) {
+      handleQuantityChange(itemId, existingItem.quantity - 1);
+    }
+  };
+
+  const handleQuantityChange = (itemId, newQuantity) => {
+    if (newQuantity > 0) {
+      const updatedItem = { ...cartItems.find((item) => item.id === itemId), quantity: newQuantity };
+      addToCart(updatedItem); // Update the item
+    } else if (newQuantity === 0) {
+      removeFromCart(itemId); // Remove the item if quantity is 0
+    } else {
+      alert("Quantity cannot be less than 1");
+    }
+  };
+
+  // Calculate totals
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotalPrice = cartItems.reduce(
+    (sum, item) =>
+      item.size ? sum + item.quantity * item.size.cutoffPrice : sum,
+    0
+  );
+
+  // Calculate total savings (total discount)
+  const totalSavings = cartItems.reduce(
+    (sum, item) =>
+      item.size
+        ? sum +
+          item.quantity * (item.size.originalPrice - item.size.cutoffPrice)
+        : sum,
+    0
+  );
+
+  const shippingFee = subtotalPrice >= 5000 ? 0 : 50; // Free shipping for orders above ₹5000
+  const estimatedTax = subtotalPrice * 0.18; // 18% tax
+  const discountAmount = (subtotalPrice * discount) / 100; // Calculate coupon discount amount
+  const orderTotal =
+    subtotalPrice + shippingFee + estimatedTax - totalSavings - discountAmount; // Final order total
 
   return (
-    <div>
-      <Nav />
-      <div className="flex">
-        <Aside />
-        <main className="container mx-auto p-4">
-          <h2 className="text-lg font-bold mb-4">Shopping Cart</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {cartData.products.subJuice.map((item) => {
-              const selectedSizeIndex = selectedSizes[item.id] || 0;
-              const selectedSize = item.sizes[selectedSizeIndex];
-
-              return (
-                <div
-                  key={item.id}
-                  className="border rounded-lg shadow-md p-4 flex flex-col"
-                >
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-sm font-semibold">{item.description}</h3>
-                    {item.vegetarianSymbol && (
+    <div className="min-h-screen bg-orange-300 text-white">
+      <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
+      <br />
+      <br />
+      <div className="flex flex-col lg:flex-row max-w-7xl mx-auto mt-6 gap-6 p-4">
+        {/* Cart Items */}
+        <main className="lg:w-3/4">
+          <h2 className="text-2xl font-bold mb-4 text-green-950">Shopping Cart</h2>
+          {totalItems > 0 ? (
+            <div className="space-y-4">
+              {cartItems.map((item, index) =>
+                item.size ? (
+                  <div
+                    key={index}
+                    className="bg-green-950 p-4 rounded-lg shadow-md flex flex-col lg:flex-row justify-between items-center gap-4"
+                  >
+                    {/* Item Image */}
+                    <div className="w-24 h-24 flex-shrink-0">
                       <img
-                        src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
-                        alt="Vegetarian Symbol"
-                        className="h-6 w-6"
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover rounded-lg"
                       />
-                    )}
-                  </div>
-
-                  <div className="flex justify-center my-4">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-32 h-32 object-contain rounded-lg"
-                    />
-                  </div>
-
-                  <div className="mb-4 flex justify-between items-center">
-                    <div>
-                      <p className="text-gray-500 text-sm line-through">
-                        ₹{selectedSize.originalPrice}
-                      </p>
-                      <p className="text-green-600 text-lg font-bold">
-                        ₹{selectedSize.cutoffPrice}
-                      </p>
                     </div>
-                    <span className="bg-green-500 text-white text-sm font-bold px-2 py-1 rounded">
-                      ₹{selectedSize.discount} OFF
-                    </span>
-                  </div>
 
-                  <div className="mb-4">
-                    <label className="block text-sm font-semibold mb-2">
-                      Select Size:
-                    </label>
-                    <select
-                      className="border border-gray-300 rounded p-2 w-full text-sm"
-                      value={selectedSizeIndex}
-                      onChange={(e) =>
-                        handleSizeChange(item.id, parseInt(e.target.value))
-                      }
-                    >
-                      {item.sizes.map((size, index) => (
-                        <option key={index} value={index}>
-                          {size.size} ({size.pricePerUnit})
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                    {/* Item Details */}
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-lg">{item.name}</h3>
+                      <p className="text-gray-400">{item.description}</p>
+                    </div>
 
-                  <button className="w-full bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600">
-                    Add to Cart
-                  </button>
-                </div>
-              );
-            })}
+                    {/* Price and Quantity Controls */}
+                    <div className="flex flex-col items-end gap-2">
+                      <p className="text-lg font-semibold">
+                        ₹{(item.size.cutoffPrice * item.quantity).toFixed(2)}
+                      </p>
+                      <div className="flex items-center gap-2">
+                        <button
+                          className="bg-gray-700 text-white w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-600 transition-colors"
+                          onClick={() => handleDecrement(item.id)}
+                        >
+                          -
+                        </button>
+                        <span className="text-lg font-semibold">
+                          {item.quantity}
+                        </span>
+                        <button
+                          className="bg-gray-700 text-white w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-600 transition-colors"
+                          onClick={() => handleIncrement(item.id)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : null
+              )}
+            </div>
+          ) : (
+            <div className="text-center p-10 bg-green-950 rounded-lg shadow-md">
+              <h3 className="text-lg font-bold mb-4">Your cart is empty</h3>
+              <button
+                className="text-white py-2 px-4 rounded-lg bg-orange-500 hover:bg-orange-600 transition-colors"
+                onClick={() => navigate("/cart")}
+              >
+                Continue Shopping
+              </button>
+            </div>
+          )}
+        </main>
+
+        {/* Order Summary */}
+          <aside className="lg:w-1/4 bg-green-950 p-6 rounded-lg shadow-md fixed top-0 right-0 h-full overflow-y-auto">
+          <br /><br /><br /><br /><br /><br />
+            <h3 className="text-xl font-bold mb-4">Order Summary</h3>
+            <div className="mb-4">
+              <div className="flex justify-between text-gray-300">
+                <span>Subtotal Price:</span>
+                <span>₹{subtotalPrice.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between text-gray-300">
+                <span>Estimated Tax (18%):</span>
+                <span>₹{estimatedTax.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between text-gray-300">
+                <span>Shipping Fee:</span>
+                <span>₹{shippingFee.toFixed(2)}</span>
+              </div>
+
+              {/* Display Total Savings */}
+            <div className="flex justify-between text-green-500">
+              <span>Total Savings:</span>
+              <span>-₹{totalSavings.toFixed(2)}</span>
+            </div>
+
+            {/* Display Coupon Discount */}
+            {discount > 0 && (
+              <div className="flex justify-between text-red-500">
+                <span>Coupon Discount ({discount}%):</span>
+                <span>-₹{discountAmount.toFixed(2)}</span>
+              </div>
+            )}
+
+            <hr className="my-2 border-gray-600" />
+            <div className="flex justify-between font-bold text-lg text-white">
+              <span>Order Total:</span>
+              <span>₹{orderTotal.toFixed(2)}</span>
+            </div>
           </div>
 
-          <div className="mt-6 border-t pt-4">
-            <h2 className="text-lg font-bold mb-2">Order Summary</h2>
-            <p className="mb-2">Subtotal: ₹{calculateTotal()}</p>
-            <label className="block mb-2">Apply Coupon:</label>
+          <button
+            onClick={() => navigate("/checkout")}
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg mt-4 transition-colors"
+          >
+            Proceed to Checkout
+          </button>
+
+          {/* Apply Coupon Section */}
+          <div className="mt-4 p-4 border-t border-gray-600">
+            <h3 className="text-lg font-bold mb-2">Apply Coupon</h3>
             <input
               type="text"
-              className="border p-2 w-full rounded mb-4"
+              className="w-full p-2 border rounded-lg text-black"
               placeholder="Enter coupon code"
               value={coupon}
               onChange={(e) => setCoupon(e.target.value)}
             />
-
             <button
-              onClick={() => navigate("/order-summary")}
-              className="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600"
+              className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg mt-2 transition-colors"
+              onClick={applyCoupon}
             >
-              Proceed to Checkout
+              Apply Coupon
             </button>
           </div>
-        </main>
+        </aside>
       </div>
     </div>
   );

@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import cartData from "./data.json";
 import Nav from "./Nav";
 import Aside from "./Aside";
+import { AppContent } from "../context/AppContext"; // Import your context
 
 const Cart = () => {
   const [selectedSizes, setSelectedSizes] = useState({});
-  const [cart, setCart] = useState({});
-  useNavigate();
+  const navigate = useNavigate();
+
+  // Use cart state and functions from context
+  const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
 
   const handleSizeChange = (itemId, sizeIndex) => {
     setSelectedSizes((prevSizes) => ({
@@ -21,38 +24,69 @@ const Cart = () => {
       (item) => item.id === itemId
     ).sizes[sizeIndex];
 
-    setCart((prevCart) => ({
-      ...prevCart,
-      [itemId]: {
-        quantity,
-        size: selectedSize,
-      },
-    }));
+    const item = {
+      id: itemId,
+      name: cartData.products.subJuice.find((item) => item.id === itemId).name,
+      description: cartData.products.subJuice.find((item) => item.id === itemId)
+        .description,
+      image: cartData.products.subJuice.find((item) => item.id === itemId).image,
+      quantity,
+      size: selectedSize,
+    };
+
+    addToCart(item); // Add item to cart using context
   };
 
-  const handleQuantityChange = (itemId, quantity) => {
-    setCart((prevCart) => ({
-      ...prevCart,
-      [itemId]: {
-        ...prevCart[itemId],
-        quantity,
-      },
-    }));
+  const handleQuantityChange = (itemId, newQuantity) => {
+    if (newQuantity <= 0) {
+      removeFromCart(itemId); // Remove item from cart if quantity is 0 or less
+    } else {
+      const existingItem = cartItems.find((item) => item.id === itemId);
+      if (existingItem) {
+        const updatedItem = { ...existingItem, quantity: newQuantity };
+        removeFromCart(itemId); // Remove the old item
+        addToCart(updatedItem); // Add the updated item to cart
+      }
+    }
   };
 
-  const totalItems = Object.values(cart).reduce(
-    (sum, item) => sum + item.quantity,
-    0
-  );
+  const handleManualQuantityChange = (itemId, e) => {
+    const newQuantity = parseInt(e.target.value, 10);
+    if (!isNaN(newQuantity) && newQuantity > 0) {
+      handleQuantityChange(itemId, newQuantity);
+    }
+  };
 
-  const totalPrice = Object.values(cart).reduce(
+  const handleIncrement = (itemId) => {
+    const existingItem = cartItems.find((item) => item.id === itemId);
+    if (existingItem) {
+      handleQuantityChange(itemId, existingItem.quantity + 1);
+    }
+  };
+
+  const handleDecrement = (itemId) => {
+    const existingItem = cartItems.find((item) => item.id === itemId);
+    if (existingItem) {
+      handleQuantityChange(itemId, existingItem.quantity - 1);
+    }
+  };
+
+  // Calculate total items and total price
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.quantity * item.size.cutoffPrice,
     0
   );
 
   return (
     <div>
-      <Nav totalItems={totalItems} totalPrice={totalPrice} />
+      <Nav
+        totalItems={totalItems}
+        totalPrice={totalPrice}
+        onClick={() => navigate("/shoppingcart", { state: { cartItems } })}
+      />{" "}
+      <br />
+      <br />
       <div className="flex">
         <Aside />
         <main className="container mx-auto p-4">
@@ -61,9 +95,12 @@ const Cart = () => {
             {cartData.products.subJuice.map((item) => {
               const selectedSizeIndex = selectedSizes[item.id] || 0;
               const selectedSize = item.sizes[selectedSizeIndex];
-              const cartItem = cart[item.id];
-              const discount =
-                selectedSize.originalPrice - selectedSize.cutoffPrice; // Calculate the discount
+              const cartItem = cartItems.find((i) => i.id === item.id);
+
+              // Corrected calculations
+              const totalMRP = selectedSize.originalPrice * (cartItem ? cartItem.quantity : 1);
+              const totalTooMore = selectedSize.cutoffPrice * (cartItem ? cartItem.quantity : 1);
+              const totalDiscount = totalMRP - totalTooMore;
 
               return (
                 <div
@@ -93,15 +130,15 @@ const Cart = () => {
 
                   <div className="mb-4">
                     <p className="text-gray-500 text-sm line-through">
-                      MRP: ₹{selectedSize.originalPrice}
+                      MRP: ₹{totalMRP.toFixed(2)}
                     </p>
                     <div className="flex justify-between items-center">
                       <p className="text-green-600 text-lg font-bold">
-                        TooMore: ₹{selectedSize.cutoffPrice}
+                        TooMore: ₹{totalTooMore.toFixed(2)}
                       </p>
                       <p className="text-sm font-semibold">
                         <span className="bg-green-100 text-green-600 px-2 py-1 rounded-sm">
-                          ₹{discount} OFF
+                          ₹{totalDiscount.toFixed(2)} OFF
                         </span>
                       </p>
                     </div>
@@ -142,22 +179,22 @@ const Cart = () => {
                     <div className="flex items-center border rounded-lg p-1 justify-between">
                       <button
                         className="bg-green-500 text-white px-3 py-1"
-                        onClick={() =>
-                          handleQuantityChange(item.id, cartItem.quantity - 1)
-                        }
+                        onClick={() => handleDecrement(item.id)}
                       >
                         -
                       </button>
 
-                      <span className="mx-1 font-semibold">
-                        {cartItem.quantity}
-                      </span>
+                      <input
+                        type="number"
+                        className="w-16 text-center border rounded-lg mx-1"
+                        value={cartItem.quantity}
+                        onChange={(e) => handleManualQuantityChange(item.id, e)}
+                        min="1"
+                      />
 
                       <button
-                        className="bg-green-500 text-white px-3 py-1 "
-                        onClick={() =>
-                          handleQuantityChange(item.id, cartItem.quantity + 1)
-                        }
+                        className="bg-green-500 text-white px-3 py-1"
+                        onClick={() => handleIncrement(item.id)}
                       >
                         +
                       </button>

@@ -1,11 +1,14 @@
 import logo from "../assets/logo1.png";
 import { Link, useNavigate } from "react-router-dom";
 
-const Nav = ({ totalItems = 0, totalPrice = 0 }) => {
+const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
   const navigate = useNavigate();
-  
+
   return (
-    <div className="bg-green-950 border-b border-gray-200 px-4 py-3 flex justify-between items-center">
+    <div
+      className="fixed top-0 left-0 right-0 bg-green-950 border-b border-gray-200 px-4 py-2 flex justify-between items-center z-50"
+      style={{ height: "64px" }}
+    >
       <div className="flex items-center space-x-1">
         <img
           onClick={() => navigate("/")}
@@ -51,7 +54,7 @@ const Nav = ({ totalItems = 0, totalPrice = 0 }) => {
           >
             Search
           </label>
-          <div className="relative  w-[50rem]">
+          <div className="relative w-[50rem]">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg
                 className="w-4 h-4 text-black"
@@ -90,8 +93,8 @@ const Nav = ({ totalItems = 0, totalPrice = 0 }) => {
       <div className="flex items-center space-x-0">
         <div className="text-sm text-gray-300 hover:text-orange-600 cursor-pointer">
           <Link to="/login">
-            <i className="fas fa-user font-semibold"></i>&nbsp;&nbsp;&nbsp;Sign
-            In / Register
+            <i className="fas fa-user font-semibold"></i>&nbsp;&nbsp;&nbsp;Sign In
+            / Register
           </Link>
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -111,19 +114,19 @@ const Nav = ({ totalItems = 0, totalPrice = 0 }) => {
                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
               />
             </svg>
-              <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-1">
-                {0}
-              </span>
+            <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-1">
+              {0}
+            </span>
           </button>
         </div>
-        <div className="bg-green-950 px-4 py-3 flex justify-between items-center">
+        <div className="bg-green-950 px-4 py-2 flex justify-between items-center">
           <div className="relative flex items-center space-x-1">
             <button
-              onClick={() => navigate("/cart")}
+              onClick={onClick} // Use the onClick prop to handle navigation
               className="bg-gray-800 text-white p-2 rounded-full hover:bg-orange-500 h-10 w-10 flex justify-center items-center relative"
             >
               <i className="fas fa-shopping-cart text-lg"></i>
-              {totalItems >= 0 && (
+              {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-1">
                   {totalItems}
                 </span>
@@ -131,7 +134,7 @@ const Nav = ({ totalItems = 0, totalPrice = 0 }) => {
             </button>
             {totalItems > 0 && (
               <span className="text-white text-sm font-semibold">
-                ₹{totalPrice}
+                ₹{totalPrice.toFixed(2)}
               </span>
             )}
           </div>
