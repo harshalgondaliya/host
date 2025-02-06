@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { AppContent } from "../context/AppContext";
@@ -6,22 +6,22 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo1.png";
-import { useState } from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
   const { userData, backendUrl, setUserData, setIsLoggedin } =
     useContext(AppContent);
 
   const sendVerificationOtp = async () => {
     try {
       axios.defaults.withCredentials = true;
-
       const { data } = await axios.post(
         backendUrl + "/api/auth/send-verify-otp"
       );
-
       if (data.success) {
         navigate("/email-verify");
         toast.success(data.message);
@@ -38,27 +38,41 @@ const Navbar = () => {
       axios.defaults.withCredentials = true;
       const { data } = await axios.post(backendUrl + "/api/auth/logout");
 
-      data.success && setIsLoggedin(false);
-      data.success && setUserData(false);
-      navigate("/");
+      if (data.success) {
+        setIsLoggedin(false);
+        setUserData(null);
+        navigate("/");
+      }
     } catch (error) {
       toast.error(error.message);
     }
   };
 
+  // Toggle Mobile Menu
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  // Toggle Dropdown Menu for "Products"
+  const toggleDropdown = (menu) => {
+    setOpenDropdown(openDropdown === menu ? null : menu);
+  };
+
   return (
-    <nav className="bg-orange-500 dark:bg-green-950 fixed w-full z-20 top-0 start-0 border-b border-orange-600 dark:border-green-950">
+    <nav className="bg-transparent dark:bg-transparent fixed w-full z-20 top-0 start-0 border-b border-transparent dark:transparent">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-0">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={logo} alt="Toomore Juice Logo" className="h-16 w-16" />
         </a>
 
-        <div className="dark:bg-green-950 hidden md:flex items-center space-x-6">
+        <div className="dark:bg-transparent hidden md:flex items-center space-x-6">
           <ul className="flex items-center space-x-10">
+            {/* Your existing menu items here */}
+            {/* Example for one item */}
             <li>
               <Link
                 to="/our-story"
-                className="text-white text-lg hover:text-orange-600"
+                className="text-black text-lg hover:text-orange-500 transition"
               >
                 Our Story
               </Link>
@@ -66,280 +80,439 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/Juices"
-                className="text-white text-lg hover:text-orange-600"
+                className="text-black text-lg hover:text-orange-500 transition"
               >
                 Products
               </Link>
-              <ul className="absolute top-[165%] left-0 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out">
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-blue-700 rounded">
-                  <span>🍹</span>
+              <ul
+                className="absolute left-0 top-full mt-2 bg-gray-800 rounded-md shadow-lg opacity-0 
+                 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-48"
+              >
+                {[
+                  { icon: "🍹", text: "Juices", link: "/Juices" },
+                  { icon: "🥤", text: "Soft Drinks", link: "/soft-drinks" },
+                  { icon: "⚡", text: "Energy Drinks", link: "/energy-drinks" },
+                  {
+                    icon: "💧",
+                    text: "Drinking Water",
+                    link: "/drinking-Water",
+                  },
+                ].map((item, index) => (
                   <Link
-                    to="/Juices"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
+                    key={index}
+                    to={item.link}
+                    className="block px-4 py-2 flex items-center space-x-2 hover:bg-gray-700 
+                 rounded-md transition text-white text-sm hover:text-orange-400"
                   >
-                    Juices
+                    <span>{item.icon}</span>
+                    <span>{item.text}</span>
                   </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-blue-700 rounded">
-                  <span>🥤</span>
-                  <Link
-                    to="soft-drinks"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Soft Drinks
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-blue-700 rounded">
-                  <span>⚡</span>
-                  <Link
-                    to="/energy-drinks"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Energy Drinks
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-blue-700 rounded">
-                  <span>💧</span>
-                  <Link
-                    to="/drinking-Water"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Drinking Water
-                  </Link>
-                </li>
+                ))}
               </ul>
             </li>
 
-            {/* Investors Dropdown */}
             <li className="relative group">
               <Link
                 to="/investor-relations"
-                className="text-white text-lg hover:text-orange-600"
+                className="text-black text-lg hover:text-orange-500 transition"
               >
                 Investors
               </Link>
-              <ul className="absolute top-[165%] left-0 bg-gradient-to-r from-green-500 to-yellow-500 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out">
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
-                  <span>📈</span>
+              <ul
+                className="absolute left-0 top-full mt-2 bg-gray-800 rounded-md shadow-lg opacity-0 
+                 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-48"
+              >
+                {[
+                  {
+                    icon: "📈",
+                    text: "Investor Relations",
+                    link: "/investor-relations",
+                  },
+                  {
+                    icon: "📊",
+                    text: "Financial Reports",
+                    link: "/financial-reports",
+                  },
+                  {
+                    icon: "📰",
+                    text: "Press Releases",
+                    link: "/press-releases",
+                  },
+                  {
+                    icon: "🗒️",
+                    text: "Stockholder Information",
+                    link: "/stockholder-info",
+                  },
+                  {
+                    icon: "❓",
+                    text: "FAQs for Investors",
+                    link: "/investor-FAQs",
+                  },
+                ].map((item, index) => (
                   <Link
-                    to="/investor-relations"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
+                    key={index}
+                    to={item.link}
+                    className="block px-4 py-2 flex items-center space-x-2 hover:bg-gray-700 
+                   rounded-md transition text-white text-sm hover:text-orange-400"
                   >
-                    Investor Relations
+                    <span>{item.icon}</span>
+                    <span>{item.text}</span>
                   </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
-                  <span>📊</span>
-                  <Link
-                    to="/financial-reports"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Financial Reports
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
-                  <span>📰</span>
-                  <Link
-                    to="/press-releases"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Press Releases
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
-                  <span>🗒️</span>
-                  <Link
-                    to="/stockholder-info"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Stockholder Information
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
-                  <span>❓</span>
-                  <Link
-                    to="/investor-FAQs"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    FAQs for Investors
-                  </Link>
-                </li>
+                ))}
               </ul>
             </li>
 
-            {/* Sustainability Dropdown */}
             <li className="relative group">
               <Link
                 to="/env-impact"
-                className="text-white text-lg hover:text-orange-600"
+                className="text-black text-lg hover:text-orange-500 transition"
               >
                 Sustainability
               </Link>
-              <ul className="absolute top-[165%] left-0 bg-gradient-to-r from-green-400 to-green-800 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out">
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
-                  <span>🌍</span>
+              <ul
+                className="absolute left-0 top-full mt-2 bg-gray-800 rounded-md shadow-lg opacity-0 
+                 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-48"
+              >
+                {[
+                  {
+                    icon: "🌍",
+                    text: "Environmental Impact",
+                    link: "/env-impact",
+                  },
+                  {
+                    icon: "💧",
+                    text: "Water Conservation",
+                    link: "/water-conservation",
+                  },
+                  {
+                    icon: "🤝",
+                    text: "Community Support",
+                    link: "/community-support",
+                  },
+                  {
+                    icon: "📜",
+                    text: "Sustainability Reports",
+                    link: "/sustainability-reports",
+                  },
+                  {
+                    icon: "🏆",
+                    text: "Certifications & Achievements",
+                    link: "/certifications",
+                  },
+                ].map((item, index) => (
                   <Link
-                    to="/env-impact"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
+                    key={index}
+                    to={item.link}
+                    className="block px-4 py-2 flex items-center space-x-2 hover:bg-gray-700 
+                 rounded-md transition text-white text-sm hover:text-orange-400"
                   >
-                    Environmental Impact
+                    <span>{item.icon}</span>
+                    <span>{item.text}</span>
                   </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
-                  <span>💧</span>
-                  <Link
-                    to="/water-conservation"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Water Conservation
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
-                  <span>🤝</span>
-                  <Link
-                    to="/community-support"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Community Support
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
-                  <span>📜</span>
-                  <Link
-                    to="/sustainability-reports"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Sustainability Reports
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-green-700 rounded">
-                  <span>🏆</span>
-                  <Link
-                    to="/certifications"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Certifications & Achievements
-                  </Link>
-                </li>
+                ))}
               </ul>
             </li>
 
-            {/* Join Us Dropdown */}
             <li className="relative group">
               <Link
                 to="/careers"
-                className="text-white text-lg hover:text-orange-600"
+                className="text-black text-lg hover:text-orange-500 transition"
               >
                 Join Us
               </Link>
-              <ul className="absolute top-[165%] left-0 bg-gradient-to-r from-purple-700 to-indigo-800 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out">
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-purple-800 rounded">
-                  <span>👨‍💼</span>
+              <ul
+                className="absolute left-0 top-full mt-2 bg-gray-800 rounded-md shadow-lg opacity-0 
+                 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-48"
+              >
+                {[
+                  { icon: "👨‍💼", text: "Careers", link: "/careers" },
+                  {
+                    icon: "🎓",
+                    text: "Internship Opportunities",
+                    link: "/internship-opportunities",
+                  },
+                  {
+                    icon: "🌟",
+                    text: "Life at Toomore Beverages",
+                    link: "/life-at-toomore",
+                  },
+                  { icon: "💼", text: "Job Openings", link: "/job-openings" },
+                ].map((item, index) => (
                   <Link
-                    to="/careers"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
+                    key={index}
+                    to={item.link}
+                    className="block px-4 py-2 flex items-center space-x-2 hover:bg-gray-700 
+                   rounded-md transition text-white text-sm hover:text-orange-400"
                   >
-                    Careers
+                    <span>{item.icon}</span>
+                    <span>{item.text}</span>
                   </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-purple-800 rounded">
-                  <span>🎓</span>
-                  <Link
-                    to="/internship-opportunities"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Internship Opportunities
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-purple-800 rounded">
-                  <span>🌟</span>
-                  <Link
-                    to="/life-at-toomore"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Life at Toomore Beverages
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-purple-800 rounded">
-                  <span>💼</span>
-                  <Link
-                    to="job-openings"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Job Openings
-                  </Link>
-                </li>
+                ))}
               </ul>
             </li>
 
-            {/* Support Dropdown */}
             <li className="relative group">
               <Link
                 to="/contact-us"
-                className="text-white text-lg hover:text-orange-600"
+                className="text-black text-lg hover:text-orange-500 transition"
               >
                 Support
               </Link>
-              <ul className="absolute top-[165%] left-0 bg-gradient-to-r from-red-700 to-orange-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-90 group-hover:scale-100 transition-all duration-300 ease-in-out">
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-red-800 rounded">
-                  <span>📞</span>
+              <ul
+                className="absolute left-0 top-full mt-2 bg-gray-800 rounded-md shadow-lg opacity-0 
+                 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-48"
+              >
+                {[
+                  { icon: "📞", text: "Contact Us", link: "/contact-us" },
+                  { icon: "📝", text: "Feedback", link: "/feedback" },
+                  { icon: "❓", text: "FAQs", link: "/FAQs" },
+                  {
+                    icon: "🛒",
+                    text: "Distributor",
+                    link: "/distributor-support",
+                  },
+                  { icon: "🙋‍♂️", text: "Customer Care", link: "/customer-care" },
+                ].map((item, index) => (
                   <Link
-                    to="/contact-us"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
+                    key={index}
+                    to={item.link}
+                    className="block px-4 py-2 flex items-center space-x-2 hover:bg-gray-700 
+                   rounded-md transition text-white text-sm hover:text-orange-400"
                   >
-                    Contact Us
+                    <span>{item.icon}</span>
+                    <span>{item.text}</span>
                   </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-red-800 rounded">
-                  <span>📝</span>
-                  <Link
-                    to="/feedback"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Feedback
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-red-800 rounded">
-                  <span>❓</span>
-                  <Link
-                    to="/FAQs"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    FAQs
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-red-800 rounded">
-                  <span>🛒</span>
-                  <Link
-                    to="/distributor-support"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Distributor Support
-                  </Link>
-                </li>
-                <li className="px-4 py-2 flex items-center space-x-2 hover:bg-red-800 rounded">
-                  <span>🙋‍♂️</span>
-                  <Link
-                    to="/customer-care"
-                    className="block text-white text-xs font-bold hover:text-orange-600"
-                  >
-                    Customer Care
-                  </Link>
-                </li>
+                ))}
               </ul>
             </li>
           </ul>
         </div>
 
+        {/* Mobile Menu */}
+        <div className="md:hidden flex items-center relative">
+          <button
+            onClick={handleMobileMenuToggle}
+            className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
+          >
+            {mobileMenuOpen ? (
+              <i className="fas fa-times"></i>
+            ) : (
+              <i className="fas fa-bars"></i>
+            )}
+          </button>
+
+          {mobileMenuOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
+              <div className="absolute top-0 right-0 w-3/4 h-full bg-green-950 shadow-lg flex flex-col p-6 space-y-4 transition-transform duration-300 overflow-y-auto">
+                <ul className="space-y-4 text-white text-lg">
+                  <br />
+                  {userData ? (
+                    <li className="relative">
+                      <button
+                        onClick={() => toggleDropdown("User")}
+                        className="block w-full text-left hover:text-white flex justify-between items-center"
+                      >
+                        {userData.name.charAt(0).toUpperCase() +
+                          userData.name.slice(1)}{" "}
+                        <i
+                          className={`fas ${
+                            openDropdown === "User"
+                              ? "fa-chevron-up"
+                              : "fa-chevron-down"
+                          }`}
+                        ></i>
+                      </button>
+                      {openDropdown === "User" && (
+                        <ul className="mt-2 w-48 bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
+                          {!userData.isAccountVerified && (
+                            <li
+                              onClick={sendVerificationOtp}
+                              className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                            >
+                              Verify Account
+                            </li>
+                          )}
+                          <li
+                            onClick={() => navigate("/reset-password")}
+                            className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                          >
+                            Reset Password
+                          </li>
+                          <li
+                            onClick={logout}
+                            className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                          >
+                            Logout
+                          </li>
+                        </ul>
+                      )}
+                    </li>
+                  ) : (
+                    <li>
+                      <Link to="/login" className="block hover:bg-yellow-500">
+                        Login
+                      </Link>
+                    </li>
+                  )}
+                  <li>
+                    <Link to="/our-story" className="block hover:text-white">
+                      Our Story
+                    </Link>
+                  </li>
+
+                  {/* Dropdown Menus */}
+                  {[
+                    {
+                      title: "Products",
+                      links: [
+                        { path: "/juices", label: "Juices" },
+                        { path: "/soft-drinks", label: "Soft Drinks" },
+                        { path: "/energy-drinks", label: "Energy Drinks" },
+                        { path: "/drinking-water", label: "Drinking Water" },
+                      ],
+                    },
+                    {
+                      title: "Investors",
+                      links: [
+                        {
+                          path: "/investor-relations",
+                          label: "Investor Relations",
+                        },
+                        {
+                          path: "/financial-reports",
+                          label: "Financial Reports",
+                        },
+                        { path: "/press-releases", label: "Press Releases" },
+                        {
+                          path: "/stockholder-info",
+                          label: "Stockholder Information",
+                        },
+                        { path: "/investor-FAQs", label: "FAQs for Investors" },
+                      ],
+                    },
+                    {
+                      title: "Sustainability",
+                      links: [
+                        { path: "/env-impact", label: "Environmental Impact" },
+                        {
+                          path: "/water-conservation",
+                          label: "Water Conservation",
+                        },
+                        {
+                          path: "/community-support",
+                          label: "Community Support",
+                        },
+                        {
+                          path: "/sustainability-reports",
+                          label: "Sustainability Reports",
+                        },
+                        {
+                          path: "/certifications",
+                          label: "Certifications & Achievements",
+                        },
+                      ],
+                    },
+                    {
+                      title: "Join Us",
+                      links: [
+                        { path: "/careers", label: "Careers" },
+                        {
+                          path: "/internship-opportunities",
+                          label: "Internship Opportunities",
+                        },
+                        {
+                          path: "/life-at-toomore",
+                          label: "Life at Toomore Beverages",
+                        },
+                        { path: "/job-openings", label: "Job Openings" },
+                      ],
+                    },
+                    {
+                      title: "Support",
+                      links: [
+                        { path: "/contact-us", label: "Contact Us" },
+                        { path: "/feedback", label: "Feedback" },
+                        { path: "/FAQs", label: "FAQs" },
+                        { path: "/distributor-support", label: "Distributor" },
+                        { path: "/customer-care", label: "Customer Care" },
+                      ],
+                    },
+                  ].map((menu) => (
+                    <li className="relative" key={menu.title}>
+                      <button
+                        onClick={() => toggleDropdown(menu.title)}
+                        className="block w-full text-left hover:text-yellow-500 flex justify-between items-center"
+                      >
+                        {menu.title}{" "}
+                        <i
+                          className={`fas ${
+                            openDropdown === menu.title
+                              ? "fa-chevron-up"
+                              : "fa-chevron-down"
+                          }`}
+                        ></i>
+                      </button>
+                      {openDropdown === menu.title && (
+                        <ul className="mt-2 w-48 bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
+                          {menu.links.map((link, index) => (
+                            <li key={index}>
+                              <Link
+                                to={link.path}
+                                className="block px-4 py-2 text-white hover:bg-yellow-500"
+                              >
+                                {link.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+
+                  <li>
+                    <Link to="/cart" className="block hover:text-orange-900">
+                      Cart
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/states" className="block hover:text-orange-900">
+                      States
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Desktop Items */}
         <div className="flex items-center space-x-5">
-          <Link to="/cart" className="text-white hover:text-orange-600">
+          <Link
+            to="/cart"
+            className="text-black hover:text-orange-600 hidden md:block"
+          >
             <i className="fas fa-shopping-cart text-xl"></i>
           </Link>
-          <Link to="/states" className="text-white hover:text-orange-600">
+          <Link
+            to="/states"
+            className="text-black hover:text-orange-600 hidden md:block"
+          >
             <i className="fas fa-globe text-xl"></i>
           </Link>
-          {userData ? (
-            <div className="w-6 h-6 flex justify-center items-center bg-black text-white rounded-full relative group mb-1">
+
+          {/* Show user icon for desktop when user is not logged in */}
+          {!userData && (
+            <Link
+              to="/login" // or wherever you want to redirect for login
+              className="text-black hover:text-orange-600 hidden md:block"
+            >
+              <i className="fas fa-user text-xl"></i>
+            </Link>
+          )}
+
+          {/* Show user dropdown for desktop when user is logged in */}
+          {userData && (
+            <div className="w-7 h-7 flex justify-center items-center bg-black text-white rounded-full relative group mb-0 hidden md:flex">
               {userData.name[0].toUpperCase()}
               <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-white rounded pt-10">
                 <ul className="list-none m-0 p-2 bg-gray-900 text-sm">
@@ -366,16 +539,8 @@ const Navbar = () => {
                 </ul>
               </div>
             </div>
-          ) : (
-            <Link to="/login" className="text-white hover:text-orange-600">
-              <i className="fas fa-user text-xl"></i>
-            </Link>
           )}
         </div>
-
-        <button className="md:hidden text-white">
-          <i className="fas fa-bars text-xl"></i>
-        </button>
       </div>
     </nav>
   );

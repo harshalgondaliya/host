@@ -89,7 +89,7 @@ const Cart = () => {
       <br />
       <div className="flex">
         <Aside />
-        <main className="container mx-auto p-4 bg-orange-300">
+        <main className="container mx-auto p-4 bg-yellow-400">
           <h2 className="text-lg font-bold mb-4" style={{ fontFamily: '"Comic Sans MS", cursive' }}>Shopping Cart</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {cartData.products.subJuice.map((item) => {

@@ -9,11 +9,11 @@ import Grapes_Card from "../assets/images/front.webp";
 import softFrontImage from "../assets/images/soft_front.jpg";
 
 // Importing images with descriptions
-import grapesImg from "../assets/all_juice/grapes_img_page-0001.jpg";
-import pineappleImg from "../assets/all_juice/pineapple_img.jpg";
-import strawImg from "../assets/all_juice/straw_img_page-0001.jpg";
-import lycheeImg from "../assets/all_juice/lychee_img_page-0001.jpg";
-import mangoImg from "../assets/all_juice/mango_img_page-0001.jpg";
+import grapesImg from "../assets/images/Grapes_Story.jpg";
+import pineappleImg from "../assets/images/Pineapple_Story.jpg";
+import strawImg from "../assets/images/Strawberry_Story.jpg";
+import lycheeImg from "../assets/images/Lychee_Story.jpg";
+import mangoImg from "../assets/images/Mango_Story.jpg";
 
 // const images = [image1, image2, image3, image4, image5, image6];
 
@@ -52,15 +52,15 @@ const Body = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full bg-yellow-400 p-0 overflow-y-auto">
-      <br />
       <div className="w-full h-auto shadow-lg">
         <img src={Grapes_Card} alt="Soft Front" className="w-full h-auto" />
       </div>
-
-      <br /><br /><br /><br /><br />
-
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <Slideshow />
-
       <div className="w-full max-w-4xl text-center my-10">
         <h1
           className="text-2xl font-bold text-[#015c01] mb-3"
@@ -86,9 +86,8 @@ const Body = () => {
           EXPLORE OUR JUICE COLLECTION
         </button>
       </div>
-
-      <div className="flex flex-wrap justify-center gap-10 p-5">
-        {imagesWithDesc.map((image, index) => (
+      <div className="flex justify-center gap-10 p-5 flex-wrap">
+        {imagesWithDesc.slice(0, 3).map((image, index) => (
           <div
             key={index}
             className="w-72 text-center bg-white rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-lg"
@@ -107,7 +106,26 @@ const Body = () => {
           </div>
         ))}
       </div>
-
+      <div className="flex justify-center gap-10 p-5 flex-wrap">
+        {imagesWithDesc.slice(3, 5).map((image, index) => (
+          <div
+            key={index}
+            className="w-72 text-center bg-white rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+          >
+            <img
+              src={image.src}
+              alt={image.desc}
+              className="w-full h-auto rounded-t-lg"
+            />
+            <p className="mt-3 text-base text-[#015c01] font-light">
+              {image.desc}
+            </p>
+            <h3 className="mt-1 text-lg text-[#015c01] font-bold">
+              {image.desc1}
+            </h3>
+          </div>
+        ))}
+      </div>
       <div className="w-full max-w-4xl text-center my-10">
         <h1
           className="text-2xl font-bold text-[#015c01] mb-3"
@@ -132,7 +150,6 @@ const Body = () => {
           OUR STORY
         </button>
       </div>
-
       <div className="w-full shadow-lg">
         <img src={softFrontImage} alt="Soft Front" className="w-full h-auto" />
       </div>

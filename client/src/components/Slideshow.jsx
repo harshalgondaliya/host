@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import image1 from "../assets/images/Grapes_Card.jpg";
-import image2 from "../assets/images/Grapes_Story.jpg";
+import image2 from "../assets/all_juice/grapes_img_page-0001.jpg";
 import image3 from "../assets/images/Lychee_Card.jpg";
-import image4 from "../assets/images/Lychee_Story.jpg";
+import image4 from "../assets/all_juice/lychee_img_page-0001.jpg";
 import image5 from "../assets/images/Mango_Card.jpg";
-import image6 from "../assets/images/Mango_Story.jpg";
+import image6 from "../assets/all_juice/mango_img_page-0001.jpg";
 import image7 from "../assets/images/Pineapple_Post.jpg";
-import image8 from "../assets/images/Pineapple_Story.jpg";
+import image8 from "../assets/all_juice/pineapple_img.jpg";
 import image9 from "../assets/images/Strawberry_Card.jpg";
-import image10 from "../assets/images/Strawberry_Story.jpg";
+import image10 from "../assets/all_juice/straw_img_page-0001.jpg";
 
 const Slideshow = () => {
   const images = [

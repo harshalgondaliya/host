@@ -68,7 +68,7 @@ const ShoppingCartPage = () => {
     subtotalPrice + shippingFee + estimatedTax - totalSavings - discountAmount; // Final order total
 
   return (
-    <div className="min-h-screen bg-orange-300 text-white">
+    <div className="min-h-screen bg-yellow-400 text-white">
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
       <br />
       <br />

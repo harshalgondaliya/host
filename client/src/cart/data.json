@@ -8,28 +8,28 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-            "size": "250ml",
-            "originalPrice": 50,
-            "cutoffPrice": 40,
-            "discount": 10,
-            "pricePerUnit": "₹0.16 / ml"
+        "size": "250ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.16 / ml"
           },
           {
-            "size": "500ml",
-            "originalPrice": 90,
-            "cutoffPrice": 75,
-            "discount": 15,
-            "pricePerUnit": "₹0.15 / ml"
+        "size": "500ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.15 / ml"
           },
           {
-            "size": "1L",
-            "originalPrice": 170,
-            "cutoffPrice": 150,
-            "discount": 20,
-            "pricePerUnit": "₹0.15 / ml"
+        "size": "1L",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.15 / ml"
           }
         ],
-        "image": "./src/assets/images/products/pineapple.jpg"
+        "image": "./src/assets/images/products/pineapple.png"
       },
       {
         "id": 2,
@@ -38,28 +38,28 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-            "size": "250ml",
-            "originalPrice": 60,
-            "cutoffPrice": 50,
-            "discount": 10,
-            "pricePerUnit": "₹0.20 / ml"
+        "size": "250ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.20 / ml"
           },
           {
-            "size": "500ml",
-            "originalPrice": 100,
-            "cutoffPrice": 85,
-            "discount": 15,
-            "pricePerUnit": "₹0.18 / ml"
+        "size": "500ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.18 / ml"
           },
           {
-            "size": "1L",
-            "originalPrice": 180,
-            "cutoffPrice": 155,
-            "discount": 25,
-            "pricePerUnit": "₹0.16 / ml"
+        "size": "1L",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.16 / ml"
           }
         ],
-        "image": "./src/assets/images/products/mango.jpg"
+        "image": "./src/assets/images/products/mango.png"
       },
       {
         "id": 3,
@@ -68,28 +68,28 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-            "size": "250ml",
-            "originalPrice": 55,
-            "cutoffPrice": 45,
-            "discount": 10,
-            "pricePerUnit": "₹0.18 / ml"
+        "size": "250ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.18 / ml"
           },
           {
-            "size": "500ml",
-            "originalPrice": 95,
-            "cutoffPrice": 80,
-            "discount": 15,
-            "pricePerUnit": "₹0.17 / ml"
+        "size": "500ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.17 / ml"
           },
           {
-            "size": "1L",
-            "originalPrice": 175,
-            "cutoffPrice": 150,
-            "discount": 25,
-            "pricePerUnit": "₹0.15 / ml"
+        "size": "1L",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.15 / ml"
           }
         ],
-        "image": "./src/assets/images/products/grapes.jpg"
+        "image": "./src/assets/images/products/grapes.png"
       },
       {
         "id": 4,
@@ -98,28 +98,28 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-            "size": "250ml",
-            "originalPrice": 65,
-            "cutoffPrice": 55,
-            "discount": 10,
-            "pricePerUnit": "₹0.22 / ml"
+        "size": "250ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.22 / ml"
           },
           {
-            "size": "500ml",
-            "originalPrice": 110,
-            "cutoffPrice": 95,
-            "discount": 15,
-            "pricePerUnit": "₹0.19 / ml"
+        "size": "500ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.19 / ml"
           },
           {
-            "size": "1L",
-            "originalPrice": 200,
-            "cutoffPrice": 175,
-            "discount": 25,
-            "pricePerUnit": "₹0.18 / ml"
+        "size": "1L",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.18 / ml"
           }
         ],
-        "image": "./src/assets/images/products/lychee.jpg"
+        "image": "./src/assets/images/products/lychee.png"
       },
       {
         "id": 5,
@@ -128,33 +128,93 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-            "size": "250ml",
-            "originalPrice": 70,
-            "cutoffPrice": 60,
-            "discount": 10,
-            "pricePerUnit": "₹0.24 / ml"
+        "size": "250ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.24 / ml"
           },
           {
-            "size": "500ml",
-            "originalPrice": 120,
-            "cutoffPrice": 100,
-            "discount": 20,
-            "pricePerUnit": "₹0.20 / ml"
+        "size": "500ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.20 / ml"
           },
           {
-            "size": "1L",
-            "originalPrice": 220,
-            "cutoffPrice": 190,
-            "discount": 30,
-            "pricePerUnit": "₹0.19 / ml"
+        "size": "1L",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.19 / ml"
           }
         ],
-        "image": "./src/assets/images/products/strawberry.jpg"
+        "image": "./src/assets/images/products/strawberry.png"
+      },
+      {
+        "id": 6,
+        "name": "SkyBerry Juice",
+        "description": "TooMore SkyBerry Juice",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+        "size": "250ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.30 / ml"
+          },
+          {
+        "size": "500ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.28 / ml"
+          },
+          {
+        "size": "1L",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.26 / ml"
+          }
+        ],
+        "image": "./src/assets/images/products/SkyBerry.png"
+      },
+      {
+        "id": 7,
+        "name": "Pomegranate Juice",
+        "description": "TooMore Pomegranate Juice",
+        "vegetarianSymbol": true,
+        "sizes": [
+          {
+        "size": "250ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.28 / ml"
+          },
+          {
+        "size": "500ml",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.26 / ml"
+          },
+          {
+        "size": "1L",
+        "originalPrice": 30,
+        "cutoffPrice": 20,
+        "discount": 10,
+        "pricePerUnit": "₹0.24 / ml"
+          }
+        ],
+        "image": "./src/assets/images/products/Pomegranate.png"
       }
     ],
     "subSoftDrink": [
       {
-        "id": 6,
+        "id": 8,
         "name": "Remix",
         "description": "TooMore Remix",
         "vegetarianSymbol": true,
@@ -183,7 +243,7 @@
         ]
       },
       {
-        "id": 7,
+        "id": 9,
         "name": "Kiwi",
         "description": "TooMore Kiwi",
         "vegetarianSymbol": true,
@@ -212,7 +272,7 @@
         ]
       },
       {
-        "id": 8,
+        "id": 10,
         "name": "Lemon Twist",
         "description": "TooMore Lemon Twist",
         "vegetarianSymbol": true,
@@ -241,7 +301,7 @@
         ]
       },
       {
-        "id": 9,
+        "id": 11,
         "name": "King Orange",
         "description": "TooMore King Orange : 300ml",
         "vegetarianSymbol": true,
@@ -263,7 +323,7 @@
         ]
       },
       {
-        "id": 10,
+        "id": 12,
         "name": "King Pineapple",
         "description": "TooMore King Pineapple : 300ml",
         "vegetarianSymbol": true,
@@ -285,7 +345,7 @@
         ]
       },
       {
-        "id": 11,
+        "id": 13,
         "name": "Pepyo",
         "description": "TooMore Pepyo : 300ml",
         "vegetarianSymbol": true,
@@ -307,7 +367,7 @@
         ]
       },
       {
-        "id": 12,
+        "id": 14,
         "name": "Muskmelon Juice",
         "description": "TooMore Muskmelon Juice : 300ml",
         "vegetarianSymbol": true,
@@ -329,7 +389,7 @@
         ]
       },
       {
-        "id": 13,
+        "id": 15,
         "name": "Orange Cool",
         "description": "TooMore Orange Cool : 300ml",
         "vegetarianSymbol": true,
@@ -351,7 +411,7 @@
         ]
       },
       {
-        "id": 14,
+        "id": 16,
         "name": "Cola",
         "description": "TooMore Cola : 300ml",
         "vegetarianSymbol": true,
@@ -373,7 +433,7 @@
         ]
       },
       {
-        "id": 15,
+        "id": 17,
         "name": "Apple",
         "description": "TooMore Apple : 300ml",
         "vegetarianSymbol": true,
@@ -395,7 +455,7 @@
         ]
       },
       {
-        "id": 16,
+        "id": 18,
         "name": "Jeera",
         "description": "TooMore Jeera : 300ml",
         "vegetarianSymbol": true,
@@ -417,7 +477,7 @@
         ]
       },
       {
-        "id": 17,
+        "id": 19,
         "name": "Lemon",
         "description": "TooMore Lemon : 300ml",
         "vegetarianSymbol": true,
@@ -439,7 +499,7 @@
         ]
       },
       {
-        "id": 18,
+        "id": 20,
         "name": "Guava",
         "description": "TooMore Guava : 300ml",
         "vegetarianSymbol": true,
@@ -461,7 +521,7 @@
         ]
       },
       {
-        "id": 19,
+        "id": 21,
         "name": "Mazica Mango",
         "description": "TooMore Mazica Mango : 300ml",
         "vegetarianSymbol": true,
@@ -483,7 +543,7 @@
         ]
       },
       {
-        "id": 20,
+        "id": 22,
         "name": "Pineapple Juice",
         "description": "TooMore Pineapple Juice : 300ml",
         "vegetarianSymbol": true,
@@ -505,7 +565,7 @@
         ]
       },
       {
-        "id": 21,
+        "id": 23,
         "name": "Fresh Guava Soda",
         "description": "TooMore Fresh Guava Soda : 300ml",
         "vegetarianSymbol": true,
@@ -529,7 +589,7 @@
     ],
     "subEnergyDrink": [
       {
-        "id": 20,
+        "id": 24,
         "name": "Cobra",
         "description": "TooMore Cobra",
         "vegetarianSymbol": true,
@@ -553,7 +613,7 @@
     ],
     "subNaatuNaatu": [
       {
-        "id": 21,
+        "id": 25,
         "name": "Lemon Tetrapack",
         "description": "TooMore Lemon Tetrapack",
         "vegetarianSymbol": true,
@@ -575,7 +635,7 @@
         ]
       },
       {
-        "id": 22,
+        "id": 26,
         "name": "Pineapple Tetrapack",
         "description": "TooMore Pineapple Tetrapack",
         "vegetarianSymbol": true,
@@ -597,7 +657,7 @@
         ]
       },
       {
-        "id": 23,
+        "id": 27,
         "name": "Pomegranate Tetrapack",
         "description": "TooMore Pomegranate Tetrapack",
         "vegetarianSymbol": true,
@@ -619,7 +679,7 @@
         ]
       },
       {
-        "id": 24,
+        "id": 28,
         "name": "SkyBerry Tetrapack",
         "description": "TooMore SkyBerry Tetrapack",
         "vegetarianSymbol": true,
@@ -641,7 +701,7 @@
         ]
       },
       {
-        "id": 25,
+        "id": 29,
         "name": "Grapes Tetrapack",
         "description": "TooMore Grapes Tetrapack",
         "vegetarianSymbol": true,
@@ -663,7 +723,7 @@
         ]
       },
       {
-        "id": 26,
+        "id": 30,
         "name": "Guava Tetrapack",
         "description": "TooMore Guava Tetrapack",
         "vegetarianSymbol": true,
@@ -687,7 +747,7 @@
     ],
     "subDrinkingWater": [
       {
-      "id": 27,
+      "id": 31,
       "name": "Polypropylene Water Jug 20L",
       "description": "Polypropylene Water Jug : 10L",
       "vegetarianSymbol": false,
@@ -709,7 +769,7 @@
       ]
       },
       {
-      "id": 28,
+      "id": 32,
       "name": "20 L Water Jug",
       "description": "20 L Water Jug",
       "vegetarianSymbol": false,
@@ -724,7 +784,7 @@
       ]
       },
       {
-      "id": 29,
+      "id": 33,
       "name": "Water Bottle",
       "description": "Water Bottle : 1L",
       "vegetarianSymbol": false,
