@@ -12,6 +12,10 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  const [searchOpenMobile, setSearchOpenMobile] = useState(false);
+  const [searchOpenDesktop, setSearchOpenDesktop] = useState(false);
 
   const { userData, backendUrl, setUserData, setIsLoggedin } =
     useContext(AppContent);
@@ -59,7 +63,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-transparent dark:bg-transparent fixed w-full z-20 top-0 start-0 border-b border-transparent dark:transparent">
+    <nav className="bg-transparent dark:bg-green-950 fixed w-full z-20 top-0 start-0 border-b border-transparent dark:transparent">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-0">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={logo} alt="Toomore Juice Logo" className="h-16 w-16" />
@@ -72,7 +76,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/our-story"
-                className="text-black text-lg hover:text-orange-500 transition"
+                className="text-white text-lg hover:text-orange-500 transition"
               >
                 Our Story
               </Link>
@@ -80,7 +84,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/Juices"
-                className="text-black text-lg hover:text-orange-500 transition"
+                className="text-white text-lg hover:text-orange-500 transition"
               >
                 Products
               </Link>
@@ -114,7 +118,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/investor-relations"
-                className="text-black text-lg hover:text-orange-500 transition"
+                className="text-white text-lg hover:text-orange-500 transition"
               >
                 Investors
               </Link>
@@ -165,7 +169,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/env-impact"
-                className="text-black text-lg hover:text-orange-500 transition"
+                className="text-white text-lg hover:text-orange-500 transition"
               >
                 Sustainability
               </Link>
@@ -216,7 +220,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/careers"
-                className="text-black text-lg hover:text-orange-500 transition"
+                className="text-white text-lg hover:text-orange-500 transition"
               >
                 Join Us
               </Link>
@@ -254,7 +258,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link
                 to="/contact-us"
-                className="text-black text-lg hover:text-orange-500 transition"
+                className="text-white text-lg hover:text-orange-500 transition"
               >
                 Support
               </Link>
@@ -290,6 +294,28 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div className="md:hidden flex items-center relative">
+          {/* 🔹 Mobile Search Bar (Only for Mobile) */}
+          {searchOpenMobile && (
+            <div className="absolute top-full left-8 mt-4 w-64 bg-yellow-500 rounded-md shadow-lg p-3 block md:hidden">
+              <input
+                type="text"
+                placeholder="Search any Juice..."
+                className="w-full px-4 py-2 rounded-md bg-green-950 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    navigate("/juices");
+                  }
+                }}
+              />
+            </div>
+          )}
+          {/* 🔹 Mobile Search Button */}
+          <button
+            onClick={() => setSearchOpenMobile(!searchOpenMobile)}
+            className="text-white hover:text-orange-600 md:hidden ml-56"
+          >
+            <i className="fas fa-search text-xl"></i>
+          </button>
           <button
             onClick={handleMobileMenuToggle}
             className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
@@ -487,15 +513,36 @@ const Navbar = () => {
 
         {/* Desktop Items */}
         <div className="flex items-center space-x-5">
+          <button
+            onClick={() => setSearchOpen(!searchOpen)}
+            className="text-white hover:text-orange-600 hidden md:block"
+          >
+            <i className="fas fa-search text-xl"></i>
+          </button>
+          {searchOpen && (
+            <div className="absolute top-full right-48 mt-0 w-72 bg-yellow-500 rounded-md shadow-lg p-3">
+              <input
+                type="text"
+                placeholder="Search any Juice..."
+                className="w-full px-4 py-2 rounded-md bg-green-950 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    navigate("/juices");
+                  }
+                }}
+              />
+            </div>
+          )}
+
           <Link
             to="/cart"
-            className="text-black hover:text-orange-600 hidden md:block"
+            className="text-white hover:text-orange-600 hidden md:block"
           >
             <i className="fas fa-shopping-cart text-xl"></i>
           </Link>
           <Link
             to="/states"
-            className="text-black hover:text-orange-600 hidden md:block"
+            className="text-white hover:text-orange-600 hidden md:block"
           >
             <i className="fas fa-globe text-xl"></i>
           </Link>
@@ -504,7 +551,7 @@ const Navbar = () => {
           {!userData && (
             <Link
               to="/login" // or wherever you want to redirect for login
-              className="text-black hover:text-orange-600 hidden md:block"
+              className="text-white hover:text-orange-600 hidden md:block"
             >
               <i className="fas fa-user text-xl"></i>
             </Link>

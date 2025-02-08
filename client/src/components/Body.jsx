@@ -3,10 +3,10 @@ import Slideshow from "./Slideshow";
 import { useNavigate } from "react-router-dom";
 
 // Importing card image
-import Grapes_Card from "../assets/images/front.webp";
+import all from "../assets/images/ALL BOTTLES.jpg";
 
 // showpiece image
-import softFrontImage from "../assets/images/soft_front.jpg";
+import end from "../assets/images/Too more banner.jpg";
 
 // Importing images with descriptions
 import grapesImg from "../assets/images/Grapes_Story.jpg";
@@ -46,30 +46,47 @@ const imagesWithDesc = [
   },
 ];
 
-
 const Body = () => {
   const navigate = useNavigate();
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full bg-yellow-400 p-0 overflow-y-auto">
       <div className="w-full h-auto shadow-lg">
-        <img src={Grapes_Card} alt="Soft Front" className="w-full h-auto" />
+        <img src={all} alt="Soft Front" className="w-full h-auto" />
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <Slideshow />
-      <div className="w-full max-w-4xl text-center my-10">
+
+      <div className="w-full max-w-4xl text-center my-10 px-4">
         <h1
           className="text-2xl font-bold text-[#015c01] mb-3"
+          style={{ fontFamily: '"Comic Sans MS", cursive' }}
+        >
+          Taste the Difference of Juice Made Right
+        </h1>
+        <p
+          className="text-base text-[#015c01] leading-relaxed"
+          style={{ fontFamily: '"Comic Sans MS", cursive' }}
+        >
+          At TooMore, we believe nature holds the secret to the best flavors and
+          nutrition. Our juices are crafted from hand-picked fruits, free from
+          artificial additives and preservatives. Every sip delivers pure,
+          refreshing goodness straight from the orchard to your glass.
+          Experience the vibrant taste of TooMore—where quality meets freshness.
+          juices are crafted from hand-picked fruits, free from artificial
+          additives and preservatives. Every sip delivers pure, refreshing
+          goodness straight from the orchard to your glass.
+        </p>
+      </div>
+
+      <Slideshow />
+      <div className="w-full max-w-4xl text-center my-10 px-4">
+        <h1
+          className="text-xl font-bold text-[#015c01] mb-3"
           style={{ fontFamily: '"Comic Sans MS", cursive' }}
         >
           Discover the Ultimate Juice Experience
         </h1>
         <p
-          className="text-base text-[#015c01] leading-relaxed"
+          className="text-sm text-[#015c01] leading-relaxed"
           style={{ fontFamily: '"Comic Sans MS", cursive' }}
         >
           For decades, we've been crafting the finest juices by selecting the
@@ -86,7 +103,9 @@ const Body = () => {
           EXPLORE OUR JUICE COLLECTION
         </button>
       </div>
-      <div className="flex justify-center gap-10 p-5 flex-wrap">
+
+      {/* Desktop View */}
+      <div className="hidden sm:flex justify-center gap-10 p-5 flex-wrap">
         {imagesWithDesc.slice(0, 3).map((image, index) => (
           <div
             key={index}
@@ -106,7 +125,7 @@ const Body = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-center gap-10 p-5 flex-wrap">
+      <div className="hidden sm:flex justify-center gap-10 p-5 flex-wrap">
         {imagesWithDesc.slice(3, 5).map((image, index) => (
           <div
             key={index}
@@ -126,6 +145,29 @@ const Body = () => {
           </div>
         ))}
       </div>
+
+      {/* Mobile View */}
+      <div className="sm:hidden flex overflow-x-auto gap-4 p-0 snap-x snap-mandatory">
+        {imagesWithDesc.map((image, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center min-w-[70%] bg-white rounded-lg overflow-hidden shadow-md snap-center transition-transform duration-300 hover:scale-105"
+          >
+            <img
+              src={image.src}
+              alt={image.desc}
+              className="w-full h-auto rounded-t-sm"
+            />
+            <div className="p-0 text-center">
+              <h3 className="text-lg text-[#015c01] font-bold">
+                {image.desc1}
+              </h3>
+              <p className="mt-2 text-sm text-gray-600">{image.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
       <div className="w-full max-w-4xl text-center my-10">
         <h1
           className="text-2xl font-bold text-[#015c01] mb-3"
@@ -151,11 +193,10 @@ const Body = () => {
         </button>
       </div>
       <div className="w-full shadow-lg">
-        <img src={softFrontImage} alt="Soft Front" className="w-full h-auto" />
+        <img src={end} alt="Soft Front" className="w-full h-auto" />
       </div>
     </div>
   );
 };
-
 
 export default Body;

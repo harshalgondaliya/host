@@ -5,7 +5,7 @@ import { AppContent } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import logo from "../assets/logo1.png";
+import logo from "../assets/images/back.png";
 
 const login = () => {
   const navigate = useNavigate();
@@ -57,27 +57,27 @@ const login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-orange-900 via-green-400 to-orange-600">
+    <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-[#2C2C54] via-gray-600 to-[#2C2C54]">
       <img
         onClick={() => navigate("/")}
         src={logo}
         alt="Logo"
         className="absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer"
       />
-      <div className="bg-orange-600 p-10 rounded-lg shadow-lg w-full sm:w-96 text-green-950 text-sm">
-        <h2 className="text-3xl font-semibold text-green text-center mb-3">
+      <div className="bg-white p-10 rounded-lg shadow-lg w-full sm:w-96 text-indigo-950 text-sm">
+        <h2 className="text-3xl font-semibold text-indigo-950 text-center mb-3">
           {state === "Sign Up" ? "Create account" : "Login"}
         </h2>
 
-        <p className="text-center text-sm mb-6">
+        <p className="text-center text-sm mb-6 text-indigo-950">
           {state === "Sign Up"
             ? "Create your account"
-            : "Login to your account!"}
+            : "Login into your account!"}
         </p>
 
         <form onSubmit={onSubmitHandler}>
           {state === "Sign Up" && (
-            <div className="mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-green-950">
+            <div className="mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-indigo-950">
               <img src={assets.person_icon} alt="Person Icon" />
               <input
                 onChange={(e) => setName(e.target.value)}
@@ -90,7 +90,7 @@ const login = () => {
             </div>
           )}
 
-          <div className="mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-green-950">
+          <div className="mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-indigo-950">
             <img src={assets.mail_icon} alt="Mail Icon" />
             <input
               onChange={(e) => setEmail(e.target.value)}
@@ -102,7 +102,7 @@ const login = () => {
             />
           </div>
 
-          <div className="mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-green-950">
+          <div className="mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-indigo-950">
             <img src={assets.lock_icon} alt="Lock Icon" />
             <input
               onChange={(e) => setPassword(e.target.value)}
@@ -116,13 +116,13 @@ const login = () => {
 
           <p
             onClick={() => navigate("/reset-password")}
-            className="mb-4 text-green-950 cursor-pointer underline"
+            className="mb-4 text-indigo-950 cursor-pointer underline"
           >
             Forget password?
           </p>
 
           <button
-            className="w-full py-2.5 rounded-full bg-gradient-to-r from-green-500 to-green-950 text-green font-medium hover:bg-gradient-to-r hover:from-green-950 hover:to-green-500"
+            className="w-full py-2.5 rounded-full bg-gradient-to-r from-white to-indigo-950 text-green font-medium hover:bg-gradient-to-r hover:from-indigo-950 hover:to-white"
             type="submit"
           >
             {state}
@@ -140,11 +140,11 @@ const login = () => {
             </span>
           </p>
         ) : (
-          <p className="text-green-950 text-center text-xs mt-4">
+          <p className="text-indigo-950 text-center text-xs mt-4">
             Don't have an account? &nbsp;&nbsp;
             <span
               onClick={() => setState("Sign Up")}
-              className="text-green-950 cursor-pointer underline"
+              className="text-indigo-950 cursor-pointer underline"
             >
               Sign up
             </span>

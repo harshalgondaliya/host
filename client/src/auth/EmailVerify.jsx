@@ -4,7 +4,7 @@ import { AppContent } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import logo from "../assets/logo1.png";
+import logo from "../assets/images/back.png";
 
 const EmailVerify = () => {
   axios.defaults.withCredentials = true;
