@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import missionImage from "../assets/images/back.png";
-import storyImage from "../assets/images/front.jpg";
+import all from "../assets/images/ALL BOTTLES.jpg";
+import quality from "../assets/images/quality.jpg";
+import reasearch from "../assets/images/Research.avif";
+import news from "../assets/images/Media-News.jpg";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -33,18 +35,14 @@ const OurStory = () => {
           className="flex flex-col md:flex-row items-center gap-10"
         >
           <div className="flex-1 text-left">
-            <h1 className="text-4xl font-bold text-green-700 mb-5"style={{ fontFamily: '"Comic Sans MS", cursive' }}>About Us</h1>
+            <h1 className="text-4xl font-bold text-green-700 mb-5"style={{ fontFamily: '"Comic Sans MS", cursive' }}>Profiles</h1>
             <p className="text-lg text-green-700 leading-relaxed"style={{ fontFamily: '"Comic Sans MS", cursive' }}>
-            There's this notion that to grow a business, you have to be ruthless.
-            But we know there's a better way to grow. One where what's good for
-            the bottom line is also good for customers. We believe businesses can
-            grow with a conscience, and succeed with a soul—and that they can do
-            it with inbound.
+            TooMore Beverages is a complete beverages company, bringing the best of the traditional and contemporary aspects of beverages. Offering more than a dozen brands, we satisfy the requirements of diverse consumers.
             </p>
           </div>
           <div className="flex-1 text-center">
             <img
-              src={missionImage}
+              src={all}
               alt="Mission Founders"
               className="w-full max-w-md rounded-lg shadow-lg transition-transform hover:scale-105 bg-white"
             />
@@ -60,17 +58,14 @@ const OurStory = () => {
           className="flex flex-col md:flex-row-reverse items-center gap-10 mt-16"
         >
           <div className="flex-1 text-left">
-            <h1 className="text-4xl font-bold text-green-700 mb-5"style={{ fontFamily: '"Comic Sans MS", cursive' }}>Vision & Mission</h1>
+            <h1 className="text-4xl font-bold text-green-700 mb-5"style={{ fontFamily: '"Comic Sans MS", cursive' }}>Quality</h1>
             <p className="text-lg text-green-700 leading-relaxed"style={{ fontFamily: '"Comic Sans MS", cursive' }}>
-            As fellow graduate students, we noticed a shift in the way people shop
-            and buy. Consumers were no longer tolerating interruptive bids for
-            their attention. In fact, they'd gotten really good at ignoring them.
-            So, we set out to create a new approach.
+            Right from our inception, we have focused on the highest standards in quality that address customer satisfaction and regulatory compliance.
             </p>
           </div>
           <div className="flex-1 text-center">
             <img
-              src={storyImage}
+              src={quality}
               alt="Our Story"
               className="w-full max-w-md rounded-lg shadow-lg transition-transform hover:scale-105 bg-white"
             />
@@ -86,18 +81,14 @@ const OurStory = () => {
           className="flex flex-col md:flex-row items-center gap-10 mt-16"
         >
           <div className="flex-1 text-left">
-            <h1 className="text-4xl font-bold text-green-700 mb-5"style={{ fontFamily: '"Comic Sans MS", cursive' }}>Leadership Team</h1>
+            <h1 className="text-4xl font-bold text-green-700 mb-5"style={{ fontFamily: '"Comic Sans MS", cursive' }}>Research</h1>
             <p className="text-lg text-green-700 leading-relaxed"style={{ fontFamily: '"Comic Sans MS", cursive' }}>
-            There's this notion that to grow a business, you have to be ruthless.
-            But we know there's a better way to grow. One where what's good for
-            the bottom line is also good for customers. We believe businesses can
-            grow with a conscience, and succeed with a soul—and that they can do
-            it with inbound.
+            At TooMore, research and development is an integral part of developing newer products and flavors. Our team of highly qualified, competent and experienced professionals include engineers, technicians, quality controllers, sales personnel, analysts and others.
             </p>
           </div>
           <div className="flex-1 text-center">
             <img
-              src={missionImage}
+              src={reasearch}
               alt="Leadership Team"
               className="w-full max-w-md rounded-lg shadow-lg transition-transform hover:scale-105 bg-white"
             />
@@ -113,17 +104,14 @@ const OurStory = () => {
           className="flex flex-col md:flex-row-reverse items-center gap-10 mt-16"
         >
           <div className="flex-1 text-left">
-            <h1 className="text-4xl font-bold text-green-700 mb-5"style={{ fontFamily: '"Comic Sans MS", cursive' }}>Milestone</h1>
+            <h1 className="text-4xl font-bold text-green-700 mb-5"style={{ fontFamily: '"Comic Sans MS", cursive' }}>Modern Facilities</h1>
             <p className="text-lg text-green-700 leading-relaxed"style={{ fontFamily: '"Comic Sans MS", cursive' }}>
-            As fellow graduate students, we noticed a shift in the way people shop
-            and buy. Consumers were no longer tolerating interruptive bids for
-            their attention. In fact, they'd gotten really good at ignoring them.
-            So, we set out to create a new approach.
+            Our modern production facilities, based in Rajkot, Gujarat, are designed with the best infrastructure, technology, machines, and processes to enable high scalability with quality. We provide an engaging, rewarding, and growth-oriented work environment to our skilled workforce.
             </p>
           </div>
           <div className="flex-1 text-center">
             <img
-              src={storyImage}
+              src={news}
               alt="Milestone"
               className="w-full max-w-md rounded-lg shadow-lg transition-transform hover:scale-105 bg-white"
             />
@@ -150,7 +138,7 @@ const OurStory = () => {
           </div>
           <div className="flex-1 text-center">
             <img
-              src={missionImage}
+              src={news}
               alt="News and Media"
               className="w-full max-w-md rounded-lg shadow-lg transition-transform hover:scale-105 bg-white"
             />

@@ -88,7 +88,7 @@ const Navbar = () => {
               >
                 Products
               </Link>
-              <ul
+              {/* <ul
                 className="absolute left-0 top-full mt-2 bg-gray-800 rounded-md shadow-lg opacity-0 
                  invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-48"
               >
@@ -112,7 +112,7 @@ const Navbar = () => {
                     <span>{item.text}</span>
                   </Link>
                 ))}
-              </ul>
+              </ul> */}
             </li>
 
             <li className="relative group">
@@ -385,18 +385,23 @@ const Navbar = () => {
                       Our Story
                     </Link>
                   </li>
+                  <li>
+                    <Link to="/juices" className="block hover:text-white">
+                      Products
+                    </Link>
+                  </li>
 
                   {/* Dropdown Menus */}
                   {[
-                    {
-                      title: "Products",
-                      links: [
-                        { path: "/juices", label: "Juices" },
-                        { path: "/soft-drinks", label: "Soft Drinks" },
-                        { path: "/energy-drinks", label: "Energy Drinks" },
-                        { path: "/drinking-water", label: "Drinking Water" },
-                      ],
-                    },
+                    // {
+                    //   title: "Products",
+                    //   links: [
+                    //     { path: "/juices", label: "Juices" },
+                    //     { path: "/soft-drinks", label: "Soft Drinks" },
+                    //     { path: "/energy-drinks", label: "Energy Drinks" },
+                    //     { path: "/drinking-water", label: "Drinking Water" },
+                    //   ],
+                    // },
                     {
                       title: "Investors",
                       links: [
