@@ -29,7 +29,7 @@
         "pricePerUnit": "₹0.15 / ml"
           }
         ],
-        "image": "./src/assets/images/products/pineapple.png"
+        "image": "./src/assets/images/products/pineapple.webp"
       },
       {
         "id": 2,
@@ -59,7 +59,7 @@
         "pricePerUnit": "₹0.16 / ml"
           }
         ],
-        "image": "./src/assets/images/products/mango.png"
+        "image": "./src/assets/images/products/mango.webp"
       },
       {
         "id": 3,
@@ -89,7 +89,7 @@
         "pricePerUnit": "₹0.15 / ml"
           }
         ],
-        "image": "./src/assets/images/products/grapes.png"
+        "image": "./src/assets/images/products/grapes.webp"
       },
       {
         "id": 4,
@@ -119,7 +119,7 @@
         "pricePerUnit": "₹0.18 / ml"
           }
         ],
-        "image": "./src/assets/images/products/lychee.png"
+        "image": "./src/assets/images/products/lychee.webp"
       },
       {
         "id": 5,
@@ -149,7 +149,7 @@
         "pricePerUnit": "₹0.19 / ml"
           }
         ],
-        "image": "./src/assets/images/products/strawberry.png"
+        "image": "./src/assets/images/products/strawberry.webp"
       },
       {
         "id": 6,
@@ -179,7 +179,7 @@
         "pricePerUnit": "₹0.26 / ml"
           }
         ],
-        "image": "./src/assets/images/products/SkyBerry.png"
+        "image": "./src/assets/images/products/SkyBerry.webp"
       },
       {
         "id": 7,
@@ -209,7 +209,7 @@
         "pricePerUnit": "₹0.24 / ml"
           }
         ],
-        "image": "./src/assets/images/products/Pomegranate.png"
+        "image": "./src/assets/images/products/Pomegranate.webp"
       }
     ],
     "subSoftDrink": [

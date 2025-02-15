@@ -44,7 +44,7 @@ import EnergyDrinks from "../pages/Products/EnergyDrinks";
 import DrinkingWater from "../pages/Products/DrinkingWater";
 
 // Cart
-import Cart from "../cart/Cart";
+import CartWrapper from "../cart/CartWrapper";
 import ShoppingCartPage from "../cart/ShoppingCartPage";
 
 const AppRoutes = () => {
@@ -57,7 +57,7 @@ const AppRoutes = () => {
       <Route path="/our-story" element={<OurStory />} />
 
       {/* Cart */}
-      <Route path="/cart" element={<Cart />} />
+      <Route path="/cart" element={<CartWrapper />} />
       <Route path="/shoppingcart" element={<ShoppingCartPage />} />
 
       {/* Products */}

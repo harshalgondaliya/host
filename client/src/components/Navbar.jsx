@@ -88,31 +88,6 @@ const Navbar = () => {
               >
                 Products
               </Link>
-              {/* <ul
-                className="absolute left-0 top-full mt-2 bg-gray-800 rounded-md shadow-lg opacity-0 
-                 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-48"
-              >
-                {[
-                  { icon: "🍹", text: "Juices", link: "/Juices" },
-                  { icon: "🥤", text: "Soft Drinks", link: "/soft-drinks" },
-                  { icon: "⚡", text: "Energy Drinks", link: "/energy-drinks" },
-                  {
-                    icon: "💧",
-                    text: "Drinking Water",
-                    link: "/drinking-Water",
-                  },
-                ].map((item, index) => (
-                  <Link
-                    key={index}
-                    to={item.link}
-                    className="block px-4 py-2 flex items-center space-x-2 hover:bg-gray-700 
-                 rounded-md transition text-white text-sm hover:text-orange-400"
-                  >
-                    <span>{item.icon}</span>
-                    <span>{item.text}</span>
-                  </Link>
-                ))}
-              </ul> */}
             </li>
 
             <li className="relative group">
@@ -310,98 +285,89 @@ const Navbar = () => {
             </div>
           )}
           {/* 🔹 Mobile Search Button */}
-          <button
-            onClick={() => setSearchOpenMobile(!searchOpenMobile)}
-            className="text-white hover:text-orange-600 md:hidden ml-56"
-          >
-            <i className="fas fa-search text-xl"></i>
-          </button>
-          <button
-            onClick={handleMobileMenuToggle}
-            className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
-          >
-            {mobileMenuOpen ? (
-              <i className="fas fa-times"></i>
-            ) : (
-              <i className="fas fa-bars"></i>
-            )}
-          </button>
+                <button
+                onClick={() => setSearchOpenMobile(!searchOpenMobile)}
+                className="text-white hover:text-orange-600 md:hidden ml-56"
+                >
+                <i className="fas fa-search text-xl"></i>
+                </button>
+                <button
+                onClick={handleMobileMenuToggle}
+                className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
+                >
+                {mobileMenuOpen ? (
+                  <i className="fas fa-times"></i>
+                ) : (
+                  <i className="fas fa-bars"></i>
+                )}
+                </button>
 
-          {mobileMenuOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
-              <div className="absolute top-0 right-0 w-3/4 h-full bg-green-950 shadow-lg flex flex-col p-6 space-y-4 transition-transform duration-300 overflow-y-auto">
-                <ul className="space-y-4 text-white text-lg">
-                  <br />
-                  {userData ? (
+                {mobileMenuOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
+                  <div className="absolute top-0 right-0 w-3/4 h-full bg-green-950 shadow-lg flex flex-col p-6 space-y-4 transition-transform duration-300 overflow-y-auto">
+                  <ul className="space-y-4 text-white text-lg">
+                    <br />
+                    {userData ? (
                     <li className="relative">
                       <button
-                        onClick={() => toggleDropdown("User")}
-                        className="block w-full text-left hover:text-white flex justify-between items-center"
+                      onClick={() => toggleDropdown("User")}
+                      className="block w-full text-left hover:text-white flex justify-between items-center"
                       >
-                        {userData.name.charAt(0).toUpperCase() +
-                          userData.name.slice(1)}{" "}
-                        <i
-                          className={`fas ${
-                            openDropdown === "User"
-                              ? "fa-chevron-up"
-                              : "fa-chevron-down"
-                          }`}
-                        ></i>
+                      {userData.name.charAt(0).toUpperCase() +
+                        userData.name.slice(1)}{" "}
+                      <i
+                        className={`fas ${
+                        openDropdown === "User"
+                          ? "fa-chevron-up"
+                          : "fa-chevron-down"
+                        }`}
+                      ></i>
                       </button>
                       {openDropdown === "User" && (
-                        <ul className="mt-2 w-48 bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
-                          {!userData.isAccountVerified && (
-                            <li
-                              onClick={sendVerificationOtp}
-                              className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
-                            >
-                              Verify Account
-                            </li>
-                          )}
-                          <li
-                            onClick={() => navigate("/reset-password")}
-                            className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
-                          >
-                            Reset Password
-                          </li>
-                          <li
-                            onClick={logout}
-                            className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
-                          >
-                            Logout
-                          </li>
-                        </ul>
+                      <ul className="mt-2 w-48 bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
+                        {!userData.isAccountVerified ? (
+                        <li
+                          onClick={sendVerificationOtp}
+                          className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                        >
+                          Verify Account
+                        </li>
+                        ) : null}
+                        <li
+                        onClick={() => navigate("/reset-password")}
+                        className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                        >
+                        Reset Password
+                        </li>
+                        <li
+                        onClick={logout}
+                        className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                        >
+                        Logout
+                        </li>
+                      </ul>
                       )}
                     </li>
-                  ) : (
+                    ) : (
                     <li>
                       <Link to="/login" className="block hover:bg-yellow-500">
-                        Login
+                      Login
                       </Link>
                     </li>
-                  )}
-                  <li>
+                    )}
+                    <li>
                     <Link to="/our-story" className="block hover:text-white">
                       Our Story
                     </Link>
-                  </li>
-                  <li>
+                    </li>
+                    <li>
                     <Link to="/juices" className="block hover:text-white">
                       Products
                     </Link>
-                  </li>
+                    </li>
 
-                  {/* Dropdown Menus */}
+                    {/* Dropdown Menus */}
                   {[
-                    // {
-                    //   title: "Products",
-                    //   links: [
-                    //     { path: "/juices", label: "Juices" },
-                    //     { path: "/soft-drinks", label: "Soft Drinks" },
-                    //     { path: "/energy-drinks", label: "Energy Drinks" },
-                    //     { path: "/drinking-water", label: "Drinking Water" },
-                    //   ],
-                    // },
                     {
                       title: "Investors",
                       links: [
@@ -568,12 +534,17 @@ const Navbar = () => {
               {userData.name[0].toUpperCase()}
               <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-white rounded pt-10">
                 <ul className="list-none m-0 p-2 bg-gray-900 text-sm">
-                  {!userData.isAccountVerified && (
+                  {!userData.isAccountVerified ? (
                     <li
                       onClick={sendVerificationOtp}
                       className="py-1 px-2 hover:bg-black cursor-pointer pr-10 hover:text-orange-600"
                     >
                       Verify Account
+                    </li>
+                  ) : (
+                    <li className="py-1 px-2 w-full hover:bg-black cursor-pointer pr-10 hover:text-orange-600">
+                      {userData.name.charAt(0).toUpperCase() +
+                        userData.name.slice(1)}
                     </li>
                   )}
                   <li

@@ -67,7 +67,7 @@ const EmailVerify = () => {
   }, [isLoggedin, userData]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-orange-900 via-green-400 to-orange-600">
+    <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-[#2C2C54] via-gray-600 to-[#2C2C54]">
       <img
         onClick={() => navigate("/")}
         src={logo}
@@ -76,12 +76,12 @@ const EmailVerify = () => {
       />
       <form
         onSubmit={onSubmitHandler}
-        className="bg-orange-600 p-8 rounded-lg shadow-lg w-96 text-sm"
+        className="bg-white p-8 rounded-lg shadow-lg w-96 text-sm"
       >
-        <h1 className="text-green-950 text-2xl font-semibold text-center mb-4">
+        <h1 className="text-indigo-950 text-2xl font-semibold text-center mb-4">
           Email Verify OTP
         </h1>
-        <p className="text-center mb-6 text-green-950">
+        <p className="text-center mb-6 text-indigo-950">
           Enter the 6-digit code sent to your email id.
         </p>
         <div className="flex justify-between mb-8" onPaste={handlePaste}>
@@ -93,14 +93,14 @@ const EmailVerify = () => {
                 maxLength="1"
                 key={index}
                 required
-                className="w-12 h-12 bg-green-950 text-white text-center text-xl rounded-md"
+                className="w-12 h-12 bg-indigo-950 text-white text-center text-xl rounded-md"
                 ref={(e) => (inputRefs.current[index] = e)}
                 onInput={(e) => handleInput(e, index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
               />
             ))}
         </div>
-        <button className="w-full py-2.5 rounded-full bg-gradient-to-r from-green-500 to-green-950 text-green font-medium hover:bg-gradient-to-r hover:from-green-950 hover:to-green-500">
+        <button className="w-full py-2.5 rounded-full bg-gradient-to-r from-white to-indigo-950 text-indigo font-medium hover:bg-gradient-to-r hover:from-indigo-950 hover:to-white">
           Verify email
         </button>
       </form>
