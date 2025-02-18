@@ -285,88 +285,88 @@ const Navbar = () => {
             </div>
           )}
           {/* 🔹 Mobile Search Button */}
-                <button
-                onClick={() => setSearchOpenMobile(!searchOpenMobile)}
-                className="text-white hover:text-orange-600 md:hidden ml-56"
-                >
-                <i className="fas fa-search text-xl"></i>
-                </button>
-                <button
-                onClick={handleMobileMenuToggle}
-                className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
-                >
-                {mobileMenuOpen ? (
-                  <i className="fas fa-times"></i>
-                ) : (
-                  <i className="fas fa-bars"></i>
-                )}
-                </button>
+          <button
+            onClick={() => setSearchOpenMobile(!searchOpenMobile)}
+            className="text-white hover:text-orange-600 md:hidden ml-56"
+          >
+            <i className="fas fa-search text-xl"></i>
+          </button>
+          <button
+            onClick={handleMobileMenuToggle}
+            className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
+          >
+            {mobileMenuOpen ? (
+              <i className="fas fa-times"></i>
+            ) : (
+              <i className="fas fa-bars"></i>
+            )}
+          </button>
 
-                {mobileMenuOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
-                  <div className="absolute top-0 right-0 w-3/4 h-full bg-green-950 shadow-lg flex flex-col p-6 space-y-4 transition-transform duration-300 overflow-y-auto">
-                  <ul className="space-y-4 text-white text-lg">
-                    <br />
-                    {userData ? (
+          {mobileMenuOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
+              <div className="absolute top-0 right-0 w-3/4 h-full bg-green-950 shadow-lg flex flex-col p-6 space-y-4 transition-transform duration-300 overflow-y-auto">
+                <ul className="space-y-4 text-white text-lg">
+                  <br />
+                  {userData ? (
                     <li className="relative">
                       <button
-                      onClick={() => toggleDropdown("User")}
-                      className="block w-full text-left hover:text-white flex justify-between items-center"
+                        onClick={() => toggleDropdown("User")}
+                        className="block w-full text-left hover:text-white flex justify-between items-center"
                       >
-                      {userData.name.charAt(0).toUpperCase() +
-                        userData.name.slice(1)}{" "}
-                      <i
-                        className={`fas ${
-                        openDropdown === "User"
-                          ? "fa-chevron-up"
-                          : "fa-chevron-down"
-                        }`}
-                      ></i>
+                        {userData.name.charAt(0).toUpperCase() +
+                          userData.name.slice(1)}{" "}
+                        <i
+                          className={`fas ${
+                            openDropdown === "User"
+                              ? "fa-chevron-up"
+                              : "fa-chevron-down"
+                          }`}
+                        ></i>
                       </button>
                       {openDropdown === "User" && (
-                      <ul className="mt-2 w-48 bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
-                        {!userData.isAccountVerified ? (
-                        <li
-                          onClick={sendVerificationOtp}
-                          className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
-                        >
-                          Verify Account
-                        </li>
-                        ) : null}
-                        <li
-                        onClick={() => navigate("/reset-password")}
-                        className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
-                        >
-                        Reset Password
-                        </li>
-                        <li
-                        onClick={logout}
-                        className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
-                        >
-                        Logout
-                        </li>
-                      </ul>
+                        <ul className="mt-2 w-48 bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
+                          {!userData.isAccountVerified ? (
+                            <li
+                              onClick={sendVerificationOtp}
+                              className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                            >
+                              Verify Account
+                            </li>
+                          ) : null}
+                          <li
+                            onClick={() => navigate("/reset-password")}
+                            className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                          >
+                            Reset Password
+                          </li>
+                          <li
+                            onClick={logout}
+                            className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                          >
+                            Logout
+                          </li>
+                        </ul>
                       )}
                     </li>
-                    ) : (
+                  ) : (
                     <li>
                       <Link to="/login" className="block hover:bg-yellow-500">
-                      Login
+                        Login
                       </Link>
                     </li>
-                    )}
-                    <li>
+                  )}
+                  <li>
                     <Link to="/our-story" className="block hover:text-white">
                       Our Story
                     </Link>
-                    </li>
-                    <li>
+                  </li>
+                  <li>
                     <Link to="/juices" className="block hover:text-white">
                       Products
                     </Link>
-                    </li>
+                  </li>
 
-                    {/* Dropdown Menus */}
+                  {/* Dropdown Menus */}
                   {[
                     {
                       title: "Investors",

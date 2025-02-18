@@ -164,9 +164,11 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
                 </span>
               )}
             </button>
-            <span className="hidden md:block text-white text-sm font-semibold">
-              {totalItems > 0 ? `₹${totalPrice.toFixed(2)}` : ""}
-            </span>
+            {!isMobile && (
+              <span className="hidden md:block text-white text-sm font-semibold">
+                {totalItems > 0 ? `₹${totalPrice.toFixed(2)}` : ""}
+              </span>
+            )}
           </div>
         </div>
         <div className="relative">
@@ -191,7 +193,6 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
               <i className="fas fa-times"></i>
             )}
           </button>
-          
         </div>
       </div>
     </div>

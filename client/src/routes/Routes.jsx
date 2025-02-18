@@ -43,6 +43,9 @@ import SoftDrinks from "../pages/Products/SoftDrinks";
 import EnergyDrinks from "../pages/Products/EnergyDrinks";
 import DrinkingWater from "../pages/Products/DrinkingWater";
 
+// store
+import Lay from "../store/lay";
+
 // Cart
 import CartWrapper from "../cart/CartWrapper";
 import ShoppingCartPage from "../cart/ShoppingCartPage";
@@ -92,6 +95,9 @@ const AppRoutes = () => {
       <Route path="/FAQs" element={<FAQs />} />
       <Route path="/distributor-support" element={<DistributorSupport />} />
       <Route path="/customer-care" element={<CustomerCare />} />
+
+      {/* Store */}
+      <Route path="/lay" element={<Lay />} />
     </Routes>
   );
 };
