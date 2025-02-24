@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Preloader from "./components/Preloader";
 
 // Import Routes
-import AppRoutes from "./routes/routes.jsx";
+import AppRoutes from "./routes/Routes.jsx";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
