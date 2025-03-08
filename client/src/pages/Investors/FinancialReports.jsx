@@ -1,4 +1,6 @@
 import React from 'react';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 const FinancialReports = () => {
   const reports = [
@@ -8,6 +10,8 @@ const FinancialReports = () => {
   ];
 
   return (
+    <>
+    <Navbar />
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Financial Reports</h1>
       <div className="bg-white shadow-md rounded-lg p-6">
@@ -23,6 +27,8 @@ const FinancialReports = () => {
         </ul>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

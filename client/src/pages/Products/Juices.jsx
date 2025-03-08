@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -17,113 +18,142 @@ const juiceProducts = [
     image: grapeImage,
     name: "Grape Juice",
     description: "A refreshing grape juice packed with antioxidants.",
-    sizes: "Cans: 180 ml, 300 ml | Bottles: 250 ml, 500 ml, 1 L",
+    sizes: "Bottles: 100ml , 250 ml",
     nutrition: {
-      energy: "60kcal",
-      carbohydrates: "15g",
-      sugars: "14g",
-      fat: "0g",
-      protein: "0g",
-      sodium: "10mg",
+      energy: "50.4kcal",
+      protein: "0.32g",
+      carbohydrates: "12.6g",
+      "-Total Sugar": "12.4g",
+      "-Added Sugars": "11.7g",
+      fat: "40g",
+      sodium: "33.5mg",
     },
-    ingredients: "Grape Juice, Sugar, Water, Natural Flavors",
+    ingredients:
+      "Grapes Juice, Concentrate ( 5% ), Water, Nata De Coco ( 8% ), Coconut Water ( 5% ), Sugar And Acidity Regulator ( 330 ) etc...",
   },
   {
     image: lycheeImage,
     name: "Lychee Juice",
     description: "Exotic lychee juice with a sweet and floral flavor.",
-    sizes: "Cans: 200 ml, 330 ml | Bottles: 300 ml, 750 ml, 1.5 L",
+    sizes: "Bottles: 100ml , 250 ml",
     nutrition: {
-      energy: "65kcal",
-      carbohydrates: "16g",
-      sugars: "15g",
-      fat: "0g",
-      protein: "0g",
-      sodium: "8mg",
+      energy: "50.4kcal",
+      protein: "0.32g",
+      carbohydrates: "12.6g",
+      "-Total Sugar": "12.4g",
+      "-Added Sugars": "11.7g",
+      fat: "40g",
+      sodium: "33.5mg",
     },
-    ingredients: "Lychee Juice, Sugar, Water, Natural Flavors",
+    ingredients:
+      "Lychee Juice, Concentrate ( 5% ), Water, Nata De Coco ( 8% ), Coconut Water ( 5% ), Sugar And Acidity Regulator ( 330 ) etc...",
   },
   {
     image: mangoImage,
     name: "Mango Juice",
     description: "Tropical mango juice with zero added sugar.",
-    sizes: "Cans: 250 ml, 500 ml | Bottles: 400 ml, 1 L, 2 L",
+    sizes: "Bottles: 100ml , 250 ml",
     nutrition: {
-      energy: "70kcal",
-      carbohydrates: "17g",
-      sugars: "16g",
-      fat: "0g",
-      protein: "0g",
-      sodium: "12mg",
+      energy: "50.4kcal",
+      protein: "0.32g",
+      carbohydrates: "12.6g",
+      "-Total Sugar": "12.4g",
+      "-Added Sugars": "11.7g",
+      fat: "40g",
+      sodium: "33.5mg",
     },
-    ingredients: "Mango Juice, Water, Natural Flavors",
+    ingredients:
+      "Mango Juice, Concentrate ( 5% ), Water, Nata De Coco ( 8% ), Coconut Water ( 5% ), Sugar And Acidity Regulator ( 330 ) etc...",
   },
   {
     image: pineappleImage,
     name: "Pineapple Juice",
     description: "Tangy pineapple juice rich in vitamin C and bromelain.",
-    sizes: "Cans: 200 ml, 330 ml | Bottles: 300 ml, 1 L",
+    sizes: "Bottles: 100ml , 250 ml",
     nutrition: {
-      energy: "50kcal",
-      carbohydrates: "13g",
-      sugars: "12g",
-      fat: "0g",
-      protein: "0g",
-      sodium: "5mg",
+      energy: "50.4kcal",
+      protein: "0.32g",
+      carbohydrates: "12.6g",
+      "-Total Sugar": "12.4g",
+      "-Added Sugars": "11.7g",
+      fat: "40g",
+      sodium: "33.5mg",
     },
-    ingredients: "Pineapple Juice, Sugar, Water, Natural Flavors",
+    ingredients:
+      "Pineapple Juice, Concentrate ( 5% ), Water, Nata De Coco ( 8% ), Coconut Water ( 5% ), Sugar And Acidity Regulator ( 330 ) etc...",
   },
   {
     image: strawberryImage,
     name: "Strawberry Juice",
     description:
       "Sweet and tangy strawberry juice made from fresh strawberries.",
-    sizes: "Cans: 250 ml, 500 ml | Bottles: 300 ml, 1 L",
+    sizes: "Bottles: 100ml , 250 ml",
     nutrition: {
-      energy: "55kcal",
-      carbohydrates: "14g",
-      sugars: "13g",
-      fat: "0g",
-      protein: "0g",
-      sodium: "7mg",
+      energy: "50.4kcal",
+      protein: "0.32g",
+      carbohydrates: "12.6g",
+      "-Total Sugar": "12.4g",
+      "-Added Sugars": "11.7g",
+      fat: "40g",
+      sodium: "33.5mg",
     },
-    ingredients: "Strawberry Juice, Sugar, Water, Natural Flavors",
+    ingredients:
+      "Strawberry Juice, Concentrate ( 5% ), Water, Nata De Coco ( 8% ), Coconut Water ( 5% ), Sugar And Acidity Regulator ( 330 ) etc...",
   },
   {
     image: skyberryImage,
     name: "SkyBerry Juice",
     description: "Unique SkyBerry juice with a blend of berries.",
-    sizes: "Cans: 200 ml, 330 ml | Bottles: 300 ml, 750 ml",
+    sizes: "Bottles: 100ml , 250 ml",
     nutrition: {
-      energy: "60kcal",
-      carbohydrates: "15g",
-      sugars: "14g",
-      fat: "0g",
-      protein: "0g",
-      sodium: "9mg",
+      energy: "50.4kcal",
+      protein: "0.32g",
+      carbohydrates: "12.6g",
+      "-Total Sugar": "12.4g",
+      "-Added Sugars": "11.7g",
+      fat: "40g",
+      sodium: "33.5mg",
     },
-    ingredients: "SkyBerry Juice, Sugar, Water, Natural Flavors",
+    ingredients:
+      "SkyBerry Juice, Concentrate ( 5% ), Water, Nata De Coco ( 8% ), Coconut Water ( 5% ), Sugar And Acidity Regulator ( 330 ) etc...",
   },
   {
     image: pomegranateImage,
     name: "Pomegranate Juice",
     description: "Rich and flavorful pomegranate juice full of antioxidants.",
-    sizes: "Cans: 250 ml, 500 ml | Bottles: 400 ml, 1 L",
+    sizes: "Bottles: 100ml , 250 ml",
     nutrition: {
-      energy: "65kcal",
-      carbohydrates: "16g",
-      sugars: "15g",
-      fat: "0g",
-      protein: "0g",
-      sodium: "10mg",
+      energy: "50.4kcal",
+      protein: "0.32g",
+      carbohydrates: "12.6g",
+      "-Total Sugar": "12.4g",
+      "-Added Sugars": "11.7g",
+      fat: "40g",
+      sodium: "33.5mg",
     },
-    ingredients: "Pomegranate Juice, Sugar, Water, Natural Flavors",
+    ingredients:
+      "Pomogranate Juice, Concentrate ( 5% ), Water, Nata De Coco ( 8% ), Coconut Water ( 5% ), Sugar And Acidity Regulator ( 330 ) etc...",
   },
 ];
 
-const ProductCardDesktop = ({ product, zoom, origin, toggleZoom }) => {
+const ProductCardDesktop = ({ product, zoom, origin, toggleZoom, index }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-row">
+    <motion.div
+      initial={{ opacity: 0, y: 20, rotate: -200, scale: 0.0 }} // Start smaller
+      animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }} // Expand to full size
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+        delay: index * 0.2, // Faster stagger effect
+      }}
+      className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-700 flex flex-row"
+    >
       <img
         src={product.image}
         alt={product.name}
@@ -140,26 +170,42 @@ const ProductCardDesktop = ({ product, zoom, origin, toggleZoom }) => {
       <div className="p-5 w-2/3">
         <h2 className="text-2xl font-bold text-red-500 mb-2">{product.name}</h2>
         <p className="text-gray-700 mb-2">{product.description}</p>
-        <p className="text-gray-800 font-semibold mb-2">Sizes: {product.sizes}</p>
-        <div className="bg-gray-100 p-3 rounded-lg">
-          <h3 className="text-green-600 font-semibold">Nutritional Information (per 100ml)</h3>
+        <p className="text-gray-800 font-semibold mb-2">
+          Sizes: {product.sizes}
+        </p>
+        <div className="bg-sky-100 p-3 rounded-lg">
+          <h3 className="text-green-600 font-semibold">
+            Nutritional Information (per 100ml)
+          </h3>
           {Object.entries(product.nutrition).map(([key, value]) => (
-            <p key={key} className="text-gray-700">
-              {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
-            </p>
+            <div key={key} className="flex justify-between mb-1">
+              <p className="text-gray-700 font-semibold">
+                {key.charAt(0).toUpperCase() + key.slice(1)}:
+              </p>
+              <p className="text-gray-700">{value}</p>
+            </div>
           ))}
           <h4 className="font-semibold mt-2">Ingredients</h4>
           <p className="text-gray-700">{product.ingredients}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-const ProductCardMobile = ({ product, zoom, origin, toggleZoom }) => {
+const ProductCardMobile = ({ product, zoom, origin, toggleZoom, index }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col sm:flex-row">
-      {/* Image on Left */}
+    <motion.div
+      initial={{ opacity: 0, y: 20, rotate: -200, scale: 0.0 }}
+      animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+        delay: index * 0.2, // Stagger effect for each card
+      }}
+      className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col sm:flex-row"
+    >
+      {/* Image on Top for Mobile / Left for Tablet */}
       <div className="w-full sm:w-1/2">
         <img
           src={product.image}
@@ -176,28 +222,35 @@ const ProductCardMobile = ({ product, zoom, origin, toggleZoom }) => {
         />
       </div>
 
-      {/* Description on Right */}
+      {/* Description Below Image for Mobile / Right for Tablet */}
       <div className="p-5 w-full sm:w-1/2 flex flex-col justify-center">
         <h2 className="text-2xl font-bold text-red-500 mb-2">{product.name}</h2>
         <p className="text-gray-700 mb-2 text-base">{product.description}</p>
-        <p className="text-gray-800 font-semibold mb-2 text-base">Sizes: {product.sizes}</p>
+        <p className="text-gray-800 font-semibold mb-2 text-base">
+          Sizes: {product.sizes}
+        </p>
         <div className="bg-gray-100 p-3 rounded-lg">
           <h3 className="text-green-600 font-semibold text-base">
             Nutritional Information (per 100ml)
           </h3>
           {Object.entries(product.nutrition).map(([key, value]) => (
-            <p key={key} className="text-gray-700 text-sm">
-              {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
-            </p>
+            <div
+              key={key}
+              className="flex justify-between text-gray-700 text-sm"
+            >
+              <span className="font-medium">
+                {key.charAt(0).toUpperCase() + key.slice(1)}:
+              </span>
+              <span>{value}</span>
+            </div>
           ))}
           <h4 className="font-semibold mt-2 text-base">Ingredients</h4>
           <p className="text-gray-700 text-sm">{product.ingredients}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
-
 const ProductCard = ({ product }) => {
   const [zoom, setZoom] = useState(1);
   const [origin, setOrigin] = useState("center center");
@@ -225,13 +278,27 @@ const ProductCard = ({ product }) => {
   };
 
   return isMobile ? (
-    <ProductCardMobile product={product} zoom={zoom} origin={origin} toggleZoom={toggleZoom} />
+    <ProductCardMobile
+      product={product}
+      zoom={zoom}
+      origin={origin}
+      toggleZoom={toggleZoom}
+    />
   ) : (
-    <ProductCardDesktop product={product} zoom={zoom} origin={origin} toggleZoom={toggleZoom} />
+    <ProductCardDesktop
+      product={product}
+      zoom={zoom}
+      origin={origin}
+      toggleZoom={toggleZoom}
+    />
   );
 };
 
 const Juice = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // This ensures the page always starts from the top
+  }, []);
+  
   const [visibleProducts, setVisibleProducts] = useState(3);
 
   return (

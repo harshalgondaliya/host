@@ -107,21 +107,21 @@ const Navbar = () => {
                     text: "Investor Relations",
                     link: "/investor-relations",
                   },
-                  {
-                    icon: "📊",
-                    text: "Financial Reports",
-                    link: "/financial-reports",
-                  },
+                  // {
+                  //   icon: "📊",
+                  //   text: "Financial Reports",
+                  //   link: "/financial-reports",
+                  // },
                   {
                     icon: "📰",
                     text: "Press Releases",
                     link: "/press-releases",
                   },
-                  {
-                    icon: "🗒️",
-                    text: "Stockholder Information",
-                    link: "/stockholder-info",
-                  },
+                  // {
+                  //   icon: "🗒️",
+                  //   text: "Stockholder Information",
+                  //   link: "/stockholder-info",
+                  // },
                   {
                     icon: "❓",
                     text: "FAQs for Investors",
@@ -157,27 +157,27 @@ const Navbar = () => {
                     icon: "🌍",
                     text: "Environmental Impact",
                     link: "/env-impact",
-                  },
-                  {
-                    icon: "💧",
-                    text: "Water Conservation",
-                    link: "/water-conservation",
-                  },
-                  {
-                    icon: "🤝",
-                    text: "Community Support",
-                    link: "/community-support",
-                  },
-                  {
-                    icon: "📜",
-                    text: "Sustainability Reports",
-                    link: "/sustainability-reports",
-                  },
-                  {
-                    icon: "🏆",
-                    text: "Certifications & Achievements",
-                    link: "/certifications",
-                  },
+                  }
+                  // {
+                  //   icon: "💧",
+                  //   text: "Water Conservation",
+                  //   link: "/water-conservation",
+                  // },
+                  // {
+                  //   icon: "🤝",
+                  //   text: "Community Support",
+                  //   link: "/community-support",
+                  // },
+                  // {
+                  //   icon: "📜",
+                  //   text: "Sustainability Reports",
+                  //   link: "/sustainability-reports",
+                  // },
+                  // {
+                  //   icon: "🏆",
+                  //   text: "Certifications & Achievements",
+                  //   link: "/certifications",
+                  // },
                 ].map((item, index) => (
                   <Link
                     key={index}
@@ -205,17 +205,17 @@ const Navbar = () => {
               >
                 {[
                   { icon: "👨‍💼", text: "Careers", link: "/careers" },
-                  {
-                    icon: "🎓",
-                    text: "Internship Opportunities",
-                    link: "/internship-opportunities",
-                  },
-                  {
-                    icon: "🌟",
-                    text: "Life at Toomore Beverages",
-                    link: "/life-at-toomore",
-                  },
-                  { icon: "💼", text: "Job Openings", link: "/job-openings" },
+                  // {
+                  //   icon: "🎓",
+                  //   text: "Internship Opportunities",
+                  //   link: "/internship-opportunities",
+                  // },
+                  // {
+                  //   icon: "🌟",
+                  //   text: "Life at Toomore Beverages",
+                  //   link: "/life-at-toomore",
+                  // },
+                  // { icon: "💼", text: "Job Openings", link: "/job-openings" },
                 ].map((item, index) => (
                   <Link
                     key={index}
@@ -232,7 +232,7 @@ const Navbar = () => {
 
             <li className="relative group">
               <Link
-                to="/contact-us"
+                to="/customer-care"
                 className="text-white text-lg hover:text-orange-500 transition"
               >
                 Support
@@ -242,14 +242,14 @@ const Navbar = () => {
                  invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-48"
               >
                 {[
-                  { icon: "📞", text: "Contact Us", link: "/contact-us" },
-                  { icon: "📝", text: "Feedback", link: "/feedback" },
+                  // { icon: "📞", text: "Contact Us", link: "/contact-us" },
+                  // { icon: "📝", text: "Feedback", link: "/feedback" },
                   { icon: "❓", text: "FAQs", link: "/FAQs" },
-                  {
-                    icon: "🛒",
-                    text: "Distributor",
-                    link: "/distributor-support",
-                  },
+                  // {
+                  //   icon: "🛒",
+                  //   text: "Distributor",
+                  //   link: "/distributor-support",
+                  // },
                   { icon: "🙋‍♂️", text: "Customer Care", link: "/customer-care" },
                 ].map((item, index) => (
                   <Link
@@ -375,15 +375,15 @@ const Navbar = () => {
                           path: "/investor-relations",
                           label: "Investor Relations",
                         },
-                        {
-                          path: "/financial-reports",
-                          label: "Financial Reports",
-                        },
+                        // {
+                        //   path: "/financial-reports",
+                        //   label: "Financial Reports",
+                        // },
                         { path: "/press-releases", label: "Press Releases" },
-                        {
-                          path: "/stockholder-info",
-                          label: "Stockholder Information",
-                        },
+                        // {
+                        //   path: "/stockholder-info",
+                        //   label: "Stockholder Information",
+                        // },
                         { path: "/investor-FAQs", label: "FAQs for Investors" },
                       ],
                     },
@@ -391,46 +391,46 @@ const Navbar = () => {
                       title: "Sustainability",
                       links: [
                         { path: "/env-impact", label: "Environmental Impact" },
-                        {
-                          path: "/water-conservation",
-                          label: "Water Conservation",
-                        },
-                        {
-                          path: "/community-support",
-                          label: "Community Support",
-                        },
-                        {
-                          path: "/sustainability-reports",
-                          label: "Sustainability Reports",
-                        },
-                        {
-                          path: "/certifications",
-                          label: "Certifications & Achievements",
-                        },
+                        // {
+                        //   path: "/water-conservation",
+                        //   label: "Water Conservation",
+                        // },
+                        // {
+                        //   path: "/community-support",
+                        //   label: "Community Support",
+                        // },
+                        // {
+                        //   path: "/sustainability-reports",
+                        //   label: "Sustainability Reports",
+                        // },
+                        // {
+                        //   path: "/certifications",
+                        //   label: "Certifications & Achievements",
+                        // },
                       ],
                     },
                     {
                       title: "Join Us",
                       links: [
                         { path: "/careers", label: "Careers" },
-                        {
-                          path: "/internship-opportunities",
-                          label: "Internship Opportunities",
-                        },
-                        {
-                          path: "/life-at-toomore",
-                          label: "Life at Toomore Beverages",
-                        },
-                        { path: "/job-openings", label: "Job Openings" },
+                        // {
+                        //   path: "/internship-opportunities",
+                        //   label: "Internship Opportunities",
+                        // },
+                        // {
+                        //   path: "/life-at-toomore",
+                        //   label: "Life at Toomore Beverages",
+                        // },
+                        // { path: "/job-openings", label: "Job Openings" },
                       ],
                     },
                     {
                       title: "Support",
                       links: [
-                        { path: "/contact-us", label: "Contact Us" },
-                        { path: "/feedback", label: "Feedback" },
+                        // { path: "/contact-us", label: "Contact Us" },
+                        // { path: "/feedback", label: "Feedback" },
                         { path: "/FAQs", label: "FAQs" },
-                        { path: "/distributor-support", label: "Distributor" },
+                        // { path: "/distributor-support", label: "Distributor" },
                         { path: "/customer-care", label: "Customer Care" },
                       ],
                     },

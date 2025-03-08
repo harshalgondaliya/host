@@ -18,28 +18,38 @@ const ShoppingCartPage = () => {
   };
 
   // Handle increment for an item
-  const handleIncrement = (itemId) => {
-    const existingItem = cartItems.find((item) => item.id === itemId);
-    if (existingItem) {
-      handleQuantityChange(itemId, existingItem.quantity + 1);
-    }
+  const handleIncrement = (itemId, itemSize) => {
+    addToCart({
+      ...cartItems.find(
+        (item) => item.id === itemId && item.size.value === itemSize.value
+      ),
+      quantity: 1,
+    });
   };
 
-  const handleDecrement = (itemId) => {
-    const existingItem = cartItems.find((item) => item.id === itemId);
-    if (existingItem) {
-      handleQuantityChange(itemId, existingItem.quantity - 1);
-    }
-  };
+  const handleDecrement = (itemId, itemSize) => {
+    const existingItem = cartItems.find(
+      (item) => item.id === itemId && item.size.value === itemSize.value
+    );
 
-  const handleQuantityChange = (itemId, newQuantity) => {
-    if (newQuantity > 0) {
-      const updatedItem = { ...cartItems.find((item) => item.id === itemId), quantity: newQuantity };
-      addToCart(updatedItem); // Update the item
-    } else if (newQuantity === 0) {
-      removeFromCart(itemId); // Remove the item if quantity is 0
+    if (existingItem && existingItem.quantity > 1) {
+      addToCart({ ...existingItem, quantity: -1 });
     } else {
-      alert("Quantity cannot be less than 1");
+      removeFromCart(itemId, itemSize);
+    }
+  };
+
+  const handleQuantityChange = (itemId, itemSize, newQuantity) => {
+    if (newQuantity > 0) {
+      const updatedItem = {
+        ...cartItems.find(
+          (item) => item.id === itemId && item.size.value === itemSize.value
+        ),
+        quantity: newQuantity,
+      };
+      addToCart(updatedItem);
+    } else {
+      removeFromCart(itemId, itemSize);
     }
   };
 
@@ -62,10 +72,10 @@ const ShoppingCartPage = () => {
   );
 
   const shippingFee = subtotalPrice >= 5000 ? 0 : 50; // Free shipping for orders above ₹5000
-  const estimatedTax = subtotalPrice * 0.18; // 18% tax
+  const estimatedTax = 0.00; // 18% tax
   const discountAmount = (subtotalPrice * discount) / 100; // Calculate coupon discount amount
   const orderTotal =
-    subtotalPrice + shippingFee + estimatedTax - totalSavings - discountAmount; // Final order total
+    subtotalPrice + shippingFee + estimatedTax - discountAmount; // Final order total
 
   return (
     <div className="min-h-screen bg-yellow-400 text-white">
@@ -75,56 +85,68 @@ const ShoppingCartPage = () => {
       <div className="flex flex-col lg:flex-row max-w-7xl mx-auto mt-6 gap-6 p-4">
         {/* Cart Items */}
         <main className="lg:w-3/4">
-          <h2 className="text-2xl font-bold mb-4 text-green-950">Shopping Cart</h2>
+          <h2 className="text-2xl font-bold mb-4 text-green-950">
+            Shopping Cart
+          </h2>
           {totalItems > 0 ? (
             <div className="space-y-4">
-              {cartItems.map((item, index) =>
-                item.size ? (
-                  <div
-                    key={index}
-                    className="bg-green-950 p-4 rounded-lg shadow-md flex flex-col lg:flex-row justify-between items-center gap-4"
-                  >
-                    {/* Item Image */}
-                    <div className="w-24 h-24 flex-shrink-0">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-cover rounded-lg"
-                      />
-                    </div>
+              {cartItems.map(
+                (item, index) =>
+                  item.size && (
+                    <div
+                      key={`${item.id}-${item.size.value}`}
+                      className="bg-green-950 p-4 rounded-lg shadow-md flex flex-col lg:flex-row justify-between items-center gap-4"
+                    >
+                      {/* Item Image */}
+                      <div className="w-24 h-24 flex-shrink-0">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                      </div>
 
-                    {/* Item Details */}
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-lg">{item.name}</h3>
-                      <p className="text-gray-400">{item.description}</p>
-                    </div>
+                      {/* Item Details */}
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-lg">{item.name}&nbsp; :&nbsp; {item.size.size} ({item.size.pricePerUnit})</h3>
+                        <p className="text-gray-400">{item.description}</p>
 
-                    {/* Price and Quantity Controls */}
-                    <div className="flex flex-col items-end gap-2">
-                      <p className="text-lg font-semibold">
-                        ₹{(item.size.cutoffPrice * item.quantity).toFixed(2)}
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <button
-                          className="bg-gray-700 text-white w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-600 transition-colors"
-                          onClick={() => handleDecrement(item.id)}
-                        >
-                          -
-                        </button>
-                        <span className="text-lg font-semibold">
-                          {item.quantity}
-                        </span>
-                        <button
-                          className="bg-gray-700 text-white w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-600 transition-colors"
-                          onClick={() => handleIncrement(item.id)}
-                        >
-                          +
-                        </button>
+                      </div>
+
+                      {/* Price and Quantity Controls */}
+                      <div className="flex flex-col items-end gap-2">
+                        <p className="text-lg font-semibold">
+                          ₹{(item.size.cutoffPrice * item.quantity).toFixed(2)}
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <button
+                            className="bg-gray-700 text-white w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-600 transition-colors"
+                            onClick={() => handleDecrement(item.id, item.size)}
+                          >
+                            -
+                          </button>
+                          <span className="text-lg font-semibold">
+                            {item.quantity}
+                          </span>
+                          <button
+                            className="bg-gray-700 text-white w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-600 transition-colors"
+                            onClick={() => handleIncrement(item.id, item.size)}
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ) : null
+                  )
               )}
+              <div className="text-center ">
+              <button
+                className="text-white py-2 px-4 rounded-lg bg-green-950 hover:bg-orange-600 transition-colors"
+                onClick={() => navigate("/cart")}
+              >
+                Continue Shopping
+              </button>
+              </div>
             </div>
           ) : (
             <div className="text-center p-10 bg-green-950 rounded-lg shadow-md">
@@ -137,17 +159,24 @@ const ShoppingCartPage = () => {
               </button>
             </div>
           )}
+          
         </main>
 
         {/* Order Summary */}
           <aside className="lg:w-1/4 bg-green-950 p-6 rounded-lg shadow-md fixed top-0 right-0 h-full overflow-y-auto">
-          <br /><br /><br /><br /><br /><br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <h3 className="text-xl font-bold mb-4">Order Summary</h3>
             <div className="mb-4">
               <div className="flex justify-between text-gray-300">
-                <span>Subtotal Price:</span>
-                <span>₹{subtotalPrice.toFixed(2)}</span>
+                <span>Original Price:</span>
+                <span>₹{cartItems.reduce((sum, item) => sum + item.quantity * item.size.originalPrice, 0).toFixed(2)}</span>
               </div>
+
               <div className="flex justify-between text-gray-300">
                 <span>Estimated Tax (18%):</span>
                 <span>₹{estimatedTax.toFixed(2)}</span>
@@ -156,7 +185,6 @@ const ShoppingCartPage = () => {
                 <span>Shipping Fee:</span>
                 <span>₹{shippingFee.toFixed(2)}</span>
               </div>
-
               {/* Display Total Savings */}
             <div className="flex justify-between text-green-500">
               <span>Total Savings:</span>

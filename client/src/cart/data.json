@@ -8,25 +8,18 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-        "size": "250ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.16 / ml"
+            "size": "250ml",
+            "originalPrice": 30,
+            "cutoffPrice": 20,
+            "discount": 10,
+            "pricePerUnit": "₹0.08 / ml"
           },
           {
-        "size": "500ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.15 / ml"
-          },
-          {
-        "size": "1L",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.15 / ml"
+            "size": "100ml",
+            "originalPrice": 15,
+            "cutoffPrice": 10,
+            "discount": 10,
+            "pricePerUnit": "₹0.10 / ml"
           }
         ],
         "image": "./src/assets/images/products/pineapple.webp"
@@ -38,25 +31,18 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-        "size": "250ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.20 / ml"
+            "size": "250ml",
+            "originalPrice": 30,
+            "cutoffPrice": 20,
+            "discount": 10,
+            "pricePerUnit": "₹0.08 / ml"
           },
           {
-        "size": "500ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.18 / ml"
-          },
-          {
-        "size": "1L",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.16 / ml"
+            "size": "100ml",
+            "originalPrice": 15,
+            "cutoffPrice": 10,
+            "discount": 10,
+            "pricePerUnit": "₹0.10 / ml"
           }
         ],
         "image": "./src/assets/images/products/mango.webp"
@@ -68,25 +54,18 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-        "size": "250ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.18 / ml"
+            "size": "250ml",
+            "originalPrice": 30,
+            "cutoffPrice": 20,
+            "discount": 10,
+            "pricePerUnit": "₹0.08 / ml"
           },
           {
-        "size": "500ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.17 / ml"
-          },
-          {
-        "size": "1L",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.15 / ml"
+            "size": "100ml",
+            "originalPrice": 15,
+            "cutoffPrice": 10,
+            "discount": 10,
+            "pricePerUnit": "₹0.10 / ml"
           }
         ],
         "image": "./src/assets/images/products/grapes.webp"
@@ -98,25 +77,18 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-        "size": "250ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.22 / ml"
+            "size": "250ml",
+            "originalPrice": 30,
+            "cutoffPrice": 20,
+            "discount": 10,
+            "pricePerUnit": "₹0.08 / ml"
           },
           {
-        "size": "500ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.19 / ml"
-          },
-          {
-        "size": "1L",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.18 / ml"
+            "size": "100ml",
+            "originalPrice": 15,
+            "cutoffPrice": 10,
+            "discount": 10,
+            "pricePerUnit": "₹0.10 / ml"
           }
         ],
         "image": "./src/assets/images/products/lychee.webp"
@@ -128,25 +100,18 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-        "size": "250ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.24 / ml"
+            "size": "250ml",
+            "originalPrice": 30,
+            "cutoffPrice": 20,
+            "discount": 10,
+            "pricePerUnit": "₹0.08 / ml"
           },
           {
-        "size": "500ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.20 / ml"
-          },
-          {
-        "size": "1L",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.19 / ml"
+            "size": "100ml",
+            "originalPrice": 15,
+            "cutoffPrice": 10,
+            "discount": 10,
+            "pricePerUnit": "₹0.10 / ml"
           }
         ],
         "image": "./src/assets/images/products/strawberry.webp"
@@ -158,25 +123,18 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-        "size": "250ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.30 / ml"
+            "size": "250ml",
+            "originalPrice": 30,
+            "cutoffPrice": 20,
+            "discount": 10,
+            "pricePerUnit": "₹0.08 / ml"
           },
           {
-        "size": "500ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.28 / ml"
-          },
-          {
-        "size": "1L",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.26 / ml"
+            "size": "100ml",
+            "originalPrice": 15,
+            "cutoffPrice": 10,
+            "discount": 10,
+            "pricePerUnit": "₹0.10 / ml"
           }
         ],
         "image": "./src/assets/images/products/SkyBerry.webp"
@@ -188,25 +146,18 @@
         "vegetarianSymbol": true,
         "sizes": [
           {
-        "size": "250ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.28 / ml"
+            "size": "250ml",
+            "originalPrice": 30,
+            "cutoffPrice": 20,
+            "discount": 10,
+            "pricePerUnit": "₹0.08 / ml"
           },
           {
-        "size": "500ml",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.26 / ml"
-          },
-          {
-        "size": "1L",
-        "originalPrice": 30,
-        "cutoffPrice": 20,
-        "discount": 10,
-        "pricePerUnit": "₹0.24 / ml"
+            "size": "100ml",
+            "originalPrice": 15,
+            "cutoffPrice": 10,
+            "discount": 10,
+            "pricePerUnit": "₹0.10 / ml"
           }
         ],
         "image": "./src/assets/images/products/Pomegranate.webp"
@@ -747,70 +698,70 @@
     ],
     "subDrinkingWater": [
       {
-      "id": 31,
-      "name": "Polypropylene Water Jug 20L",
-      "description": "Polypropylene Water Jug : 10L",
-      "vegetarianSymbol": false,
-      "sizes": [
-        {
-        "size": "10L",
-        "originalPrice": 200,
-        "cutoffPrice": 180,
-        "discount": 20,
-        "pricePerUnit": "₹18 / L"
-        },
-        {
-        "size": "20L",
-        "originalPrice": 340,
-        "cutoffPrice": 320,
-        "discount": 20,
-        "pricePerUnit": "₹17 / L"
-        }
-      ]
+        "id": 31,
+        "name": "Polypropylene Water Jug 20L",
+        "description": "Polypropylene Water Jug : 10L",
+        "vegetarianSymbol": false,
+        "sizes": [
+          {
+            "size": "10L",
+            "originalPrice": 200,
+            "cutoffPrice": 180,
+            "discount": 20,
+            "pricePerUnit": "₹18 / L"
+          },
+          {
+            "size": "20L",
+            "originalPrice": 340,
+            "cutoffPrice": 320,
+            "discount": 20,
+            "pricePerUnit": "₹17 / L"
+          }
+        ]
       },
       {
-      "id": 32,
-      "name": "20 L Water Jug",
-      "description": "20 L Water Jug",
-      "vegetarianSymbol": false,
-      "sizes": [
-        {
-        "size": "20L",
-        "originalPrice": 250,
-        "cutoffPrice": 230,
-        "discount": 20,
-        "pricePerUnit": "₹11.5 / L"
-        }
-      ]
+        "id": 32,
+        "name": "20 L Water Jug",
+        "description": "20 L Water Jug",
+        "vegetarianSymbol": false,
+        "sizes": [
+          {
+            "size": "20L",
+            "originalPrice": 250,
+            "cutoffPrice": 230,
+            "discount": 20,
+            "pricePerUnit": "₹11.5 / L"
+          }
+        ]
       },
       {
-      "id": 33,
-      "name": "Water Bottle",
-      "description": "Water Bottle : 1L",
-      "vegetarianSymbol": false,
-      "sizes": [
-        {
-        "size": "1L",
-        "originalPrice": 20,
-        "cutoffPrice": 18,
-        "discount": 2,
-        "pricePerUnit": "₹18 / L"
-        },
-        {
-        "size": "2L",
-        "originalPrice": 35,
-        "cutoffPrice": 30,
-        "discount": 5,
-        "pricePerUnit": "₹17 / L"
-        },
-        {
-        "size": "500ml",
-        "originalPrice": 10,
-        "cutoffPrice": 9,
-        "discount": 1,
-        "pricePerUnit": "₹18 / L"
-        }
-      ]
+        "id": 33,
+        "name": "Water Bottle",
+        "description": "Water Bottle : 1L",
+        "vegetarianSymbol": false,
+        "sizes": [
+          {
+            "size": "1L",
+            "originalPrice": 20,
+            "cutoffPrice": 18,
+            "discount": 2,
+            "pricePerUnit": "₹18 / L"
+          },
+          {
+            "size": "2L",
+            "originalPrice": 35,
+            "cutoffPrice": 30,
+            "discount": 5,
+            "pricePerUnit": "₹17 / L"
+          },
+          {
+            "size": "500ml",
+            "originalPrice": 10,
+            "cutoffPrice": 9,
+            "discount": 1,
+            "pricePerUnit": "₹18 / L"
+          }
+        ]
       }
     ]
   }

@@ -55,7 +55,8 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-2">Address</h4>
             <address className="italic">
-              PITHDIYA ROAD, <br />
+              BEST JUICE AND WATER PLANT,<br />
+              PITHDIYA ROAD,
               near SHIV FELT, <br />
               Derdi, Rajkot-360370, <br />
               Gujarat, India

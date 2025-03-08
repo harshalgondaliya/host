@@ -48,7 +48,7 @@ import Lay from "../store/lay";
 
 // Cart
 import CartWrapper from "../cart/CartWrapper";
-import ShoppingCartPage from "../cart/ShoppingCartPage";
+import ShoppingCartWrapper from "../cart/ShoppingCartWrapper";
 
 const AppRoutes = () => {
   return (
@@ -61,7 +61,7 @@ const AppRoutes = () => {
 
       {/* Cart */}
       <Route path="/cart" element={<CartWrapper />} />
-      <Route path="/shoppingcart" element={<ShoppingCartPage />} />
+      <Route path="/shopping-cart" element={<ShoppingCartWrapper />} />
 
       {/* Products */}
       <Route path="/juices" element={<Juices />} />

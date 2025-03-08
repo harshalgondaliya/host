@@ -1,4 +1,7 @@
 import React from 'react';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import { motion } from 'framer-motion';
 
 const FAQs = () => {
   const faqs = [
@@ -17,19 +20,44 @@ const FAQs = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-3xl font-bold mb-6 text-center">Frequently Asked Questions</h1>
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div key={index} className="border-b pb-4">
-              <h2 className="text-xl font-semibold">{faq.question}</h2>
-              <p className="mt-2 text-gray-600">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
+    <>
+      <Navbar />
+      <br /><br />
+      <div className="min-h-screen bg-yellow-500 p-4 md:p-8 flex flex-col items-center">
+      <br /><br /><br />
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.8 }}
+          className="w-full max-w-4xl bg-white shadow-lg rounded-xl p-6 md:p-10"
+        >
+          <h1 className="text-3xl md:text-4xl font-bold text-center text-green-950 mb-6">Frequently Asked Questions</h1>
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <motion.div 
+                key={index} 
+                initial={{ opacity: 0, x: -20 }} 
+                whileInView={{ opacity: 1, x: 0 }} 
+                transition={{ duration: 0.5, delay: index * 0.1 }} 
+                viewport={{ once: true }}
+                className="border-b pb-4 last:border-b-0"
+              >
+                <h2 className="text-lg md:text-xl font-semibold text-green-950 cursor-pointer hover:text-orange-500 transition-all duration-300">{faq.question}</h2>
+                <motion.p 
+                  className="mt-2 text-gray-600 text-sm md:text-base"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  {faq.answer}
+                </motion.p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

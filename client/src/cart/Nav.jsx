@@ -97,13 +97,13 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
                 <input
                   type="search"
                   id="default-search"
-                  className="block w-[50rem] p-4 ps-10 text-sm text-black border border-black rounded-lg bg-white focus:ring-blue-500 focus:border-black-500"
+                  className="block w-[45rem] p-4 ps-10 text-sm text-black border border-black rounded-lg bg-white focus:ring-blue-500 focus:border-black-500"
                   placeholder="Search Juice , Soft Drinks , Energy Drinks ......"
                   required
                 />
                 <button
                   type="submit"
-                  className="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2"
+                  className="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2 mr-20"
                 >
                   Search
                 </button>
@@ -164,31 +164,30 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
                 </span>
               )}
             </button>
-            {!isMobile && (
-              <span className="hidden md:block text-white text-sm font-semibold">
-                {totalItems > 0 ? `₹${totalPrice.toFixed(2)}` : ""}
-              </span>
-            )}
+            {/* Show total price in both mobile and desktop views */}
+            <span className="block text-white text-sm font-semibold">
+              {totalItems > 0 ? `₹${totalPrice.toFixed(2)}` : ""}
+            </span>
           </div>
         </div>
+
         <div className="relative">
           <button className="text-white" onClick={handleMobileMenuToggle}>
-            
             {!mobileMenuOpen ? (
               <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
             ) : (
               <i className="fas fa-times"></i>
             )}
