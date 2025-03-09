@@ -44,7 +44,13 @@ import EnergyDrinks from "../pages/Products/EnergyDrinks";
 import DrinkingWater from "../pages/Products/DrinkingWater";
 
 // store
-import Lay from "../store/lay";
+import Grapes from "../store/grapes";
+import Pineapple from "../store/pineapple";
+import Mango from "../store/mango";
+import Lychee from "../store/lychee";
+import Strawberry from "../store/strawberry";
+import Pomegranate from "../store/pomegranate";
+import SkyBerry from "../store/skyberry";
 
 // Cart
 import CartWrapper from "../cart/CartWrapper";
@@ -97,7 +103,13 @@ const AppRoutes = () => {
       <Route path="/customer-care" element={<CustomerCare />} />
 
       {/* Store */}
-      <Route path="/lay" element={<Lay />} />
+      <Route path="/grapes" element={<Grapes />} />
+      <Route path="/pineapple" element={<Pineapple />} />
+      <Route path="/mango" element={<Mango />} />
+      <Route path="/lychee" element={<Lychee />} />
+      <Route path="/strawberry" element={<Strawberry />} />
+      <Route path="/pomegranate" element={<Pomegranate />} />
+      <Route path="/skyberry" element={<SkyBerry />} />
     </Routes>
   );
 };

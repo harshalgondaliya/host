@@ -4,6 +4,7 @@ import all from "../assets/images/ALL BOTTLES.jpg";
 import quality from "../assets/images/quality.jpg";
 import reasearch from "../assets/images/Research.avif";
 import news from "../assets/images/Media-News.jpg";
+import machine from "../assets/images/machine.jpg";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -111,7 +112,7 @@ const OurStory = () => {
           </div>
           <div className="flex-1 text-center">
             <img
-              src={news}
+              src={machine}
               alt="Milestone"
               className="w-full max-w-md rounded-lg shadow-lg transition-transform hover:scale-105 bg-white"
             />

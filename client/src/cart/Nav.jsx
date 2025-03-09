@@ -154,7 +154,7 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
         <div className="bg-green-950 px-4 py-2 flex justify-between items-center">
           <div className="relative flex items-center space-x-1">
             <button
-              onClick={onClick}
+              onClick={() => navigate("/Shopping-cart")}
               className="bg-gray-800 text-white p-2 rounded-full hover:bg-orange-500 h-10 w-10 flex justify-center items-center relative"
             >
               <i className="fas fa-shopping-cart text-lg"></i>

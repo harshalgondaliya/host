@@ -5,6 +5,7 @@
         "id": 1,
         "name": "Pineapple Juice",
         "description": "TooMore Pineapple Juice",
+        "link":"/pineapple",
         "vegetarianSymbol": true,
         "sizes": [
           {
@@ -28,6 +29,7 @@
         "id": 2,
         "name": "Mango Juice",
         "description": "TooMore Mango Juice",
+        "link":"/mango",
         "vegetarianSymbol": true,
         "sizes": [
           {
@@ -51,6 +53,7 @@
         "id": 3,
         "name": "Grape Juice",
         "description": "TooMore Grape Juice",
+        "link":"/grapes",
         "vegetarianSymbol": true,
         "sizes": [
           {
@@ -74,6 +77,7 @@
         "id": 4,
         "name": "Lychee Juice",
         "description": "TooMore Lychee Juice",
+        "link":"/lychee",
         "vegetarianSymbol": true,
         "sizes": [
           {
@@ -97,6 +101,7 @@
         "id": 5,
         "name": "Strawberry Juice",
         "description": "TooMore Strawberry Juice",
+        "link":"/strawberry",
         "vegetarianSymbol": true,
         "sizes": [
           {
@@ -120,6 +125,7 @@
         "id": 6,
         "name": "SkyBerry Juice",
         "description": "TooMore SkyBerry Juice",
+        "link":"/skyberry",
         "vegetarianSymbol": true,
         "sizes": [
           {
@@ -143,6 +149,7 @@
         "id": 7,
         "name": "Pomegranate Juice",
         "description": "TooMore Pomegranate Juice",
+        "link":"/pomegranate",
         "vegetarianSymbol": true,
         "sizes": [
           {

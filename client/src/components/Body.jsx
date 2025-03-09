@@ -3,7 +3,7 @@ import Slideshow from "./Slideshow";
 import { useNavigate } from "react-router-dom";
 
 // Importing card image
-import all from "../assets/images/ALL BOTTLES.jpg";
+import all from "../assets/images/3.jpg";
 
 // showpiece image
 import end from "../assets/images/Too more banner.jpg";
@@ -23,26 +23,31 @@ const imagesWithDesc = [
     src: grapesImg,
     desc: "REFRESHING GRAPE JUICE",
     desc1: "Packed with Antioxidants",
+    link: "/grapes",
   },
   {
     src: pineappleImg,
     desc: "TANGY PINEAPPLE JUICE",
     desc1: "Rich in Vitamin C and Bromelain",
+    link: "/pineapple",
   },
   {
     src: strawImg,
     desc: "DELICIOUS STRAWBERRY JUICE",
     desc1: "Naturally Sweet and Full of Vitamin C",
+    link: "/strawberry",
   },
   {
     src: lycheeImg,
     desc: "SWEET LYCHEE JUICE",
     desc1: "Exotic Flavor with a Vitamin Boost",
+    link: "/lychee",
   },
   {
     src: mangoImg,
     desc: "TROPICAL MANGO JUICE",
     desc1: "Zero Sugar, Pure Mango Goodness",
+    link: "/mango",
   },
 ];
 
@@ -51,6 +56,7 @@ const Body = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full bg-yellow-400 p-0 overflow-y-auto">
+      <br /><br />
       <div className="w-full h-auto shadow-lg">
         <img src={all} alt="Soft Front" className="w-full h-auto" />
       </div>
@@ -110,6 +116,8 @@ const Body = () => {
           <div
             key={index}
             className="w-72 text-center bg-white rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+            onClick={() => image.link && navigate(image.link)}
+            style={{ cursor: image.link ? "pointer" : "default" }}
           >
             <img
               src={image.src}
@@ -130,6 +138,8 @@ const Body = () => {
           <div
             key={index}
             className="w-72 text-center bg-white rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+            onClick={() => image.link && navigate(image.link)}
+            style={{ cursor: image.link ? "pointer" : "default" }}
           >
             <img
               src={image.src}
@@ -152,6 +162,8 @@ const Body = () => {
           <div
             key={index}
             className="flex flex-col items-center min-w-[70%] bg-white rounded-lg overflow-hidden shadow-md snap-center transition-transform duration-300 hover:scale-105"
+            onClick={() => image.link && navigate(image.link)}
+            style={{ cursor: image.link ? "pointer" : "default" }}
           >
             <img
               src={image.src}
