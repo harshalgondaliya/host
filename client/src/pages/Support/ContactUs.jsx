@@ -1,6 +1,13 @@
 import React from 'react';
+import { useEffect } from 'react';
 
 const ContactUs = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // This ensures the page always starts from the top
+  }, []);
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-lg w-full">

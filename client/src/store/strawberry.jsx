@@ -30,8 +30,9 @@ const Strawberry = () => {
 
   // Get product from `cartData`, or use fallback
   const product =
-    cartData?.products?.subJuice?.find((item) => item.name === "Strawberry Juice") ||
-    {};
+    cartData?.products?.subJuice?.find(
+      (item) => item.name === "Strawberry Juice"
+    ) || {};
 
   // Ensure `sizes` exist before accessing index
   const selectedSize = product.sizes?.[selectedSizeIndex] || {};
@@ -133,7 +134,7 @@ const Strawberry = () => {
           {/* Right Section - Product Details */}
           <div className="w-2/3 pl-6">
             <h1 className="text-2xl font-semibold">
-              Refreshing strawberry Juice : {selectedSize.size} (
+              Crimson Berry Strawberry : {selectedSize.size} (
               {selectedSize.pricePerUnit})
             </h1>
             <p className="text-gray-500 mt-2">{product.description}</p>
@@ -248,18 +249,29 @@ const Strawberry = () => {
             <div className="p-5 text-gray-900">
               {activeTab === "desc" && (
                 <p>
-                  Our Refreshing strawberry Juice is the perfect blend of health and taste. Made from the finest strawberry, this juice is packed with essential nutrients and pieces of real fruit to give you a wholesome experience. Enjoy the natural sweetness and the burst of flavor in every sip.
+                  Indulge in the rich and vibrant taste of our Strawberry Juice.
+                  Made from carefully selected, ripe strawberries, this
+                  refreshing drink brings you the perfect balance of natural
+                  sweetness and tangy goodness. A delightful way to enjoy
+                  nature’s best flavors!
                 </p>
               )}
               {activeTab === "disc" && (
                 <p>
-                  While our Refreshing strawberry Juice is made from the finest ingredients and is packed with essential nutrients, individual results may vary. Please consume in moderation. Excessive consumption may impact sugar levels. Always consult with a healthcare professional if you have any dietary concerns or conditions.
+                  Our Strawberry Juice is naturally rich in vitamins and
+                  antioxidants. While delicious and nutritious, it should be
+                  consumed in moderation, as it contains natural sugars. If you
+                  have dietary restrictions, consult a healthcare expert. Best
+                  served chilled for maximum refreshment.
                 </p>
               )}
               {activeTab === "info" && (
                 <p>
-                Grape juice is a refreshing and naturally sweet drink made from fresh strawberry. It is rich in antioxidants, vitamins, and minerals that support overall health. Drinking grape juice can help boost immunity, improve heart health, and provide natural energy. Enjoy it chilled, as a base for smoothies, or mixed with sparkling water for a refreshing twist.
-              </p>
+                  Packed with vitamin C, folate, and antioxidants, strawberry
+                  juice promotes glowing skin, strengthens immunity, and
+                  supports heart health. Enjoy it straight, blend it into
+                  smoothies, or mix with sparkling water for a refreshing twist.
+                </p>
               )}
             </div>
           </div>

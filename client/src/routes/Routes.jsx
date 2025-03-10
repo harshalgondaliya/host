@@ -43,18 +43,18 @@ import SoftDrinks from "../pages/Products/SoftDrinks";
 import EnergyDrinks from "../pages/Products/EnergyDrinks";
 import DrinkingWater from "../pages/Products/DrinkingWater";
 
-// store
-import Grapes from "../store/grapes";
-import Pineapple from "../store/pineapple";
-import Mango from "../store/mango";
-import Lychee from "../store/lychee";
-import Strawberry from "../store/strawberry";
-import Pomegranate from "../store/pomegranate";
-import SkyBerry from "../store/skyberry";
-
 // Cart
 import CartWrapper from "../cart/CartWrapper";
 import ShoppingCartWrapper from "../cart/ShoppingCartWrapper";
+
+// Store
+import SkyBerryWrapper from "../store/skyBerryWrapper";
+import GrapesWrapper from "../store/grapesWrapper";
+import PineappleWrapper from "../store/pineappleWrapper";
+import MangoWrapper from "../store/mangoWrapper";
+import LycheeWrapper from "../store/lycheeWrapper";
+import StrawberryWrapper from "../store/strawberryWrapper";
+import PomegranateWrapper from "../store/pomegranateWrapper";
 
 const AppRoutes = () => {
   return (
@@ -103,13 +103,13 @@ const AppRoutes = () => {
       <Route path="/customer-care" element={<CustomerCare />} />
 
       {/* Store */}
-      <Route path="/grapes" element={<Grapes />} />
-      <Route path="/pineapple" element={<Pineapple />} />
-      <Route path="/mango" element={<Mango />} />
-      <Route path="/lychee" element={<Lychee />} />
-      <Route path="/strawberry" element={<Strawberry />} />
-      <Route path="/pomegranate" element={<Pomegranate />} />
-      <Route path="/skyberry" element={<SkyBerry />} />
+      <Route path="/grapes" element={<GrapesWrapper />} />
+      <Route path="/pineapple" element={<PineappleWrapper />} />
+      <Route path="/mango" element={<MangoWrapper />} />
+      <Route path="/lychee" element={<LycheeWrapper />} />
+      <Route path="/strawberry" element={<StrawberryWrapper />} />
+      <Route path="/pomegranate" element={<PomegranateWrapper />} />
+      <Route path="/skyberry" element={<SkyBerryWrapper />} />
     </Routes>
   );
 };

@@ -6,8 +6,8 @@ import { AppContent } from "../context/AppContext";
 
 const ShoppingCartMobile = () => {
   useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
+    window.scrollTo(0, 0);
+  }, []);
 
   const navigate = useNavigate();
   const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
@@ -59,7 +59,7 @@ const ShoppingCartMobile = () => {
     0
   );
 
-  const estimatedTax = 0.00; // 18% tax
+  const estimatedTax = 0.0; // 18% tax
   const shippingFee = subtotalPrice >= 5000 ? 0 : 50;
   const discountAmount = (subtotalPrice * discount) / 100;
   const orderTotal =
@@ -108,6 +108,14 @@ const ShoppingCartMobile = () => {
               </div>
             </div>
           ))}
+          <div className="text-center ">
+            <button
+              className="text-white py-2 px-4 rounded-lg bg-green-950 hover:bg-orange-600 transition-colors"
+              onClick={() => navigate("/cart")}
+            >
+              Continue Shopping
+            </button>
+          </div>
         </div>
       ) : (
         <div className="text-center p-6 bg-green-950 rounded-lg shadow-md mt-4">
@@ -122,12 +130,20 @@ const ShoppingCartMobile = () => {
       )}
 
       {/* Order Summary */}
-      <div className="mt-6 bg-green-950 p-4 rounded-lg">
-        <h3 className="text-lg font-bold">Order Summary</h3>
+      <div className="my-[10px] bg-green-950 p-9 rounded-lg">
+        <h3 className="text-lg font-bold">Order Summary</h3><br />
         <div className="flex justify-between text-gray-300">
-                <span>Original Price:</span>
-                <span>₹{cartItems.reduce((sum, item) => sum + item.quantity * item.size.originalPrice, 0).toFixed(2)}</span>
-              </div>
+          <span>Original Price:</span>
+          <span>
+            ₹
+            {cartItems
+              .reduce(
+                (sum, item) => sum + item.quantity * item.size.originalPrice,
+                0
+              )
+              .toFixed(2)}
+          </span>
+        </div>
         <div className="flex justify-between text-gray-300">
           <span>Estimated Tax (18%):</span>
           <span>₹{estimatedTax.toFixed(2)}</span>

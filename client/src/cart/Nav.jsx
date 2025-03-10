@@ -172,6 +172,7 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
         </div>
 
         <div className="relative">
+          {/* Toggle Button */}
           <button className="text-white" onClick={handleMobileMenuToggle}>
             {!mobileMenuOpen ? (
               <svg
@@ -189,9 +190,72 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
                 />
               </svg>
             ) : (
-              <i className="fas fa-times"></i>
+              <i className="fas fa-times text-xl"></i>
             )}
           </button>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
+              <div className="absolute top-0 right-0 w-3/4 md:w-1/4 h-full bg-green-950 shadow-lg flex flex-col p-6 space-y-4 transition-transform duration-300 overflow-y-auto">
+                {/* Close Button */}
+                <button
+                  className="self-end text-white text-2xl"
+                  onClick={handleMobileMenuToggle}
+                >
+                  &times;
+                </button>
+
+                <ul className="space-y-4 text-white text-lg">
+                  <li>
+                    <Link to="/cart" className="block hover:text-white">
+                      Cart Store
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/Shopping-cart" className="block hover:text-white">
+                      Shopping Cart
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/pineapple" className="block hover:text-white">
+                      Pineapple
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/mango" className="block hover:text-white">
+                      Mango
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/grapes" className="block hover:text-white">
+                      Grapes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/lychee" className="block hover:text-white">
+                      Lychee
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/strawberry" className="block hover:text-white">
+                      Strawberry
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/skyberry" className="block hover:text-white">
+                      SkyBerry
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/pomegranate" className="block hover:text-white">
+                      Pomegranate
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

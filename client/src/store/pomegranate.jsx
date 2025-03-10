@@ -30,8 +30,9 @@ const Pomegranate = () => {
 
   // Get product from `cartData`, or use fallback
   const product =
-    cartData?.products?.subJuice?.find((item) => item.name === "Pomegranate Juice") ||
-    {};
+    cartData?.products?.subJuice?.find(
+      (item) => item.name === "Pomegranate Juice"
+    ) || {};
 
   // Ensure `sizes` exist before accessing index
   const selectedSize = product.sizes?.[selectedSizeIndex] || {};
@@ -133,7 +134,7 @@ const Pomegranate = () => {
           {/* Right Section - Product Details */}
           <div className="w-2/3 pl-6">
             <h1 className="text-2xl font-semibold">
-              Refreshing pomegranate Juice : {selectedSize.size} (
+              Ruby Crown Pomegranate : {selectedSize.size} (
               {selectedSize.pricePerUnit})
             </h1>
             <p className="text-gray-500 mt-2">{product.description}</p>
@@ -248,18 +249,28 @@ const Pomegranate = () => {
             <div className="p-5 text-gray-900">
               {activeTab === "desc" && (
                 <p>
-                  Our Refreshing pomegranate Juice is the perfect blend of health and taste. Made from the finest pomegranate, this juice is packed with essential nutrients and pieces of real fruit to give you a wholesome experience. Enjoy the natural sweetness and the burst of flavor in every sip.
+                  Enjoy the rich and refreshing taste of our Pomegranate Juice!
+                  Made from the finest pomegranates, this juice is naturally
+                  sweet and packed with goodness. Every sip is bursting with
+                  flavor and nutrients to keep you feeling fresh and energized.
                 </p>
               )}
               {activeTab === "disc" && (
                 <p>
-                  While our Refreshing pomegranate Juice is made from the finest ingredients and is packed with essential nutrients, individual results may vary. Please consume in moderation. Excessive consumption may impact sugar levels. Always consult with a healthcare professional if you have any dietary concerns or conditions.
+                  Our Pomegranate Juice is made from real fruit and contains
+                  natural sugars. Drink in moderation, as too much may affect
+                  sugar levels. If you have health concerns, consult a doctor
+                  before drinking. Best enjoyed chilled for a refreshing treat!
                 </p>
               )}
               {activeTab === "info" && (
                 <p>
-                Grape juice is a refreshing and naturally sweet drink made from fresh pomegranate. It is rich in antioxidants, vitamins, and minerals that support overall health. Drinking grape juice can help boost immunity, improve heart health, and provide natural energy. Enjoy it chilled, as a base for smoothies, or mixed with sparkling water for a refreshing twist.
-              </p>
+                  Pomegranate juice is rich in antioxidants, vitamin C, and
+                  other nutrients that help support heart health, boost
+                  immunity, and improve skin health. Enjoy it on its own, in
+                  smoothies, or as a mix with other drinks for a delicious
+                  twist.
+                </p>
               )}
             </div>
           </div>

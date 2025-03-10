@@ -133,7 +133,7 @@ const Grapes = () => {
           {/* Right Section - Product Details */}
           <div className="w-2/3 pl-6">
             <h1 className="text-2xl font-semibold">
-              Refreshing Grapes Juice : {selectedSize.size} (
+              Royal Vine Grapes : {selectedSize.size} (
               {selectedSize.pricePerUnit})
             </h1>
             <p className="text-gray-500 mt-2">{product.description}</p>
@@ -248,18 +248,32 @@ const Grapes = () => {
             <div className="p-5 text-gray-900">
               {activeTab === "desc" && (
                 <p>
-                  Our Refreshing Grapes Juice is the perfect blend of health and taste. Made from the finest grapes, this juice is packed with essential nutrients and pieces of real fruit to give you a wholesome experience. Enjoy the natural sweetness and the burst of flavor in every sip.
+                  Our Refreshing Grapes Juice is the perfect blend of health and
+                  taste. Made from the finest grapes, this juice is packed with
+                  essential nutrients and pieces of real fruit to give you a
+                  wholesome experience. Enjoy the natural sweetness and the
+                  burst of flavor in every sip.
                 </p>
               )}
               {activeTab === "disc" && (
                 <p>
-                  While our Refreshing Grapes Juice is made from the finest ingredients and is packed with essential nutrients, individual results may vary. Please consume in moderation. Excessive consumption may impact sugar levels. Always consult with a healthcare professional if you have any dietary concerns or conditions.
+                  While our Refreshing Grapes Juice is made from the finest
+                  ingredients and is packed with essential nutrients, individual
+                  results may vary. Please consume in moderation. Excessive
+                  consumption may impact sugar levels. Always consult with a
+                  healthcare professional if you have any dietary concerns or
+                  conditions.
                 </p>
               )}
               {activeTab === "info" && (
                 <p>
-                Grape juice is a refreshing and naturally sweet drink made from fresh grapes. It is rich in antioxidants, vitamins, and minerals that support overall health. Drinking grape juice can help boost immunity, improve heart health, and provide natural energy. Enjoy it chilled, as a base for smoothies, or mixed with sparkling water for a refreshing twist.
-              </p>
+                  Grape juice is a refreshing and naturally sweet drink made
+                  from fresh grapes. It is rich in antioxidants, vitamins, and
+                  minerals that support overall health. Drinking grape juice can
+                  help boost immunity, improve heart health, and provide natural
+                  energy. Enjoy it chilled, as a base for smoothies, or mixed
+                  with sparkling water for a refreshing twist.
+                </p>
               )}
             </div>
           </div>

@@ -2,8 +2,14 @@ import React from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 const FAQs = () => {
+
+  useEffect(() => {
+      window.scrollTo(0, 0); // This ensures the page always starts from the top
+    }, []);
+
   const faqs = [
     {
       question: "What is your return policy?",

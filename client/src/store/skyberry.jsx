@@ -30,8 +30,9 @@ const SkyBerry = () => {
 
   // Get product from `cartData`, or use fallback
   const product =
-    cartData?.products?.subJuice?.find((item) => item.name === "SkyBerry Juice") ||
-    {};
+    cartData?.products?.subJuice?.find(
+      (item) => item.name === "SkyBerry Juice"
+    ) || {};
 
   // Ensure `sizes` exist before accessing index
   const selectedSize = product.sizes?.[selectedSizeIndex] || {};
@@ -133,7 +134,7 @@ const SkyBerry = () => {
           {/* Right Section - Product Details */}
           <div className="w-2/3 pl-6">
             <h1 className="text-2xl font-semibold">
-              Refreshing skyberry Juice : {selectedSize.size} (
+              Celestial Skyberry Essence : {selectedSize.size} (
               {selectedSize.pricePerUnit})
             </h1>
             <p className="text-gray-500 mt-2">{product.description}</p>
@@ -248,18 +249,28 @@ const SkyBerry = () => {
             <div className="p-5 text-gray-900">
               {activeTab === "desc" && (
                 <p>
-                  Our Refreshing skyberry Juice is the perfect blend of health and taste. Made from the finest skyberry, this juice is packed with essential nutrients and pieces of real fruit to give you a wholesome experience. Enjoy the natural sweetness and the burst of flavor in every sip.
+                  Discover the magic of Skyberry Juice – a refreshing blend of
+                  rare, juicy berries with a smooth and sweet taste. Packed with
+                  natural flavors and essential nutrients, it’s the perfect
+                  drink to lift your mood and energize your day!
                 </p>
               )}
               {activeTab === "disc" && (
                 <p>
-                  While our Refreshing skyberry Juice is made from the finest ingredients and is packed with essential nutrients, individual results may vary. Please consume in moderation. Excessive consumption may impact sugar levels. Always consult with a healthcare professional if you have any dietary concerns or conditions.
+                  Our Skyberry Juice is crafted from nature’s best berries,
+                  containing natural sugars and antioxidants. Enjoy in
+                  moderation, as excessive intake may affect sugar levels. If
+                  you have dietary concerns, consult a doctor. Best served
+                  chilled for a delightful experience!
                 </p>
               )}
               {activeTab === "info" && (
                 <p>
-                Grape juice is a refreshing and naturally sweet drink made from fresh skyberry. It is rich in antioxidants, vitamins, and minerals that support overall health. Drinking grape juice can help boost immunity, improve heart health, and provide natural energy. Enjoy it chilled, as a base for smoothies, or mixed with sparkling water for a refreshing twist.
-              </p>
+                  Skyberry Juice is rich in vitamins, antioxidants, and minerals
+                  that help boost immunity, support heart health, and keep your
+                  skin glowing. Enjoy it as a refreshing drink, mix it in
+                  smoothies, or add a splash to sparkling water for a fun twist!
+                </p>
               )}
             </div>
           </div>

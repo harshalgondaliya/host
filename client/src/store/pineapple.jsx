@@ -30,8 +30,9 @@ const Pineapple = () => {
 
   // Get product from `cartData`, or use fallback
   const product =
-    cartData?.products?.subJuice?.find((item) => item.name === "Pineapple Juice") ||
-    {};
+    cartData?.products?.subJuice?.find(
+      (item) => item.name === "Pineapple Juice"
+    ) || {};
 
   // Ensure `sizes` exist before accessing index
   const selectedSize = product.sizes?.[selectedSizeIndex] || {};
@@ -133,7 +134,7 @@ const Pineapple = () => {
           {/* Right Section - Product Details */}
           <div className="w-2/3 pl-6">
             <h1 className="text-2xl font-semibold">
-              Refreshing pineapple Juice : {selectedSize.size} (
+              Golden Tropic Pineapple : {selectedSize.size} (
               {selectedSize.pricePerUnit})
             </h1>
             <p className="text-gray-500 mt-2">{product.description}</p>
@@ -248,18 +249,28 @@ const Pineapple = () => {
             <div className="p-5 text-gray-900">
               {activeTab === "desc" && (
                 <p>
-                  Our Refreshing pineapple Juice is the perfect blend of health and taste. Made from the finest pineapple, this juice is packed with essential nutrients and pieces of real fruit to give you a wholesome experience. Enjoy the natural sweetness and the burst of flavor in every sip.
+                  Enjoy the tropical taste of our Pineapple Juice! Made from
+                  ripe, juicy pineapples, this refreshing drink is naturally
+                  sweet and full of flavor. It’s the perfect way to cool down on
+                  a hot day and enjoy the goodness of real fruit in every sip.
                 </p>
               )}
               {activeTab === "disc" && (
                 <p>
-                  While our Refreshing pineapple Juice is made from the finest ingredients and is packed with essential nutrients, individual results may vary. Please consume in moderation. Excessive consumption may impact sugar levels. Always consult with a healthcare professional if you have any dietary concerns or conditions.
+                  Our Pineapple Juice is made from real fruit and contains
+                  natural sugars. Drink it in moderation as too much may affect
+                  sugar levels. If you have any health concerns, check with a
+                  doctor before drinking. Best served chilled for a refreshing
+                  experience!
                 </p>
               )}
               {activeTab === "info" && (
                 <p>
-                pineapple juice is a refreshing and naturally sweet drink made from fresh pineapple. It is rich in antioxidants, vitamins, and minerals that support overall health. Drinking pineapple juice can help boost immunity, improve heart health, and provide natural energy. Enjoy it chilled, as a base for smoothies, or mixed with sparkling water for a refreshing twist.
-              </p>
+                  Pineapple juice is packed with vitamin C, antioxidants, and
+                  enzymes that help digestion and boost immunity. It’s a great
+                  source of natural energy and can be enjoyed on its own, in
+                  smoothies, or mixed with other drinks for a tropical twist.
+                </p>
               )}
             </div>
           </div>

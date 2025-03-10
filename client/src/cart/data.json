@@ -16,11 +16,11 @@
             "pricePerUnit": "₹0.08 / ml"
           },
           {
-            "size": "100ml",
+            "size": "150ml",
             "originalPrice": 15,
             "cutoffPrice": 10,
             "discount": 10,
-            "pricePerUnit": "₹0.10 / ml"
+            "pricePerUnit": "₹0.067 / ml"
           }
         ],
         "image": "./src/assets/images/products/pineapple.webp"
@@ -40,11 +40,11 @@
             "pricePerUnit": "₹0.08 / ml"
           },
           {
-            "size": "100ml",
+            "size": "150ml",
             "originalPrice": 15,
             "cutoffPrice": 10,
             "discount": 10,
-            "pricePerUnit": "₹0.10 / ml"
+            "pricePerUnit": "₹0.067 / ml"
           }
         ],
         "image": "./src/assets/images/products/mango.webp"
@@ -64,11 +64,11 @@
             "pricePerUnit": "₹0.08 / ml"
           },
           {
-            "size": "100ml",
+            "size": "150ml",
             "originalPrice": 15,
             "cutoffPrice": 10,
             "discount": 10,
-            "pricePerUnit": "₹0.10 / ml"
+            "pricePerUnit": "₹0.067 / ml"
           }
         ],
         "image": "./src/assets/images/products/grapes.webp"
@@ -88,11 +88,11 @@
             "pricePerUnit": "₹0.08 / ml"
           },
           {
-            "size": "100ml",
+            "size": "150ml",
             "originalPrice": 15,
             "cutoffPrice": 10,
             "discount": 10,
-            "pricePerUnit": "₹0.10 / ml"
+            "pricePerUnit": "₹0.067 / ml"
           }
         ],
         "image": "./src/assets/images/products/lychee.webp"
@@ -112,11 +112,11 @@
             "pricePerUnit": "₹0.08 / ml"
           },
           {
-            "size": "100ml",
+            "size": "150ml",
             "originalPrice": 15,
             "cutoffPrice": 10,
             "discount": 10,
-            "pricePerUnit": "₹0.10 / ml"
+            "pricePerUnit": "₹0.067 / ml"
           }
         ],
         "image": "./src/assets/images/products/strawberry.webp"
@@ -136,11 +136,11 @@
             "pricePerUnit": "₹0.08 / ml"
           },
           {
-            "size": "100ml",
+            "size": "150ml",
             "originalPrice": 15,
             "cutoffPrice": 10,
             "discount": 10,
-            "pricePerUnit": "₹0.10 / ml"
+            "pricePerUnit": "₹0.067 / ml"
           }
         ],
         "image": "./src/assets/images/products/SkyBerry.webp"
@@ -160,11 +160,11 @@
             "pricePerUnit": "₹0.08 / ml"
           },
           {
-            "size": "100ml",
+            "size": "150ml",
             "originalPrice": 15,
             "cutoffPrice": 10,
             "discount": 10,
-            "pricePerUnit": "₹0.10 / ml"
+            "pricePerUnit": "₹0.067 / ml"
           }
         ],
         "image": "./src/assets/images/products/Pomegranate.webp"
@@ -254,7 +254,7 @@
             "originalPrice": 120,
             "cutoffPrice": 100,
             "discount": 20,
-            "pricePerUnit": "₹0.10 / ml"
+            "pricePerUnit": "₹0.067 / ml"
           }
         ]
       },

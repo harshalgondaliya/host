@@ -19,16 +19,15 @@ const CartM = () => {
       ...prevSizes,
       [itemId]: sizeIndex,
     }));
-  
+
     const cartId = `${itemId}-${sizeIndex}`;
     const existingItem = cartItems.find((item) => item.productId === itemId);
-  
+
     if (existingItem) {
       removeFromCart(existingItem.id); // Remove old size selection
       handleAddToCart(itemId, existingItem.quantity, sizeIndex); // Add new size
     }
   };
-  
 
   const handleAddToCart = (itemId, quantity, sizeIndex) => {
     const product = cartData.products.subJuice.find(
@@ -71,7 +70,6 @@ const CartM = () => {
       handleQuantityChange(itemId, sizeIndex, newQuantity);
     }
   };
-  
 
   const handleIncrement = (itemId, sizeIndex) => {
     const cartId = `${itemId}-${sizeIndex}`;
@@ -88,8 +86,6 @@ const CartM = () => {
       handleQuantityChange(itemId, sizeIndex, existingItem.quantity - 1);
     }
   };
-  
-  
 
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cartItems.reduce(
@@ -100,20 +96,26 @@ const CartM = () => {
   return (
     <>
       <div className="bg-yellow-400 min-h-screen p-2 md:p-4">
-        <Nav totalItems={totalItems} totalPrice={totalPrice}
-        onClick={() => navigate("/shopping-cart", { state: { cartItems } })}
-         />
+        <Nav
+          totalItems={totalItems}
+          totalPrice={totalPrice}
+          onClick={() => navigate("/shopping-cart", { state: { cartItems } })}
+        />
         <div className="mt-4">
           <h2 className="text-lg font-bold text-center">Shopping Cart</h2>
           <div className="space-y-4 mt-8">
             {cartData.products.subJuice.map((item) => {
               const selectedSizeIndex = selectedSizes[item.id] || 0;
               const selectedSize = item.sizes[selectedSizeIndex];
-              
-              const cartItem = cartItems.find((i) => i.id === `${item.id}-${selectedSizeIndex}`);
 
-              const totalMRP = selectedSize.originalPrice * (cartItem ? cartItem.quantity : 1);
-              const totalTooMore = selectedSize.cutoffPrice * (cartItem ? cartItem.quantity : 1);
+              const cartItem = cartItems.find(
+                (i) => i.id === `${item.id}-${selectedSizeIndex}`
+              );
+
+              const totalMRP =
+                selectedSize.originalPrice * (cartItem ? cartItem.quantity : 1);
+              const totalTooMore =
+                selectedSize.cutoffPrice * (cartItem ? cartItem.quantity : 1);
               const totalDiscount = totalMRP - totalTooMore;
 
               return (
@@ -125,6 +127,7 @@ const CartM = () => {
                     <img
                       src={item.image}
                       alt={item.name}
+                      onClick={() => item.link && navigate(item.link)}
                       className="w-48 h-56 object-contain rounded-lg"
                     />
                     {item.vegetarianSymbol && (
@@ -136,17 +139,29 @@ const CartM = () => {
                     )}
                   </div>
                   <div className="flex-1 bg-sky-100 rounded-lg shadow-md p-4">
-                    <h3 className="text-sm font-semibold">{item.description}</h3>
-                    <p className="text-xs text-gray-500 line-through">MRP: ₹{totalMRP.toFixed(2)}</p>
-                    <p className="text-sm text-green-600 font-bold">TooMore: ₹{totalTooMore.toFixed(2)}</p>
-                    <p className="text-xs font-semibold bg-green-100 text-green-600 px-2 py-1 rounded-sm w-fit">
-                      ₹{totalDiscount.toFixed(2)} OFF
-                    </p>
-                    <label className="text-xs font-semibold mt-2 block">Select Size:</label>
+                    <div onClick={() => item.link && navigate(item.link)}>
+                      <h3 className="text-sm font-semibold">
+                        {item.description}
+                      </h3>
+                      <p className="text-xs text-gray-500 line-through">
+                        MRP: ₹{totalMRP.toFixed(2)}
+                      </p>
+                      <p className="text-sm text-green-600 font-bold">
+                        TooMore: ₹{totalTooMore.toFixed(2)}
+                      </p>
+                      <p className="text-xs font-semibold bg-green-100 text-green-600 px-2 py-1 rounded-sm w-fit">
+                        ₹{totalDiscount.toFixed(2)} OFF
+                      </p>
+                    </div>
+                    <label className="text-xs font-semibold mt-2 block">
+                      Select Size:
+                    </label>
                     <select
                       className="border p-2 w-full text-xs mt-1 rounded-lg"
                       value={selectedSizeIndex}
-                      onChange={(e) => handleSizeChange(item.id, parseInt(e.target.value))}
+                      onChange={(e) =>
+                        handleSizeChange(item.id, parseInt(e.target.value))
+                      }
                     >
                       {item.sizes.map((size, index) => (
                         <option key={index} value={index}>
@@ -157,7 +172,9 @@ const CartM = () => {
                     {!cartItem || cartItem.quantity === 0 ? (
                       <button
                         className="mt-2 w-full bg-green-500 text-white py-2 text-sm rounded-lg hover:bg-green-600"
-                        onClick={() => handleAddToCart(item.id, 1, selectedSizeIndex)}
+                        onClick={() =>
+                          handleAddToCart(item.id, 1, selectedSizeIndex)
+                        }
                       >
                         Add to Cart
                       </button>
@@ -165,7 +182,9 @@ const CartM = () => {
                       <div className="mt-2 flex items-center justify-between border p-2 rounded-lg w-full">
                         <button
                           className="bg-green-500 text-white px-3 py-1 text-sm rounded-lg hover:bg-green-600"
-                          onClick={() => handleDecrement(item.id, selectedSizeIndex)}
+                          onClick={() =>
+                            handleDecrement(item.id, selectedSizeIndex)
+                          }
                         >
                           -
                         </button>
@@ -184,13 +203,17 @@ const CartM = () => {
                         />
                         <button
                           className="bg-green-500 text-white px-3 py-1 text-sm rounded-lg hover:bg-green-600"
-                          onClick={() => handleIncrement(item.id, selectedSizeIndex)}
+                          onClick={() =>
+                            handleIncrement(item.id, selectedSizeIndex)
+                          }
                         >
                           +
                         </button>
                         <button
                           className="bg-gray-300 text-gray-700 px-3 py-1 ml-2"
-                          onClick={() => handleQuantityChange(item.id, selectedSizeIndex, 0)}
+                          onClick={() =>
+                            handleQuantityChange(item.id, selectedSizeIndex, 0)
+                          }
                         >
                           ✕
                         </button>

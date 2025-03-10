@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContent } from "../context/AppContext";
 import cartData from "../cart/data.json";
 import grape from "../assets/images/products/grapes.webp";
-import mango from "../assets/images/products/pineapple.webp";
+import mango from "../assets/images/products/mango.webp";
 import lychee from "../assets/images/products/lychee.webp";
 
 const Mango = () => {
@@ -99,7 +99,7 @@ const Mango = () => {
               ref={thumbnailRef}
               className="overflow-hidden max-h-[255px] flex flex-col p-3"
             >
-              {[mango,grape, lychee].map((image, index) => (
+              {[mango, grape, lychee].map((image, index) => (
                 <img
                   key={index}
                   src={image}
@@ -133,7 +133,7 @@ const Mango = () => {
           {/* Right Section - Product Details */}
           <div className="w-2/3 pl-6">
             <h1 className="text-2xl font-semibold">
-              Refreshing mango Juice : {selectedSize.size} (
+              Sun-Kissed Mango Bliss : {selectedSize.size} (
               {selectedSize.pricePerUnit})
             </h1>
             <p className="text-gray-500 mt-2">{product.description}</p>
@@ -248,18 +248,33 @@ const Mango = () => {
             <div className="p-5 text-gray-900">
               {activeTab === "desc" && (
                 <p>
-                  Our Refreshing mango Juice is the perfect blend of health and taste. Made from the finest mango, this juice is packed with essential nutrients and pieces of real fruit to give you a wholesome experience. Enjoy the natural sweetness and the burst of flavor in every sip.
+                  Our Exotic Mango Juice is a tropical delight bursting with the
+                  rich, velvety sweetness of sun-ripened mangoes. Packed with
+                  essential nutrients and the authentic taste of real mango
+                  pulp, every sip is a refreshing escape to paradise. Enjoy the
+                  smooth, luscious texture and natural goodness of mangoes in
+                  every drop.
                 </p>
               )}
               {activeTab === "disc" && (
                 <p>
-                  While our Refreshing mango Juice is made from the finest ingredients and is packed with essential nutrients, individual results may vary. Please consume in moderation. Excessive consumption may impact sugar levels. Always consult with a healthcare professional if you have any dietary concerns or conditions.
+                  While our Mango Juice is made from the finest mangoes and
+                  naturally rich in vitamins, it should be consumed in
+                  moderation. Mangoes contain natural sugars, so excessive
+                  intake may impact sugar levels. If you have dietary concerns,
+                  consult a healthcare professional before consumption. Best
+                  enjoyed chilled for a truly refreshing experience.
                 </p>
               )}
               {activeTab === "info" && (
                 <p>
-                Grape juice is a refreshing and naturally sweet drink made from fresh mango. It is rich in antioxidants, vitamins, and minerals that support overall health. Drinking grape juice can help boost immunity, improve heart health, and provide natural energy. Enjoy it chilled, as a base for smoothies, or mixed with sparkling water for a refreshing twist.
-              </p>
+                  Mango juice is a powerhouse of flavor and nutrition, loaded
+                  with vitamin A, vitamin C, and antioxidants. It supports
+                  immunity, promotes glowing skin, and aids digestion. Enjoy it
+                  as a revitalizing drink, blend it into smoothies, or mix with
+                  sparkling water for a tropical twist. Savor the king of fruits
+                  in every sip!
+                </p>
               )}
             </div>
           </div>

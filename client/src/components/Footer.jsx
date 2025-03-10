@@ -20,10 +20,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-2">About Us</h4>
             <ul>
-              <li><Link to="/media-center" className="hover:underline">Media Center</Link></li>
-              <li><Link to="/foundation" className="hover:underline">Toomore Foundation</Link></li>
-              <li><Link to="/investors" className="hover:underline">Investors</Link></li>
-              <li><Link to="/policies" className="hover:underline">Policies and Practices</Link></li>
+              <li><Link to="/press-releases" className="hover:underline">Media Center</Link></li>
+              <li><Link to="/our-story" className="hover:underline">Toomore Foundation</Link></li>
+              <li><Link to="/investor-relations" className="hover:underline">Investors</Link></li>
               <li><Link to="/careers" className="hover:underline">Careers</Link></li>
             </ul>
           </div>
@@ -32,9 +31,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-2">Need Help?</h4>
             <ul>
-              <li><Link to="/faq" className="hover:underline">FAQ</Link></li>
-              <li><Link to="/contact-us" className="hover:underline">Contact Us</Link></li>
-              <li><Link to="/international" className="hover:underline">International</Link></li>
+              <li><Link to="/FAQs" className="hover:underline">FAQ</Link></li>
+              <li><Link to="/customer-care" className="hover:underline">Contact Us</Link></li>
+              <li><Link to="/env-impact" className="hover:underline">ENV-IMPACT</Link></li>
             </ul>
           </div>
 

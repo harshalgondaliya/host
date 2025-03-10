@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 // Import images
 import grapeImage from "../../assets/images/products/grapes.webp";
@@ -18,7 +19,8 @@ const juiceProducts = [
     image: grapeImage,
     name: "Grape Juice",
     description: "A refreshing grape juice packed with antioxidants.",
-    sizes: "Bottles: 100ml , 250 ml",
+    sizes: "Bottles: 150ml , 250 ml",
+    link : "/grapes",
     nutrition: {
       energy: "50.4kcal",
       protein: "0.32g",
@@ -35,7 +37,8 @@ const juiceProducts = [
     image: lycheeImage,
     name: "Lychee Juice",
     description: "Exotic lychee juice with a sweet and floral flavor.",
-    sizes: "Bottles: 100ml , 250 ml",
+    sizes: "Bottles: 150ml , 250 ml",
+    link : "/lychee",
     nutrition: {
       energy: "50.4kcal",
       protein: "0.32g",
@@ -52,7 +55,8 @@ const juiceProducts = [
     image: mangoImage,
     name: "Mango Juice",
     description: "Tropical mango juice with zero added sugar.",
-    sizes: "Bottles: 100ml , 250 ml",
+    sizes: "Bottles: 150ml , 250 ml",
+    link : "/mango",
     nutrition: {
       energy: "50.4kcal",
       protein: "0.32g",
@@ -69,7 +73,8 @@ const juiceProducts = [
     image: pineappleImage,
     name: "Pineapple Juice",
     description: "Tangy pineapple juice rich in vitamin C and bromelain.",
-    sizes: "Bottles: 100ml , 250 ml",
+    sizes: "Bottles: 150ml , 250 ml",
+    link : "/pineapple",
     nutrition: {
       energy: "50.4kcal",
       protein: "0.32g",
@@ -87,7 +92,8 @@ const juiceProducts = [
     name: "Strawberry Juice",
     description:
       "Sweet and tangy strawberry juice made from fresh strawberries.",
-    sizes: "Bottles: 100ml , 250 ml",
+    sizes: "Bottles: 150ml , 250 ml",
+    link : "/strawberry",
     nutrition: {
       energy: "50.4kcal",
       protein: "0.32g",
@@ -104,7 +110,8 @@ const juiceProducts = [
     image: skyberryImage,
     name: "SkyBerry Juice",
     description: "Unique SkyBerry juice with a blend of berries.",
-    sizes: "Bottles: 100ml , 250 ml",
+    sizes: "Bottles: 150ml , 250 ml",
+    link : "/skyberry",
     nutrition: {
       energy: "50.4kcal",
       protein: "0.32g",
@@ -121,7 +128,8 @@ const juiceProducts = [
     image: pomegranateImage,
     name: "Pomegranate Juice",
     description: "Rich and flavorful pomegranate juice full of antioxidants.",
-    sizes: "Bottles: 100ml , 250 ml",
+    sizes: "Bottles: 150ml , 250 ml",
+    link : "/pomegranate",
     nutrition: {
       energy: "50.4kcal",
       protein: "0.32g",
@@ -143,6 +151,12 @@ const ProductCardDesktop = ({ product, zoom, origin, toggleZoom, index }) => {
     setIsMounted(true);
   }, []);
 
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(product.link);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20, rotate: -200, scale: 0.0 }} // Start smaller
@@ -152,7 +166,8 @@ const ProductCardDesktop = ({ product, zoom, origin, toggleZoom, index }) => {
         ease: "easeOut",
         delay: index * 0.2, // Faster stagger effect
       }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-700 flex flex-row"
+      className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-700 flex flex-row cursor-pointer"
+      onClick={handleCardClick}
     >
       <img
         src={product.image}
@@ -164,7 +179,10 @@ const ProductCardDesktop = ({ product, zoom, origin, toggleZoom, index }) => {
           transition: "transform 0.4s ease-in-out",
           cursor: zoom === 1 ? "zoom-in" : "zoom-out",
         }}
-        onClick={toggleZoom}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleZoom(e);
+        }}
         loading="lazy"
       />
       <div className="p-5 w-2/3">
@@ -173,9 +191,9 @@ const ProductCardDesktop = ({ product, zoom, origin, toggleZoom, index }) => {
         <p className="text-gray-800 font-semibold mb-2">
           Sizes: {product.sizes}
         </p>
-        <div className="bg-sky-100 p-3 rounded-lg">
+        <div className="bg-sky-150 p-3 rounded-lg">
           <h3 className="text-green-600 font-semibold">
-            Nutritional Information (per 100ml)
+            Nutritional Information (per 150ml)
           </h3>
           {Object.entries(product.nutrition).map(([key, value]) => (
             <div key={key} className="flex justify-between mb-1">
@@ -194,6 +212,12 @@ const ProductCardDesktop = ({ product, zoom, origin, toggleZoom, index }) => {
 };
 
 const ProductCardMobile = ({ product, zoom, origin, toggleZoom, index }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(product.link);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20, rotate: -200, scale: 0.0 }}
@@ -203,7 +227,8 @@ const ProductCardMobile = ({ product, zoom, origin, toggleZoom, index }) => {
         ease: "easeOut",
         delay: index * 0.2, // Stagger effect for each card
       }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col sm:flex-row"
+      className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col sm:flex-row cursor-pointer"
+      onClick={handleCardClick}
     >
       {/* Image on Top for Mobile / Left for Tablet */}
       <div className="w-full sm:w-1/2">
@@ -217,7 +242,10 @@ const ProductCardMobile = ({ product, zoom, origin, toggleZoom, index }) => {
             transition: "transform 0.4s ease-in-out",
             cursor: zoom === 1 ? "zoom-in" : "zoom-out",
           }}
-          onClick={toggleZoom}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleZoom(e);
+          }}
           loading="lazy"
         />
       </div>
@@ -229,9 +257,9 @@ const ProductCardMobile = ({ product, zoom, origin, toggleZoom, index }) => {
         <p className="text-gray-800 font-semibold mb-2 text-base">
           Sizes: {product.sizes}
         </p>
-        <div className="bg-gray-100 p-3 rounded-lg">
+        <div className="bg-gray-150 p-3 rounded-lg">
           <h3 className="text-green-600 font-semibold text-base">
-            Nutritional Information (per 100ml)
+            Nutritional Information (per 150ml)
           </h3>
           {Object.entries(product.nutrition).map(([key, value]) => (
             <div
@@ -268,8 +296,8 @@ const ProductCard = ({ product }) => {
   const toggleZoom = (e) => {
     if (zoom === 1) {
       const rect = e.target.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      const x = ((e.clientX - rect.left) / rect.width) * 150;
+      const y = ((e.clientY - rect.top) / rect.height) * 150;
       setOrigin(`${x}% ${y}%`);
       setZoom(6);
     } else {

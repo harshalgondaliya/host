@@ -30,8 +30,9 @@ const Lychee = () => {
 
   // Get product from `cartData`, or use fallback
   const product =
-    cartData?.products?.subJuice?.find((item) => item.name === "Lychee Juice") ||
-    {};
+    cartData?.products?.subJuice?.find(
+      (item) => item.name === "Lychee Juice"
+    ) || {};
 
   // Ensure `sizes` exist before accessing index
   const selectedSize = product.sizes?.[selectedSizeIndex] || {};
@@ -99,7 +100,7 @@ const Lychee = () => {
               ref={thumbnailRef}
               className="overflow-hidden max-h-[255px] flex flex-col p-3"
             >
-              {[lychee,mango,grape].map((image, index) => (
+              {[lychee, mango, grape].map((image, index) => (
                 <img
                   key={index}
                   src={image}
@@ -133,7 +134,7 @@ const Lychee = () => {
           {/* Right Section - Product Details */}
           <div className="w-2/3 pl-6">
             <h1 className="text-2xl font-semibold">
-              Refreshing lychee Juice : {selectedSize.size} (
+              Lychee Luxe Delight : {selectedSize.size} (
               {selectedSize.pricePerUnit})
             </h1>
             <p className="text-gray-500 mt-2">{product.description}</p>
@@ -248,18 +249,32 @@ const Lychee = () => {
             <div className="p-5 text-gray-900">
               {activeTab === "desc" && (
                 <p>
-                  Our Refreshing lychee Juice is the perfect blend of health and taste. Made from the finest lychee, this juice is packed with essential nutrients and pieces of real fruit to give you a wholesome experience. Enjoy the natural sweetness and the burst of flavor in every sip.
+                  Our Refreshing Lychee Juice is a delightful fusion of health
+                  and taste. Made from the finest lychees, it is naturally
+                  sweet, aromatic, and packed with essential nutrients. Each sip
+                  delivers the tropical essence of lychee with a smooth and
+                  luscious texture, making it the perfect thirst quencher.
                 </p>
               )}
               {activeTab === "disc" && (
                 <p>
-                  While our Refreshing lychee Juice is made from the finest ingredients and is packed with essential nutrients, individual results may vary. Please consume in moderation. Excessive consumption may impact sugar levels. Always consult with a healthcare professional if you have any dietary concerns or conditions.
+                  While our Lychee Juice is crafted from premium-quality lychees
+                  and contains natural goodness, we recommend consuming it in
+                  moderation. Due to its natural sugars, excessive intake may
+                  affect sugar levels. If you have any dietary restrictions or
+                  health conditions, consult a healthcare professional before
+                  consumption.
                 </p>
               )}
               {activeTab === "info" && (
                 <p>
-                Grape juice is a refreshing and naturally sweet drink made from fresh lychee. It is rich in antioxidants, vitamins, and minerals that support overall health. Drinking grape juice can help boost immunity, improve heart health, and provide natural energy. Enjoy it chilled, as a base for smoothies, or mixed with sparkling water for a refreshing twist.
-              </p>
+                  Lychee juice is a refreshing and exotic beverage made from
+                  juicy, sun-ripened lychees. It is rich in vitamin C,
+                  antioxidants, and essential minerals that support immune
+                  health, skin hydration, and digestion. Enjoy it chilled, as a
+                  smoothie base, or blended with sparkling water for a
+                  revitalizing experience.
+                </p>
               )}
             </div>
           </div>

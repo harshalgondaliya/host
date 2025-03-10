@@ -72,7 +72,7 @@ const ShoppingCartPage = () => {
   );
 
   const shippingFee = subtotalPrice >= 5000 ? 0 : 50; // Free shipping for orders above ₹5000
-  const estimatedTax = 0.00; // 18% tax
+  const estimatedTax = 0.0; // 18% tax
   const discountAmount = (subtotalPrice * discount) / 100; // Calculate coupon discount amount
   const orderTotal =
     subtotalPrice + shippingFee + estimatedTax - discountAmount; // Final order total
@@ -108,9 +108,11 @@ const ShoppingCartPage = () => {
 
                       {/* Item Details */}
                       <div className="flex-1">
-                        <h3 className="font-semibold text-lg">{item.name}&nbsp; :&nbsp; {item.size.size} ({item.size.pricePerUnit})</h3>
+                        <h3 className="font-semibold text-lg">
+                          {item.name}&nbsp; :&nbsp; {item.size.size} (
+                          {item.size.pricePerUnit})
+                        </h3>
                         <p className="text-gray-400">{item.description}</p>
-
                       </div>
 
                       {/* Price and Quantity Controls */}
@@ -140,12 +142,12 @@ const ShoppingCartPage = () => {
                   )
               )}
               <div className="text-center ">
-              <button
-                className="text-white py-2 px-4 rounded-lg bg-green-950 hover:bg-orange-600 transition-colors"
-                onClick={() => navigate("/cart")}
-              >
-                Continue Shopping
-              </button>
+                <button
+                  className="text-white py-2 px-4 rounded-lg bg-green-950 hover:bg-orange-600 transition-colors"
+                  onClick={() => navigate("/cart")}
+                >
+                  Continue Shopping
+                </button>
               </div>
             </div>
           ) : (
@@ -159,33 +161,41 @@ const ShoppingCartPage = () => {
               </button>
             </div>
           )}
-          
         </main>
 
         {/* Order Summary */}
-          <aside className="lg:w-1/4 bg-green-950 p-6 rounded-lg shadow-md fixed top-0 right-0 h-full overflow-y-auto">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <h3 className="text-xl font-bold mb-4">Order Summary</h3>
-            <div className="mb-4">
-              <div className="flex justify-between text-gray-300">
-                <span>Original Price:</span>
-                <span>₹{cartItems.reduce((sum, item) => sum + item.quantity * item.size.originalPrice, 0).toFixed(2)}</span>
-              </div>
+        <aside className="lg:w-1/4 bg-green-950 p-6 rounded-lg shadow-md fixed top-0 right-0 h-full overflow-y-auto">
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <h3 className="text-xl font-bold mb-4">Order Summary</h3>
+          <div className="mb-4">
+            <div className="flex justify-between text-gray-300">
+              <span>Original Price:</span>
+              <span>
+                ₹
+                {cartItems
+                  .reduce(
+                    (sum, item) =>
+                      sum + item.quantity * item.size.originalPrice,
+                    0
+                  )
+                  .toFixed(2)}
+              </span>
+            </div>
 
-              <div className="flex justify-between text-gray-300">
-                <span>Estimated Tax (18%):</span>
-                <span>₹{estimatedTax.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between text-gray-300">
-                <span>Shipping Fee:</span>
-                <span>₹{shippingFee.toFixed(2)}</span>
-              </div>
-              {/* Display Total Savings */}
+            <div className="flex justify-between text-gray-300">
+              <span>Estimated Tax (18%):</span>
+              <span>₹{estimatedTax.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-gray-300">
+              <span>Shipping Fee:</span>
+              <span>₹{shippingFee.toFixed(2)}</span>
+            </div>
+            {/* Display Total Savings */}
             <div className="flex justify-between text-green-500">
               <span>Total Savings:</span>
               <span>-₹{totalSavings.toFixed(2)}</span>
