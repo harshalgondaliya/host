@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import grape from "../assets/images/products/grapes.webp";
-import lychee from "../assets/images/products/lychee.webp";
-import mango from "../assets/images/products/mango.webp";
+import label from "../assets/images/products/lychee.webp";
+import GrapeS from "../assets/images/products/GrapesS.webp";
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -99,7 +99,7 @@ const Grapes = () => {
               ref={thumbnailRef}
               className="overflow-hidden max-h-[255px] flex flex-col p-3"
             >
-              {[grape, lychee, mango].map((image, index) => (
+              {[grape, label, GrapeS].map((image, index) => (
                 <img
                   key={index}
                   src={image}

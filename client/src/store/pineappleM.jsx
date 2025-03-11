@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import pineapple from "../assets/images/products/pineapple.webp";
-import lychee from "../assets/images/products/lychee.webp";
-import mango from "../assets/images/products/mango.webp";
+import label from "../assets/images/products/lychee.webp";
+import PineappleS from "../assets/images/products/PineappleS.webp";
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -96,7 +96,7 @@ const PineappleM = () => {
             />
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
-            {[pineapple, lychee, mango].map((image, index) => (
+            {[pineapple, label, PineappleS].map((image, index) => (
               <img
                 key={index}
                 src={image}

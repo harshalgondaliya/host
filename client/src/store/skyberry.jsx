@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import skyberry from "../assets/images/products/skyberry.webp";
-import lychee from "../assets/images/products/lychee.webp";
-import mango from "../assets/images/products/mango.webp";
+import label from "../assets/images/SkyBerryLabel.webp";
+import Small from "../assets/images/SkyBerryS.webp";
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -85,7 +85,7 @@ const SkyBerry = () => {
       <br />
       <br />
       <br />
-      <br />
+      
       <div className="min-h-screen bg-white flex justify-center py-10">
         <div className="max-w-6xl w-full flex space-x-8">
           {/* Left Section - Thumbnails */}
@@ -100,7 +100,7 @@ const SkyBerry = () => {
               ref={thumbnailRef}
               className="overflow-hidden max-h-[255px] flex flex-col p-3"
             >
-              {[skyberry, lychee, mango].map((image, index) => (
+              {[skyberry, label, Small].map((image, index) => (
                 <img
                   key={index}
                   src={image}

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import grape from "../assets/images/products/grapes.webp";
-import lychee from "../assets/images/products/lychee.webp";
+import MangoS from "../assets/images/products/MangoS.webp";
+import label from "../assets/images/products/lychee.webp";
 import mango from "../assets/images/products/mango.webp";
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
@@ -96,7 +96,7 @@ const MangoM = () => {
             />
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
-            {[grape, lychee, mango].map((image, index) => (
+            {[mango, label, MangoS].map((image, index) => (
               <img
                 key={index}
                 src={image}

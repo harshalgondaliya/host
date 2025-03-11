@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import image1 from "../assets/images/Grapes_Card.jpg";
-import image2 from "../assets/all_juice/grapes_img_page-0001.jpg";
-import image3 from "../assets/images/Lychee_Card.jpg";
-import image4 from "../assets/all_juice/lychee_img_page-0001.jpg";
-import image5 from "../assets/images/Mango_Card.jpg";
-import image6 from "../assets/all_juice/mango_img_page-0001.jpg";
-import image7 from "../assets/images/Pineapple_Post.jpg";
-import image8 from "../assets/all_juice/pineapple_img.jpg";
-import image9 from "../assets/images/Strawberry_Card.jpg";
-import image10 from "../assets/all_juice/straw_img_page-0001.jpg";
+import image1 from "../assets/images/GrapesD.webp";
+import image2 from "../assets/images/GrapesMo.webp";
+import image3 from "../assets/images/LycheeD.webp";
+import image4 from "../assets/images/LycheeMo.webp";
+import image5 from "../assets/images/MangoD.webp";
+import image6 from "../assets/images/mangoMo.webp";
+import image7 from "../assets/images/PineappleD.webp";
+import image8 from "../assets/images/PineappleMo.webp";
+import image9 from "../assets/images/StrawberryD.webp";
+import image10 from "../assets/images/StrawberryMo.webp";
 
 const Slideshow = () => {
   const images = [

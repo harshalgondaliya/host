@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import strawberry from "../assets/images/products/strawberry.webp";
-import lychee from "../assets/images/products/lychee.webp";
-import mango from "../assets/images/products/mango.webp";
+import label from "../assets/images/products/strawberry.webp";
+import StrawberryS from "../assets/images/products/StrawberryS.webp";
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -96,7 +96,7 @@ const StrawberryM = () => {
             />
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
-            {[strawberry, lychee, mango].map((image, index) => (
+            {[strawberry, label, StrawberryS].map((image, index) => (
               <img
                 key={index}
                 src={image}

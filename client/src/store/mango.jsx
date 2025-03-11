@@ -5,9 +5,9 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { AppContent } from "../context/AppContext";
 import cartData from "../cart/data.json";
-import grape from "../assets/images/products/grapes.webp";
+import label from "../assets/images/products/strawberry.webp";
 import mango from "../assets/images/products/mango.webp";
-import lychee from "../assets/images/products/lychee.webp";
+import MangoS from "../assets/images/products/MangoS.webp";
 
 const Mango = () => {
   useEffect(() => {
@@ -99,7 +99,7 @@ const Mango = () => {
               ref={thumbnailRef}
               className="overflow-hidden max-h-[255px] flex flex-col p-3"
             >
-              {[mango, grape, lychee].map((image, index) => (
+              {[mango, label, MangoS].map((image, index) => (
                 <img
                   key={index}
                   src={image}
