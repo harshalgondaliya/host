@@ -3,7 +3,7 @@ import Slideshow from "./Slideshow";
 import { useNavigate } from "react-router-dom";
 
 // Importing card image
-import all from "../assets/images/3.jpg";
+import all from "../assets/images/bg.jpg";
 
 // showpiece image
 import end from "../assets/images/Too more banner.jpg";

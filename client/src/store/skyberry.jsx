@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import skyberry from "../assets/images/products/skyberry.webp";
+import skyberry from "../assets/images/products/SkyBerry.webp";
 import label from "../assets/images/SkyBerryLabel.webp";
 import Small from "../assets/images/SkyBerryS.webp";
 import Nav from "../cart/Nav";
