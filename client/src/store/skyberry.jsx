@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContent } from "../context/AppContext";
 import cartData from "../cart/data.json";
 
-const SkyBerry = () => {
+const Skyberry = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -281,4 +281,4 @@ const SkyBerry = () => {
   );
 };
 
-export default SkyBerry;
+export default Skyberry;
