@@ -48,7 +48,7 @@ import CartWrapper from "../cart/CartWrapper";
 import ShoppingCartWrapper from "../cart/ShoppingCartWrapper";
 
 // Store
-import SkyberryWrapper from "../store/SkyBerryWrapper";
+import SkyberryWrapper from "../store/skyberryWrapper";
 import GrapesWrapper from "../store/grapesWrapper";
 import PineappleWrapper from "../store/pineappleWrapper";
 import MangoWrapper from "../store/mangoWrapper";

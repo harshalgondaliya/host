@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Skyberry from "./skyberry";
 import SkyberryM from "./skyberryM";
 
-const SkyBerryWrapper = () => {
+const SkyberryWrapper = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -17,4 +17,4 @@ const SkyBerryWrapper = () => {
   return isMobile ? <SkyberryM /> : <Skyberry />;
 };
 
-export default SkyBerryWrapper;
+export default SkyberryWrapper;
