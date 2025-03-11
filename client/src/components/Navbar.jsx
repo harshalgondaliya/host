@@ -284,23 +284,24 @@ const Navbar = () => {
               />
             </div>
           )}
-          {/* 🔹 Mobile Search Button */}
           <button
-            onClick={() => setSearchOpenMobile(!searchOpenMobile)}
-            className="text-white hover:text-orange-600 md:hidden ml-56"
-          >
-            <i className="fas fa-search text-xl"></i>
-          </button>
-          <button
-            onClick={handleMobileMenuToggle}
-            className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
-          >
-            {mobileMenuOpen ? (
-              <i className="fas fa-times"></i>
-            ) : (
-              <i className="fas fa-bars"></i>
-            )}
-          </button>
+  onClick={() => setSearchOpenMobile(!searchOpenMobile)}
+  className="text-white hover:text-orange-600 md:hidden mr-auto ml-48"
+>
+  <i className="fas fa-search text-xl"></i>
+</button>
+
+<button
+  onClick={handleMobileMenuToggle}
+  className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
+>
+  {mobileMenuOpen ? (
+    <i className="fas fa-times"></i>
+  ) : (
+    <i className="fas fa-bars"></i>
+  )}
+</button>
+
 
           {mobileMenuOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 z-40">

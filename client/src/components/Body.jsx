@@ -3,17 +3,17 @@ import Slideshow from "./Slideshow";
 import { useNavigate } from "react-router-dom";
 
 // Importing card image
-import all from "../assets/images/bg.jpg";
+import all from "../assets/images/bg.webp";
 
 // showpiece image
-import end from "../assets/images/Too more banner.jpg";
+import end from "../assets/images/Too more banner.webp";
 
 // Importing images with descriptions
-import grapesImg from "../assets/images/Grapes_Story.jpg";
-import pineappleImg from "../assets/images/Pineapple_Story.jpg";
-import strawImg from "../assets/images/Strawberry_Story.jpg";
-import lycheeImg from "../assets/images/Lychee_Story.jpg";
-import mangoImg from "../assets/images/Mango_Story.jpg";
+import grapesImg from "../assets/images/Grapes_Story.webp";
+import pineappleImg from "../assets/images/Pineapple_Story.webp";
+import strawImg from "../assets/images/Strawberry_Story.webp";
+import lycheeImg from "../assets/images/Lychee_Story.webp";
+import mangoImg from "../assets/images/Mango_Story.webp";
 
 // const images = [image1, image2, image3, image4, image5, image6];
 
@@ -53,11 +53,13 @@ const imagesWithDesc = [
 
 const Body = () => {
   const navigate = useNavigate();
+  const scrollRef = React.useRef(null);
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full bg-yellow-400 p-0 overflow-y-auto">
-      <br /><br />
-      <div className="w-full h-auto shadow-lg">
+      <br />
+      <br />
+      <div className="w-full h-auto shadow-lg transition-transform duration-300 hover:scale-105">
         <img src={all} alt="Soft Front" className="w-full h-auto" />
       </div>
 
@@ -157,27 +159,32 @@ const Body = () => {
       </div>
 
       {/* Mobile View */}
-      <div className="sm:hidden flex overflow-x-auto gap-4 p-0 snap-x snap-mandatory">
-        {imagesWithDesc.map((image, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center min-w-[70%] bg-white rounded-lg overflow-hidden shadow-md snap-center transition-transform duration-300 hover:scale-105"
-            onClick={() => image.link && navigate(image.link)}
-            style={{ cursor: image.link ? "pointer" : "default" }}
-          >
-            <img
-              src={image.src}
-              alt={image.desc}
-              className="w-full h-auto rounded-t-sm"
-            />
-            <div className="p-0 text-center">
-              <h3 className="text-lg text-[#015c01] font-bold">
-                {image.desc1}
-              </h3>
-              <p className="mt-2 text-sm text-gray-600">{image.desc}</p>
+      <div className="sm:hidden w-full overflow-x-scroll scroll-smooth snap-x snap-mandatory px-6">
+        <div
+          ref={scrollRef}
+          className="flex gap-5 p-5 flex-nowrap justify-start"
+        >
+          {imagesWithDesc.map((image, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center min-w-[90%] md:min-w-[50%] bg-white rounded-lg overflow-hidden shadow-md snap-center transition-transform duration-300 hover:scale-105"
+              onClick={() => image.link && navigate(image.link)}
+              style={{ cursor: image.link ? "pointer" : "default" }}
+            >
+              <img
+                src={image.src}
+                alt={image.desc}
+                className="w-full h-auto rounded-t-sm"
+              />
+              <div className="p-2 text-center">
+                <h3 className="text-lg text-[#015c01] font-bold">
+                  {image.desc1}
+                </h3>
+                <p className="mt-1 text-sm text-gray-600">{image.desc}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       <div className="w-full max-w-4xl text-center my-10">

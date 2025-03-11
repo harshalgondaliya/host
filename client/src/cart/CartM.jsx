@@ -5,7 +5,25 @@ import Nav from "./Nav";
 import { AppContent } from "../context/AppContext";
 import Footer from "../components/Footer";
 
+import image1 from "../assets/images/products/pineapple.webp";
+import image2 from "../assets/images/products/mango.webp";
+import image3 from "../assets/images/products/grapes.webp";
+import image4 from "../assets/images/products/lychee.webp";
+import image5 from "../assets/images/products/strawberry.webp";
+import image6 from "../assets/images/products/skyberry.webp";
+import image7 from "../assets/images/products/pomegranate.webp";
+
 const CartM = () => {
+  const imageMap = {
+    item1: image1,
+    item2: image2,
+    item3: image3,
+    item4: image4,
+    item5: image5,
+    item6: image6,
+    item7: image7,
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -103,7 +121,7 @@ const CartM = () => {
         />
         <div className="mt-4">
           <h2 className="text-lg font-bold text-center">Shopping Cart</h2>
-          <div className="space-y-4 mt-8">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             {cartData.products.subJuice.map((item) => {
               const selectedSizeIndex = selectedSizes[item.id] || 0;
               const selectedSize = item.sizes[selectedSizeIndex];
@@ -121,24 +139,27 @@ const CartM = () => {
               return (
                 <div
                   key={`${item.id}-${selectedSizeIndex}`}
-                  className="border border-gray-500 bg-white p-0 md:p-0 rounded-lg shadow-md flex flex-row items-center gap-6 w-96"
+                  className="border border-gray-500 bg-white p-3 rounded-lg shadow-md flex flex-row items-center justify-between max-w-sm w-full mx-auto"
                 >
-                  <div className="relative">
+                  {/* Image (Right Side) */}
+                  <div className="relative ml-2">
                     <img
-                      src={item.image}
+                      src={imageMap[item.id] || item.image}
                       alt={item.name}
+                      className="w-36 h-48 sm:w-48 sm:h-56 object-contain rounded-lg"
                       onClick={() => item.link && navigate(item.link)}
-                      className="w-48 h-56 object-contain rounded-lg"
+                      style={{ cursor: item.link ? "pointer" : "default" }}
                     />
                     {item.vegetarianSymbol && (
                       <img
                         src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
                         alt="Vegetarian Symbol"
-                        className="absolute top-2 right-2 h-10 w-10"
+                        className="absolute top-2 right-2 h-8 w-8 sm:h-10 sm:w-10"
                       />
                     )}
                   </div>
-                  <div className="flex-1 bg-sky-100 rounded-lg shadow-md p-4">
+                  {/* Content (Left Side) */}
+                  <div className="flex-1 bg-sky-100 rounded-lg shadow-md p-2 sm:p-4">
                     <div onClick={() => item.link && navigate(item.link)}>
                       <h3 className="text-sm font-semibold">
                         {item.description}
@@ -210,7 +231,7 @@ const CartM = () => {
                           +
                         </button>
                         <button
-                          className="bg-gray-300 text-gray-700 px-3 py-1 ml-2"
+                          className="bg-gray-300 text-gray-700 px-3 py-1 ml-2 rounded-lg"
                           onClick={() =>
                             handleQuantityChange(item.id, selectedSizeIndex, 0)
                           }
