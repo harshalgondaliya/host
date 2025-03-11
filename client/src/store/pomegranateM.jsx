@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import pomegranate from "../assets/images/products/pomegranate.webp";
+import pomegranate from "../assets/images/products/Pomegranate.webp";
 import label from "../assets/images/PomegranateLabel.webp";
 import Small from "../assets/images/PomegranateS.webp";
 import Nav from "../cart/Nav";
