@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "preinstall": "rmdir /s /q node_modules && del package-lock.json",
-    "postinstall": "if exist node_modules\\.bin\\vite (echo Vite exists) else (echo Vite missing)",
-    "dev": "npx vite",
-    "build": "npx vite build",
-    "lint": "eslint .",
-    "preview": "npx vite preview"
-  },
+  "preinstall": "npm install --force",
+  "postinstall": "chmod +x node_modules/.bin/vite || true",
+  "dev": "vite",
+  "build": "npx vite build",
+  "lint": "eslint .",
+  "preview": "npx vite preview"
+}
+,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
     "axios": "^1.7.9",
