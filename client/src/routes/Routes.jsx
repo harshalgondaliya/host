@@ -48,7 +48,7 @@ import CartWrapper from "../cart/CartWrapper";
 import ShoppingCartWrapper from "../cart/ShoppingCartWrapper";
 
 // Store
-import skyberryWrapper from "../store/skyBerryWrapper";
+import SkyberryWrapper from "../store/SkyberryWrapper";
 import GrapesWrapper from "../store/grapesWrapper";
 import PineappleWrapper from "../store/pineappleWrapper";
 import MangoWrapper from "../store/mangoWrapper";
@@ -109,7 +109,7 @@ const AppRoutes = () => {
       <Route path="/lychee" element={<LycheeWrapper />} />
       <Route path="/strawberry" element={<StrawberryWrapper />} />
       <Route path="/pomegranate" element={<PomegranateWrapper />} />
-      <Route path="/skyberry" element={<skyberryWrapper />} />
+      <Route path="/skyberry" element={<SkyberryWrapper />} />
     </Routes>
   );
 };

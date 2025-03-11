@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import SkyBerry from "./skyberry";
-import SkyBerryM from "./skyberryM";
+import Skyberry from "./skyberry";
+import SkyberryM from "./skyberryM";
 
 const SkyBerryWrapper = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -14,7 +14,7 @@ const SkyBerryWrapper = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  return isMobile ? <SkyBerryM /> : <SkyBerry />;
+  return isMobile ? <SkyberryM /> : <Skyberry />;
 };
 
 export default SkyBerryWrapper;
