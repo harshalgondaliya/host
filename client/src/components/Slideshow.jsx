@@ -4,7 +4,7 @@ import image2 from "../assets/images/GrapesMo.webp";
 import image3 from "../assets/images/LycheeD.webp";
 import image4 from "../assets/images/LycheeMo.webp";
 import image5 from "../assets/images/MangoD.webp";
-import image6 from "../assets/images/mangoMo.webp";
+import image6 from "../assets/images/MangoMo.webp";
 import image7 from "../assets/images/PineappleD.webp";
 import image8 from "../assets/images/PineappleMo.webp";
 import image9 from "../assets/images/StrawberryD.webp";
