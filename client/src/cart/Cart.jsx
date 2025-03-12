@@ -16,7 +16,7 @@ import image7 from "../assets/images/products/pomegranate.webp";
 
 const Cart = () => {
   const imageMap = {
-    1: image1,
+    1: image1,  
     2: image2,
     3: image3,
     4: image4,
