@@ -4,6 +4,7 @@
       {
         "id": 1,
         "name": "Pineapple Juice",
+        "image": "./src/assets/images/products/pineapple.webp",
         "description": "TooMore Pineapple Juice",
         "link":"/pineapple",
         "vegetarianSymbol": true,
@@ -22,12 +23,12 @@
             "discount": 10,
             "pricePerUnit": "₹0.067 / ml"
           }
-        ],
-        "image": "./src/assets/images/products/pineapple.webp"
+        ]
       },
       {
         "id": 2,
         "name": "Mango Juice",
+        "image": "./src/assets/images/products/mango.webp",
         "description": "TooMore Mango Juice",
         "link":"/mango",
         "vegetarianSymbol": true,
@@ -46,12 +47,12 @@
             "discount": 10,
             "pricePerUnit": "₹0.067 / ml"
           }
-        ],
-        "image": "./src/assets/images/products/mango.webp"
+        ]
       },
       {
         "id": 3,
         "name": "Grape Juice",
+        "image": "./src/assets/images/products/grapes.webp",
         "description": "TooMore Grape Juice",
         "link":"/grapes",
         "vegetarianSymbol": true,
@@ -70,12 +71,12 @@
             "discount": 10,
             "pricePerUnit": "₹0.067 / ml"
           }
-        ],
-        "image": "./src/assets/images/products/grapes.webp"
+        ]
       },
       {
         "id": 4,
         "name": "Lychee Juice",
+        "image": "./src/assets/images/products/lychee.webp",
         "description": "TooMore Lychee Juice",
         "link":"/lychee",
         "vegetarianSymbol": true,
@@ -94,12 +95,12 @@
             "discount": 10,
             "pricePerUnit": "₹0.067 / ml"
           }
-        ],
-        "image": "./src/assets/images/products/lychee.webp"
+        ]
       },
       {
         "id": 5,
         "name": "Strawberry Juice",
+        "image": "./src/assets/images/products/strawberry.webp",
         "description": "TooMore Strawberry Juice",
         "link":"/strawberry",
         "vegetarianSymbol": true,
@@ -118,12 +119,12 @@
             "discount": 10,
             "pricePerUnit": "₹0.067 / ml"
           }
-        ],
-        "image": "./src/assets/images/products/strawberry.webp"
+        ]
       },
       {
         "id": 6,
         "name": "SkyBerry Juice",
+        "image": "./src/assets/images/products/skyberry.webp",
         "description": "TooMore SkyBerry Juice",
         "link":"/skyberry",
         "vegetarianSymbol": true,
@@ -142,12 +143,12 @@
             "discount": 10,
             "pricePerUnit": "₹0.067 / ml"
           }
-        ],
-        "image": "./src/assets/images/products/skyberry.webp"
+        ]
       },
       {
         "id": 7,
         "name": "Pomegranate Juice",
+         "image": "./src/assets/images/products/Pomegranate.webp",
         "description": "TooMore Pomegranate Juice",
         "link":"/pomegranate",
         "vegetarianSymbol": true,
@@ -166,8 +167,7 @@
             "discount": 10,
             "pricePerUnit": "₹0.067 / ml"
           }
-        ],
-        "image": "./src/assets/images/products/Pomegranate.webp"
+        ]
       }
     ],
     "subSoftDrink": [

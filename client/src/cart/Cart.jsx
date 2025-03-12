@@ -6,25 +6,8 @@ import Aside from "./Aside";
 import Footer from "../components/Footer";
 import { AppContent } from "../context/AppContext"; // Import your context
 
-import image1 from "../assets/images/products/pineapple.webp";
-import image2 from "../assets/images/products/mango.webp";
-import image3 from "../assets/images/products/grapes.webp";
-import image4 from "../assets/images/products/lychee.webp";
-import image5 from "../assets/images/products/strawberry.webp";
-import image6 from "../assets/images/products/skyberry.webp";
-import image7 from "../assets/images/products/pomegranate.webp";
-
 const Cart = () => {
-  const imageMap = {
-    "item1": image1,
-    "item2": image2,
-    "item3": image3,
-    "item4": image4,
-    "item5": image5,
-    "item6": image6,
-    "item7": image7,
-  };
-
+  
   useEffect(() => {
     window.scrollTo(0, 0); // This ensures the page always starts from the top
   }, []);
@@ -162,7 +145,7 @@ const Cart = () => {
                     </div>
 
                     <img
-                      src={imageMap[item.id] || item.image} // Fallback to item.image if no match
+                      src={item.image} // Fallback to item.image if no match
                       alt={item.name}
                       className="w-48 h-48 object-contain rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-125 items-center ml-auto mr-auto"
                       onClick={() => item.link && navigate(item.link)}

@@ -5,24 +5,7 @@ import Nav from "./Nav";
 import { AppContent } from "../context/AppContext";
 import Footer from "../components/Footer";
 
-import image1 from "../assets/images/products/pineapple.webp";
-import image2 from "../assets/images/products/mango.webp";
-import image3 from "../assets/images/products/grapes.webp";
-import image4 from "../assets/images/products/lychee.webp";
-import image5 from "../assets/images/products/strawberry.webp";
-import image6 from "../assets/images/products/skyberry.webp";
-import image7 from "../assets/images/products/pomegranate.webp";
-
 const CartM = () => {
-  const imageMap = {
-    item1: image1,
-    item2: image2,
-    item3: image3,
-    item4: image4,
-    item5: image5,
-    item6: image6,
-    item7: image7,
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -144,7 +127,7 @@ const CartM = () => {
                   {/* Image (Right Side) */}
                   <div className="relative ml-2">
                     <img
-                      src={imageMap[item.id] || item.image}
+                      src={item.image}
                       alt={item.name}
                       className="w-36 h-48 sm:w-48 sm:h-56 object-contain rounded-lg"
                       onClick={() => item.link && navigate(item.link)}
