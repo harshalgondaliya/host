@@ -12,7 +12,7 @@ import image3 from "../assets/images/products/grapes.webp";
 import image4 from "../assets/images/products/lychee.webp";
 import image5 from "../assets/images/products/strawberry.webp";
 import image6 from "../assets/images/sb.webp";
-import image7 from "../assets/images/products/pomegranate.webp";
+import image7 from "../assets/images/products/Pomegranate.webp";
 
 const Cart = () => {
   const imageMap = {
