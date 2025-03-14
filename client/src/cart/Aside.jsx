@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import cartData from "../cart/data.json";
+import { useNavigate } from "react-router-dom";
 
 const Aside = () => {
   const [openCategory, setOpenCategory] = useState(null);
+  const navigate = useNavigate();
 
   const toggleCategory = (category) => {
     setOpenCategory(openCategory === category ? null : category);
@@ -52,6 +54,7 @@ const Aside = () => {
                   <li
                     key={item.id}
                     className="p-2 rounded hover:bg-gray-950 cursor-pointer hover:text-orange-600"
+                    onClick={() => item.link && navigate(item.link)}
                   >
                     {item.name}
                   </li>
@@ -93,6 +96,7 @@ const Aside = () => {
                   <li
                     key={item.id}
                     className="p-2 rounded hover:bg-gray-950 cursor-pointer hover:text-orange-600"
+                    onClick={() => item.link && navigate(item.link)}
                   >
                     {item.name}
                   </li>
