@@ -10,7 +10,7 @@ import image2 from "../assets/images/products/mango.webp";
 import image3 from "../assets/images/products/grapes.webp";
 import image4 from "../assets/images/products/lychee.webp";
 import image5 from "../assets/images/products/strawberry.webp";
-import image6 from "../assets/images/products/Skyberry.webp";
+import image6 from "../assets/images/sb.webp";
 import image7 from "../assets/images/products/pomegranate.webp";
 
 const CartM = () => {
