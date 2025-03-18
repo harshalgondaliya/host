@@ -65,7 +65,7 @@ const Navbar = () => {
   return (
     <nav className="bg-transparent dark:bg-green-950 fixed w-full z-20 top-0 start-0 border-b border-transparent dark:transparent">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-0">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <a onClick={() => navigate("/")} className="flex items-center space-x-3 rtl:space-x-reverse" style={{cursor: "pointer"}}>
           <img src={logo} alt="Toomore Juice Logo" className="h-16 w-16" />
         </a>
 
