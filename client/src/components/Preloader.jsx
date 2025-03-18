@@ -52,7 +52,6 @@ const Preloader = ({ setLoading }) => {
           {!desktopVideoLoaded && (
             <div className="w-full h-full flex justify-center items-center">
               <img src={placeholderImage} alt="Loading..." className="w-48 h-48" />
-              <h1 className="text-2xl font-bold">Loading TooMore...</h1>
             </div>
           )}
           <video
@@ -72,7 +71,6 @@ const Preloader = ({ setLoading }) => {
           {!mobileVideoLoaded && (
             <div className="w-full h-full flex flex-col justify-center items-center">
               <img src={placeholderImage} alt="Loading..." className="w-32 h-32" />
-              <h1 className="text-xl font-bold mt-4">Loading TooMore...</h1>
             </div>
           )}
           <video

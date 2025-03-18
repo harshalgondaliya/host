@@ -34,19 +34,8 @@ export const loadImage = (path) => {
     // Remove leading slash if present for consistency
     const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
     
-    // In production, assets are served from the root
-    if (import.meta.env.PROD) {
-      // For production, use the path directly from the root
-      return '/' + normalizedPath;
-    } else {
-      // For development, use import.meta.url
-      try {
-        return new URL(normalizedPath, import.meta.url).href;
-      } catch (urlError) {
-        console.warn(`URL loading failed for: ${path}`, urlError);
-        return '/' + normalizedPath;
-      }
-    }
+    // Use consistent path approach for both dev and prod
+    return '/' + normalizedPath;
   } catch (error) {
     console.error(`Failed to load image: ${path}`, error);
     return placeholderSrc;
