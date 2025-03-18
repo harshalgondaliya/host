@@ -1,41 +1,87 @@
-import React, { useState, useContext, useEffect, lazy, Suspense } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import cartData from "../cart/data.json";
 import Nav from "./Nav";
 import Aside from "./Aside";
-// Use lazy loading for the Footer component
-const Footer = lazy(() => import("../components/Footer"));
+// Import Footer directly instead of lazy loading
+import Footer from "../components/Footer";
 import { AppContext } from "../context/AppContext"; // Import your context
 
-// Updated image imports to use loadImage utility
-import { loadImage } from "../components/ImageOptimizer";
+// Updated image imports to use enhanced image optimization
+import OptimizedImage, { loadImage, ImageCache } from "../components/ImageOptimizer";
 
-// Create a preloaded image cache
-const imageCache = {
-  1: loadImage("../assets/images/products/pineapple.webp"),
-  2: loadImage("../assets/images/products/mango.webp"),
-  3: loadImage("../assets/images/products/grapes.webp"),
-  4: loadImage("../assets/images/products/lychee.webp"),
-  5: loadImage("../assets/images/products/strawberry.webp"),
-  6: loadImage("../assets/images/sb.webp"),
-  7: loadImage("../assets/images/products/Pomegranate.webp"),
+// Image paths - define once to avoid recreating array on each render
+const imagePaths = [
+  "../assets/images/products/pineapple.webp",
+  "../assets/images/products/mango.webp",
+  "../assets/images/products/grapes.webp",
+  "../assets/images/products/lychee.webp",
+  "../assets/images/products/strawberry.webp",
+  "../assets/images/sb.webp",
+  "../assets/images/products/Pomegranate.webp"
+];
+
+// Map image paths to product IDs
+const imagePathsById = {
+  1: "../assets/images/products/pineapple.webp",
+  2: "../assets/images/products/mango.webp",
+  3: "../assets/images/products/grapes.webp",
+  4: "../assets/images/products/lychee.webp",
+  5: "../assets/images/products/strawberry.webp",
+  6: "../assets/images/sb.webp",
+  7: "../assets/images/products/Pomegranate.webp"
 };
 
 const Cart = () => {
-  const [loadedImages, setLoadedImages] = useState({});
-  
-  useEffect(() => {
-    window.scrollTo(0, 0); // This ensures the page always starts from the top
-    
-    // Set all images from cache to state
-    setLoadedImages(imageCache);
-  }, []);
-
+  const [isVisible, setIsVisible] = useState({});
   const [selectedSizes, setSelectedSizes] = useState({});
   const navigate = useNavigate();
 
   // Use cart state and functions from context
   const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
+
+  // Use Intersection Observer for lazy loading images
+  useEffect(() => {
+    // Check if browser supports IntersectionObserver
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            setIsVisible((prev) => ({
+              ...prev,
+              [entry.target.id]: entry.isIntersecting,
+            }));
+          });
+        },
+        { 
+          rootMargin: '200px', // Load images when they're 200px from viewport
+          threshold: 0.1 
+        }
+      );
+
+      document.querySelectorAll(".product-card").forEach((el) => {
+        observer.observe(el);
+      });
+
+      return () => observer.disconnect();
+    } else {
+      // Fallback for browsers that don't support IntersectionObserver
+      setIsVisible(
+        Array.from(document.querySelectorAll(".product-card")).reduce(
+          (acc, el) => ({ ...acc, [el.id]: true }),
+          {}
+        )
+      );
+    }
+  }, []);
+
+  // Preload critical images when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0); // Ensure page starts from top
+    
+    // Preload all product images
+    ImageCache.preload(Object.values(imagePathsById));
+  }, []);
 
   const handleSizeChange = (itemId, sizeIndex) => {
     setSelectedSizes((prevSizes) => ({
@@ -168,8 +214,9 @@ const Cart = () => {
                 totalDiscount
               }) => (
                 <div
+                  id={`product-${item.id}`}
                   key={item.id}
-                  className="border border-gray-500 rounded-lg shadow p-4 flex flex-col bg-white"
+                  className="product-card border border-gray-500 rounded-lg shadow p-4 flex flex-col bg-white"
                 >
                   <div className="flex justify-between items-center">
                     <h3 className="text-sm font-semibold">
@@ -181,26 +228,26 @@ const Cart = () => {
                           src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
                           alt="Vegetarian Symbol"
                           className="h-10 w-10"
+                          width="40"
+                          height="40"
+                          loading="lazy"
                         />
                       </div>
                     )}
                   </div>
 
                   <div className="w-48 h-48 mx-auto relative">
-                    {loadedImages[item.id] ? (
-                      <img
-                        src={loadedImages[item.id]}
+                    {isVisible[`product-${item.id}`] && (
+                      <OptimizedImage
+                        src={loadImage(imagePathsById[item.id])}
                         alt={item.name}
                         className="w-full h-full object-contain rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-125"
                         onClick={() => item.link && navigate(item.link)}
+                        width={192}
+                        height={192}
                         style={{ cursor: item.link ? "pointer" : "default" }}
-                        width="192"
-                        height="192"
+                        loadingPriority="lazy"
                       />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded-lg animate-pulse">
-                        <span className="text-gray-400">Loading...</span>
-                      </div>
                     )}
                   </div>
 
@@ -249,24 +296,23 @@ const Cart = () => {
                         handleAddToCart(item.id, 1, selectedSizeIndex)
                       }
                     >
-                      <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
-                      &nbsp;Add to Cart
+                      Add to Cart
                     </button>
                   ) : (
-                    <div className="flex items-center border rounded-lg p-1 justify-between">
+                    <div className="flex justify-between items-center border rounded-lg p-2">
                       <button
-                        className="bg-green-800 text-white px-3 py-1"
+                        className="bg-green-800 text-white px-3 py-1 rounded-lg"
                         onClick={() =>
                           handleDecrement(item.id, selectedSizeIndex)
                         }
                       >
                         -
                       </button>
-
                       <input
                         type="number"
                         className="w-16 text-center border rounded-lg mx-1"
                         value={cartItem.quantity}
+                        min="1"
                         onChange={(e) =>
                           handleManualQuantityChange(
                             item.id,
@@ -274,25 +320,14 @@ const Cart = () => {
                             e
                           )
                         }
-                        min="1"
                       />
-
                       <button
-                        className="bg-green-800 text-white px-3 py-1"
+                        className="bg-green-800 text-white px-3 py-1 rounded-lg"
                         onClick={() =>
                           handleIncrement(item.id, selectedSizeIndex)
                         }
                       >
                         +
-                      </button>
-
-                      <button
-                        className="bg-gray-400 text-gray-950 px-3 py-1 ml-2"
-                        onClick={() =>
-                          handleQuantityChange(item.id, selectedSizeIndex, 0)
-                        }
-                      >
-                        ✕
                       </button>
                     </div>
                   )}
@@ -301,10 +336,10 @@ const Cart = () => {
             </div>
           </main>
         </div>
-      </div>
-      <Suspense fallback={<div>Loading footer...</div>}>
+        <br />
+        <br />
         <Footer />
-      </Suspense>
+      </div>
     </>
   );
 };

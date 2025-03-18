@@ -1,8 +1,8 @@
-import React, { Suspense, lazy, useState, useEffect } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Lazy load the Slideshow component
-const Slideshow = lazy(() => import("./Slideshow"));
+// Import Slideshow directly instead of lazy loading it
+import Slideshow from "./Slideshow";
 
 // Importing card image
 import all from "../assets/images/bg.webp";
@@ -20,62 +20,75 @@ import strawImg from "../assets/images/Strawberry_Story.webp";
 import lycheeImg from "../assets/images/Lychee_Story.webp";
 import mangoImg from "../assets/images/Mango_Story.webp";
 
-// const images = [image1, image2, image3, image4, image5, image6];
-
-// Loading placeholder component
-const LoadingPlaceholder = () => (
-  <div className="animate-pulse bg-gray-200 w-full h-60 rounded"></div>
-);
-
-// Images with descriptions
+// Image configuration with responsive sizes and descriptions
 const imagesWithDesc = [
   {
     src: grapesImg,
     desc: "REFRESHING GRAPE JUICE",
     desc1: "Packed with Antioxidants",
     link: "/grapes",
+    width: 400,
+    height: 300,
   },
   {
     src: pineappleImg,
     desc: "TANGY PINEAPPLE JUICE",
     desc1: "Rich in Vitamin C and Bromelain",
     link: "/pineapple",
+    width: 400,
+    height: 300,
   },
   {
     src: strawImg,
     desc: "DELICIOUS STRAWBERRY",
     desc1: "Naturally Sweet and Full of Vitamin C",
     link: "/strawberry",
+    width: 400,
+    height: 300,
   },
   {
     src: lycheeImg,
     desc: "SWEET LYCHEE JUICE",
     desc1: "Exotic Flavor with a Vitamin Boost",
     link: "/lychee",
+    width: 400,
+    height: 300,
   },
   {
     src: mangoImg,
     desc: "TROPICAL MANGO JUICE",
     desc1: "Pure Mango Goodness and Vitamin C",
     link: "/mango",
+    width: 400,
+    height: 300,
   },
 ];
 
-// Implement a custom hook for lazy loading images
-const useImageLoader = (src) => {
+// Loading placeholder component
+const LoadingPlaceholder = () => (
+  <div className="animate-pulse bg-gray-200 w-full h-60 rounded"></div>
+);
+
+// Custom image component with progressive loading
+const OptimizedImage = ({ src, alt, className, loadingPriority = "lazy", width, height }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [imageSrc, setImageSrc] = useState(null);
 
-  useEffect(() => {
-    const img = new Image();
-    img.src = src;
-    img.onload = () => {
-      setImageSrc(src);
-      setIsLoaded(true);
-    };
-  }, [src]);
-
-  return { isLoaded, imageSrc };
+  return (
+    <>
+      {!isLoaded && <div className="animate-pulse bg-gray-200 w-full h-full absolute inset-0 rounded"></div>}
+      <img
+        src={src}
+        alt={alt}
+        className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        loading={loadingPriority}
+        onLoad={() => setIsLoaded(true)}
+        width={width}
+        height={height}
+        decoding="async"
+        style={{ transition: 'opacity 0.3s' }}
+      />
+    </>
+  );
 };
 
 // Define font style to be used consistently throughout the component
@@ -89,34 +102,46 @@ const Body = () => {
   const navigate = useNavigate();
   const scrollRef = React.useRef(null);
   const [isVisible, setIsVisible] = useState({});
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
+  // Use Intersection Observer for lazy loading of off-screen content
   useEffect(() => {
-    // Set up Intersection Observer to detect when elements are in viewport
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsVisible((prev) => ({
-            ...prev,
-            [entry.target.id]: entry.isIntersecting,
-          }));
-        });
-      },
-      { threshold: 0.1 }
-    );
+    // Check if browser supports IntersectionObserver
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            setIsVisible((prev) => ({
+              ...prev,
+              [entry.target.id]: entry.isIntersecting,
+            }));
+          });
+        },
+        { 
+          rootMargin: '200px', // Load images when they're 200px from viewport
+          threshold: 0.1 
+        }
+      );
 
-    // Observe all image containers
-    document.querySelectorAll(".lazy-container").forEach((el) => {
-      observer.observe(el);
-    });
+      document.querySelectorAll(".lazy-container").forEach((el) => {
+        observer.observe(el);
+      });
 
-    return () => observer.disconnect();
+      return () => observer.disconnect();
+    } else {
+      // Fallback for browsers that don't support IntersectionObserver
+      setIsVisible(
+        Array.from(document.querySelectorAll(".lazy-container")).reduce(
+          (acc, el) => ({ ...acc, [el.id]: true }),
+          {}
+        )
+      );
+    }
   }, []);
 
   // Add font-family to the document
   useEffect(() => {
-    // Create a style element
     const style = document.createElement("style");
-    // Add CSS for custom font loading
     style.textContent = `
       @font-face {
         font-family: 'Comic Sans MS';
@@ -130,7 +155,6 @@ const Body = () => {
         font-size: 1.2rem;
       }
     `;
-    // Append to the head
     document.head.appendChild(style);
     return () => {
       document.head.removeChild(style);
@@ -147,21 +171,28 @@ const Body = () => {
 
       {/* Desktop View: Hero image followed by text */}
       <div className="hidden sm:block w-full h-auto shadow-lg transition-transform duration-300 hover:scale-105 lazy-container">
-        <img
+        <OptimizedImage
           src={all}
           alt="Soft Front"
           className="w-full h-auto"
-          loading="lazy"
+          loadingPriority="eager"
+          width={1200}
+          height={600}
         />  
       </div>
 
       {/* Mobile View: Text first, then hero image */}
       <div className="sm:hidden w-full max-w-4xl text-center my-0 px-0">
-        <img
-          src={valley}
-          alt="valley"
-          className="w-[101%] h-[230px] mx-0 mb-0 object-fill"
-        />
+        <div className="relative">
+          <OptimizedImage
+            src={valley}
+            alt="valley"
+            className="w-[101%] h-[230px] mx-0 mb-0 object-fill"
+            loadingPriority="eager"
+            width={500}
+            height={230}
+          />
+        </div>
         <h1
           className="text-2xl font-bold text-[#015c01] -mt-28 mb-2"
           style={{ ...comicSansStyle, fontSize: "1.8rem" }}
@@ -191,11 +222,13 @@ const Body = () => {
 
       {/* Mobile View: Hero image */}
       <div className="sm:hidden w-full h-auto shadow-xl rounded-lg mx-2 mb-5 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl lazy-container">
-        <img
+        <OptimizedImage
           src={all}
           alt="Soft Front"
           className="w-full h-auto"
-          loading="lazy"
+          loadingPriority="eager"
+          width={500}
+          height={300}
         />
       </div>
       <br />
@@ -233,13 +266,8 @@ const Body = () => {
       <br />
       <br />
 
-      <Suspense fallback={
-        <div className="animate-pulse bg-gray-200 w-full h-[24rem] md:h-[32rem] lg:h-[36rem] rounded-lg max-w-[50rem] mx-auto">
-          <div className="flex items-center justify-center h-full text-gray-500">Loading slideshow...</div>
-        </div>
-      }>
-        <Slideshow />
-      </Suspense>
+      {/* Render Slideshow directly instead of using Suspense */}
+      <Slideshow />
 
       <div className="w-full max-w-4xl text-center my-10 px-4">
         <h1
@@ -257,7 +285,6 @@ const Body = () => {
         </p>
         <button
           className="mt-4 bg-[#015c01] text-white px-6 py-2 rounded-full hover:bg-[#013b01] transition-colors duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-          // style={{...comicSansStyle}}
           onClick={() => navigate("/Juices")}
         >
           EXPLORE OUR JUICES
@@ -274,12 +301,17 @@ const Body = () => {
             onClick={() => image.link && navigate(image.link)}
             style={{ cursor: image.link ? "pointer" : "default" }}
           >
-            <img
-              src={image.src}
-              alt={image.desc}
-              className="w-full h-auto rounded-t-lg"
-              loading="lazy"
-            />
+            <div className="relative aspect-w-4 aspect-h-3">
+              {isVisible[`desktop-card-${index}`] && (
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.desc}
+                  className="w-full h-auto rounded-t-lg"
+                  width={image.width}
+                  height={image.height}
+                />
+              )}
+            </div>
             <p
               className="mt-3 text-base text-[#015c01] font-light"
               style={{ ...comicSansStyle, fontSize: "1rem" }}
@@ -304,12 +336,17 @@ const Body = () => {
             onClick={() => image.link && navigate(image.link)}
             style={{ cursor: image.link ? "pointer" : "default" }}
           >
-            <img
-              src={image.src}
-              alt={image.desc}
-              className="w-full h-auto rounded-t-lg"
-              loading="lazy"
-            />
+            <div className="relative aspect-w-4 aspect-h-3">
+              {isVisible[`desktop-card-${index + 3}`] && (
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.desc}
+                  className="w-full h-auto rounded-t-lg"
+                  width={image.width}
+                  height={image.height}
+                />
+              )}
+            </div>
             <p
               className="mt-3 text-base text-[#015c01] font-light"
               style={{ ...comicSansStyle, fontSize: "1rem" }}
@@ -346,12 +383,18 @@ const Body = () => {
               onClick={() => image.link && navigate(image.link)}
               style={{ cursor: image.link ? "pointer" : "default" }}
             >
-              <img
-                src={image.src}
-                alt={image.desc}
-                className="w-full h-auto rounded-t-lg"
-                loading="lazy"
-              />
+              <div className="relative w-full aspect-w-4 aspect-h-3">
+                {isVisible[`mobile-card-${index}`] && (
+                  <OptimizedImage
+                    src={image.src}
+                    alt={image.desc}
+                    className="w-full h-auto rounded-t-lg"
+                    loadingPriority={index < 2 ? "eager" : "lazy"}
+                    width={image.width}
+                    height={image.height}
+                  />
+                )}
+              </div>
               <div className="p-3 text-center">
                 <h3
                   className="text-lg text-[#015c01] font-bold"
@@ -397,7 +440,6 @@ const Body = () => {
         </p>
         <button
           className="mt-4 bg-[#015c01] text-white px-6 py-2 rounded-full hover:bg-[#013b01] transition-colors duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-          // style={{...comicSansStyle}}
           onClick={() => navigate("/our-story")}
         >
           OUR STORY
@@ -407,12 +449,16 @@ const Body = () => {
         id="banner-image"
         className="w-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 lazy-container"
       >
-        <img
-          src={end}
-          alt="Soft Front"
-          className="w-full h-auto"
-          loading="lazy"
-        />
+        {isVisible["banner-image"] && (
+          <OptimizedImage
+            src={end}
+            alt="Soft Front"
+            className="w-full h-auto"
+            loadingPriority="lazy" 
+            width={1200}
+            height={500}
+          />
+        )}
       </div>
     </div>
   );

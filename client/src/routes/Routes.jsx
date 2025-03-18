@@ -10,6 +10,12 @@ import EmailVerify from "../auth/EmailVerify";
 // Components
 import OurStory from "../components/OurStory";
 
+// Language & Settings
+import States from "../pages/States";
+
+// Search
+import Search from "../pages/Search";
+
 // Investor Relations
 import InvestorRelations from "../pages/Investors/InvestorRelations";
 import FinancialReports from "../pages/Investors/FinancialReports";
@@ -64,6 +70,12 @@ const AppRoutes = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/email-verify" element={<EmailVerify />} />
       <Route path="/our-story" element={<OurStory />} />
+      
+      {/* Language Settings */}
+      <Route path="/states" element={<States />} />
+
+      {/* Search */}
+      <Route path="/search" element={<Search />} />
 
       {/* Cart */}
       <Route path="/cart" element={<CartWrapper />} />

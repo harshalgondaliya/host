@@ -1,0 +1,25 @@
+{
+  "welcome": "Welcome to our website",
+  "navbar": {
+    "home": "Home",
+    "menu": "Menu",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "language": {
+    "english": "English",
+    "arabic": "Arabic",
+    "hindi": "Hindi"
+  },
+  "login": "Login",
+  "signup": "Sign Up",
+  "logout": "Logout",
+  "Choose Your Language": "Choose Your Language",
+  "Language Settings": "Language Settings",
+  "Currently Selected": "Currently Selected",
+  "About Language Settings": "About Language Settings",
+  "Your language preference will be saved for future visits. The website will automatically detect your preferred language when you return.": "Your language preference will be saved for future visits. The website will automatically detect your preferred language when you return.",
+  "This is the default language and provides full content across the website.": "This is the default language and provides full content across the website.",
+  "Select for right-to-left layout and Arabic translation.": "Select for right-to-left layout and Arabic translation.",
+  "Choose Hindi for content localized for Indian users.": "Choose Hindi for content localized for Indian users."
+} 

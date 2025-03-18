@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -144,193 +143,135 @@ const juiceProducts = [
   },
 ];
 
-const ProductCardDesktop = ({ product, zoom, origin, toggleZoom, index }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
+const ProductCard = ({ product, index }) => {
   const navigate = useNavigate();
-
-  const handleCardClick = () => {
-    navigate(product.link);
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.8 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        mass: 0.5,
-        delay: index * 0.1
-      }}
-      whileHover={{ 
-        scale: 1.02,
-        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-      }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-700 flex flex-row cursor-pointer"
-      onClick={handleCardClick}
-    >
-      <motion.img
-        src={product.image}
-        alt={product.name}
-        className="w-1/3 object-cover aspect-[4/3] transition-transform duration-500 cursor-zoom-in"
-        style={{
-          transform: `scale(${zoom})`,
-          transformOrigin: origin,
-          transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          cursor: zoom === 1 ? "zoom-in" : "zoom-out",
-        }}
-        whileHover={{ scale: 1.05 }}
-        onClick={(e) => {
-          e.stopPropagation();
-          toggleZoom(e);
-        }}
-        loading="lazy"
-      />
-      <div className="p-5 w-2/3">
-        <h2 className="text-2xl font-bold text-red-500 mb-2">{product.name}</h2>
-        <p className="text-gray-700 mb-2">{product.description}</p>
-        <p className="text-gray-800 font-semibold mb-2">
-          Sizes: {product.sizes}
-        </p>
-        <div className="bg-sky-150 p-3 rounded-lg">
-          <h3 className="text-green-600 font-semibold">
-            Nutritional Information (per 150ml)
-          </h3>
-          {Object.entries(product.nutrition).map(([key, value]) => (
-            <div key={key} className="flex justify-between mb-1">
-              <p className="text-gray-700 font-semibold">
-                {key.charAt(0).toUpperCase() + key.slice(1)}:
-              </p>
-              <p className="text-gray-700">{value}</p>
-            </div>
-          ))}
-          <h4 className="font-semibold mt-2">Ingredients</h4>
-          <p className="text-gray-700">{product.ingredients}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-const ProductCardMobile = ({ product, zoom, origin, toggleZoom, index }) => {
-  const navigate = useNavigate();
-
-  const handleCardClick = () => {
-    navigate(product.link);
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.8 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        mass: 0.5,
-        delay: index * 0.1
-      }}
-      whileHover={{ 
-        scale: 1.02,
-        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-      }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col sm:flex-row cursor-pointer"
-      onClick={handleCardClick}
-    >
-      <motion.div className="w-full sm:w-1/2">
-        <motion.img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-auto object-cover transition-transform duration-500 cursor-pointer"
-          style={{
-            transform: `scale(${zoom})`,
-            transformOrigin: origin,
-            transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-            cursor: zoom === 1 ? "zoom-in" : "zoom-out",
-          }}
-          whileHover={{ scale: 1.05 }}
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleZoom(e);
-          }}
-          loading="lazy"
-        />
-      </motion.div>
-      <div className="p-5 w-full sm:w-1/2 flex flex-col justify-center">
-        <h2 className="text-2xl font-bold text-red-500 mb-2">{product.name}</h2>
-        <p className="text-gray-700 mb-2 text-base">{product.description}</p>
-        <p className="text-gray-800 font-semibold mb-2 text-base">
-          Sizes: {product.sizes}
-        </p>
-        <div className="bg-gray-150 p-3 rounded-lg">
-          <h3 className="text-green-600 font-semibold text-base">
-            Nutritional Information (per 150ml)
-          </h3>
-          {Object.entries(product.nutrition).map(([key, value]) => (
-            <div
-              key={key}
-              className="flex justify-between text-gray-700 text-sm"
-            >
-              <span className="font-medium">
-                {key.charAt(0).toUpperCase() + key.slice(1)}:
-              </span>
-              <span>{value}</span>
-            </div>
-          ))}
-          <h4 className="font-semibold mt-2 text-base">Ingredients</h4>
-          <p className="text-gray-700 text-sm">{product.ingredients}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-const ProductCard = ({ product }) => {
-  const [zoom, setZoom] = useState(1);
-  const [origin, setOrigin] = useState("center center");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
+    
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const toggleZoom = (e) => {
-    if (zoom === 1) {
-      const rect = e.target.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 150;
-      const y = ((e.clientY - rect.top) / rect.height) * 150;
-      setOrigin(`${x}% ${y}%`);
-      setZoom(6);
-    } else {
-      setZoom(1);
-    }
+  const handleCardClick = () => {
+    navigate(product.link);
   };
 
-  return isMobile ? (
-    <ProductCardMobile
-      product={product}
-      zoom={zoom}
-      origin={origin}
-      toggleZoom={toggleZoom}
-    />
-  ) : (
-    <ProductCardDesktop
-      product={product}
-      zoom={zoom}
-      origin={origin}
-      toggleZoom={toggleZoom}
-    />
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300"
+    >
+      {/* Desktop Layout */}
+      <div className="hidden md:flex md:flex-row md:h-[400px]">
+        {/* Image section */}
+        <div 
+          className="relative md:w-2/5 cursor-pointer" 
+          onClick={handleCardClick}
+        >
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute top-0 right-0 bg-yellow-400 text-green-800 text-sm font-bold px-3 py-1 m-2 rounded">
+            {product.sizes.split(":")[1]}
+          </div>
+        </div>
+        
+        {/* Content section */}
+        <div className="p-6 md:w-3/5 flex flex-col justify-center">
+          <div className="flex justify-between items-center mb-4">
+            <h2 
+              className="text-2xl font-bold text-green-800 cursor-pointer hover:text-green-600 transition-colors"
+              onClick={handleCardClick}
+            >
+              {product.name}
+            </h2>
+            <button 
+              onClick={handleCardClick}
+              className="bg-yellow-400 hover:bg-yellow-500 text-green-800 text-sm py-1.5 px-4 rounded-full transition-colors duration-300"
+            >
+              View Details
+            </button>
+          </div>
+          
+          <p className="text-gray-600 text-base mb-4">{product.description}</p>
+          
+          {/* Nutrition info - always visible */}
+          <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-100 text-sm">
+            <h3 className="font-medium text-green-800 border-b border-yellow-200 pb-1 mb-3 text-lg">Nutrition Facts</h3>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+              {Object.entries(product.nutrition).map(([key, value]) => (
+                <div key={key} className="flex justify-between">
+                  <span className="text-gray-600">
+                    {key.startsWith('-') ? key.substring(1) : key}:
+                  </span>
+                  <span className="text-green-700 font-medium">{value}</span>
+                </div>
+              ))}
+            </div>
+            
+            <h4 className="font-medium text-green-800 mt-4 border-t border-yellow-200 pt-2">Ingredients:</h4>
+            <p className="text-gray-600 text-xs">{product.ingredients}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="md:hidden">
+        <div className="relative">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-64 object-cover"
+            loading="lazy"
+          />
+          <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+            <h2 className="text-white text-xl font-bold">{product.name}</h2>
+            <span className="text-yellow-400 text-sm">{product.sizes}</span>
+          </div>
+        </div>
+        
+        <div className="p-4">
+          <p className="text-gray-600 text-sm mb-3">{product.description}</p>
+          
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-green-800 font-medium text-sm">Nutrition Facts</span>
+            <button 
+              onClick={handleCardClick}
+              className="bg-yellow-400 hover:bg-yellow-500 text-green-800 text-xs py-1.5 px-4 rounded-full transition-colors duration-300"
+            >
+              View Details
+            </button>
+          </div>
+          
+          <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-100 text-xs">
+            <div className="grid grid-cols-2 gap-x-2 gap-y-1 mb-2">
+              {Object.entries(product.nutrition).slice(0, 6).map(([key, value]) => (
+                <div key={key} className="flex justify-between">
+                  <span className="text-gray-600">
+                    {key.startsWith('-') ? key.substring(1) : key}:
+                  </span>
+                  <span className="text-green-700 font-medium">{value}</span>
+                </div>
+              ))}
+            </div>
+            
+            <details>
+              <summary className="text-green-800 font-medium cursor-pointer">Ingredients</summary>
+              <p className="mt-1 text-gray-600 text-xs leading-tight">{product.ingredients}</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
@@ -339,39 +280,107 @@ const Juice = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  const [visibleProducts, setVisibleProducts] = useState(3);
+  const [visibleProducts, setVisibleProducts] = useState(4);
+  const [activeCategory, setActiveCategory] = useState("all");
+  
+  const categories = ["all", "Berry", "Tropical", "Premium"];
+  
+  const getCategoryProducts = (category) => {
+    switch(category) {
+      case "all":
+        return juiceProducts;
+      case "Berry":
+        return juiceProducts.filter(p => 
+          p.name.includes("Berry") || 
+          p.name.includes("Strawberry") ||
+          p.description.toLowerCase().includes("berry")
+        );
+      case "Tropical":
+        return juiceProducts.filter(p => 
+          p.name.includes("Mango") || 
+          p.name.includes("Pineapple") ||
+          p.description.toLowerCase().includes("tropical")
+        );
+      case "Premium":
+        return juiceProducts.filter(p => 
+          p.name.includes("Pomegranate") || 
+          p.name.includes("Lychee") ||
+          p.description.toLowerCase().includes("premium") ||
+          p.description.toLowerCase().includes("antioxidants")
+        );
+      default:
+        return juiceProducts;
+    }
+  };
+  
+  const filteredProducts = getCategoryProducts(activeCategory);
 
   return (
     <>
       <Navbar />
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col items-center bg-yellow-400 min-h-screen p-6 sm:p-4"
-      >
-        <br />
-        <br />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1 gap-6 max-w-8xl w-full">
-          {juiceProducts.slice(0, visibleProducts).map((product, index) => (
-            <ProductCard key={index} product={product} index={index} />
-          ))}
+      <div className="bg-yellow-400 min-h-screen">
+        {/* Header section */}
+        <div className="bg-yellow-400 py-7 mb-6">
+          <div className="container mx-auto px-4">
+            <br /><br /><br />
+            <h1 className="text-3xl md:text-4xl font-bold text-center text-green-800">
+              Our Premium Juices
+            </h1>
+            <p className="text-center text-green-700 mt-2 max-w-2xl mx-auto">
+              Discover our range of refreshing, all-natural juices made from the finest ingredients
+            </p>
+          </div>
         </div>
-        {visibleProducts < juiceProducts.length && (
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setVisibleProducts((prev) => prev + 3)}
-            className="mt-4 px-6 py-2 bg-green-950 text-yellow-400 rounded-lg hover:bg-green-950 transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 sm:px-4 sm:py-1 sm:text-sm"
-          >
-            Load More
-          </motion.button>
-        )}
-        <br />
-        <br />
-      </motion.div>
+        
+        <div className="container mx-auto px-4 pb-10">
+          {/* Category filters */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-5 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeCategory === category
+                    ? "bg-green-900 text-yellow-400 shadow border border-green-900"
+                    : "bg-white text-green-900 hover:bg-yellow-100 border border-green-900"
+                }`}
+              >
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </button>
+            ))}
+          </div>
+          
+          {/* Products list */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-auto max-w-6xl">
+            {filteredProducts.slice(0, visibleProducts).map((product, index) => (
+              <ProductCard key={index} product={product} index={index} />
+            ))}
+          </div>
+          
+          {/* Empty state */}
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-8">
+              <h3 className="text-xl text-green-800 font-bold">No juices found in this category</h3>
+              <p className="text-green-700 mt-2">Try selecting a different category</p>
+            </div>
+          )}
+          
+          {/* Load more button */}
+          {visibleProducts < filteredProducts.length && (
+            <div className="text-center mt-10">
+              <button
+                onClick={() => setVisibleProducts((prev) => prev + 4)}
+                className="px-7 py-2.5 bg-green-900 text-yellow-400 rounded-full hover:bg-green-800 transition-colors duration-300 inline-flex items-center shadow-md"
+              >
+                <span>Load More</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 3a1 1 0 011 1v10.586l3.293-3.293a1 1 0 011.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L9 14.586V4a1 1 0 011-1z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
       <Footer />
     </>
   );

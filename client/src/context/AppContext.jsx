@@ -2,6 +2,7 @@ import { createContext } from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 export const AppContext = createContext();
 
@@ -9,6 +10,40 @@ export const AppContextProvider = (props) => {
   axios.defaults.withCredentials = true;
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const { i18n } = useTranslation();
+
+  // Language state
+  const [language, setLanguage] = useState(() => {
+    // Get saved language from localStorage or use browser's language
+    return localStorage.getItem('i18nextLng') || 'en';
+  });
+
+  // Function to change language
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    setLanguage(lang);
+    localStorage.setItem('i18nextLng', lang);
+
+    // For RTL languages like Arabic
+    if (lang === 'ar') {
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'ar';
+    } else {
+      document.documentElement.dir = 'ltr';
+      document.documentElement.lang = lang;
+    }
+  };
+
+  // Set initial language direction
+  useEffect(() => {
+    if (language === 'ar') {
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'ar';
+    } else {
+      document.documentElement.dir = 'ltr';
+      document.documentElement.lang = language;
+    }
+  }, [language]);
 
   // Existing state for authentication and user data
   const [isLoggedin, setIsLoggedin] = useState(false);
@@ -85,6 +120,9 @@ export const AppContextProvider = (props) => {
     addToCart,
     removeFromCart,
     clearCart,
+    // Language-related state and functions
+    language,
+    changeLanguage
   };
 
   return (

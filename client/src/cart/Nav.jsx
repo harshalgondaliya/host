@@ -13,6 +13,11 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  // Handler for search icon click
+  const handleSearchClick = () => {
+    navigate('/search');
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -69,51 +74,35 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
               </p>
             </div>
             &nbsp;&nbsp;&nbsp;
-            <form className="max-w-lg mx-auto">
-              <label
-                htmlFor="default-search"
-                className="mb-2 text-sm font-medium text-black-900 sr-only dark:text-white"
-              >
-                Search
-              </label>
-              <div className="relative w-[50rem]">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg
-                    className="w-4 h-4 text-black"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                    />
-                  </svg>
-                </div>
-                <input
-                  type="search"
-                  id="default-search"
-                  className="block w-[45rem] p-4 ps-10 text-sm text-black border border-black rounded-lg bg-white focus:ring-blue-500 focus:border-black-500"
-                  placeholder="Search Juice , Soft Drinks , Energy Drinks ......"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2 mr-20"
-                >
-                  Search
-                </button>
-              </div>
-            </form>
-            &nbsp;&nbsp;&nbsp;
           </>
         )}
       </div>
-      <div className="flex items-center space-x-0">
+      <div className="flex items-center space-x-4">
+        {/* Search Icon Button */}
+        <div className="relative mx-2">
+          <button 
+            onClick={handleSearchClick}
+            className="bg-gray-800 text-white p-2 rounded-full hover:bg-orange-500 transition duration-300 flex items-center justify-center"
+            aria-label="Search"
+          >
+            <svg
+              className="w-6 h-6 text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+              />
+            </svg>
+          </button>
+        </div>
+
         {userData ? (
           <div className="hidden md:block text-lg text-gray-300 hover:text-orange-600 cursor-pointer">
             <span className="font-semibold">
@@ -151,24 +140,22 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
           </button>
         </div>
 
-        <div className="bg-green-950 px-4 py-2 flex justify-between items-center">
-          <div className="relative flex items-center space-x-1">
-            <button
-              onClick={() => navigate("/Shopping-cart")}
-              className="bg-gray-800 text-white p-2 rounded-full hover:bg-orange-500 h-10 w-10 flex justify-center items-center relative"
-            >
-              <i className="fas fa-shopping-cart text-lg"></i>
-              {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-1">
-                  {totalItems}
-                </span>
-              )}
-            </button>
-            {/* Show total price in both mobile and desktop views */}
-            <span className="block text-white text-sm font-semibold">
-              {totalItems > 0 ? `₹${totalPrice.toFixed(2)}` : ""}
-            </span>
-          </div>
+        <div className="relative flex items-center space-x-1">
+          <button
+            onClick={() => navigate("/Shopping-cart")}
+            className="bg-gray-800 text-white p-2 rounded-full hover:bg-orange-500 h-10 w-10 flex justify-center items-center relative"
+          >
+            <i className="fas fa-shopping-cart text-lg"></i>
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-1">
+                {totalItems}
+              </span>
+            )}
+          </button>
+          {/* Show total price in both mobile and desktop views */}
+          <span className="block text-white text-sm font-semibold">
+            {totalItems > 0 ? `₹${totalPrice.toFixed(2)}` : ""}
+          </span>
         </div>
 
         <div className="relative">
@@ -205,6 +192,30 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
                 >
                   &times;
                 </button>
+
+                {/* Add search option to mobile menu */}
+                <div className="flex items-center bg-gray-800 rounded-lg p-2 mb-4">
+                  <button 
+                    onClick={handleSearchClick}
+                    className="text-white flex items-center w-full justify-center"
+                  >
+                    <svg
+                      className="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                    <span>Search Products</span>
+                  </button>
+                </div>
 
                 <ul className="space-y-4 text-white text-lg">
                   <li>
@@ -245,11 +256,6 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
                   <li>
                     <Link to="/skyberry" className="block hover:text-white">
                       SkyBerry
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/pomegranate" className="block hover:text-white">
-                      Pomegranate
                     </Link>
                   </li>
                 </ul>

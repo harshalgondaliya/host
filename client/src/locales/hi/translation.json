@@ -1,0 +1,25 @@
+{
+  "welcome": "हमारी वेबसाइट पर आपका स्वागत है",
+  "navbar": {
+    "home": "होम",
+    "menu": "मेनू",
+    "about": "हमारे बारे में",
+    "contact": "संपर्क करें"
+  },
+  "language": {
+    "english": "अंग्रेज़ी",
+    "arabic": "अरबी",
+    "hindi": "हिंदी"
+  },
+  "login": "लॉगिन",
+  "signup": "साइन अप",
+  "logout": "लॉगआउट",
+  "Choose Your Language": "अपनी भाषा चुनें",
+  "Language Settings": "भाषा सेटिंग्स",
+  "Currently Selected": "वर्तमान में चयनित",
+  "About Language Settings": "भाषा सेटिंग्स के बारे में",
+  "Your language preference will be saved for future visits. The website will automatically detect your preferred language when you return.": "आपकी भाषा प्राथमिकता भविष्य के दौरे के लिए सहेजी जाएगी। जब आप वापस आएंगे तो वेबसाइट स्वचालित रूप से आपकी पसंदीदा भाषा का पता लगा लेगी।",
+  "This is the default language and provides full content across the website.": "यह डिफ़ॉल्ट भाषा है और पूरी वेबसाइट पर पूर्ण सामग्री प्रदान करती है।",
+  "Select for right-to-left layout and Arabic translation.": "दाएं से बाएं लेआउट और अरबी अनुवाद के लिए चुनें।",
+  "Choose Hindi for content localized for Indian users.": "भारतीय उपयोगकर्ताओं के लिए स्थानीयकृत सामग्री के लिए हिंदी चुनें।"
+} 

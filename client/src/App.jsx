@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from 'react-i18next';
 
 // Import Preloader
 import Preloader from "./components/Preloader";
@@ -29,15 +30,15 @@ class ErrorBoundary extends React.Component {
       return (
         <div className="min-h-screen flex items-center justify-center bg-yellow-50 p-4">
           <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-2xl font-bold text-red-600 mb-4">Something went wrong</h2>
+            <h1 className="text-2xl font-bold text-red-600 mb-4">Something went wrong</h1>
             <p className="text-gray-700 mb-4">
-              We're sorry, but there was an error in the application. Please try refreshing the page.
+              We're sorry, an unexpected error has occurred. Please try refreshing the page or contact support if the issue persists.
             </p>
-            <button 
-              onClick={() => this.setState({ hasError: false })}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            <button
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+              onClick={() => window.location.reload()}
             >
-              Try Again
+              Refresh Page
             </button>
           </div>
         </div>
@@ -50,6 +51,7 @@ class ErrorBoundary extends React.Component {
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   return (
     <ErrorBoundary>

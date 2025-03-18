@@ -1,38 +1,80 @@
-import React, { useState, useContext, useEffect, lazy, Suspense } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import cartData from "../cart/data.json";
 import Nav from "./Nav";
 import { AppContext } from "../context/AppContext";
-// Use lazy loading for Footer component
-const Footer = lazy(() => import("../components/Footer"));
+// Import Footer directly instead of lazy loading
+import Footer from "../components/Footer";
 
-// Updated image imports to use loadImage utility
-import { loadImage } from "../components/ImageOptimizer";
+// Updated image imports to use enhanced image optimization
+import OptimizedImage, {
+  loadImage,
+  ImageCache,
+} from "../components/ImageOptimizer";
 
-// Create a preloaded image cache
-const imageCache = {
-  1: loadImage("../assets/images/products/pineapple.webp"),
-  2: loadImage("../assets/images/products/mango.webp"),
-  3: loadImage("../assets/images/products/grapes.webp"),
-  4: loadImage("../assets/images/products/lychee.webp"),
-  5: loadImage("../assets/images/products/strawberry.webp"),
-  6: loadImage("../assets/images/sb.webp"),
-  7: loadImage("../assets/images/products/Pomegranate.webp"),
+// Image paths mapped to IDs for consistent reference
+const imagePathsById = {
+  1: "../assets/images/products/pineapple.webp",
+  2: "../assets/images/products/mango.webp",
+  3: "../assets/images/products/grapes.webp",
+  4: "../assets/images/products/lychee.webp",
+  5: "../assets/images/products/strawberry.webp",
+  6: "../assets/images/sb.webp",
+  7: "../assets/images/products/Pomegranate.webp",
 };
 
 const CartM = () => {
-  const [loadedImages, setLoadedImages] = useState({});
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    
-    // Set all images from cache to state
-    setLoadedImages(imageCache);
-  }, []);
-
+  const [isVisible, setIsVisible] = useState({});
   const [selectedSizes, setSelectedSizes] = useState({});
   const navigate = useNavigate();
   const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
+
+  // Set up Intersection Observer for lazy loading images
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    // Check if browser supports IntersectionObserver
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            setIsVisible((prev) => ({
+              ...prev,
+              [entry.target.id]: entry.isIntersecting,
+            }));
+          });
+        },
+        {
+          rootMargin: "200px", // Load images when they're 200px from viewport
+          threshold: 0.1,
+        }
+      );
+
+      document.querySelectorAll(".product-card-mobile").forEach((el) => {
+        observer.observe(el);
+      });
+
+      return () => observer.disconnect();
+    } else {
+      // Fallback for browsers that don't support IntersectionObserver
+      setIsVisible(
+        Array.from(document.querySelectorAll(".product-card-mobile")).reduce(
+          (acc, el) => ({ ...acc, [el.id]: true }),
+          {}
+        )
+      );
+    }
+  }, []);
+
+  // Preload critical images
+  useEffect(() => {
+    // Preload images that will be visible in the initial viewport
+    const firstVisibleImages = Object.values(imagePathsById).slice(0, 2);
+    ImageCache.preload(firstVisibleImages).then(() => {
+      // After initial images are loaded, preload the rest in the background
+      ImageCache.preload(Object.values(imagePathsById).slice(2));
+    });
+  }, []);
 
   const handleSizeChange = (itemId, sizeIndex) => {
     setSelectedSizes((prevSizes) => ({
@@ -114,7 +156,7 @@ const CartM = () => {
 
   // Memoize cart item calculations for better performance
   const cartItemDetails = React.useMemo(() => {
-    return cartData.products.subJuice.map(item => {
+    return cartData.products.subJuice.map((item) => {
       const selectedSizeIndex = selectedSizes[item.id] || 0;
       const selectedSize = item.sizes[selectedSizeIndex];
       const cartItem = cartItems.find(
@@ -134,7 +176,7 @@ const CartM = () => {
         cartItem,
         totalMRP,
         totalTooMore,
-        totalDiscount
+        totalDiscount,
       };
     });
   }, [cartItems, selectedSizes]);
@@ -150,137 +192,131 @@ const CartM = () => {
         <div className="mt-4">
           <h2 className="text-lg font-bold text-center">Shopping Cart</h2>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            {cartItemDetails.map(({
-              item, 
-              selectedSizeIndex, 
-              selectedSize, 
-              cartItem, 
-              totalMRP, 
-              totalTooMore, 
-              totalDiscount
-            }) => (
-              <div
-                key={`${item.id}-${selectedSizeIndex}`}
-                className="border border-gray-500 bg-white p-3 rounded-lg shadow-md flex flex-row items-center justify-between max-w-sm w-full mx-auto"
-              >
-                {/* Image (Right Side) */}
-                <div className="relative ml-2">
-                  {loadedImages[item.id] ? (
-                    <img
-                      src={loadedImages[item.id]}
-                      alt={item.name}
-                      className="w-36 h-48 sm:w-48 sm:h-56 object-contain rounded-lg"
-                      onClick={() => item.link && navigate(item.link)}
-                      style={{ cursor: item.link ? "pointer" : "default" }}
-                      loading="lazy"
-                      width="192"
-                      height="224"
-                    />
-                  ) : (
-                    <div className="w-36 h-48 sm:w-48 sm:h-56 flex items-center justify-center bg-gray-100 rounded-lg animate-pulse">
-                      <span className="text-gray-400">Loading...</span>
+            {cartItemDetails.map(
+              ({
+                item,
+                selectedSizeIndex,
+                selectedSize,
+                cartItem,
+                totalMRP,
+                totalTooMore,
+                totalDiscount,
+              }) => (
+                <div
+                  id={`mobile-product-${item.id}`}
+                  key={`${item.id}-${selectedSizeIndex}`}
+                  className="product-card-mobile border border-gray-500 bg-white p-3 rounded-lg shadow-md flex flex-row items-center justify-between max-w-sm w-full mx-auto"
+                >
+                  {/* Image (Right Side) */}
+                  <div className="relative ml-2">
+                    {isVisible[`mobile-product-${item.id}`] && (
+                      <OptimizedImage
+                        src={loadImage(imagePathsById[item.id])}
+                        alt={item.name}
+                        className="w-36 h-48 sm:w-48 sm:h-56 object-contain rounded-lg"
+                        onClick={() => item.link && navigate(item.link)}
+                        style={{ cursor: item.link ? "pointer" : "default" }}
+                        loadingPriority={item.id <= 2 ? "eager" : "lazy"}
+                        width={144}
+                        height={192}
+                      />
+                    )}
+                    <div className="flex items-center mt-2">
+                      <img
+                        src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
+                        alt="Vegetarian Symbol"
+                        className="h-7 w-7"
+                        width="28"
+                        height="28"
+                        loading="lazy"
+                      />
+                      <span className="text-gray-950 text-sm">Vegetarian</span>
                     </div>
-                  )}
-                  <div className="flex items-center mt-2">
-                    <img
-                      src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
-                      alt="Vegetarian Symbol"
-                      className="h-7 w-7"
-                    />
-                    <span className="text-gray-950 text-sm">Vegetarian</span>
                   </div>
-                </div>
-                {/* Content (Left Side) */}
-                <div className="flex-1 bg-sky-100 rounded-lg shadow-md p-2 sm:p-4">
-                  <div onClick={() => item.link && navigate(item.link)}>
-                    <h3 className="text-sm font-semibold">
-                      {item.description}
-                    </h3>
-                    <p className="text-xs text-gray-500 line-through">
-                      MRP: ₹{totalMRP.toFixed(2)}
-                    </p>
-                    <p className="text-sm text-green-600 font-bold">
-                      TooMore: ₹{totalTooMore.toFixed(2)}
-                    </p>
-                    <p className="text-xs font-semibold bg-green-100 text-green-600 px-2 py-1 rounded-sm w-fit">
-                      ₹{totalDiscount.toFixed(2)} OFF
-                    </p>
-                  </div>
-                  <label className="text-xs font-semibold mt-2 block">
-                    Select Size:
-                  </label>
-                  <select
-                    className="border p-2 w-full text-xs mt-1 rounded-lg"
-                    value={selectedSizeIndex}
-                    onChange={(e) =>
-                      handleSizeChange(item.id, parseInt(e.target.value))
-                    }
-                  >
-                    {item.sizes.map((size, index) => (
-                      <option key={index} value={index}>
-                        {size.size} ({size.pricePerUnit})
-                      </option>
-                    ))}
-                  </select>
-                  {!cartItem || cartItem.quantity === 0 ? (
-                    <button
-                      className="mt-2 w-full bg-green-500 text-white py-2 text-sm rounded-lg hover:bg-green-600"
-                      onClick={() =>
-                        handleAddToCart(item.id, 1, selectedSizeIndex)
+                  {/* Content (Left Side) */}
+                  <div className="flex-1 bg-sky-100 rounded-lg shadow-md p-2 sm:p-4">
+                    <div onClick={() => item.link && navigate(item.link)}>
+                      <h3 className="text-sm font-semibold">
+                        {item.description}
+                      </h3>
+                      <p className="text-xs text-gray-500 line-through">
+                        MRP: ₹{totalMRP.toFixed(2)}
+                      </p>
+                      <p className="text-sm text-green-600 font-bold">
+                        TooMore: ₹{totalTooMore.toFixed(2)}
+                      </p>
+                      <p className="text-xs font-semibold bg-green-100 text-green-600 px-2 py-1 rounded-sm w-fit">
+                        ₹{totalDiscount.toFixed(2)} OFF
+                      </p>
+                    </div>
+                    <label className="text-xs font-semibold mt-2 block">
+                      Select Size:
+                    </label>
+                    <select
+                      className="border p-2 w-full text-xs mt-1 rounded-lg"
+                      value={selectedSizeIndex}
+                      onChange={(e) =>
+                        handleSizeChange(item.id, parseInt(e.target.value))
                       }
                     >
-                      Add to Cart
-                    </button>
-                  ) : (
-                    <div className="mt-2 flex items-center justify-between border p-2 rounded-lg w-full">
+                      {item.sizes.map((size, index) => (
+                        <option key={index} value={index}>
+                          {size.size} ({size.pricePerUnit})
+                        </option>
+                      ))}
+                    </select>
+                    {!cartItem || cartItem.quantity === 0 ? (
                       <button
-                        className="bg-green-500 text-white px-3 py-1 text-sm rounded-lg hover:bg-green-600"
+                        className="mt-2 w-full bg-green-500 text-white py-2 text-sm rounded-lg hover:bg-green-600"
                         onClick={() =>
-                          handleDecrement(item.id, selectedSizeIndex)
+                          handleAddToCart(item.id, 1, selectedSizeIndex)
                         }
                       >
-                        -
+                        Add to Cart
                       </button>
-                      <input
-                        type="number"
-                        className="w-12 text-center border rounded-lg mx-1"
-                        value={cartItem.quantity}
-                        min="1"
-                        onChange={(e) =>
-                          handleManualQuantityChange(
-                            item.id,
-                            selectedSizeIndex,
-                            e
-                          )
-                        }
-                      />
-                      <button
-                        className="bg-green-500 text-white px-3 py-1 text-sm rounded-lg hover:bg-green-600"
-                        onClick={() =>
-                          handleIncrement(item.id, selectedSizeIndex)
-                        }
-                      >
-                        +
-                      </button>
-                      <button
-                        className="bg-gray-300 text-gray-700 px-3 py-1 ml-2 rounded-lg"
-                        onClick={() =>
-                          handleQuantityChange(item.id, selectedSizeIndex, 0)
-                        }
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  )}
+                    ) : (
+                      <div className="mt-2 flex items-center justify-between border p-2 rounded-lg w-full">
+                        <button
+                          className="bg-green-500 text-white px-3 py-1 text-sm rounded-lg hover:bg-green-600"
+                          onClick={() =>
+                            handleDecrement(item.id, selectedSizeIndex)
+                          }
+                        >
+                          -
+                        </button>
+                        <input
+                          type="number"
+                          className="w-12 text-center border rounded-lg mx-1"
+                          value={cartItem.quantity}
+                          min="1"
+                          onChange={(e) =>
+                            handleManualQuantityChange(
+                              item.id,
+                              selectedSizeIndex,
+                              e
+                            )
+                          }
+                        />
+                        <button
+                          className="bg-green-500 text-white px-3 py-1 text-sm rounded-lg hover:bg-green-600"
+                          onClick={() =>
+                            handleIncrement(item.id, selectedSizeIndex)
+                          }
+                        >
+                          +
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
+        <br />
+        <br />
       </div>
-      <Suspense fallback={<div>Loading footer...</div>}>
-        <Footer />
-      </Suspense>
+      <Footer />
     </>
   );
 };

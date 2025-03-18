@@ -1,0 +1,25 @@
+{
+  "welcome": "مرحبًا بكم في موقعنا",
+  "navbar": {
+    "home": "الرئيسية",
+    "menu": "القائمة",
+    "about": "من نحن",
+    "contact": "اتصل بنا"
+  },
+  "language": {
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "hindi": "الهندية"
+  },
+  "login": "تسجيل الدخول",
+  "signup": "التسجيل",
+  "logout": "تسجيل الخروج",
+  "Choose Your Language": "اختر لغتك",
+  "Language Settings": "إعدادات اللغة",
+  "Currently Selected": "محدد حاليا",
+  "About Language Settings": "حول إعدادات اللغة",
+  "Your language preference will be saved for future visits. The website will automatically detect your preferred language when you return.": "سيتم حفظ تفضيل اللغة للزيارات المستقبلية. سيكتشف الموقع تلقائيًا اللغة المفضلة لديك عند عودتك.",
+  "This is the default language and provides full content across the website.": "هذه هي اللغة الافتراضية وتوفر محتوى كاملاً عبر الموقع.",
+  "Select for right-to-left layout and Arabic translation.": "حدد للتخطيط من اليمين إلى اليسار والترجمة العربية.",
+  "Choose Hindi for content localized for Indian users.": "اختر اللغة الهندية للمحتوى المخصص للمستخدمين الهنود."
+} 

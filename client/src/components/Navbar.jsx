@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
@@ -6,8 +7,10 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo1.png";
+import States from "./States";
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -65,7 +68,11 @@ const Navbar = () => {
   return (
     <nav className="bg-green-950 fixed w-full z-20 top-0 start-0 border-b border-transparent dark:transparent">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-0">
-        <a onClick={() => navigate("/")} className="flex items-center space-x-3 rtl:space-x-reverse" style={{cursor: "pointer"}}>
+        <a
+          onClick={() => navigate("/")}
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+          style={{ cursor: "pointer" }}
+        >
           <img src={logo} alt="Toomore Juice Logo" className="h-16 w-16" />
         </a>
 
@@ -157,7 +164,7 @@ const Navbar = () => {
                     icon: "🌍",
                     text: "Environmental Impact",
                     link: "/env-impact",
-                  }
+                  },
                   // {
                   //   icon: "💧",
                   //   text: "Water Conservation",
@@ -269,39 +276,23 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div className="md:hidden flex items-center relative">
-          {/* 🔹 Mobile Search Bar (Only for Mobile) */}
-          {searchOpenMobile && (
-            <div className="absolute top-full left-8 mt-4 w-64 bg-yellow-500 rounded-md shadow-lg p-3 block md:hidden">
-              <input
-                type="text"
-                placeholder="Search any Juice..."
-                className="w-full px-4 py-2 rounded-md bg-green-950 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    navigate("/juices");
-                  }
-                }}
-              />
-            </div>
-          )}
           <button
-  onClick={() => setSearchOpenMobile(!searchOpenMobile)}
-  className="text-white hover:text-orange-600 md:hidden mr-auto ml-48"
->
-  <i className="fas fa-search text-xl"></i>
-</button>
+            onClick={() => navigate("/search")}
+            className="text-white hover:text-orange-600 md:hidden mr-auto ml-48"
+          >
+            <i className="fas fa-search text-xl"></i>
+          </button>
 
-<button
-  onClick={handleMobileMenuToggle}
-  className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
->
-  {mobileMenuOpen ? (
-    <i className="fas fa-times"></i>
-  ) : (
-    <i className="fas fa-bars"></i>
-  )}
-</button>
-
+          <button
+            onClick={handleMobileMenuToggle}
+            className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
+          >
+            {mobileMenuOpen ? (
+              <i className="fas fa-times"></i>
+            ) : (
+              <i className="fas fa-bars"></i>
+            )}
+          </button>
 
           {mobileMenuOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
@@ -473,8 +464,11 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/states" className="block hover:text-orange-900">
-                      States
+                    <div className="block hover:text-orange-900">
+                      <States />
+                    </div>
+                    <Link to="/states" className="mt-2 block hover:text-orange-900">
+                      {t('Language Settings')}
                     </Link>
                   </li>
                 </ul>
@@ -486,25 +480,11 @@ const Navbar = () => {
         {/* Desktop Items */}
         <div className="flex items-center space-x-5">
           <button
-            onClick={() => setSearchOpen(!searchOpen)}
+            onClick={() => navigate("/search")}
             className="text-white hover:text-orange-600 hidden md:block"
           >
             <i className="fas fa-search text-xl"></i>
           </button>
-          {searchOpen && (
-            <div className="absolute top-full right-48 mt-0 w-72 bg-yellow-500 rounded-md shadow-lg p-3">
-              <input
-                type="text"
-                placeholder="Search any Juice..."
-                className="w-full px-4 py-2 rounded-md bg-green-950 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    navigate("/juices");
-                  }
-                }}
-              />
-            </div>
-          )}
 
           <Link
             to="/cart"
@@ -512,11 +492,16 @@ const Navbar = () => {
           >
             <i className="fas fa-shopping-cart text-xl"></i>
           </Link>
+          
+          
+
+          {/* Language Settings Page Link */}
           <Link
             to="/states"
-            className="text-white hover:text-orange-600 hidden md:block"
+            className="text-white hover:text-orange-600 hidden md:flex items-center ml-2"
+            title="Language Settings"
           >
-            <i className="fas fa-globe text-xl"></i>
+            <i className="fas fa-globe text-lg"></i>
           </Link>
 
           {/* Show user icon for desktop when user is not logged in */}

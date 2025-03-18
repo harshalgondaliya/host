@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback, memo } from "
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { useTranslation } from 'react-i18next';
 
 // Using dynamic imports to split the bundle
 const loadImages = () => {
@@ -101,7 +102,23 @@ class SlideshowErrorBoundary extends React.Component {
 
 // Define the component as a named function
 const Slideshow = () => {
-  // Define static slide data first
+  // Add translation hook even if not used yet
+  const { t } = useTranslation();
+  
+  // Define states first
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [loadedImages, setLoadedImages] = useState({});
+  
+  // Define refs
+  const timeoutRef = useRef(null);
+  const transitionRef = useRef(null);
+  const slideshowRef = useRef(null);
+  
+  // Define static slide data
   const slideDataArray = [
     { 
       desktop: image1, 
@@ -138,17 +155,6 @@ const Slideshow = () => {
   // Image data with links - memoized to prevent recreation on each render
   const slideData = useMemo(() => slideDataArray, []);
   
-  const [isMobile, setIsMobile] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [touchStart, setTouchStart] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [loadedImages, setLoadedImages] = useState({});
-  
-  const timeoutRef = useRef(null);
-  const transitionRef = useRef(null);
-  const slideshowRef = useRef(null);
-
   // Preload next images
   useEffect(() => {
     if (!slideData || !slideData.length) return;
