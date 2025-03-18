@@ -4,7 +4,7 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 // Dynamically import skyberry
 const skyberry = loadImage('../assets/images/products/SkyBerry.webp');
 // Dynamically import label
-const label = loadImage('../assets/images/SkyBerryLabel.webp');
+const label = loadImage('../assets/images/mango.webp');
 // Dynamically import Small
 const Small = loadImage('../assets/images/SkyBerryS.webp');
 import Nav from "../cart/Nav";

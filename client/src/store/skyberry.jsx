@@ -1,11 +1,9 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
-import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-// Dynamically import skyberry
-const skyberry = loadImage('../assets/images/products/SkyBerry.webp');
-// Dynamically import label
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
+// Dynamically import images
+const skyberry = loadImage('../assets/images/sb.webp');
 const label = loadImage('../assets/images/SkyBerryLabel.webp');
-// Dynamically import Small
 const Small = loadImage('../assets/images/SkyBerryS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";

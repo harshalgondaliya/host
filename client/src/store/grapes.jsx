@@ -1,12 +1,10 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
-import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-// Dynamically import grape
-const grape = loadImage('../assets/images/products/grapes.webp');
-// Dynamically import label
-const label = loadImage('../assets/images/products/lychee.webp');
-// Dynamically import GrapeS
-const GrapeS = loadImage('../assets/images/products/GrapesS.webp');
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
+// Dynamically import images
+const grapes = loadImage('../assets/images/products/grapes.webp?ver=2');
+const label = loadImage('../assets/images/products/strawberry.webp');
+const GrapesS = loadImage('../assets/images/products/GrapesS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -26,10 +24,10 @@ const Grapes = () => {
   
   // Memoized image thumbnails array
   const imageThumbnails = React.useMemo(() => [
-    { src: grape, alt: "grape image" },
+    { src: grapes, alt: "grape image" },
     { src: label, alt: "label image" },
-    { src: GrapeS, alt: "GrapeS image" }
-  ], [grape, label, GrapeS]);
+    { src: GrapesS, alt: "GrapeS image" }
+  ], [grapes, label, GrapesS]);
   
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src); // Default main image

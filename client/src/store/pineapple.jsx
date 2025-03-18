@@ -1,11 +1,9 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
-import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-// Dynamically import pineapple
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
+// Dynamically import images
 const pineapple = loadImage('../assets/images/products/pineapple.webp');
-// Dynamically import label
-const label = loadImage('../assets/images/products/lychee.webp');
-// Dynamically import PineappleS
+const label = loadImage('../assets/images/products/grapes.webp');
 const PineappleS = loadImage('../assets/images/products/PineappleS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
@@ -114,7 +112,7 @@ const Pineapple = () => {
             >
               {imageThumbnails.map((image, index) => (
                 <OptimizedImage
-                key={index}
+                  key={index}
                   src={image.src}
                   alt={image.alt}
                   className={`w-20 h-20 border cursor-pointer hover:border-green-950 ${

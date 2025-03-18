@@ -1,29 +1,22 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-// Dynamically import images
-const strawberry = new URL('../assets/images/products/strawberry.webp', import.meta.url).href;
-const label = new URL('../assets/images/products/strawberry.webp', import.meta.url).href;
-const StrawberryS = new URL('../assets/images/products/StrawberryS.webp', import.meta.url).href;
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
+
+// Update image paths to ensure they're using the correct format
+const strawberry = loadImage('../assets/images/products/strawberry.webp');
+const label = loadImage('../assets/images/products/mango.webp');
+const StrawberryS = loadImage('../assets/images/products/StrawberryS.webp');
+
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { AppContent } from "../context/AppContext";
 import cartData from "../cart/data.json";
 
-// Create a memoized image component for better performance
-const ProductImage = React.memo(({ src, alt, className, onClick }) => (
-  <LazyLoadImage
-    src={src}
-    alt={alt || "Product image"}
-    className={className}
-    effect="blur"
-    threshold={100}
-    onClick={onClick}
-    placeholderSrc="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23cccccc'/%3E%3C/svg%3E"
-  />
-));
+// Add debugging to troubleshoot image loading
+console.log('Strawberry Image Path:', strawberry);
+console.log('Label Image Path:', label);
+console.log('StrawberryS Image Path:', StrawberryS);
 
 const Strawberry = () => {
   useEffect(() => {
@@ -36,7 +29,15 @@ const Strawberry = () => {
   const navigate = useNavigate();
   const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(strawberry); // Default main image
+  
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: strawberry, alt: "strawberry image" },
+    { src: label, alt: "label image" },
+    { src: StrawberryS, alt: "StrawberryS small" }
+  ], [strawberry, label, StrawberryS]);
+  
+  const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src);
 
   // Scroll Functions
   const scrollUp = () =>
@@ -52,16 +53,13 @@ const Strawberry = () => {
 
   // Ensure `sizes` exist before accessing index
   const selectedSize = product.sizes?.[selectedSizeIndex] || {};
-
-  // Find cart item matching selected size
+  
   const cartItem = cartItems.find(
     (item) => item.id === `${product.id}-${selectedSizeIndex}`
   );
 
-  // Handle Size Change
   const handleSizeChange = (index) => setSelectedSizeIndex(index);
 
-  // Handle Cart Operations
   const handleCartUpdate = (newQuantity) => {
     const cartId = `${product.id}-${selectedSizeIndex}`;
     if (newQuantity <= 0) {
@@ -81,148 +79,113 @@ const Strawberry = () => {
     }
   };
 
-  // Price Calculations
-  const totalMRP =
-    selectedSize.originalPrice * (cartItem ? cartItem.quantity : 1);
-  const totalTooMore =
-    selectedSize.cutoffPrice * (cartItem ? cartItem.quantity : 1);
+  const totalMRP = selectedSize.originalPrice || 0;
+  const totalTooMore = selectedSize.cutoffPrice || 0;
   const totalDiscount = totalMRP - totalTooMore;
 
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  const subtotalPrice = cartItems.reduce(
-    (sum, item) =>
-      item.size ? sum + item.quantity * item.size.cutoffPrice : sum,
-    0
-  );
-
-  // Preload image thumbnails
-  const imageThumbnails = React.useMemo(() => [
-    { src: strawberry, alt: "Strawberry juice" },
-    { src: label, alt: "Strawberry label" },
-    { src: StrawberryS, alt: "Strawberry small" }
-  ], []);
-
   return (
-    <>
-      <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
-      <br />
-      <br />
-      <br />
-      <div className="min-h-screen bg-white flex justify-center py-10">
-        <div className="max-w-6xl w-full flex space-x-8">
-          {/* Left Section - Thumbnails */}
-          <div className="flex flex-col items-center rounded-lg p-0 shadow-sm bg-white">
-            <button
-              onClick={scrollUp}
-              className="bg-white text-black p-2 rounded-lg mb-2 hover:bg-gray-400 transition"
-            >
-              <ChevronUp size={30} />
-            </button>
-            <div
-              ref={thumbnailRef}
-              className="overflow-hidden max-h-[255px] flex flex-col p-3"
-            >
-              {imageThumbnails.map((image, index) => (
-                <ProductImage
-                  key={index}
-                  src={image.src}
-                  alt={image.alt}
-                  className={`w-20 h-20 border cursor-pointer hover:border-green-950 ${
-                    selectedImage === image.src
-                      ? "border-green-700"
-                      : "border-gray-400"
-                  }`}
-                  onClick={() => setSelectedImage(image.src)}
-                />
-              ))}
+    <div className="flex flex-col min-h-screen bg-yellow-400">
+      <Nav />
+      <div className="flex-grow container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Left Column - Image Gallery */}
+          <div className="flex flex-col items-center">
+            <div className="w-full max-w-md mb-4">
+              <OptimizedImage
+                src={selectedImage}
+                alt="Selected product image"
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
             </div>
-            <button
-              onClick={scrollDown}
-              className="bg-white text-black p-2 rounded-lg mb-2 hover:bg-gray-400 transition"
-            >
-              <ChevronDown size={30} />
-            </button>
+            <div className="relative w-full max-w-md">
+              <div
+                ref={thumbnailRef}
+                className="flex flex-col gap-4 max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
+              >
+                {imageThumbnails.map((image, index) => (
+                  <OptimizedImage
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    className={`w-full h-auto rounded-lg cursor-pointer transition-all duration-300 ${
+                      selectedImage === image.src
+                        ? "ring-2 ring-green-600"
+                        : "hover:ring-2 hover:ring-green-400"
+                    }`}
+                    onClick={() => setSelectedImage(image.src)}
+                  />
+                ))}
+              </div>
+              <button
+                onClick={scrollUp}
+                className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-1 shadow-md hover:bg-gray-100"
+              >
+                <ChevronUp className="w-6 h-6 text-gray-600" />
+              </button>
+              <button
+                onClick={scrollDown}
+                className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white rounded-full p-1 shadow-md hover:bg-gray-100"
+              >
+                <ChevronDown className="w-6 h-6 text-gray-600" />
+              </button>
+            </div>
           </div>
 
-          {/* Center Section - Main Image */}
-          <div className="w-1/3">
-            <ProductImage
-              src={selectedImage}
-              alt="Product"
-              className="w-full border border-green-700"
-            />
-          </div>
-
-          {/* Right Section - Product Details */}
-          <div className="w-2/3 pl-6">
-            <h1 className="text-2xl font-semibold">
-              Crimson Berry Strawberry : {selectedSize.size} (
-              {selectedSize.pricePerUnit})
+          {/* Right Column - Product Info */}
+          <div className="flex flex-col">
+            <h1 className="text-3xl font-bold text-green-800 mb-4">
+              {product.name || "Strawberry Juice"}
             </h1>
-            <p className="text-gray-500 mt-2">{product.description}</p>
-            <p className="text-gray-500 mt-2">Variant</p>
-
-            {/* Size Selection */}
-            <div className="flex space-x-4 mt-2">
+            <p className="text-xl text-green-700 mb-6">
+              {product.description || "Fresh and delicious strawberry juice"}
+            </p>
+            <div className="flex gap-4 mb-6">
               {product.sizes?.map((size, index) => (
                 <button
                   key={index}
-                  className={`px-4 py-2 border rounded-lg ${
-                    selectedSizeIndex === index
-                      ? "border-green-800 bg-green-100"
-                      : "border-gray-400"
-                  }`}
                   onClick={() => handleSizeChange(index)}
+                  className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                    selectedSizeIndex === index
+                      ? "bg-green-600 text-white"
+                      : "bg-white text-green-600 hover:bg-green-50"
+                  }`}
                 >
                   {size.size}
                 </button>
               ))}
             </div>
-
-            <div className="border-t border-gray-800 mt-4 pt-4"></div>
-
-            {/* Pricing */}
-            <div className="mb-4">
+            <div className="mb-6">
               <p className="text-gray-500 text-sm line-through">
                 MRP: ₹{totalMRP.toFixed(2)}
               </p>
-              <div className="flex justify-between items-center">
-                <p className="text-green-600 text-lg font-bold">
-                  TooMore: ₹{totalTooMore.toFixed(2)}
-                </p>
-                <p className="text-sm font-semibold">
-                  <span className="bg-green-100 text-green-600 px-2 py-1 rounded-sm">
-                    ₹{totalDiscount.toFixed(2)} OFF
-                  </span>
-                </p>
-              </div>
-              <p className="text-gray-500 text-xs">
-                ( Inclusive of all taxes )
+              <p className="text-2xl font-bold text-green-800">
+                TooMore: ₹{totalTooMore.toFixed(2)}
+              </p>
+              <p className="text-sm font-semibold mt-1">
+                <span className="bg-green-100 text-green-600 px-2 py-1 rounded-sm">
+                  ₹{totalDiscount.toFixed(2)} OFF
+                </span>
               </p>
             </div>
-
-            {/* Add to Cart Button */}
+            
             {!cartItem ? (
-              <div className="flex justify-end">
-                <button
-                  className="w-56 bg-green-800 text-white py-2 mt-1"
-                  onClick={() => handleCartUpdate(1)}
-                >
-                  <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
-                  &nbsp;Add to Cart
-                </button>
-              </div>
+              <button
+                onClick={() => handleCartUpdate(1)}
+                className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300"
+              >
+                Add to Cart
+              </button>
             ) : (
-              <div className="flex items-center rounded-lg p-0 justify-end mx-0">
+              <div className="flex items-center">
                 <button
-                  className="bg-green-800 text-white px-4 py-1.5"
+                  className="bg-green-600 text-white px-5 py-2 rounded-l-full text-lg font-semibold"
                   onClick={() => handleCartUpdate(cartItem.quantity - 1)}
                 >
                   -
                 </button>
                 <input
                   type="number"
-                  className="w-[130px] text-center border my-1 py-1.5"
+                  className="w-20 text-center border-t border-b py-2 text-lg"
                   value={cartItem.quantity}
                   onChange={(e) =>
                     handleCartUpdate(parseInt(e.target.value, 10) || 1)
@@ -230,77 +193,18 @@ const Strawberry = () => {
                   min="1"
                 />
                 <button
-                  className="bg-green-800 text-white px-4 py-1.5"
+                  className="bg-green-600 text-white px-5 py-2 rounded-r-full text-lg font-semibold"
                   onClick={() => handleCartUpdate(cartItem.quantity + 1)}
                 >
                   +
                 </button>
               </div>
             )}
-            <div className="border-t border-gray-800 mt-4 pt-4"></div>
-            <div className="flex items-center mt-2">
-              <img
-                src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
-                alt="Vegetarian Symbol"
-                className="h-10 w-10"
-              />
-              <span className="text-gray-950 text-sm">Vegetarian</span>
-            </div>
-            {/* Tab Buttons */}
-            <div className="flex justify-around bg-gray-100 p-3 rounded-t-lg">
-              {["desc", "disc", "info"].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`py-2 px-4 font-semibold transition-all duration-300 ${
-                    activeTab === tab
-                      ? "text-green-600 border-b-2 border-green-800"
-                      : "text-gray-600 hover:text-green-800"
-                  }`}
-                >
-                  {tab === "desc"
-                    ? "Description"
-                    : tab === "disc"
-                    ? "Disclaimer"
-                    : "More Info"}
-                </button>
-              ))}
-            </div>
-
-            {/* Tab Content */}
-            <div className="p-5 text-gray-900">
-              {activeTab === "desc" && (
-                <p>
-                  Indulge in the rich and vibrant taste of our Strawberry Juice.
-                  Made from carefully selected, ripe strawberries, this
-                  refreshing drink brings you the perfect balance of natural
-                  sweetness and tangy goodness. A delightful way to enjoy
-                  nature's best flavors!
-                </p>
-              )}
-              {activeTab === "disc" && (
-                <p>
-                  Our Strawberry Juice is naturally rich in vitamins and
-                  antioxidants. While delicious and nutritious, it should be
-                  consumed in moderation, as it contains natural sugars. If you
-                  have dietary restrictions, consult a healthcare expert. Best
-                  served chilled for maximum refreshment.
-                </p>
-              )}
-              {activeTab === "info" && (
-                <p>
-                  Packed with vitamin C, folate, and antioxidants, strawberry
-                  juice promotes glowing skin, strengthens immunity, and
-                  supports heart health. Enjoy it straight, blend it into
-                  smoothies, or mix with sparkling water for a refreshing twist.
-                </p>
-              )}
-            </div>
           </div>
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -1,10 +1,11 @@
-import React, { useRef, useEffect, useState, useContext } from "react";
+import React, { useRef, useEffect, useState, useContext, useMemo } from "react";
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from 'framer-motion';
 // Dynamically import pineapple
 const pineapple = loadImage('../assets/images/products/pineapple.webp');
 // Dynamically import label
-const label = loadImage('../assets/images/products/lychee.webp');
+const label = loadImage('../assets/images/products/grapes.webp');
 // Dynamically import PineappleS
 const PineappleS = loadImage('../assets/images/products/PineappleS.webp');
 import Nav from "../cart/Nav";
@@ -24,11 +25,11 @@ const PineappleM = () => {
   const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
   
   // Memoized image thumbnails array
-  const imageThumbnails = React.useMemo(() => [
-    { src: pineapple, alt: "pineapple image" },
-    { src: label, alt: "label image" },
-    { src: PineappleS, alt: "PineappleS image" }
-  ], [pineapple, label, PineappleS]);
+  const imageThumbnails = useMemo(() => [
+    { src: pineapple, alt: 'Pineapple' },
+    { src: PineappleS, alt: 'Pineapple Small' },
+    { src: label, alt: 'Pineapple Label' }
+  ], [pineapple, PineappleS, label]);
   
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src);

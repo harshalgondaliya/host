@@ -1,6 +1,9 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
+const strawberry = loadImage('../assets/images/products/strawberry.webp');
+const label = loadImage('../assets/images/products/mango.webp');
+const StrawberryS = loadImage('../assets/images/products/StrawberryS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -8,10 +11,6 @@ import { AppContent } from "../context/AppContext";
 import cartData from "../cart/data.json";
 
 const StrawberryM = () => {
-  // Load images efficiently
-  const strawberry = loadImage('../assets/images/products/strawberry.webp');
-  const label = loadImage('../assets/images/products/strawberry.webp');
-  const StrawberryS = loadImage('../assets/images/products/StrawberryS.webp');
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,7 +29,7 @@ const StrawberryM = () => {
   ], [strawberry, label, StrawberryS]);
   
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src);
+  const [selectedImage, setSelectedImage] = useState(strawberry);
 
   // Debugging
   console.log("Cart Data:", cartData);
@@ -100,7 +99,7 @@ const StrawberryM = () => {
         {/* Main Image & Thumbnails */}
         <div className="w-full flex flex-col items-center">
           <div className="relative w-full">
-            <img
+            <OptimizedImage
               src={selectedImage}
               alt="Product"
               className="w-full rounded-lg border border-green-700"
@@ -109,7 +108,8 @@ const StrawberryM = () => {
           <div className="flex overflow-x-auto mt-3 space-x-4">
             {imageThumbnails.map((image, index) => (
               <div
-                key={index}
+              ref={thumbnailRef}
+                
                 className={`cursor-pointer p-1 rounded ${
                   selectedImage === image.src
                     ? "border-2 border-green-700"
@@ -118,10 +118,12 @@ const StrawberryM = () => {
                 onClick={() => setSelectedImage(image.src)}
               >
                 <OptimizedImage
+                  key={index}
                   src={image.src}
                   alt={image.alt}
                   className="w-16 h-16 object-cover"
                   threshold={200}
+                  onClick={() => setSelectedImage(image.src)}
                 />
               </div>
             ))}

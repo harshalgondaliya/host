@@ -1,16 +1,14 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
-import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { AppContent } from "../context/AppContext";
 import cartData from "../cart/data.json";
-// Dynamically import label
-const label = loadImage('../assets/images/products/strawberry.webp');
-// Dynamically import mango
+// Dynamically import images
 const mango = loadImage('../assets/images/products/mango.webp');
-// Dynamically import MangoS
+const label = loadImage('../assets/images/products/lychee.webp');
 const MangoS = loadImage('../assets/images/products/MangoS.webp');
 
 const Mango = () => {
@@ -26,8 +24,8 @@ const Mango = () => {
   
   // Memoized image thumbnails array
   const imageThumbnails = React.useMemo(() => [
-    { src: label, alt: "label image" },
     { src: mango, alt: "mango image" },
+    { src: label, alt: "label image" },
     { src: MangoS, alt: "MangoS image" }
   ], [label, mango, MangoS]);
   

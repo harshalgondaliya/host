@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useState, useContext } from "react";
+import React, { useRef, useEffect, useState, useContext, useMemo } from "react";
+import { motion, AnimatePresence } from 'framer-motion';
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
 // Dynamically import LycheeS
@@ -24,11 +25,11 @@ const LycheeM = () => {
   const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
   
   // Memoized image thumbnails array
-  const imageThumbnails = React.useMemo(() => [
-    { src: lychee, alt: "lychee image" },
-    { src: label, alt: "label image" },
-    { src: LycheeS, alt: "LycheeS image" }
-  ], [lychee, label, LycheeS]);
+  const imageThumbnails = useMemo(() => [
+    { src: lychee, alt: 'Lychee' },
+    { src: LycheeS, alt: 'Lychee Small' },
+    { src: label, alt: 'Lychee Label' }
+  ], [lychee, LycheeS, label]);
   
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src);
