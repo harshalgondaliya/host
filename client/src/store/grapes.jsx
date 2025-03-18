@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 // Dynamically import images
-const grapes = loadImage('../assets/images/products/grapes.webp?ver=2');
-const label = loadImage('../assets/images/products/strawberry.webp');
-const GrapesS = loadImage('../assets/images/products/GrapesS.webp');
+const grapes = loadImage('/assets/images/products/grapes.webp?ver=2');
+const label = loadImage('/assets/images/products/strawberry.webp');
+const GrapesS = loadImage('/assets/images/products/GrapesS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";

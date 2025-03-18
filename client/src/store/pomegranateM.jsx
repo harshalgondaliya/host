@@ -2,11 +2,11 @@ import React, { useRef, useEffect, useState, useContext } from "react";
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
 // Dynamically import pomegranate
-const pomegranate = loadImage('../assets/images/products/Pomegranate.webp');
+const pomegranate = loadImage('/assets/images/products/Pomegranate.webp');
 // Dynamically import label
-const label = loadImage('../assets/images/PomegranateLabel.webp');
+const label = loadImage('/assets/images/PomegranateLabel.webp');
 // Dynamically import Small
-const Small = loadImage('../assets/images/PomegranateS.webp');
+const Small = loadImage('/assets/images/PomegranateS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";

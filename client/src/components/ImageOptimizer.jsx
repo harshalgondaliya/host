@@ -31,21 +31,22 @@ const OptimizedImage = React.memo(({
  */
 export const loadImage = (path) => {
   try {
-    console.log("Attempting to load image:", path);
-    let imgUrl;
+    // Remove leading slash if present for consistency
+    const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
     
-    // First try to load as URL
-    try {
-      imgUrl = new URL(path, import.meta.url).href;
-    } catch (urlError) {
-      console.warn(`URL loading failed for: ${path}`, urlError);
-      
-      // Try direct path as fallback
-      imgUrl = path;
+    // In production, assets are served from the root
+    if (import.meta.env.PROD) {
+      // For production, use the path directly from the root
+      return '/' + normalizedPath;
+    } else {
+      // For development, use import.meta.url
+      try {
+        return new URL(normalizedPath, import.meta.url).href;
+      } catch (urlError) {
+        console.warn(`URL loading failed for: ${path}`, urlError);
+        return '/' + normalizedPath;
+      }
     }
-    
-    console.log("Image loaded as:", imgUrl);
-    return imgUrl;
   } catch (error) {
     console.error(`Failed to load image: ${path}`, error);
     return placeholderSrc;

@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import cartData from "../cart/data.json";
 // Dynamically import images
-const mango = loadImage('../assets/images/products/mango.webp');
-const label = loadImage('../assets/images/products/lychee.webp');
-const MangoS = loadImage('../assets/images/products/MangoS.webp');
+const mango = loadImage('/assets/images/products/mango.webp');
+const label = loadImage('/assets/images/products/lychee.webp');
+const MangoS = loadImage('/assets/images/products/MangoS.webp');
 
 const Mango = () => {
   useEffect(() => {

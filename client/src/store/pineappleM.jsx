@@ -3,11 +3,11 @@ import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from 'framer-motion';
 // Dynamically import pineapple
-const pineapple = loadImage('../assets/images/products/pineapple.webp');
+const pineapple = loadImage('/assets/images/products/pineapple.webp');
 // Dynamically import label
-const label = loadImage('../assets/images/products/grapes.webp');
+const label = loadImage('/assets/images/products/grapes.webp');
 // Dynamically import PineappleS
-const PineappleS = loadImage('../assets/images/products/PineappleS.webp');
+const PineappleS = loadImage('/assets/images/products/PineappleS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";

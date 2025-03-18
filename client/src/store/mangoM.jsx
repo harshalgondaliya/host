@@ -2,11 +2,11 @@ import React, { useRef, useEffect, useState, useContext } from "react";
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
 // Dynamically import MangoS
-const MangoS = loadImage('../assets/images/products/MangoS.webp');
+const MangoS = loadImage('/assets/images/products/MangoS.webp');
 // Dynamically import label
-const label = loadImage('../assets/images/products/lychee.webp');
+const label = loadImage('/assets/images/products/lychee.webp');
 // Dynamically import mango
-const mango = loadImage('../assets/images/products/mango.webp');
+const mango = loadImage('/assets/images/products/mango.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";

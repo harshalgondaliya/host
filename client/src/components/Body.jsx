@@ -163,7 +163,7 @@ const Body = () => {
           className="w-[101%] h-[230px] mx-0 mb-0 object-fill"
         />
         <h1
-          className="text-2xl font-bold text-[#015c01] -mt-24 mb-2"
+          className="text-2xl font-bold text-[#015c01] -mt-28 mb-2"
           style={{ ...comicSansStyle, fontSize: "1.8rem" }}
         >
           Taste the Difference
@@ -185,7 +185,6 @@ const Body = () => {
         >
           View Products
         </button>
-        <br />
         <br />
         <br />
       </div>

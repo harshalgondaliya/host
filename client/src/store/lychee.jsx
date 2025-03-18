@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 // Dynamically import images
-const lychee = loadImage('../assets/images/products/lychee.webp');
-const label = loadImage('../assets/images/products/mango.webp');
-const LycheeS = loadImage('../assets/images/products/LycheeS.webp');
+const lychee = loadImage('/assets/images/products/lychee.webp');
+const label = loadImage('/assets/images/products/mango.webp');
+const LycheeS = loadImage('/assets/images/products/LycheeS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";

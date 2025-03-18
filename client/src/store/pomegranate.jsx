@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 // Dynamically import images
-const pomegranate = loadImage('../assets/images/products/Pomegranate.webp');
-const label = loadImage('../assets/images/PomegranateLabel.webp');
-const Small = loadImage('../assets/images/PomegranateS.webp');
+const pomegranate = loadImage('/assets/images/products/Pomegranate.webp');
+const label = loadImage('/assets/images/PomegranateLabel.webp');
+const Small = loadImage('/assets/images/PomegranateS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";

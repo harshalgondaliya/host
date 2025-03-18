@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
 // Dynamically import LycheeS
-const LycheeS = loadImage('../assets/images/products/LycheeS.webp');
+const LycheeS = loadImage('/assets/images/products/LycheeS.webp');
 // Dynamically import lychee
-const lychee = loadImage('../assets/images/products/lychee.webp');
+const lychee = loadImage('/assets/images/products/lychee.webp');
 // Dynamically import label
-const label = loadImage('../assets/images/products/mango.webp');
+const label = loadImage('/assets/images/products/mango.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";

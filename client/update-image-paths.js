@@ -42,18 +42,24 @@ function updateImagePaths(filePath) {
     // Replace the loadImage paths
     const loadImageRegex = /loadImage\(['"]([^'"]+)['"]\)/g;
     
-    content = content.replace(loadImageRegex, (match, path) => {
-      // If path already starts with '../assets/', leave it
-      if (path.startsWith('../assets/')) {
-        return match;
+    content = content.replace(loadImageRegex, (match, imagePath) => {
+      // Normalize the path
+      let newPath = imagePath;
+      
+      // Ensure path starts with /assets/ for consistency
+      if (!newPath.startsWith('/assets/') && !newPath.startsWith('../assets/')) {
+        if (newPath.includes('assets/')) {
+          // Convert 'assets/...' to '/assets/...'
+          newPath = '/' + newPath;
+        } else {
+          // Add '/assets/' prefix if missing
+          newPath = '/assets/' + newPath;
+        }
       }
       
-      // Otherwise, fix the path by adding '../assets/'
-      // If it doesn't include 'images/products/', add that too
-      let newPath = path;
-      
-      if (!path.includes('assets/')) {
-        newPath = '../assets/' + newPath;
+      // Convert '../assets/' to '/assets/' for consistency
+      if (newPath.startsWith('../assets/')) {
+        newPath = newPath.replace('../assets/', '/assets/');
       }
       
       return `loadImage('${newPath}')`;
@@ -81,4 +87,47 @@ for (const file of filesToUpdate) {
   }
 }
 
-console.log("Image path update completed!"); 
+console.log("Image path update completed!");
+
+// Also copy required images to public folder to ensure availability in production
+const publicAssetsDir = path.join(__dirname, 'public', 'assets', 'images');
+const srcAssetsDir = path.join(__dirname, 'src', 'assets', 'images');
+
+// Create directories if they don't exist
+if (!fs.existsSync(publicAssetsDir)) {
+  fs.mkdirSync(publicAssetsDir, { recursive: true });
+  console.log("Created public assets directory");
+}
+
+// Copy images from src/assets to public/assets
+function copyImagesRecursively(sourceDir, targetDir) {
+  if (!fs.existsSync(sourceDir)) {
+    console.warn(`⚠ Source directory not found: ${sourceDir}`);
+    return;
+  }
+  
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
+  }
+  
+  const items = fs.readdirSync(sourceDir);
+  
+  for (const item of items) {
+    const sourcePath = path.join(sourceDir, item);
+    const targetPath = path.join(targetDir, item);
+    
+    if (fs.statSync(sourcePath).isDirectory()) {
+      copyImagesRecursively(sourcePath, targetPath);
+    } else {
+      // Only copy image files
+      if (/\.(jpg|jpeg|png|gif|webp|svg)$/i.test(item)) {
+        fs.copyFileSync(sourcePath, targetPath);
+        console.log(`Copied: ${item} to public assets`);
+      }
+    }
+  }
+}
+
+console.log("Copying images to public folder for production...");
+copyImagesRecursively(srcAssetsDir, publicAssetsDir);
+console.log("Image copy completed!"); 
