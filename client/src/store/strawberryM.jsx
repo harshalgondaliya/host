@@ -1,8 +1,6 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import strawberry from "../assets/images/products/strawberry.webp";
-import label from "../assets/images/products/strawberry.webp";
-import StrawberryS from "../assets/images/products/StrawberryS.webp";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +8,11 @@ import { AppContent } from "../context/AppContext";
 import cartData from "../cart/data.json";
 
 const StrawberryM = () => {
+  // Load images efficiently
+  const strawberry = loadImage('../assets/images/products/strawberry.webp');
+  const label = loadImage('../assets/images/products/strawberry.webp');
+  const StrawberryS = loadImage('../assets/images/products/StrawberryS.webp');
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -80,6 +83,13 @@ const StrawberryM = () => {
     0
   );
 
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: strawberry, alt: "Strawberry juice" },
+    { src: label, alt: "Strawberry label" },
+    { src: StrawberryS, alt: "Strawberry small" }
+  ], [strawberry, label, StrawberryS]);
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -96,16 +106,23 @@ const StrawberryM = () => {
             />
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
-            {[strawberry, label, StrawberryS].map((image, index) => (
-              <img
+            {imageThumbnails.map((image, index) => (
+              <div
                 key={index}
-                src={image}
-                alt="thumbnail"
-                className={`w-16 h-16 border cursor-pointer hover:border-green-950 rounded-lg ${
-                  selectedImage === image ? "border-green-700" : "border-gray-400"
+                className={`cursor-pointer p-1 rounded ${
+                  selectedImage === image.src
+                    ? "border-2 border-green-700"
+                    : "border border-gray-300"
                 }`}
-                onClick={() => setSelectedImage(image)}
-              />
+                onClick={() => setSelectedImage(image.src)}
+              >
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-16 h-16 object-cover"
+                  threshold={200}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -213,7 +230,7 @@ const StrawberryM = () => {
                   Made from carefully selected, ripe strawberries, this
                   refreshing drink brings you the perfect balance of natural
                   sweetness and tangy goodness. A delightful way to enjoy
-                  nature’s best flavors!
+                  nature's best flavors!
                 </p>
               )}
               {activeTab === "disc" && (
@@ -233,6 +250,15 @@ const StrawberryM = () => {
                   smoothies, or mix with sparkling water for a refreshing twist.
                 </p>
               )}
+            </div>
+
+            <div className="flex items-center mt-2">
+              <img
+                src="/assets/images/icons/vegetarian.svg"
+                alt="Vegetarian Symbol"
+                className="h-10 w-10"
+              />
+              <span className="text-gray-950 text-sm">Vegetarian</span>
             </div>
         </div>
       </div>

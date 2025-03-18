@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import all from "../assets/images/ALL BOTTLES.jpg";
-import quality from "../assets/images/quality.jpg";
-import reasearch from "../assets/images/Research.avif";
-import news from "../assets/images/Media-News.jpg";
-import machine from "../assets/images/machine.jpg";
+import all from "../assets/images/ALL BOTTLES.webp";
+import quality from "../assets/images/quality.webp";
+import reasearch from "../assets/images/Research.webp";
+import news from "../assets/images/Media-News.webp";
+import machine from "../assets/images/machine.webp";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 

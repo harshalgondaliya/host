@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import MangoS from "../assets/images/products/MangoS.webp";
-import label from "../assets/images/products/lychee.webp";
-import mango from "../assets/images/products/mango.webp";
+// Dynamically import MangoS
+const MangoS = loadImage('../assets/images/products/MangoS.webp');
+// Dynamically import label
+const label = loadImage('../assets/images/products/lychee.webp');
+// Dynamically import mango
+const mango = loadImage('../assets/images/products/mango.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -80,6 +84,14 @@ const MangoM = () => {
     0
   );
 
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: MangoS, alt: "MangoS image" },
+    { src: label, alt: "label image" },
+    { src: mango, alt: "mango image" }
+  ], [MangoS, label, mango]);
+
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -89,7 +101,7 @@ const MangoM = () => {
         {/* Main Image & Thumbnails */}
         <div className="w-full flex flex-col items-center">
           <div className="relative w-full">
-            <img
+            <OptimizedImage
               src={selectedImage}
               alt="Product"
               className="w-full rounded-lg border border-green-700"
@@ -97,14 +109,14 @@ const MangoM = () => {
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
             {[mango, label, MangoS].map((image, index) => (
-              <img
+              <OptimizedImage
                 key={index}
                 src={image}
                 alt="thumbnail"
                 className={`w-16 h-16 border cursor-pointer hover:border-green-950 rounded-lg ${
-                  selectedImage === image ? "border-green-700" : "border-gray-400"
+                  selectedImage === image.src ? "border-green-700" : "border-gray-400"
                 }`}
-                onClick={() => setSelectedImage(image)}
+                onClick={() => setSelectedImage(image.src)}
               />
             ))}
           </div>
@@ -237,6 +249,14 @@ const MangoM = () => {
                   in every sip!
                 </p>
               )}
+            </div>
+            <div className="flex items-center mt-2">
+              <img
+                src="/assets/images/icons/vegetarian.svg"
+                alt="Vegetarian Symbol"
+                className="h-10 w-10"
+              />
+              <span className="text-gray-950 text-sm">Vegetarian</span>
             </div>
         </div>
       </div>

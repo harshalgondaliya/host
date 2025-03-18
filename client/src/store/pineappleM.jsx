@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import pineapple from "../assets/images/products/pineapple.webp";
-import label from "../assets/images/products/lychee.webp";
-import PineappleS from "../assets/images/products/PineappleS.webp";
+// Dynamically import pineapple
+const pineapple = loadImage('../assets/images/products/pineapple.webp');
+// Dynamically import label
+const label = loadImage('../assets/images/products/lychee.webp');
+// Dynamically import PineappleS
+const PineappleS = loadImage('../assets/images/products/PineappleS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -80,6 +84,14 @@ const PineappleM = () => {
     0
   );
 
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: pineapple, alt: "pineapple image" },
+    { src: label, alt: "label image" },
+    { src: PineappleS, alt: "PineappleS image" }
+  ], [pineapple, label, PineappleS]);
+
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -89,7 +101,7 @@ const PineappleM = () => {
         {/* Main Image & Thumbnails */}
         <div className="w-full flex flex-col items-center">
           <div className="relative w-full">
-            <img
+            <OptimizedImage
               src={selectedImage}
               alt="Product"
               className="w-full rounded-lg border border-green-700"
@@ -97,14 +109,14 @@ const PineappleM = () => {
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
             {[pineapple, label, PineappleS].map((image, index) => (
-              <img
+              <OptimizedImage
                 key={index}
                 src={image}
                 alt="thumbnail"
                 className={`w-16 h-16 border cursor-pointer hover:border-green-950 rounded-lg ${
-                  selectedImage === image ? "border-green-700" : "border-gray-400"
+                  selectedImage === image.src ? "border-green-700" : "border-gray-400"
                 }`}
-                onClick={() => setSelectedImage(image)}
+                onClick={() => setSelectedImage(image.src)}
               />
             ))}
           </div>

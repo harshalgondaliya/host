@@ -1,13 +1,29 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import strawberry from "../assets/images/products/strawberry.webp";
-import label from "../assets/images/products/strawberry.webp";
-import StrawberryS from "../assets/images/products/StrawberryS.webp";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+// Dynamically import images
+const strawberry = new URL('../assets/images/products/strawberry.webp', import.meta.url).href;
+const label = new URL('../assets/images/products/strawberry.webp', import.meta.url).href;
+const StrawberryS = new URL('../assets/images/products/StrawberryS.webp', import.meta.url).href;
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { AppContent } from "../context/AppContext";
 import cartData from "../cart/data.json";
+
+// Create a memoized image component for better performance
+const ProductImage = React.memo(({ src, alt, className, onClick }) => (
+  <LazyLoadImage
+    src={src}
+    alt={alt || "Product image"}
+    className={className}
+    effect="blur"
+    threshold={100}
+    onClick={onClick}
+    placeholderSrc="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23cccccc'/%3E%3C/svg%3E"
+  />
+));
 
 const Strawberry = () => {
   useEffect(() => {
@@ -79,6 +95,13 @@ const Strawberry = () => {
     0
   );
 
+  // Preload image thumbnails
+  const imageThumbnails = React.useMemo(() => [
+    { src: strawberry, alt: "Strawberry juice" },
+    { src: label, alt: "Strawberry label" },
+    { src: StrawberryS, alt: "Strawberry small" }
+  ], []);
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -99,17 +122,17 @@ const Strawberry = () => {
               ref={thumbnailRef}
               className="overflow-hidden max-h-[255px] flex flex-col p-3"
             >
-              {[strawberry, label, StrawberryS].map((image, index) => (
-                <img
+              {imageThumbnails.map((image, index) => (
+                <ProductImage
                   key={index}
-                  src={image}
-                  alt="thumbnail"
+                  src={image.src}
+                  alt={image.alt}
                   className={`w-20 h-20 border cursor-pointer hover:border-green-950 ${
-                    selectedImage === image
+                    selectedImage === image.src
                       ? "border-green-700"
                       : "border-gray-400"
                   }`}
-                  onClick={() => setSelectedImage(image)} // Update main image
+                  onClick={() => setSelectedImage(image.src)}
                 />
               ))}
             </div>
@@ -123,7 +146,7 @@ const Strawberry = () => {
 
           {/* Center Section - Main Image */}
           <div className="w-1/3">
-            <img
+            <ProductImage
               src={selectedImage}
               alt="Product"
               className="w-full border border-green-700"
@@ -217,7 +240,7 @@ const Strawberry = () => {
             <div className="border-t border-gray-800 mt-4 pt-4"></div>
             <div className="flex items-center mt-2">
               <img
-                src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
+                src="/assets/images/icons/vegetarian.svg"
                 alt="Vegetarian Symbol"
                 className="h-10 w-10"
               />
@@ -252,7 +275,7 @@ const Strawberry = () => {
                   Made from carefully selected, ripe strawberries, this
                   refreshing drink brings you the perfect balance of natural
                   sweetness and tangy goodness. A delightful way to enjoy
-                  nature’s best flavors!
+                  nature's best flavors!
                 </p>
               )}
               {activeTab === "disc" && (

@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import skyberry from "../assets/images/products/SkyBerry.webp";
-import label from "../assets/images/SkyBerryLabel.webp";
-import Small from "../assets/images/SkyBerryS.webp";
+// Dynamically import skyberry
+const skyberry = loadImage('../assets/images/products/SkyBerry.webp');
+// Dynamically import label
+const label = loadImage('../assets/images/SkyBerryLabel.webp');
+// Dynamically import Small
+const Small = loadImage('../assets/images/SkyBerryS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -80,6 +84,14 @@ const SkyberryM = () => {
     0
   );
 
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: skyberry, alt: "skyberry image" },
+    { src: label, alt: "label image" },
+    { src: Small, alt: "Small image" }
+  ], [skyberry, label, Small]);
+
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -89,23 +101,30 @@ const SkyberryM = () => {
         {/* Main Image & Thumbnails */}
         <div className="w-full flex flex-col items-center">
           <div className="relative w-full">
-            <img
+            <OptimizedImage
               src={selectedImage}
               alt="Product"
               className="w-full rounded-lg border border-green-700"
             />
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
-            {[skyberry, label, Small].map((image, index) => (
-              <img
+            {imageThumbnails.map((image, index) => (
+              <div
                 key={index}
-                src={image}
-                alt="thumbnail"
-                className={`w-16 h-16 border cursor-pointer hover:border-green-950 rounded-lg ${
-                  selectedImage === image ? "border-green-700" : "border-gray-400"
+                className={`cursor-pointer p-1 rounded ${
+                  selectedImage === image.src
+                    ? "border-2 border-green-700"
+                    : "border border-gray-300"
                 }`}
-                onClick={() => setSelectedImage(image)}
-              />
+                onClick={() => setSelectedImage(image.src)}
+              >
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-16 h-16 object-cover"
+                  threshold={200}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -211,13 +230,13 @@ const SkyberryM = () => {
                 <p>
                   Discover the magic of Skyberry Juice – a refreshing blend of
                   rare, juicy berries with a smooth and sweet taste. Packed with
-                  natural flavors and essential nutrients, it’s the perfect
+                  natural flavors and essential nutrients, it's the perfect
                   drink to lift your mood and energize your day!
                 </p>
               )}
               {activeTab === "disc" && (
                 <p>
-                  Our Skyberry Juice is crafted from nature’s best berries,
+                  Our Skyberry Juice is crafted from nature's best berries,
                   containing natural sugars and antioxidants. Enjoy in
                   moderation, as excessive intake may affect sugar levels. If
                   you have dietary concerns, consult a doctor. Best served
@@ -232,6 +251,15 @@ const SkyberryM = () => {
                   smoothies, or add a splash to sparkling water for a fun twist!
                 </p>
               )}
+            </div>
+
+            <div className="flex items-center mt-2">
+              <img
+                src="/assets/images/icons/vegetarian.svg"
+                alt="Vegetarian Symbol"
+                className="h-10 w-10"
+              />
+              <span className="text-gray-950 text-sm">Vegetarian</span>
             </div>
         </div>
       </div>

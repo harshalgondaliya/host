@@ -47,5 +47,29 @@ export default defineConfig({
       },
     },
     chunkSizeWarningLimit: 1000,
+    // Enable CSS code splitting
+    cssCodeSplit: true,
+    // Enable source maps for better debugging
+    sourcemap: false,
+    // Minify the bundle
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+  },
+  server: {
+    // Enable file caching for development
+    hmr: true,
+    headers: {
+      'Cache-Control': 'max-age=31536000',
+    },
+  },
+  // Configure image optimization
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp', '**/*.svg'],
+  optimizeDeps: {
+    include: ['react-lazy-load-image-component'],
   },
 })

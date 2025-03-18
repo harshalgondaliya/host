@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import grape from "../assets/images/products/grapes.webp";
-import label from "../assets/images/products/lychee.webp";
-import GrapesS from "../assets/images/products/GrapesS.webp";
+// Dynamically import grape
+const grape = loadImage('../assets/images/products/grapes.webp');
+// Dynamically import label
+const label = loadImage('../assets/images/products/lychee.webp');
+// Dynamically import GrapesS
+const GrapesS = loadImage('../assets/images/products/GrapesS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -80,6 +84,14 @@ const GrapesM = () => {
     0
   );
 
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: grape, alt: "grape image" },
+    { src: label, alt: "label image" },
+    { src: GrapesS, alt: "GrapesS image" }
+  ], [grape, label, GrapesS]);
+
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -89,7 +101,7 @@ const GrapesM = () => {
         {/* Main Image & Thumbnails */}
         <div className="w-full flex flex-col items-center">
           <div className="relative w-full">
-            <img
+            <OptimizedImage
               src={selectedImage}
               alt="Product"
               className="w-full rounded-lg border border-green-700"
@@ -97,14 +109,14 @@ const GrapesM = () => {
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
             {[grape, label, GrapesS].map((image, index) => (
-              <img
+              <OptimizedImage
                 key={index}
                 src={image}
                 alt="thumbnail"
                 className={`w-16 h-16 border cursor-pointer hover:border-green-950 rounded-lg ${
-                  selectedImage === image ? "border-green-700" : "border-gray-400"
+                  selectedImage === image.src ? "border-green-700" : "border-gray-400"
                 }`}
-                onClick={() => setSelectedImage(image)}
+                onClick={() => setSelectedImage(image.src)}
               />
             ))}
           </div>
@@ -222,6 +234,15 @@ const GrapesM = () => {
                 Grape juice is a refreshing and naturally sweet drink made from fresh grapes. It is rich in antioxidants, vitamins, and minerals that support overall health. Drinking grape juice can help boost immunity, improve heart health, and provide natural energy. Enjoy it chilled, as a base for smoothies, or mixed with sparkling water for a refreshing twist.
               </p>
               )}
+            </div>
+
+            <div className="flex items-center mt-2">
+              <img
+                src="/assets/images/icons/vegetarian.svg"
+                alt="Vegetarian Symbol"
+                className="h-10 w-10"
+              />
+              <span className="text-gray-950 text-sm">Vegetarian</span>
             </div>
         </div>
       </div>

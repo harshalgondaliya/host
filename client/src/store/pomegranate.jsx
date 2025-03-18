@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import pomegranate from "../assets/images/products/Pomegranate.webp";
-import label from "../assets/images/PomegranateLabel.webp";
-import Small from "../assets/images/PomegranateS.webp";
+// Dynamically import pomegranate
+const pomegranate = loadImage('../assets/images/products/Pomegranate.webp');
+// Dynamically import label
+const label = loadImage('../assets/images/PomegranateLabel.webp');
+// Dynamically import Small
+const Small = loadImage('../assets/images/PomegranateS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -79,6 +83,14 @@ const Pomegranate = () => {
     0
   );
 
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: pomegranate, alt: "pomegranate image" },
+    { src: label, alt: "label image" },
+    { src: Small, alt: "Small image" }
+  ], [pomegranate, label, Small]);
+
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -101,16 +113,15 @@ const Pomegranate = () => {
               className="overflow-hidden max-h-[255px] flex flex-col p-3"
             >
               {[pomegranate, label, Small].map((image, index) => (
-                <img
-                  key={index}
+                <OptimizedImage
+                key={index}
                   src={image}
                   alt="thumbnail"
                   className={`w-20 h-20 border cursor-pointer hover:border-green-950 ${
-                    selectedImage === image
-                      ? "border-green-700"
+                    selectedImage === image.src ? "border-green-700"
                       : "border-gray-400"
                   }`}
-                  onClick={() => setSelectedImage(image)} // Update main image
+                  onClick={() => setSelectedImage(image.src)} // Update main image
                 />
               ))}
             </div>
@@ -124,7 +135,7 @@ const Pomegranate = () => {
 
           {/* Center Section - Main Image */}
           <div className="w-1/3">
-            <img
+            <OptimizedImage
               src={selectedImage}
               alt="Product"
               className="w-full border border-green-700"
@@ -218,7 +229,7 @@ const Pomegranate = () => {
             <div className="border-t border-gray-800 mt-4 pt-4"></div>
             <div className="flex items-center mt-2">
               <img
-                src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
+                src="/assets/images/icons/vegetarian.svg"
                 alt="Vegetarian Symbol"
                 className="h-10 w-10"
               />

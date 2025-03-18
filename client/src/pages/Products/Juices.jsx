@@ -159,26 +159,33 @@ const ProductCardDesktop = ({ product, zoom, origin, toggleZoom, index }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, rotate: -200, scale: 0.0 }} // Start smaller
-      animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }} // Expand to full size
+      initial={{ opacity: 0, y: 50, scale: 0.8 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{
-        duration: 0.6,
-        ease: "easeOut",
-        delay: index * 0.2, // Faster stagger effect
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        mass: 0.5,
+        delay: index * 0.1
+      }}
+      whileHover={{ 
+        scale: 1.02,
+        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
       }}
       className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-700 flex flex-row cursor-pointer"
       onClick={handleCardClick}
     >
-      <img
+      <motion.img
         src={product.image}
         alt={product.name}
         className="w-1/3 object-cover aspect-[4/3] transition-transform duration-500 cursor-zoom-in"
         style={{
           transform: `scale(${zoom})`,
           transformOrigin: origin,
-          transition: "transform 0.4s ease-in-out",
+          transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           cursor: zoom === 1 ? "zoom-in" : "zoom-out",
         }}
+        whileHover={{ scale: 1.05 }}
         onClick={(e) => {
           e.stopPropagation();
           toggleZoom(e);
@@ -220,37 +227,41 @@ const ProductCardMobile = ({ product, zoom, origin, toggleZoom, index }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, rotate: -200, scale: 0.0 }}
-      animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 50, scale: 0.8 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{
-        duration: 0.6,
-        ease: "easeOut",
-        delay: index * 0.2, // Stagger effect for each card
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        mass: 0.5,
+        delay: index * 0.1
+      }}
+      whileHover={{ 
+        scale: 1.02,
+        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
       }}
       className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col sm:flex-row cursor-pointer"
       onClick={handleCardClick}
     >
-      {/* Image on Top for Mobile / Left for Tablet */}
-      <div className="w-full sm:w-1/2">
-        <img
+      <motion.div className="w-full sm:w-1/2">
+        <motion.img
           src={product.image}
           alt={product.name}
           className="w-full h-auto object-cover transition-transform duration-500 cursor-pointer"
           style={{
             transform: `scale(${zoom})`,
             transformOrigin: origin,
-            transition: "transform 0.4s ease-in-out",
+            transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
             cursor: zoom === 1 ? "zoom-in" : "zoom-out",
           }}
+          whileHover={{ scale: 1.05 }}
           onClick={(e) => {
             e.stopPropagation();
             toggleZoom(e);
           }}
           loading="lazy"
         />
-      </div>
-
-      {/* Description Below Image for Mobile / Right for Tablet */}
+      </motion.div>
       <div className="p-5 w-full sm:w-1/2 flex flex-col justify-center">
         <h2 className="text-2xl font-bold text-red-500 mb-2">{product.name}</h2>
         <p className="text-gray-700 mb-2 text-base">{product.description}</p>
@@ -279,6 +290,7 @@ const ProductCardMobile = ({ product, zoom, origin, toggleZoom, index }) => {
     </motion.div>
   );
 };
+
 const ProductCard = ({ product }) => {
   const [zoom, setZoom] = useState(1);
   const [origin, setOrigin] = useState("center center");
@@ -324,7 +336,7 @@ const ProductCard = ({ product }) => {
 
 const Juice = () => {
   useEffect(() => {
-    window.scrollTo(0, 0); // This ensures the page always starts from the top
+    window.scrollTo(0, 0);
   }, []);
   
   const [visibleProducts, setVisibleProducts] = useState(3);
@@ -332,25 +344,34 @@ const Juice = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center bg-yellow-400 min-h-screen p-6 sm:p-4">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col items-center bg-yellow-400 min-h-screen p-6 sm:p-4"
+      >
         <br />
         <br />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1 gap-6 max-w-8xl w-full">
           {juiceProducts.slice(0, visibleProducts).map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <ProductCard key={index} product={product} index={index} />
           ))}
         </div>
         {visibleProducts < juiceProducts.length && (
-          <button
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setVisibleProducts((prev) => prev + 3)}
             className="mt-4 px-6 py-2 bg-green-950 text-yellow-400 rounded-lg hover:bg-green-950 transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 sm:px-4 sm:py-1 sm:text-sm"
           >
             Load More
-          </button>
+          </motion.button>
         )}
         <br />
         <br />
-      </div>
+      </motion.div>
       <Footer />
     </>
   );

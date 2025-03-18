@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import pomegranate from "../assets/images/products/Pomegranate.webp";
-import label from "../assets/images/PomegranateLabel.webp";
-import Small from "../assets/images/PomegranateS.webp";
+// Dynamically import pomegranate
+const pomegranate = loadImage('../assets/images/products/Pomegranate.webp');
+// Dynamically import label
+const label = loadImage('../assets/images/PomegranateLabel.webp');
+// Dynamically import Small
+const Small = loadImage('../assets/images/PomegranateS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -80,6 +84,14 @@ const PomegranateM = () => {
     0
   );
 
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: pomegranate, alt: "pomegranate image" },
+    { src: label, alt: "label image" },
+    { src: Small, alt: "Small image" }
+  ], [pomegranate, label, Small]);
+
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -89,7 +101,7 @@ const PomegranateM = () => {
         {/* Main Image & Thumbnails */}
         <div className="w-full flex flex-col items-center">
           <div className="relative w-full">
-            <img
+            <OptimizedImage
               src={selectedImage}
               alt="Product"
               className="w-full rounded-lg border border-green-700"
@@ -97,14 +109,14 @@ const PomegranateM = () => {
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
             {[pomegranate, label, Small].map((image, index) => (
-              <img
+              <OptimizedImage
                 key={index}
                 src={image}
                 alt="thumbnail"
                 className={`w-16 h-16 border cursor-pointer hover:border-green-950 rounded-lg ${
-                  selectedImage === image ? "border-green-700" : "border-gray-400"
+                  selectedImage === image.src ? "border-green-700" : "border-gray-400"
                 }`}
-                onClick={() => setSelectedImage(image)}
+                onClick={() => setSelectedImage(image.src)}
               />
             ))}
           </div>
@@ -232,6 +244,15 @@ const PomegranateM = () => {
                   twist.
                 </p>
               )}
+            </div>
+
+            <div className="flex items-center mt-2">
+              <img
+                src="/assets/images/icons/vegetarian.svg"
+                alt="Vegetarian Symbol"
+                className="h-10 w-10"
+              />
+              <span className="text-gray-950 text-sm">Vegetarian</span>
             </div>
         </div>
       </div>

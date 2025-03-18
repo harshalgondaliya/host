@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import skyberry from "../assets/images/products/SkyBerry.webp";
-import label from "../assets/images/SkyBerryLabel.webp";
-import Small from "../assets/images/SkyBerryS.webp";
+// Dynamically import skyberry
+const skyberry = loadImage('../assets/images/products/SkyBerry.webp');
+// Dynamically import label
+const label = loadImage('../assets/images/SkyBerryLabel.webp');
+// Dynamically import Small
+const Small = loadImage('../assets/images/SkyBerryS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -79,6 +83,14 @@ const Skyberry = () => {
     0
   );
 
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: skyberry, alt: "skyberry image" },
+    { src: label, alt: "label image" },
+    { src: Small, alt: "Small image" }
+  ], [skyberry, label, Small]);
+
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -101,16 +113,15 @@ const Skyberry = () => {
               className="overflow-hidden max-h-[255px] flex flex-col p-3"
             >
               {[skyberry, label, Small].map((image, index) => (
-                <img
-                  key={index}
+                <OptimizedImage
+                key={index}
                   src={image}
                   alt="thumbnail"
                   className={`w-20 h-20 border cursor-pointer hover:border-green-950 ${
-                    selectedImage === image
-                      ? "border-green-700"
+                    selectedImage === image.src ? "border-green-700"
                       : "border-gray-400"
                   }`}
-                  onClick={() => setSelectedImage(image)} // Update main image
+                  onClick={() => setSelectedImage(image.src)} // Update main image
                 />
               ))}
             </div>
@@ -124,7 +135,7 @@ const Skyberry = () => {
 
           {/* Center Section - Main Image */}
           <div className="w-1/3">
-            <img
+            <OptimizedImage
               src={selectedImage}
               alt="Product"
               className="w-full border border-green-700"
@@ -218,7 +229,7 @@ const Skyberry = () => {
             <div className="border-t border-gray-800 mt-4 pt-4"></div>
             <div className="flex items-center mt-2">
               <img
-                src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
+                src="/assets/images/icons/vegetarian.svg"
                 alt="Vegetarian Symbol"
                 className="h-10 w-10"
               />
@@ -251,13 +262,13 @@ const Skyberry = () => {
                 <p>
                   Discover the magic of Skyberry Juice – a refreshing blend of
                   rare, juicy berries with a smooth and sweet taste. Packed with
-                  natural flavors and essential nutrients, it’s the perfect
+                  natural flavors and essential nutrients, it's the perfect
                   drink to lift your mood and energize your day!
                 </p>
               )}
               {activeTab === "disc" && (
                 <p>
-                  Our Skyberry Juice is crafted from nature’s best berries,
+                  Our Skyberry Juice is crafted from nature's best berries,
                   containing natural sugars and antioxidants. Enjoy in
                   moderation, as excessive intake may affect sugar levels. If
                   you have dietary concerns, consult a doctor. Best served

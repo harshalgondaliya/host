@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import LycheeS from "../assets/images/products/LycheeS.webp";
-import lychee from "../assets/images/products/lychee.webp";
-import label from "../assets/images/products/mango.webp";
+// Dynamically import LycheeS
+const LycheeS = loadImage('../assets/images/products/LycheeS.webp');
+// Dynamically import lychee
+const lychee = loadImage('../assets/images/products/lychee.webp');
+// Dynamically import label
+const label = loadImage('../assets/images/products/mango.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -80,6 +84,14 @@ const LycheeM = () => {
     0
   );
 
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: LycheeS, alt: "LycheeS image" },
+    { src: lychee, alt: "lychee image" },
+    { src: label, alt: "label image" }
+  ], [LycheeS, lychee, label]);
+
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -89,7 +101,7 @@ const LycheeM = () => {
         {/* Main Image & Thumbnails */}
         <div className="w-full flex flex-col items-center">
           <div className="relative w-full">
-            <img
+            <OptimizedImage
               src={selectedImage}
               alt="Product"
               className="w-full rounded-lg border border-green-700"
@@ -97,14 +109,14 @@ const LycheeM = () => {
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
             {[lychee, label, LycheeS].map((image, index) => (
-              <img
+              <OptimizedImage
                 key={index}
                 src={image}
                 alt="thumbnail"
                 className={`w-16 h-16 border cursor-pointer hover:border-green-950 rounded-lg ${
-                  selectedImage === image ? "border-green-700" : "border-gray-400"
+                  selectedImage === image.src ? "border-green-700" : "border-gray-400"
                 }`}
-                onClick={() => setSelectedImage(image)}
+                onClick={() => setSelectedImage(image.src)}
               />
             ))}
           </div>
@@ -236,6 +248,15 @@ const LycheeM = () => {
                   revitalizing experience.
                 </p>
               )}
+            </div>
+
+            <div className="flex items-center mt-2">
+              <img
+                src="/assets/images/icons/vegetarian.svg"
+                alt="Vegetarian Symbol"
+                className="h-10 w-10"
+              />
+              <span className="text-gray-950 text-sm">Vegetarian</span>
             </div>
         </div>
       </div>

@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import pineapple from "../assets/images/products/pineapple.webp";
-import label from "../assets/images/products/lychee.webp";
-import PineappleS from "../assets/images/products/PineappleS.webp";
+// Dynamically import pineapple
+const pineapple = loadImage('../assets/images/products/pineapple.webp');
+// Dynamically import label
+const label = loadImage('../assets/images/products/lychee.webp');
+// Dynamically import PineappleS
+const PineappleS = loadImage('../assets/images/products/PineappleS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -79,6 +83,14 @@ const Pineapple = () => {
     0
   );
 
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: pineapple, alt: "pineapple image" },
+    { src: label, alt: "label image" },
+    { src: PineappleS, alt: "PineappleS image" }
+  ], [pineapple, label, PineappleS]);
+
+
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -101,16 +113,15 @@ const Pineapple = () => {
               className="overflow-hidden max-h-[255px] flex flex-col p-3"
             >
               {[pineapple, label, PineappleS].map((image, index) => (
-                <img
-                  key={index}
+                <OptimizedImage
+                key={index}
                   src={image}
                   alt="thumbnail"
                   className={`w-20 h-20 border cursor-pointer hover:border-green-950 ${
-                    selectedImage === image
-                      ? "border-green-700"
+                    selectedImage === image.src ? "border-green-700"
                       : "border-gray-400"
                   }`}
-                  onClick={() => setSelectedImage(image)} // Update main image
+                  onClick={() => setSelectedImage(image.src)} // Update main image
                 />
               ))}
             </div>
@@ -124,7 +135,7 @@ const Pineapple = () => {
 
           {/* Center Section - Main Image */}
           <div className="w-1/3">
-            <img
+            <OptimizedImage
               src={selectedImage}
               alt="Product"
               className="w-full border border-green-700"
@@ -218,7 +229,7 @@ const Pineapple = () => {
             <div className="border-t border-gray-800 mt-4 pt-4"></div>
             <div className="flex items-center mt-2">
               <img
-                src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
+                src="/assets/images/icons/vegetarian.svg"
                 alt="Vegetarian Symbol"
                 className="h-10 w-10"
               />
@@ -251,7 +262,7 @@ const Pineapple = () => {
                 <p>
                   Enjoy the tropical taste of our Pineapple Juice! Made from
                   ripe, juicy pineapples, this refreshing drink is naturally
-                  sweet and full of flavor. It’s the perfect way to cool down on
+                  sweet and full of flavor. It's the perfect way to cool down on
                   a hot day and enjoy the goodness of real fruit in every sip.
                 </p>
               )}
@@ -267,7 +278,7 @@ const Pineapple = () => {
               {activeTab === "info" && (
                 <p>
                   Pineapple juice is packed with vitamin C, antioxidants, and
-                  enzymes that help digestion and boost immunity. It’s a great
+                  enzymes that help digestion and boost immunity. It's a great
                   source of natural energy and can be enjoyed on its own, in
                   smoothies, or mixed with other drinks for a tropical twist.
                 </p>
