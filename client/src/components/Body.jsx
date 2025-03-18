@@ -152,7 +152,7 @@ const Body = () => {
           alt="Soft Front"
           className="w-full h-auto"
           loading="lazy"
-        />
+        />  
       </div>
 
       {/* Mobile View: Text first, then hero image */}
@@ -163,7 +163,7 @@ const Body = () => {
           className="w-[101%] h-[230px] mx-0 mb-0"
         />
         <h1
-          className="text-2xl font-bold text-[#015c01] -mt-10 mb-2"
+          className="text-2xl font-bold text-[#015c01] -mt-14 mb-2"
           style={{ ...comicSansStyle, fontSize: "1.8rem" }}
         >
           Taste the Difference
