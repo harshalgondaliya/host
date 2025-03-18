@@ -22,8 +22,16 @@ const LycheeM = () => {
   const thumbnailRef = useRef(null);
   const navigate = useNavigate();
   const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: lychee, alt: "lychee image" },
+    { src: label, alt: "label image" },
+    { src: LycheeS, alt: "LycheeS image" }
+  ], [lychee, label, LycheeS]);
+  
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(lychee);
+  const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src);
 
   // Debugging
   console.log("Cart Data:", cartData);
@@ -84,14 +92,6 @@ const LycheeM = () => {
     0
   );
 
-  // Memoized image thumbnails array
-  const imageThumbnails = React.useMemo(() => [
-    { src: LycheeS, alt: "LycheeS image" },
-    { src: lychee, alt: "lychee image" },
-    { src: label, alt: "label image" }
-  ], [LycheeS, lychee, label]);
-
-
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -108,11 +108,11 @@ const LycheeM = () => {
             />
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
-            {[lychee, label, LycheeS].map((image, index) => (
+            {imageThumbnails.map((image, index) => (
               <OptimizedImage
                 key={index}
-                src={image}
-                alt="thumbnail"
+                src={image.src}
+                alt={image.alt}
                 className={`w-16 h-16 border cursor-pointer hover:border-green-950 rounded-lg ${
                   selectedImage === image.src ? "border-green-700" : "border-gray-400"
                 }`}
@@ -252,7 +252,7 @@ const LycheeM = () => {
 
             <div className="flex items-center mt-2">
               <img
-                src="/assets/images/icons/vegetarian.svg"
+                src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
                 alt="Vegetarian Symbol"
                 className="h-10 w-10"
               />

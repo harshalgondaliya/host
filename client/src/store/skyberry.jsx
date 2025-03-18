@@ -23,8 +23,16 @@ const Skyberry = () => {
   const thumbnailRef = useRef(null);
   const navigate = useNavigate();
   const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: skyberry, alt: "skyberry image" },
+    { src: label, alt: "label image" },
+    { src: Small, alt: "Small image" }
+  ], [skyberry, label, Small]);
+  
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(skyberry); // Default main image
+  const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src); // Default main image (skyberry)
 
   // Scroll Functions
   const scrollUp = () =>
@@ -83,14 +91,6 @@ const Skyberry = () => {
     0
   );
 
-  // Memoized image thumbnails array
-  const imageThumbnails = React.useMemo(() => [
-    { src: skyberry, alt: "skyberry image" },
-    { src: label, alt: "label image" },
-    { src: Small, alt: "Small image" }
-  ], [skyberry, label, Small]);
-
-
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -112,11 +112,11 @@ const Skyberry = () => {
               ref={thumbnailRef}
               className="overflow-hidden max-h-[255px] flex flex-col p-3"
             >
-              {[skyberry, label, Small].map((image, index) => (
+              {imageThumbnails.map((image, index) => (
                 <OptimizedImage
                 key={index}
-                  src={image}
-                  alt="thumbnail"
+                  src={image.src}
+                  alt={image.alt}
                   className={`w-20 h-20 border cursor-pointer hover:border-green-950 ${
                     selectedImage === image.src ? "border-green-700"
                       : "border-gray-400"
@@ -229,7 +229,7 @@ const Skyberry = () => {
             <div className="border-t border-gray-800 mt-4 pt-4"></div>
             <div className="flex items-center mt-2">
               <img
-                src="/assets/images/icons/vegetarian.svg"
+                src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
                 alt="Vegetarian Symbol"
                 className="h-10 w-10"
               />

@@ -22,8 +22,16 @@ const SkyberryM = () => {
   const thumbnailRef = useRef(null);
   const navigate = useNavigate();
   const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: skyberry, alt: "skyberry image" },
+    { src: label, alt: "label image" },
+    { src: Small, alt: "Small image" }
+  ], [skyberry, label, Small]);
+  
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(skyberry);
+  const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src);
 
   // Debugging
   console.log("Cart Data:", cartData);
@@ -83,14 +91,6 @@ const SkyberryM = () => {
       item.size ? sum + item.quantity * item.size.cutoffPrice : sum,
     0
   );
-
-  // Memoized image thumbnails array
-  const imageThumbnails = React.useMemo(() => [
-    { src: skyberry, alt: "skyberry image" },
-    { src: label, alt: "label image" },
-    { src: Small, alt: "Small image" }
-  ], [skyberry, label, Small]);
-
 
   return (
     <>
@@ -255,7 +255,7 @@ const SkyberryM = () => {
 
             <div className="flex items-center mt-2">
               <img
-                src="/assets/images/icons/vegetarian.svg"
+                src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
                 alt="Vegetarian Symbol"
                 className="h-10 w-10"
               />

@@ -214,9 +214,9 @@ const CartM = () => {
                   )}
                   <div className="flex items-center mt-2">
                     <img
-                      src="/assets/images/icons/vegetarian.svg"
+                      src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
                       alt="Vegetarian Symbol"
-                      className="h-10 w-10"
+                      className="h-7 w-7"
                     />
                     <span className="text-gray-950 text-sm">Vegetarian</span>
                   </div>

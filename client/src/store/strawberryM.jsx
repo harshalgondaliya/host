@@ -21,8 +21,16 @@ const StrawberryM = () => {
   const thumbnailRef = useRef(null);
   const navigate = useNavigate();
   const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: strawberry, alt: "Strawberry juice" },
+    { src: label, alt: "Strawberry label" },
+    { src: StrawberryS, alt: "Strawberry small" }
+  ], [strawberry, label, StrawberryS]);
+  
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(strawberry);
+  const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src);
 
   // Debugging
   console.log("Cart Data:", cartData);
@@ -82,13 +90,6 @@ const StrawberryM = () => {
       item.size ? sum + item.quantity * item.size.cutoffPrice : sum,
     0
   );
-
-  // Memoized image thumbnails array
-  const imageThumbnails = React.useMemo(() => [
-    { src: strawberry, alt: "Strawberry juice" },
-    { src: label, alt: "Strawberry label" },
-    { src: StrawberryS, alt: "Strawberry small" }
-  ], [strawberry, label, StrawberryS]);
 
   return (
     <>
@@ -254,7 +255,7 @@ const StrawberryM = () => {
 
             <div className="flex items-center mt-2">
               <img
-                src="/assets/images/icons/vegetarian.svg"
+                src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
                 alt="Vegetarian Symbol"
                 className="h-10 w-10"
               />

@@ -22,8 +22,16 @@ const PineappleM = () => {
   const thumbnailRef = useRef(null);
   const navigate = useNavigate();
   const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  
+  // Memoized image thumbnails array
+  const imageThumbnails = React.useMemo(() => [
+    { src: pineapple, alt: "pineapple image" },
+    { src: label, alt: "label image" },
+    { src: PineappleS, alt: "PineappleS image" }
+  ], [pineapple, label, PineappleS]);
+  
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(pineapple);
+  const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src);
 
   // Debugging
   console.log("Cart Data:", cartData);
@@ -84,14 +92,6 @@ const PineappleM = () => {
     0
   );
 
-  // Memoized image thumbnails array
-  const imageThumbnails = React.useMemo(() => [
-    { src: pineapple, alt: "pineapple image" },
-    { src: label, alt: "label image" },
-    { src: PineappleS, alt: "PineappleS image" }
-  ], [pineapple, label, PineappleS]);
-
-
   return (
     <>
       <Nav totalItems={totalItems} totalPrice={subtotalPrice} />
@@ -108,11 +108,11 @@ const PineappleM = () => {
             />
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
-            {[pineapple, label, PineappleS].map((image, index) => (
+            {imageThumbnails.map((image, index) => (
               <OptimizedImage
                 key={index}
-                src={image}
-                alt="thumbnail"
+                src={image.src}
+                alt={image.alt}
                 className={`w-16 h-16 border cursor-pointer hover:border-green-950 rounded-lg ${
                   selectedImage === image.src ? "border-green-700" : "border-gray-400"
                 }`}
@@ -223,7 +223,7 @@ const PineappleM = () => {
                 <p>
                   Enjoy the tropical taste of our Pineapple Juice! Made from
                   ripe, juicy pineapples, this refreshing drink is naturally
-                  sweet and full of flavor. It’s the perfect way to cool down on
+                  sweet and full of flavor. It's the perfect way to cool down on
                   a hot day and enjoy the goodness of real fruit in every sip.
                 </p>
               )}
@@ -239,7 +239,7 @@ const PineappleM = () => {
               {activeTab === "info" && (
                 <p>
                   Pineapple juice is packed with vitamin C, antioxidants, and
-                  enzymes that help digestion and boost immunity. It’s a great
+                  enzymes that help digestion and boost immunity. It's a great
                   source of natural energy and can be enjoyed on its own, in
                   smoothies, or mixed with other drinks for a tropical twist.
                 </p>
