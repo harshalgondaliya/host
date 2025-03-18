@@ -156,11 +156,11 @@ const Body = () => {
       </div>
 
       {/* Mobile View: Text first, then hero image */}
-      <div className="sm:hidden w-full max-w-4xl text-center my-[0] px-0">
+      <div className="sm:hidden w-full max-w-4xl text-center my-0 px-0">
         <img
           src={valley}
           alt="valley"
-          className="w-[101%] h-[230px] mx-0 mb-0"
+          className="w-[101%] h-[230px] mx-0 mb-0 object-fill"
         />
         <h1
           className="text-2xl font-bold text-[#015c01] -mt-14 mb-2"

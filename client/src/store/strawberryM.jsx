@@ -7,7 +7,7 @@ const StrawberryS = loadImage('../assets/images/products/StrawberryS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import { AppContent } from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 import cartData from "../cart/data.json";
 
 const StrawberryM = () => {
@@ -19,7 +19,7 @@ const StrawberryM = () => {
   const [activeTab, setActiveTab] = useState("desc");
   const thumbnailRef = useRef(null);
   const navigate = useNavigate();
-  const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
   
   // Memoized image thumbnails array
   const imageThumbnails = React.useMemo(() => [
@@ -29,35 +29,29 @@ const StrawberryM = () => {
   ], [strawberry, label, StrawberryS]);
   
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(strawberry);
+  const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src);
 
   // Debugging
   console.log("Cart Data:", cartData);
   console.log("Cart Items:", cartItems);
 
-  // Ensure product data is correctly fetched
+  // Get product from cartData
   const product =
     cartData?.products?.subJuice?.find((item) => item.name === "Strawberry Juice") ||
-    null;
+    {};
 
-  if (!product) {
-    console.error("Product not found in cartData.");
-    return <p className="text-center text-red-600">Product not found!</p>;
-  }
+  // Ensure sizes exist before accessing index
+  const selectedSize = product.sizes?.[selectedSizeIndex] || {};
 
-  const selectedSize = product.sizes?.[selectedSizeIndex] || null;
-
-  if (!selectedSize) {
-    console.error("Sizes not found for the product.");
-    return <p className="text-center text-red-600">Size data missing!</p>;
-  }
-
+  // Find cart item matching selected size
   const cartItem = cartItems.find(
     (item) => item.id === `${product.id}-${selectedSizeIndex}`
   );
 
+  // Handle Size Change
   const handleSizeChange = (index) => setSelectedSizeIndex(index);
 
+  // Handle Cart Operations
   const handleCartUpdate = (newQuantity) => {
     const cartId = `${product.id}-${selectedSizeIndex}`;
     if (newQuantity <= 0) {
@@ -77,6 +71,7 @@ const StrawberryM = () => {
     }
   };
 
+  // Price Calculations
   const totalMRP =
     selectedSize.originalPrice * (cartItem ? cartItem.quantity : 1);
   const totalTooMore =
@@ -107,25 +102,15 @@ const StrawberryM = () => {
           </div>
           <div className="flex overflow-x-auto mt-3 space-x-4">
             {imageThumbnails.map((image, index) => (
-              <div
-              ref={thumbnailRef}
-                
-                className={`cursor-pointer p-1 rounded ${
-                  selectedImage === image.src
-                    ? "border-2 border-green-700"
-                    : "border border-gray-300"
+              <OptimizedImage
+                key={index}
+                src={image.src}
+                alt={image.alt}
+                className={`w-16 h-16 border cursor-pointer hover:border-green-950 rounded-lg ${
+                  selectedImage === image.src ? "border-green-700" : "border-gray-400"
                 }`}
                 onClick={() => setSelectedImage(image.src)}
-              >
-                <OptimizedImage
-                  key={index}
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-16 h-16 object-cover"
-                  threshold={200}
-                  onClick={() => setSelectedImage(image.src)}
-                />
-              </div>
+              />
             ))}
           </div>
         </div>
@@ -133,69 +118,75 @@ const StrawberryM = () => {
         {/* Product Info */}
         <div className="w-full mt-6">
           <h1 className="text-xl font-semibold text-center">
-          Crimson Berry Strawberry : {selectedSize?.size || "N/A"} (
+            Sweet Strawberry Delight : {selectedSize?.size || "N/A"} (
             {selectedSize?.pricePerUnit || "N/A"})
           </h1>
           <p className="text-gray-500 text-center mt-2">{product.description}</p>
 
           {/* Size Selection */}
-          <div className="flex justify-center space-x-2 mt-3">
-            {product.sizes?.map((size, index) => (
-              <button
-                key={index}
-                className={`px-3 py-1 border rounded-lg text-sm ${
-                  selectedSizeIndex === index ? "border-green-800 bg-green-100" : "border-gray-400"
-                }`}
-                onClick={() => handleSizeChange(index)}
-              >
-                {size.size}
-              </button>
-            ))}
+          <div className="mt-6">
+            <p className="text-sm font-semibold mb-2 text-center">Select Size:</p>
+            <div className="flex justify-center flex-wrap gap-2">
+              {product.sizes?.map((size, index) => (
+                <button
+                  key={index}
+                  className={`px-4 py-2 border rounded-lg ${
+                    selectedSizeIndex === index
+                      ? "border-green-700 bg-green-50 text-green-700"
+                      : "border-gray-300 text-gray-700"
+                  }`}
+                  onClick={() => handleSizeChange(index)}
+                >
+                  {size.size}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Pricing */}
-          <div className="text-center mt-4">
-            <p className="text-gray-500 text-sm line-through">
+          {/* Price Details */}
+          <div className="mt-6 bg-green-50 p-4 rounded-lg">
+            <p className="text-gray-500 text-sm line-through text-center">
               MRP: ₹{totalMRP.toFixed(2)}
             </p>
-            <p className="text-green-600 text-lg font-bold">
-              TooMore: ₹{totalTooMore.toFixed(2)}
-            </p>
-            <p className="text-sm font-semibold mt-1">
-              <span className="bg-green-100 text-green-600 px-2 py-1 rounded-sm">
+            <div className="flex justify-between items-center mt-1">
+              <p className="text-green-700 text-lg font-bold">
+                TooMore: ₹{totalTooMore.toFixed(2)}
+              </p>
+              <span className="bg-green-100 text-green-700 px-2 py-1 rounded-sm text-sm font-medium">
                 ₹{totalDiscount.toFixed(2)} OFF
               </span>
+            </div>
+            <p className="text-gray-500 text-xs text-center mt-2">
+              (Inclusive of all taxes)
             </p>
           </div>
 
-          {/* Cart Actions */}
-          <div className="flex justify-center mt-4">
+          {/* Add to Cart Section */}
+          <div className="mt-6">
             {!cartItem ? (
               <button
-                className="w-48 bg-green-800 text-white py-2 rounded-lg"
                 onClick={() => handleCartUpdate(1)}
+                className="w-full bg-green-700 text-white py-3 rounded-lg font-medium text-lg"
               >
                 Add to Cart
               </button>
             ) : (
-              <div className="flex items-center">
+              <div className="flex items-center border rounded-lg overflow-hidden">
                 <button
-                  className="bg-green-800 text-white px-3 py-1 rounded-lg"
+                  className="bg-green-700 text-white px-4 py-2 text-xl"
                   onClick={() => handleCartUpdate(cartItem.quantity - 1)}
                 >
                   -
                 </button>
                 <input
                   type="number"
-                  className="w-16 text-center border mx-2 py-1"
+                  className="w-full text-center py-2 text-lg border-none focus:outline-none"
                   value={cartItem.quantity}
-                  onChange={(e) =>
-                    handleCartUpdate(parseInt(e.target.value, 10) || 1)
-                  }
+                  onChange={(e) => handleCartUpdate(parseInt(e.target.value, 10) || 1)}
                   min="1"
                 />
                 <button
-                  className="bg-green-800 text-white px-3 py-1 rounded-lg"
+                  className="bg-green-700 text-white px-4 py-2 text-xl"
                   onClick={() => handleCartUpdate(cartItem.quantity + 1)}
                 >
                   +
@@ -203,29 +194,41 @@ const StrawberryM = () => {
               </div>
             )}
           </div>
-          <br />
-          {/* Tab Buttons */}
-          <div className="flex justify-around bg-gray-100 p-3 rounded-t-lg">
-              {["desc", "disc", "info"].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`py-2 px-4 font-semibold transition-all duration-300 ${
-                    activeTab === tab
-                      ? "text-green-600 border-b-2 border-green-800"
-                      : "text-gray-600 hover:text-green-800"
-                  }`}
-                >
-                  {tab === "desc"
-                    ? "Description"
-                    : tab === "disc"
-                    ? "Disclaimer"
-                    : "More Info"}
-                </button>
-              ))}
-            </div>
 
-            {/* Tab Content */}
+          {/* Product Tabs */}
+          <div className="mt-8 border rounded-lg overflow-hidden">
+            <div className="flex border-b">
+              <button
+                className={`flex-1 py-3 text-center font-medium ${
+                  activeTab === "desc"
+                    ? "bg-green-50 text-green-700"
+                    : "bg-white text-gray-700"
+                }`}
+                onClick={() => setActiveTab("desc")}
+              >
+                Description
+              </button>
+              <button
+                className={`flex-1 py-3 text-center font-medium ${
+                  activeTab === "disc"
+                    ? "bg-green-50 text-green-700"
+                    : "bg-white text-gray-700"
+                }`}
+                onClick={() => setActiveTab("disc")}
+              >
+                Disclaimer
+              </button>
+              <button
+                className={`flex-1 py-3 text-center font-medium ${
+                  activeTab === "info"
+                    ? "bg-green-50 text-green-700"
+                    : "bg-white text-gray-700"
+                }`}
+                onClick={() => setActiveTab("info")}
+              >
+                Info
+              </button>
+            </div>
             <div className="p-5 text-gray-900">
               {activeTab === "desc" && (
                 <p>
@@ -255,15 +258,16 @@ const StrawberryM = () => {
               )}
             </div>
 
-            <div className="flex items-center mt-2">
+            <div className="flex items-center mt-2 p-4">
               <img
                 src="https://content.dmart.in/website/_next/static/media/veg.fd2bc51a.svg"
                 alt="Vegetarian Symbol"
-                className="h-10 w-10"
+                className="h-7 w-7"
               />
-              <span className="text-gray-950 text-sm">Vegetarian</span>
+              <span className="text-gray-950 text-sm ml-2">Vegetarian</span>
             </div>
         </div>
+      </div>
       </div>
       <Footer />
     </>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AppContent } from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,7 +10,7 @@ import logo from "../assets/images/back.png";
 
 
 const ResetPassword = () => {
-  const { backendUrl , getUserData } = useContext(AppContent);
+  const { backendUrl , getUserData } = useContext(AppContext);
   axios.defaults.withCredentials = true;
 
   const navigate = useNavigate();

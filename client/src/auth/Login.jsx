@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
-import { AppContent } from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,7 +10,7 @@ import logo from "../assets/images/back.png";
 const login = () => {
   const navigate = useNavigate();
 
-  const { backendUrl, setIsLoggedin, getUserData } = useContext(AppContent);
+  const { backendUrl, setIsLoggedin, getUserData } = useContext(AppContext);
 
   const [state, setState] = useState("Login");
   const [name, setName] = useState("");

@@ -4,13 +4,13 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 // Dynamically import skyberry
 const skyberry = loadImage('../assets/images/products/SkyBerry.webp');
 // Dynamically import label
-const label = loadImage('../assets/images/mango.webp');
+const label = loadImage('../assets/images/SkyBerryLabel.webp');
 // Dynamically import Small
 const Small = loadImage('../assets/images/SkyBerryS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import { AppContent } from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 import cartData from "../cart/data.json";
 
 const SkyberryM = () => {
@@ -21,7 +21,7 @@ const SkyberryM = () => {
   const [activeTab, setActiveTab] = useState("desc");
   const thumbnailRef = useRef(null);
   const navigate = useNavigate();
-  const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
   
   // Memoized image thumbnails array
   const imageThumbnails = React.useMemo(() => [

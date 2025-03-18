@@ -4,7 +4,7 @@
       {
         "id": 1,
         "name": "Pineapple Juice",
-        "image": "./src/assets/images/products/pineapple.webp",
+        "image": "../assets/images/products/pineapple.webp",
         "description": "TooMore Pineapple Juice",
         "link":"/pineapple",
         "vegetarianSymbol": true,
@@ -28,7 +28,7 @@
       {
         "id": 2,
         "name": "Mango Juice",
-        "image": "./src/assets/images/products/mango.webp",
+        "image": "../assets/images/products/mango.webp",
         "description": "TooMore Mango Juice",
         "link":"/mango",
         "vegetarianSymbol": true,
@@ -52,7 +52,7 @@
       {
         "id": 3,
         "name": "Grape Juice",
-        "image": "./src/assets/images/products/grapes.webp",
+        "image": "../assets/images/products/grapes.webp",
         "description": "TooMore Grape Juice",
         "link":"/grapes",
         "vegetarianSymbol": true,
@@ -76,7 +76,7 @@
       {
         "id": 4,
         "name": "Lychee Juice",
-        "image": "./src/assets/images/products/lychee.webp",
+        "image": "../assets/images/products/lychee.webp",
         "description": "TooMore Lychee Juice",
         "link":"/lychee",
         "vegetarianSymbol": true,
@@ -100,7 +100,7 @@
       {
         "id": 5,
         "name": "Strawberry Juice",
-        "image": "./src/assets/images/products/strawberry.webp",
+        "image": "../assets/images/products/strawberry.webp",
         "description": "TooMore Strawberry Juice",
         "link":"/strawberry",
         "vegetarianSymbol": true,
@@ -124,7 +124,7 @@
       {
         "id": 6,
         "name": "SkyBerry Juice",
-        "image": "./src/assets/images/products/skyberry.webp",
+        "image": "../assets/images/sb.webp",
         "description": "TooMore SkyBerry Juice",
         "link":"/skyberry",
         "vegetarianSymbol": true,
@@ -148,7 +148,7 @@
       {
         "id": 7,
         "name": "Pomegranate Juice",
-         "image": "./src/assets/images/products/Pomegranate.webp",
+         "image": "../assets/images/products/Pomegranate.webp",
         "description": "TooMore Pomegranate Juice",
         "link":"/pomegranate",
         "vegetarianSymbol": true,

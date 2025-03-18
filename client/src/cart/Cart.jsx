@@ -5,17 +5,20 @@ import Nav from "./Nav";
 import Aside from "./Aside";
 // Use lazy loading for the Footer component
 const Footer = lazy(() => import("../components/Footer"));
-import { AppContent } from "../context/AppContext"; // Import your context
+import { AppContext } from "../context/AppContext"; // Import your context
 
-// Import images dynamically
-const imageImports = {
-  1: () => import("../assets/images/products/pineapple.webp"),
-  2: () => import("../assets/images/products/mango.webp"),
-  3: () => import("../assets/images/products/grapes.webp"),
-  4: () => import("../assets/images/products/lychee.webp"),
-  5: () => import("../assets/images/products/strawberry.webp"),
-  6: () => import("../assets/images/sb.webp"),
-  7: () => import("../assets/images/products/Pomegranate.webp"),
+// Updated image imports to use loadImage utility
+import { loadImage } from "../components/ImageOptimizer";
+
+// Create a preloaded image cache
+const imageCache = {
+  1: loadImage("../assets/images/products/pineapple.webp"),
+  2: loadImage("../assets/images/products/mango.webp"),
+  3: loadImage("../assets/images/products/grapes.webp"),
+  4: loadImage("../assets/images/products/lychee.webp"),
+  5: loadImage("../assets/images/products/strawberry.webp"),
+  6: loadImage("../assets/images/sb.webp"),
+  7: loadImage("../assets/images/products/Pomegranate.webp"),
 };
 
 const Cart = () => {
@@ -24,49 +27,15 @@ const Cart = () => {
   useEffect(() => {
     window.scrollTo(0, 0); // This ensures the page always starts from the top
     
-    // Preload images in priority order
-    const preloadImages = async () => {
-      const imagePromises = {};
-      
-      // First preload visible images
-      for (const item of cartData.products.subJuice.slice(0, 4)) {
-        if (imageImports[item.id]) {
-          imagePromises[item.id] = imageImports[item.id]()
-            .then(module => module.default)
-            .catch(() => null);
-        }
-      }
-      
-      // Load images and update state as they become available
-      for (const [id, promise] of Object.entries(imagePromises)) {
-        const image = await promise;
-        if (image) {
-          setLoadedImages(prev => ({...prev, [id]: image}));
-        }
-      }
-      
-      // Then load the rest in the background
-      setTimeout(() => {
-        for (const item of cartData.products.subJuice.slice(4)) {
-          if (imageImports[item.id]) {
-            imageImports[item.id]()
-              .then(module => {
-                setLoadedImages(prev => ({...prev, [item.id]: module.default}));
-              })
-              .catch(() => null);
-          }
-        }
-      }, 300);
-    };
-    
-    preloadImages();
+    // Set all images from cache to state
+    setLoadedImages(imageCache);
   }, []);
 
   const [selectedSizes, setSelectedSizes] = useState({});
   const navigate = useNavigate();
 
   // Use cart state and functions from context
-  const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
 
   const handleSizeChange = (itemId, sizeIndex) => {
     setSelectedSizes((prevSizes) => ({

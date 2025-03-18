@@ -31,7 +31,21 @@ const OptimizedImage = React.memo(({
  */
 export const loadImage = (path) => {
   try {
-    return new URL(path, import.meta.url).href;
+    console.log("Attempting to load image:", path);
+    let imgUrl;
+    
+    // First try to load as URL
+    try {
+      imgUrl = new URL(path, import.meta.url).href;
+    } catch (urlError) {
+      console.warn(`URL loading failed for: ${path}`, urlError);
+      
+      // Try direct path as fallback
+      imgUrl = path;
+    }
+    
+    console.log("Image loaded as:", imgUrl);
+    return imgUrl;
   } catch (error) {
     console.error(`Failed to load image: ${path}`, error);
     return placeholderSrc;

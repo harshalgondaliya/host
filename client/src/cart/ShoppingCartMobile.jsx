@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
-import { AppContent } from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 
 const ShoppingCartMobile = () => {
   useEffect(() => {
@@ -10,7 +10,7 @@ const ShoppingCartMobile = () => {
   }, []);
 
   const navigate = useNavigate();
-  const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
 

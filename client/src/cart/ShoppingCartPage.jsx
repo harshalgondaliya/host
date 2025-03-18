@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
-import { AppContent } from "../context/AppContext"; // Import your context
+import { AppContext } from "../context/AppContext"; // Import your context
 
 const ShoppingCartPage = () => {
   const navigate = useNavigate();
-  const { cartItems, addToCart, removeFromCart } = useContext(AppContent); // Use cartItems and functions from context
+  const { cartItems, addToCart, removeFromCart } = useContext(AppContext); // Use cartItems and functions from context
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
 

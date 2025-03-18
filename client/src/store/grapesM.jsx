@@ -8,7 +8,7 @@ const GrapesS = loadImage('../assets/images/products/GrapesS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import { AppContent } from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 import cartData from "../cart/data.json";
 
 const GrapesM = () => {
@@ -19,7 +19,7 @@ const GrapesM = () => {
   const [activeTab, setActiveTab] = useState("desc");
   const thumbnailRef = useRef(null);
   const navigate = useNavigate();
-  const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
   
   // Memoized image thumbnails array
   const imageThumbnails = React.useMemo(() => [

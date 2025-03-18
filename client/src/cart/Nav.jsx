@@ -1,11 +1,11 @@
 import logo from "../assets/logo1.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
-import { AppContent } from "../context/AppContext"; // Ensure this import is correct
+import { AppContext } from "../context/AppContext"; // Ensure this import is correct
 
 const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
   const navigate = useNavigate();
-  const { userData } = useContext(AppContent);
+  const { userData } = useContext(AppContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

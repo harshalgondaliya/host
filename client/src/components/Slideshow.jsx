@@ -32,9 +32,9 @@ import image9 from "../assets/images/StrawberryD.webp";
 import image10 from "../assets/images/StrawberryMo.webp";
 
 // Loading placeholder component
-const LoadingPlaceholder = memo(() => (
-  <div className="animate-pulse bg-gray-200 w-full h-full rounded"></div>
-));
+const LoadingPlaceholder = memo(React.forwardRef((props, ref) => (
+  <div ref={ref} className="animate-pulse bg-gray-200 w-full h-full rounded"></div>
+)));
 
 // Navigation button component
 const NavButton = memo(({ direction, onClick, label }) => (
@@ -62,6 +62,7 @@ const DotIndicator = memo(({ active, onClick, ariaLabel }) => (
   ></div>
 ));
 
+// Define the component as a named function
 const Slideshow = () => {
   // Image data with links - memoized to prevent recreation on each render
   const slideData = useMemo(() => [
@@ -149,11 +150,11 @@ const Slideshow = () => {
   useEffect(() => {
     if (!isPaused) {
       timeoutRef.current = setTimeout(() => {
-        handleNavigation((currentIndex + 1) % 5, true);
+        handleNavigation((currentIndex + 1) % slideData.length, true);
       }, 3000); // Auto-slide every 3 seconds
     }
     return () => clearTimeout(timeoutRef.current);
-  }, [currentIndex, isPaused]);
+  }, [currentIndex, isPaused, slideData.length]);
 
   const handleNavigation = useCallback((index, isAutomatic = false) => {
     if (isTransitioning && !isAutomatic) return; // Prevent rapid clicks during transition
@@ -198,16 +199,16 @@ const Slideshow = () => {
     if (Math.abs(diff) > 30) {
       if (diff > 0) {
         // Swipe left, go to next
-        handleNavigation((currentIndex + 1) % 5);
+        handleNavigation((currentIndex + 1) % slideData.length);
       } else {
         // Swipe right, go to previous
-        handleNavigation((currentIndex - 1 + 5) % 5);
+        handleNavigation((currentIndex - 1 + slideData.length) % slideData.length);
       }
     } else {
       // If it was just a tap, not a swipe
       timeoutRef.current = setTimeout(() => setIsPaused(false), 5000);
     }
-  }, [handleNavigation, isTransitioning, touchStart, currentIndex]);
+  }, [handleNavigation, isTransitioning, touchStart, currentIndex, slideData.length]);
 
   // Get current image based on device type
   const getCurrentImage = useCallback(() => {
@@ -298,12 +299,12 @@ const Slideshow = () => {
         {/* Navigation Buttons */}
         <NavButton 
           direction="prev" 
-          onClick={() => handleNavigation((currentIndex - 1 + 5) % 5)}
+          onClick={() => handleNavigation((currentIndex - 1 + slideData.length) % slideData.length)}
           label="Previous slide"
         />
         <NavButton 
           direction="next" 
-          onClick={() => handleNavigation((currentIndex + 1) % 5)}
+          onClick={() => handleNavigation((currentIndex + 1) % slideData.length)}
           label="Next slide"
         />
       </div>
@@ -314,4 +315,4 @@ const Slideshow = () => {
   );
 };
 
-export default memo(Slideshow);
+export default Slideshow;

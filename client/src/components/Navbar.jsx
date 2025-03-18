@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
-import { AppContent } from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -18,7 +18,7 @@ const Navbar = () => {
   const [searchOpenDesktop, setSearchOpenDesktop] = useState(false);
 
   const { userData, backendUrl, setUserData, setIsLoggedin } =
-    useContext(AppContent);
+    useContext(AppContext);
 
   const sendVerificationOtp = async () => {
     try {

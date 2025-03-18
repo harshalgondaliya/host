@@ -8,7 +8,7 @@ const PineappleS = loadImage('../assets/images/products/PineappleS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import { AppContent } from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 import cartData from "../cart/data.json";
 
 const Pineapple = () => {
@@ -20,7 +20,7 @@ const Pineapple = () => {
 
   const thumbnailRef = useRef(null);
   const navigate = useNavigate();
-  const { cartItems, addToCart, removeFromCart } = useContext(AppContent);
+  const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
   
   // Memoized image thumbnails array
   const imageThumbnails = React.useMemo(() => [
