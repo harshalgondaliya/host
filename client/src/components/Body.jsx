@@ -163,7 +163,7 @@ const Body = () => {
           className="w-[101%] h-[230px] mx-0 mb-0 object-fill"
         />
         <h1
-          className="text-2xl font-bold text-[#015c01] -mt-14 mb-2"
+          className="text-2xl font-bold text-[#015c01] -mt-24 mb-2"
           style={{ ...comicSansStyle, fontSize: "1.8rem" }}
         >
           Taste the Difference
@@ -177,7 +177,7 @@ const Body = () => {
           Every sip delivers pure, refreshing goodness straight from orchard to
           glass.
         </p>
-        <br /><br />
+        <br />
         <button
           onClick={() => navigate("/cart")}
           className="mt-4 bg-[#015c01] text-white px-6 py-2 rounded-full hover:bg-[#013b01] transition-colors duration-300 shadow-lg hover:shadow-xl hover:scale-105"
@@ -192,7 +192,6 @@ const Body = () => {
 
       {/* Mobile View: Hero image */}
       <div className="sm:hidden w-full h-auto shadow-xl rounded-lg mx-2 mb-5 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl lazy-container">
-        <br />
         <img
           src={all}
           alt="Soft Front"
@@ -235,7 +234,11 @@ const Body = () => {
       <br />
       <br />
 
-      <Suspense fallback={<LoadingPlaceholder />}>
+      <Suspense fallback={
+        <div className="animate-pulse bg-gray-200 w-full h-[24rem] md:h-[32rem] lg:h-[36rem] rounded-lg max-w-[50rem] mx-auto">
+          <div className="flex items-center justify-center h-full text-gray-500">Loading slideshow...</div>
+        </div>
+      }>
         <Slideshow />
       </Suspense>
 
