@@ -20,10 +20,26 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-2">About Us</h4>
             <ul>
-              <li><Link to="/press-releases" className="hover:underline">Media Center</Link></li>
-              <li><Link to="/our-story" className="hover:underline">Toomore Foundation</Link></li>
-              <li><Link to="/investor-relations" className="hover:underline">Investors</Link></li>
-              <li><Link to="/careers" className="hover:underline">Careers</Link></li>
+              <li>
+                <Link to="/press-releases" className="hover:underline">
+                  Media Center
+                </Link>
+              </li>
+              <li>
+                <Link to="/our-story" className="hover:underline">
+                  Toomore Foundation
+                </Link>
+              </li>
+              <li>
+                <Link to="/investor-relations" className="hover:underline">
+                  Investors
+                </Link>
+              </li>
+              <li>
+                <Link to="/careers" className="hover:underline">
+                  Careers
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -31,9 +47,21 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-2">Need Help?</h4>
             <ul>
-              <li><Link to="/FAQs" className="hover:underline">FAQ</Link></li>
-              <li><Link to="/customer-care" className="hover:underline">Contact Us</Link></li>
-              <li><Link to="/env-impact" className="hover:underline">ENV-IMPACT</Link></li>
+              <li>
+                <Link to="/FAQs" className="hover:underline">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link to="/customer-care" className="hover:underline">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/env-impact" className="hover:underline">
+                  ENV-IMPACT
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -41,12 +69,36 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-2">Terms of Use</h4>
             <ul>
-              <li><Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link></li>
-              <li><Link to="/cookies-policy" className="hover:underline">Cookies Policy</Link></li>
-              <li><Link to="/notice-at-collection" className="hover:underline">Notice at Collection</Link></li>
-              <li><Link to="/do-not-sell" className="hover:underline">Do Not Sell or Share My Personal Information</Link></li>
-              <li><Link to="/terms-of-service" className="hover:underline">Terms of Service</Link></li>
-              <li><Link to="/cookies-settings" className="hover:underline">Cookies Settings</Link></li>
+              <li>
+                <Link to="/privacy-policy" className="hover:underline">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/cookies-policy" className="hover:underline">
+                  Cookies Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/notice-at-collection" className="hover:underline">
+                  Notice at Collection
+                </Link>
+              </li>
+              <li>
+                <Link to="/do-not-sell" className="hover:underline">
+                  Do Not Sell or Share My Personal Information
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms-of-service" className="hover:underline">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link to="/cookies-settings" className="hover:underline">
+                  Cookies Settings
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -54,9 +106,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-2">Address</h4>
             <address className="italic">
-              BEST JUICE AND WATER PLANT,<br />
-              PITHDIYA ROAD,
-              near SHIV FELT, <br />
+              BEST JUICE AND WATER PLANT,
+              <br />
+              PITHDIYA ROAD, near SHIV FELT, <br />
               Derdi, Rajkot-360370, <br />
               Gujarat, India
             </address>
@@ -76,12 +128,23 @@ const Footer = () => {
           {/* Social Media Icons */}
           <div className="flex gap-3">
             {[
-              { href: "https://www.facebook.com/too.more.142", icon: "fab fa-facebook-f" },
-              { href: "https://www.instagram.com/too_more1/", icon: "fab fa-instagram" },
-              { href: "https://www.youtube.com/@toomorebeverages9253", icon: "fab fa-youtube" },
+              {
+                href: "https://www.facebook.com/too.more.142",
+                icon: "fab fa-facebook-f",
+              },
+              {
+                href: "https://www.instagram.com/too_more1/",
+                icon: "fab fa-instagram",
+              },
+              {
+                href: "https://www.youtube.com/@toomorebeverages9253",
+                icon: "fab fa-youtube",
+              },
               { href: "https://wa.me/+918780499433", icon: "fab fa-whatsapp" },
-              { href: "mailto:toomore343@gmail.com", icon: "fas fa-envelope" },
-              { href: "https://x.com/too_more343", icon: "fa-brands fa-x-twitter" }
+              {
+                href: "https://x.com/too_more343",
+                icon: "fa-brands fa-x-twitter",
+              },
             ].map((social, index) => (
               <a
                 key={index}
@@ -93,6 +156,14 @@ const Footer = () => {
                 <i className={`${social.icon} text-xl`} />
               </a>
             ))}
+            <a
+              href="https://mail.google.com/mail/?view=cm&to=toomore343@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white border border-black rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-black hover:text-orange-600"
+            >
+              <i className="fas fa-envelope text-xl" />
+            </a>
           </div>
         </div>
 

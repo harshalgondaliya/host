@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../context/AppContext';
 
@@ -6,6 +6,26 @@ const States = () => {
   const { t } = useTranslation();
   const { language, changeLanguage } = useContext(AppContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const containerRef = useRef(null);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    // Force scroll to top with a slight delay to ensure it happens after render
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto'
+      });
+      
+      // Additional approach - scroll the container element to top
+      if (containerRef.current) {
+        containerRef.current.scrollIntoView({ 
+          behavior: 'auto',
+          block: 'start'
+        });
+      }
+    }, 100);
+  }, []);
 
   // Language options
   const languages = [
@@ -14,25 +34,11 @@ const States = () => {
     { code: 'hi', name: t('language.hindi'), flag: '🇮🇳' }
   ];
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (isDropdownOpen && !event.target.closest('.language-dropdown')) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [isDropdownOpen]);
-
   // Get current language display
   const currentLanguage = languages.find(lang => lang.code === language) || languages[0];
 
   return (
-    <div className="language-dropdown relative">
+    <div ref={containerRef} className="language-dropdown relative">
       <button 
         className="flex items-center space-x-2 py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}

@@ -1,10 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../context/AppContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const States = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const { t } = useTranslation();
   const { language, changeLanguage } = useContext(AppContext);
 
