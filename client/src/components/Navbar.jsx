@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo1.png";
-import States from "./States";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -464,9 +463,9 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <div className="block hover:text-orange-900">
+                    {/* <div className="block hover:text-orange-900">
                       <States />
-                    </div>
+                    </div> */}
                     <Link to="/states" className="mt-2 block hover:text-orange-900">
                       {t('Language Settings')}
                     </Link>

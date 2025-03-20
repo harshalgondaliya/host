@@ -20,6 +20,32 @@ import strawImg from "../assets/images/Strawberry_Story.webp";
 import lycheeImg from "../assets/images/Lychee_Story.webp";
 import mangoImg from "../assets/images/Mango_Story.webp";
 
+// Preload all images in the head
+const preloadImagesInHead = () => {
+  const images = [all, valley, grapesImg, pineappleImg, strawImg, lycheeImg, mangoImg, end];
+  const head = document.head;
+  
+  images.forEach((src) => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = src;
+    link.type = 'image/webp';
+    link.crossOrigin = '';  // Empty string means use-credentials mode same as the page
+    head.appendChild(link);
+  });
+};
+
+// Eagerly load all images on page load
+const preloadImages = () => {
+  const images = [all, valley, grapesImg, pineappleImg, strawImg, lycheeImg, mangoImg, end];
+  images.forEach((src) => {
+    const img = new Image();
+    img.crossOrigin = '';
+    img.src = src;
+  });
+};
+
 // Image configuration with responsive sizes and descriptions
 const imagesWithDesc = [
   {
@@ -69,25 +95,45 @@ const LoadingPlaceholder = () => (
   <div className="animate-pulse bg-gray-200 w-full h-60 rounded"></div>
 );
 
-// Custom image component with progressive loading
-const OptimizedImage = ({ src, alt, className, loadingPriority = "lazy", width, height }) => {
+// Custom image component with blur-up loading and fixed attributes
+const OptimizedImage = ({ src, alt, className, loadingPriority = "eager", width, height, fetchPriority = "high" }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isBlurred, setIsBlurred] = useState(true);
+
+  useEffect(() => {
+    // Create hidden image to preload
+    const img = new Image();
+    img.crossOrigin = '';
+    img.src = src;
+    img.onload = () => {
+      setIsLoaded(true);
+      setTimeout(() => setIsBlurred(false), 10); // Small delay for smoother transition
+    };
+    return () => {
+      img.onload = null;
+    };
+  }, [src]);
 
   return (
-    <>
-      {!isLoaded && <div className="animate-pulse bg-gray-200 w-full h-full absolute inset-0 rounded"></div>}
+    <div className="relative w-full h-full">
+      {isBlurred && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse rounded"></div>
+      )}
       <img
         src={src}
         alt={alt}
-        className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
         loading={loadingPriority}
-        onLoad={() => setIsLoaded(true)}
+        fetchpriority={fetchPriority.toLowerCase()} // lowercase to fix React warning
         width={width}
         height={height}
         decoding="async"
-        style={{ transition: 'opacity 0.3s' }}
+        style={{ 
+          transition: 'opacity 0.3s, filter 0.3s',
+          filter: isBlurred ? 'blur(10px)' : 'blur(0)'
+        }}
       />
-    </>
+    </div>
   );
 };
 
@@ -104,61 +150,38 @@ const Body = () => {
   const [isVisible, setIsVisible] = useState({});
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  // Use Intersection Observer for lazy loading of off-screen content
+  // Initialize and preload images immediately
   useEffect(() => {
-    // Check if browser supports IntersectionObserver
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            setIsVisible((prev) => ({
-              ...prev,
-              [entry.target.id]: entry.isIntersecting,
-            }));
-          });
-        },
-        { 
-          rootMargin: '200px', // Load images when they're 200px from viewport
-          threshold: 0.1 
-        }
-      );
+    // Run both preloading techniques
+    preloadImagesInHead();
+    preloadImages();
 
-      document.querySelectorAll(".lazy-container").forEach((el) => {
-        observer.observe(el);
-      });
-
-      return () => observer.disconnect();
-    } else {
-      // Fallback for browsers that don't support IntersectionObserver
-      setIsVisible(
-        Array.from(document.querySelectorAll(".lazy-container")).reduce(
-          (acc, el) => ({ ...acc, [el.id]: true }),
-          {}
-        )
-      );
-    }
-  }, []);
-
-  // Add font-family to the document
-  useEffect(() => {
-    const style = document.createElement("style");
+    // Add inline <link> tags directly to document head (alternative approach)
+    const style = document.createElement('style');
     style.textContent = `
-      @font-face {
-        font-family: 'Comic Sans MS';
-        src: local('Comic Sans MS'),
-             local('ComicSansMS'),
-             local('Comic Sans');
-        font-display: swap;
-      }
-      body {
-        font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "TSCu_Comic", cursive;
-        font-size: 1.2rem;
+      img {
+        content-visibility: auto;
       }
     `;
     document.head.appendChild(style);
+
     return () => {
       document.head.removeChild(style);
     };
+  }, []);
+
+  // Remove IntersectionObserver if we're eagerly loading all images
+  // Instead always render all images immediately
+  const allVisible = imagesWithDesc.reduce((acc, _, index) => {
+    acc[`desktop-card-${index}`] = true;
+    acc[`desktop-card-${index + 3}`] = true;
+    acc[`mobile-card-${index}`] = true;
+    acc['banner-image'] = true;
+    return acc;
+  }, {});
+
+  useEffect(() => {
+    setIsVisible(allVisible);
   }, []);
 
   return (
@@ -170,7 +193,7 @@ const Body = () => {
       <br />
 
       {/* Desktop View: Hero image followed by text */}
-      <div className="hidden sm:block w-full h-auto shadow-lg transition-transform duration-300 hover:scale-105 lazy-container">
+      <div className="hidden sm:block w-full h-auto shadow-lg transition-transform duration-300 hover:scale-105">
         <OptimizedImage
           src={all}
           alt="Soft Front"
@@ -178,6 +201,7 @@ const Body = () => {
           loadingPriority="eager"
           width={1200}
           height={600}
+          fetchPriority="high"
         />  
       </div>
 
@@ -191,6 +215,7 @@ const Body = () => {
             loadingPriority="eager"
             width={500}
             height={230}
+            fetchPriority="high"
           />
         </div>
         <h1
@@ -221,7 +246,7 @@ const Body = () => {
       </div>
 
       {/* Mobile View: Hero image */}
-      <div className="sm:hidden w-full h-auto shadow-xl rounded-lg mx-2 mb-5 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl lazy-container">
+      <div className="sm:hidden w-full h-auto shadow-xl rounded-lg mx-2 mb-5 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
         <OptimizedImage
           src={all}
           alt="Soft Front"
@@ -229,6 +254,7 @@ const Body = () => {
           loadingPriority="eager"
           width={500}
           height={300}
+          fetchPriority="high"
         />
       </div>
       <br />
@@ -297,20 +323,20 @@ const Body = () => {
           <div
             key={index}
             id={`desktop-card-${index}`}
-            className="w-72 text-center bg-white rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl lazy-container"
+            className="w-72 text-center bg-white rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl"
             onClick={() => image.link && navigate(image.link)}
             style={{ cursor: image.link ? "pointer" : "default" }}
           >
             <div className="relative aspect-w-4 aspect-h-3">
-              {isVisible[`desktop-card-${index}`] && (
-                <OptimizedImage
-                  src={image.src}
-                  alt={image.desc}
-                  className="w-full h-auto rounded-t-lg"
-                  width={image.width}
-                  height={image.height}
-                />
-              )}
+              <OptimizedImage
+                src={image.src}
+                alt={image.desc}
+                className="w-full h-auto rounded-t-lg"
+                width={image.width}
+                height={image.height}
+                loadingPriority="eager"
+                fetchPriority="high"
+              />
             </div>
             <p
               className="mt-3 text-base text-[#015c01] font-light"
@@ -332,20 +358,20 @@ const Body = () => {
           <div
             key={index}
             id={`desktop-card-${index + 3}`}
-            className="w-72 text-center bg-white rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl lazy-container"
+            className="w-72 text-center bg-white rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl"
             onClick={() => image.link && navigate(image.link)}
             style={{ cursor: image.link ? "pointer" : "default" }}
           >
             <div className="relative aspect-w-4 aspect-h-3">
-              {isVisible[`desktop-card-${index + 3}`] && (
-                <OptimizedImage
-                  src={image.src}
-                  alt={image.desc}
-                  className="w-full h-auto rounded-t-lg"
-                  width={image.width}
-                  height={image.height}
-                />
-              )}
+              <OptimizedImage
+                src={image.src}
+                alt={image.desc}
+                className="w-full h-auto rounded-t-lg"
+                width={image.width}
+                height={image.height}
+                loadingPriority="eager"
+                fetchPriority="high"
+              />
             </div>
             <p
               className="mt-3 text-base text-[#015c01] font-light"
@@ -379,21 +405,20 @@ const Body = () => {
             <div
               key={index}
               id={`mobile-card-${index}`}
-              className="flex flex-col items-center min-w-[85%] bg-white rounded-lg overflow-hidden shadow-lg snap-center transition-all duration-300 hover:scale-105 hover:shadow-xl lazy-container"
+              className="flex flex-col items-center min-w-[85%] bg-white rounded-lg overflow-hidden shadow-lg snap-center transition-all duration-300 hover:scale-105 hover:shadow-xl"
               onClick={() => image.link && navigate(image.link)}
               style={{ cursor: image.link ? "pointer" : "default" }}
             >
               <div className="relative w-full aspect-w-4 aspect-h-3">
-                {isVisible[`mobile-card-${index}`] && (
-                  <OptimizedImage
-                    src={image.src}
-                    alt={image.desc}
-                    className="w-full h-auto rounded-t-lg"
-                    loadingPriority={index < 2 ? "eager" : "lazy"}
-                    width={image.width}
-                    height={image.height}
-                  />
-                )}
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.desc}
+                  className="w-full h-auto rounded-t-lg"
+                  loadingPriority="eager"
+                  width={image.width}
+                  height={image.height}
+                  fetchPriority="high"
+                />
               </div>
               <div className="p-3 text-center">
                 <h3
@@ -447,18 +472,17 @@ const Body = () => {
       </div>
       <div
         id="banner-image"
-        className="w-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 lazy-container"
+        className="w-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
       >
-        {isVisible["banner-image"] && (
-          <OptimizedImage
-            src={end}
-            alt="Soft Front"
-            className="w-full h-auto"
-            loadingPriority="lazy" 
-            width={1200}
-            height={500}
-          />
-        )}
+        <OptimizedImage
+          src={end}
+          alt="Soft Front"
+          className="w-full h-auto"
+          loadingPriority="eager" 
+          width={1200}
+          height={500}
+          fetchPriority="high"
+        />
       </div>
     </div>
   );

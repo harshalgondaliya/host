@@ -24,10 +24,10 @@ export const AppContextProvider = (props) => {
     setLanguage(lang);
     localStorage.setItem('i18nextLng', lang);
 
-    // For RTL languages like Arabic
-    if (lang === 'ar') {
+    // For RTL languages like Arabic and Hebrew
+    if (lang === 'ar' || lang === 'he') {
       document.documentElement.dir = 'rtl';
-      document.documentElement.lang = 'ar';
+      document.documentElement.lang = lang;
     } else {
       document.documentElement.dir = 'ltr';
       document.documentElement.lang = lang;
@@ -36,9 +36,9 @@ export const AppContextProvider = (props) => {
 
   // Set initial language direction
   useEffect(() => {
-    if (language === 'ar') {
+    if (language === 'ar' || language === 'he') {
       document.documentElement.dir = 'rtl';
-      document.documentElement.lang = 'ar';
+      document.documentElement.lang = language;
     } else {
       document.documentElement.dir = 'ltr';
       document.documentElement.lang = language;
