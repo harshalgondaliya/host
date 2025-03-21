@@ -66,17 +66,16 @@ const Navbar = () => {
 
   return (
     <nav className="bg-green-950 fixed w-full z-20 top-0 start-0 border-b border-transparent dark:transparent">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-0">
+      <div className="max-w-screen-xl flex items-center justify-between mx-auto p-2">
         <a
           onClick={() => navigate("/")}
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-          style={{ cursor: "pointer" }}
+          className="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer"
         >
-          <img src={logo} alt="Toomore Juice Logo" className="h-16 w-16" />
+          <img src={logo} alt="Toomore Juice Logo" className="h-14 w-14 sm:h-16 sm:w-16" />
         </a>
 
         <div className="dark:bg-transparent hidden md:flex items-center space-x-6">
-          <ul className="flex items-center space-x-10">
+          <ul className="flex items-center space-x-8">
             {/* Your existing menu items here */}
             {/* Example for one item */}
             <li>
@@ -274,35 +273,39 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden flex items-center relative">
+        <div className="md:hidden flex items-center justify-end w-full space-x-2">
           <button
             onClick={() => navigate("/search")}
-            className="text-white hover:text-orange-600 md:hidden mr-auto ml-48"
+            className="text-white hover:text-orange-500 transition-colors p-1"
+            aria-label="Search"
           >
             <i className="fas fa-search text-xl"></i>
           </button>
 
           <button
             onClick={handleMobileMenuToggle}
-            className="text-white text-2xl fixed top-4 right-4 z-50 transition-transform duration-300"
+            className="text-white hover:text-orange-500 transition-colors p-1 z-50"
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
-              <i className="fas fa-times"></i>
+              <i className="fas fa-times text-xl"></i>
             ) : (
-              <i className="fas fa-bars"></i>
+              <i className="fas fa-bars text-xl"></i>
             )}
           </button>
 
           {mobileMenuOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
-              <div className="absolute top-0 right-0 w-3/4 h-full bg-green-950 shadow-lg flex flex-col p-6 space-y-4 transition-transform duration-300 overflow-y-auto">
+              <div 
+                className="absolute top-0 right-0 w-4/5 sm:w-3/4 max-w-sm h-full bg-green-950 shadow-lg flex flex-col p-4 sm:p-6 space-y-3 
+                transform transition-all duration-300 ease-in-out overflow-y-auto"
+              >
                 <ul className="space-y-4 text-white text-lg">
-                  <br />
                   {userData ? (
                     <li className="relative">
                       <button
                         onClick={() => toggleDropdown("User")}
-                        className="block w-full text-left hover:text-white flex justify-between items-center"
+                        className="block w-full text-left hover:text-orange-500 flex justify-between items-center transition-colors"
                       >
                         {userData.name.charAt(0).toUpperCase() +
                           userData.name.slice(1)}{" "}
@@ -315,7 +318,7 @@ const Navbar = () => {
                         ></i>
                       </button>
                       {openDropdown === "User" && (
-                        <ul className="mt-2 w-48 bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
+                        <ul className="mt-2 w-full bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
                           {!userData.isAccountVerified ? (
                             <li
                               onClick={sendVerificationOtp}
@@ -341,18 +344,18 @@ const Navbar = () => {
                     </li>
                   ) : (
                     <li>
-                      <Link to="/login" className="block hover:bg-yellow-500">
+                      <Link to="/login" className="block py-2 hover:text-orange-500 transition-colors">
                         Login
                       </Link>
                     </li>
                   )}
                   <li>
-                    <Link to="/our-story" className="block hover:text-white">
+                    <Link to="/our-story" className="block py-2 hover:text-orange-500 transition-colors">
                       Our Story
                     </Link>
                   </li>
                   <li>
-                    <Link to="/juices" className="block hover:text-white">
+                    <Link to="/juices" className="block py-2 hover:text-orange-500 transition-colors">
                       Products
                     </Link>
                   </li>
@@ -429,7 +432,7 @@ const Navbar = () => {
                     <li className="relative" key={menu.title}>
                       <button
                         onClick={() => toggleDropdown(menu.title)}
-                        className="block w-full text-left hover:text-yellow-500 flex justify-between items-center"
+                        className="block w-full text-left py-2 hover:text-orange-500 transition-colors flex justify-between items-center"
                       >
                         {menu.title}{" "}
                         <i
@@ -441,12 +444,12 @@ const Navbar = () => {
                         ></i>
                       </button>
                       {openDropdown === menu.title && (
-                        <ul className="mt-2 w-48 bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
+                        <ul className="mt-1 w-full bg-green-800 shadow-inner rounded-lg transition-all duration-300">
                           {menu.links.map((link, index) => (
                             <li key={index}>
                               <Link
                                 to={link.path}
-                                className="block px-4 py-2 text-white hover:bg-yellow-500"
+                                className="block px-4 py-2 text-white hover:bg-green-700 transition-colors hover:text-orange-400"
                               >
                                 {link.label}
                               </Link>
@@ -458,15 +461,12 @@ const Navbar = () => {
                   ))}
 
                   <li>
-                    <Link to="/cart" className="block hover:text-orange-900">
+                    <Link to="/cart" className="block py-2 hover:text-orange-500 transition-colors">
                       Cart
                     </Link>
                   </li>
                   <li>
-                    {/* <div className="block hover:text-orange-900">
-                      <States />
-                    </div> */}
-                    <Link to="/states" className="mt-2 block hover:text-orange-900">
+                    <Link to="/states" className="block py-2 hover:text-orange-500 transition-colors">
                       {t('Language Settings')}
                     </Link>
                   </li>
@@ -477,37 +477,39 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Items */}
-        <div className="flex items-center space-x-5">
+        <div className="hidden md:flex items-center space-x-1">
           <button
             onClick={() => navigate("/search")}
-            className="text-white hover:text-orange-600 hidden md:block"
+            className="text-white hover:text-orange-500 transition-colors p-2"
+            aria-label="Search"
           >
             <i className="fas fa-search text-xl"></i>
           </button>
 
           <Link
             to="/cart"
-            className="text-white hover:text-orange-600 hidden md:block"
+            className="text-white hover:text-orange-500 transition-colors p-2"
+            aria-label="Cart"
           >
             <i className="fas fa-shopping-cart text-xl"></i>
           </Link>
           
-          
-
           {/* Language Settings Page Link */}
           <Link
             to="/states"
-            className="text-white hover:text-orange-600 hidden md:flex items-center ml-2"
+            className="text-white hover:text-orange-500 transition-colors p-2"
             title="Language Settings"
+            aria-label="Language Settings"
           >
-            <i className="fas fa-globe text-lg"></i>
+            <i className="fas fa-globe text-xl"></i>
           </Link>
 
           {/* Show user icon for desktop when user is not logged in */}
           {!userData && (
             <Link
-              to="/login" // or wherever you want to redirect for login
-              className="text-white hover:text-orange-600 hidden md:block"
+              to="/login"
+              className="text-white hover:text-orange-500 transition-colors p-2"
+              aria-label="Login"
             >
               <i className="fas fa-user text-xl"></i>
             </Link>
@@ -515,34 +517,25 @@ const Navbar = () => {
 
           {/* Show user dropdown for desktop when user is logged in */}
           {userData && (
-            <div className="w-7 h-7 flex justify-center items-center bg-black text-white rounded-full relative group mb-0 hidden md:flex">
-              {userData.name[0].toUpperCase()}
-              <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-white rounded pt-10">
-                <ul className="list-none m-0 p-2 bg-gray-900 text-sm">
-                  {!userData.isAccountVerified ? (
-                    <li
-                      onClick={sendVerificationOtp}
-                      className="py-1 px-2 hover:bg-black cursor-pointer pr-10 hover:text-orange-600"
-                    >
+            <div className="relative group">
+              <div className="w-9 h-9 flex justify-center items-center bg-green-800 text-white rounded-full hover:bg-green-700 transition-colors cursor-pointer">
+                {userData.name[0].toUpperCase()}
+              </div>
+              <div className="absolute right-0 mt-2 hidden group-hover:block z-10 w-48 bg-gray-800 shadow-lg rounded-md overflow-hidden transform origin-top-right transition-all duration-200">
+                <ul className="py-1">
+                  <li className="border-b border-gray-700 px-4 py-2 text-white">
+                    {userData.name.charAt(0).toUpperCase() + userData.name.slice(1)}
+                  </li>
+                  {!userData.isAccountVerified && (
+                    <li onClick={sendVerificationOtp} className="px-4 py-2 hover:bg-gray-700 cursor-pointer text-white hover:text-orange-400 transition-colors">
                       Verify Account
                     </li>
-                  ) : (
-                    <li className="py-1 px-2 w-full hover:bg-black cursor-pointer pr-10 hover:text-orange-600">
-                      {userData.name.charAt(0).toUpperCase() +
-                        userData.name.slice(1)}
-                    </li>
                   )}
-                  <li
-                    onClick={logout}
-                    className="py-1 px-2 hover:bg-black cursor-pointer pr-10 hover:text-orange-600"
-                  >
-                    Logout
-                  </li>
-                  <li
-                    onClick={() => navigate("/reset-password")}
-                    className="py-1 px-2 w-full hover:bg-black cursor-pointer pr-10 hover:text-orange-600"
-                  >
+                  <li onClick={() => navigate("/reset-password")} className="px-4 py-2 hover:bg-gray-700 cursor-pointer text-white hover:text-orange-400 transition-colors">
                     Reset Password
+                  </li>
+                  <li onClick={logout} className="px-4 py-2 hover:bg-gray-700 cursor-pointer text-white hover:text-orange-400 transition-colors">
+                    Logout
                   </li>
                 </ul>
               </div>

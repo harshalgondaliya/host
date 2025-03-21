@@ -258,6 +258,11 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
                       SkyBerry
                     </Link>
                   </li>
+                  <li>
+                    <Link to="/pomegranate" className="block hover:text-white">
+                      Pomegranate
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
