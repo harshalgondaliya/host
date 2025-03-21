@@ -82,7 +82,12 @@ export const AppContextProvider = (props) => {
   const getAuthState = async () => {
     try {
       console.log("Checking authentication state...");
-      const { data } = await axios.get(backendUrl + '/api/auth/is-auth');
+      
+      const { data } = await axios.get(backendUrl + '/api/auth/is-auth', {
+        withCredentials: true,
+        timeout: 8000 // Add timeout to prevent long-hanging requests
+      });
+      
       console.log("Auth check response:", data);
 
       if (data.success) {
@@ -104,18 +109,22 @@ export const AppContextProvider = (props) => {
   const getUserData = async () => {
     try {
       console.log("Fetching user data...");
-      const { data } = await axios.get(backendUrl + '/api/user/data');
+      
+      const { data } = await axios.get(backendUrl + '/api/user/data', {
+        withCredentials: true,
+        timeout: 8000 // Add timeout to prevent long-hanging requests
+      });
+      
       console.log("User data response:", data);
       
       if (data.success) {
         setUserData(data.userData);
       } else {
-        toast.error(data.message);
+        console.error("Failed to fetch user data:", data.message);
         setUserData(null);
       }
     } catch (error) {
       console.error("User data fetch error:", error);
-      toast.error(error.message || "Failed to fetch user data");
       setUserData(null);
     }
   };

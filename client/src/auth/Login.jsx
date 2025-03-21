@@ -22,45 +22,78 @@ const Login = () => {
       e.preventDefault();
       console.log("Login/Signup attempt with:", { email, password, state });
       
+      // Set toast options for better UX
+      const toastOptions = {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      };
+      
+      // Show loading toast
+      toast.info("Processing request...", toastOptions);
+      
       axios.defaults.withCredentials = true;
 
       if (state === "Sign Up") {
         console.log("Attempting signup with:", { name, email, password });
-        const { data } = await axios.post(backendUrl + "/api/auth/register", {
-          name,
-          email,
-          password,
-        });
         
-        console.log("Signup response:", data);
-
-        if (data.success) {
-          setIsLoggedin(true);
-          getUserData();
-          navigate("/");
-        } else {
-          toast.error(data.message);
+        try {
+          const { data } = await axios.post(backendUrl + "/api/auth/register", {
+            name,
+            email,
+            password,
+          });
+          
+          console.log("Signup response:", data);
+  
+          if (data.success) {
+            toast.dismiss();
+            toast.success("Account created successfully", toastOptions);
+            setIsLoggedin(true);
+            getUserData();
+            navigate("/");
+          } else {
+            toast.dismiss();
+            toast.error(data.message || "Sign up failed", toastOptions);
+          }
+        } catch (signupError) {
+          console.error("Signup API error:", signupError);
+          toast.dismiss();
+          toast.error("Unable to connect to server. Please try again later.", toastOptions);
         }
       } else {
         console.log("Attempting login with:", { email, password });
-        const { data } = await axios.post(backendUrl + "/api/auth/login", {
-          email,
-          password,
-        });
         
-        console.log("Login response:", data);
-
-        if (data.success) {
-          setIsLoggedin(true);
-          getUserData();
-          navigate("/");
-        } else {
-          toast.error(data.message || "Invalid Credentials !");
+        try {
+          const { data } = await axios.post(backendUrl + "/api/auth/login", {
+            email,
+            password,
+          });
+          
+          console.log("Login response:", data);
+  
+          if (data.success) {
+            toast.dismiss();
+            toast.success("Login successful", toastOptions);
+            setIsLoggedin(true);
+            getUserData();
+            navigate("/");
+          } else {
+            toast.dismiss();
+            toast.error(data.message || "Invalid Credentials!", toastOptions);
+          }
+        } catch (loginError) {
+          console.error("Login API error:", loginError);
+          toast.dismiss();
+          toast.error("Unable to connect to server. Please try again later.", toastOptions);
         }
       }
     } catch (error) {
-      console.error("Auth error:", error);
-      toast.error(error.response?.data?.message || "Invalid Credential !");
+      console.error("Global auth error:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
     }
   };
 

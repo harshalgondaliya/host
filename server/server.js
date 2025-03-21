@@ -57,6 +57,34 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Add headers middleware for CORS and cookies
+app.use((req, res, next) => {
+  // Check the origin
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.some(allowedOrigin => {
+    if (allowedOrigin instanceof RegExp) {
+      return allowedOrigin.test(origin);
+    }
+    return origin === allowedOrigin;
+  })) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  
+  // Required headers for credentials
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  // Other headers
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  
+  // Handle preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  next();
+});
+
 // Log all requests for debugging
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);

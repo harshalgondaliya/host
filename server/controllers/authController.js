@@ -38,21 +38,29 @@ export const register = async (req, res) => {
       path: '/'
     });
 
-    // sending email
-    const mailOptions = {
-      from: process.env.SENDER_EMAIL,
-      to: email,
-      subject: "WELCOME TO TOOMORE",
-      text: `welcome to toomore bevarages website. Your account has been created with email id ${email}`,
-    }
-
-    await transporter.sendMail(mailOptions);
-
     console.log("User registered successfully, token set");
-
-    return res.json({success:true});
+    
+    // Send response immediately, don't wait for email
+    res.json({success:true});
+    
+    // Send welcome email asynchronously
+    try {
+      const mailOptions = {
+        from: process.env.SENDER_EMAIL,
+        to: email,
+        subject: "WELCOME TO TOOMORE",
+        text: `welcome to toomore bevarages website. Your account has been created with email id ${email}`,
+      };
+      
+      transporter.sendMail(mailOptions)
+        .then(() => console.log("Welcome email sent to:", email))
+        .catch(err => console.error("Failed to send welcome email:", err));
+    } catch (emailError) {
+      console.error("Error preparing welcome email:", emailError);
+    }
   } 
   catch (error) {
+    console.error("Registration error:", error);
     res.json({success:false, message: error.message });
   }
 };
@@ -88,10 +96,11 @@ export const login = async (req, res) => {
     });
 
     console.log("User logged in successfully, token set");
-
+    
     return res.json({success:true});
   }
   catch (error) {
+    console.error("Login error:", error);
     res.json({success:false, message: error.message });
   }
 };
