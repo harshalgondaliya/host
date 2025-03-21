@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 
 // Map image paths to product IDs - including both juice and soft drinks
@@ -81,6 +82,21 @@ const Search = () => {
   const searchInputRef = useRef(null);
   const resultsRef = useRef(null);
   const { addToCart } = useContext(AppContext);
+
+  // Schema data for search page
+  const searchSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://www.toomorebeverages.in/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://www.toomorebeverages.in/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
 
   // Inject custom keyframes once
   useEffect(() => {
@@ -258,7 +274,13 @@ const Search = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
+      <SEO 
+        title="Search Too More Products"
+        description="Search our extensive collection of premium natural juices and beverages. Find your favorite Too More products including our signature juices, soft drinks, and more."
+        type="website"
+        schemaData={searchSchema}
+      />
       <Navbar />
       <br /><br />
       <div className="min-h-screen bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-50 pt-16 pb-10 overflow-x-hidden">
@@ -783,7 +805,7 @@ const Search = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -5,15 +5,93 @@
     <link rel="icon" type="image/png" href="/assets/img/back-BIYrq4Sr.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="max-age=86400" />
-    <meta name="description" content="Too More - Fresh and delicious juices made from natural ingredients" />
+    <meta name="description" content="Too More - Fresh and delicious juices made from natural ingredients. Experience premium natural beverages made with care." />
     
-    <!-- Preload critical assets -->
-    <link rel="preload" href="/assets/webp/bg-BZH3Gk7M.webp" as="image" type="image/webp" />
+    <!-- Social Media Links -->
+    <meta property="og:site_name" content="Too More Beverages" />
+    <meta property="og:url" content="https://www.toomorebeverages.in" />
+    <meta property="og:title" content="Too More - Premium Natural Juices & Beverages" />
+    <meta property="og:description" content="Experience the refreshing taste of Too More's premium natural juices made from fresh, hand-picked fruits. Our beverages contain no additives or preservatives, delivering pure goodness from orchard to glass." />
+    <meta property="og:image" content="/src/assets/images/bg.webp" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@too_more343" />
+    <meta name="twitter:title" content="Too More - Premium Natural Juices & Beverages" />
+    <meta name="twitter:description" content="Experience the refreshing taste of Too More's premium natural juices made from fresh, hand-picked fruits." />
+    <meta name="twitter:image" content="/src/assets/images/bg.webp" />
+    
+    <!-- Contact information -->
+    <meta name="contact" content="+91 87804 99433" />
+    
+    <!-- Critical CSS inlining for above-the-fold content -->
+    <style>
+      /* Image placeholders to prevent layout shifts */
+      .bg-image-placeholder {
+        background-color: #f7e9c1;
+        width: 100%;
+        aspect-ratio: 2/1;
+        content-visibility: auto;
+      }
+      .valley-image-placeholder {
+        background-color: #f7e9c1;
+        width: 101%;
+        height: 230px;
+        content-visibility: auto;
+      }
+      /* Optimize image display */
+      img { 
+        content-visibility: auto;
+        -o-object-fit: contain;
+           object-fit: contain;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .bg-image, .valley-image {
+          will-change: transform;
+        }
+      }
+    </style>
+    
+    <!-- Generate image previews with extremely low quality thumbnails -->
+    <script>
+      // Tiny preview thumbnails embedded directly
+      window.__IMAGE_PREVIEWS = {
+        bg: "data:image/webp;base64,UklGRtQAAABXRUJQVlA4WAoAAAAQAAAAFwAADgAAQUxQSCIAAAABF6CgbQM4ehIRCelraEREcLYNMw4AAPUXdAAAAABXUDggNAAAAPABAJ0BKhgADwA+JQyJRKIhqBgCADEKALAQAimEP4kxIcgAAAA==",
+        valley: "data:image/webp;base64,UklGRtQAAABXRUJQVlA4WAoAAAAQAAAAFwAADgAAQUxQSCIAAAABF6CgbQM4ehIRCelraEREcLYNMw4AAPUXdAAAAABXUDggNAAAAPABAJ0BKhgADwA+JQyJRKIhqBgCADEKALAQAimEP4kxIcgAAAA=="
+      };
+    </script>
+    
+    <!-- Preload critical assets with high priority and resource hints -->
+    <link rel="preload" as="image" href="/assets/webp/bg-BZH3Gk7M.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/webp/valley-DgzDPz1a.webp" type="image/webp" fetchpriority="high" />
     <link rel="preload" href="/src/assets/fonts/ComicSans.woff2" as="font" type="font/woff2" crossorigin />
     
+    <!-- Resource hints - optimized for this app -->
+    <link rel="preconnect" href="/" crossorigin />
+    <link rel="dns-prefetch" href="/" />
+    
     <!-- Browser caching hints -->
-    <meta http-equiv="Cache-Control" content="public, max-age=31536000" />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
     <meta http-equiv="Expires" content="31536000" />
+    
+    <!-- Service Worker for image caching -->
+    <script>
+      // Register service worker after window load to prioritize page rendering
+      if ('serviceWorker' in navigator) {
+        // Delay service worker registration slightly to prioritize critical rendering
+        setTimeout(() => {
+          navigator.serviceWorker.register('./image-sw.js')
+            .then(reg => {
+              console.log('Image service worker registered.');
+            })
+            .catch(err => {
+              // Non-critical error - don't interrupt user experience
+              console.error('Image service worker registration failed:', err);
+            });
+        }, 1000);
+      }
+    </script>
     
     <!-- Preconnect to any third-party domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,11 +100,17 @@
     <!-- Prevent unnecessary resource loading -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     
-    <title>Too More</title>
-    <script type="module" crossorigin src="/assets/index-CY0IePLB.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-D2XPI9vX.js">
-    <link rel="modulepreload" crossorigin href="/assets/ui-CmYB5kGU.js">
-    <link rel="stylesheet" crossorigin href="/assets/css/index-DQsBNCcP.css">
+    <!-- Social Media Links as metadata -->
+    <link rel="me" href="https://www.facebook.com/too.more.142" />
+    <link rel="me" href="https://www.instagram.com/too_more1/" />
+    <link rel="me" href="https://www.youtube.com/@toomorebeverages9253" />
+    <link rel="me" href="https://x.com/too_more343" />
+    
+    <title>Too More - Premium Natural Juices & Beverages</title>
+    <script type="module" crossorigin src="/assets/index-Dy5uhn3i.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-BBAEH9fN.js">
+    <link rel="modulepreload" crossorigin href="/assets/ui-1Q2oUZDc.js">
+    <link rel="stylesheet" crossorigin href="/assets/css/index-BhNTrS4g.css">
   </head>
   <body>
     <div id="root"></div>

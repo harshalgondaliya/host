@@ -1,0 +1,14 @@
+# Allow all search engines to index the website
+User-agent: *
+Allow: /
+
+# Disallow access to sensitive pages
+Disallow: /login
+Disallow: /reset-password
+Disallow: /email-verify
+
+# Sitemap location
+Sitemap: https://www.toomorebeverages.in/sitemap.xml
+
+# Crawl delay for polite crawling
+Crawl-delay: 2 

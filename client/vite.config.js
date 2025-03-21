@@ -2,6 +2,38 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import viteImagemin from 'vite-plugin-imagemin'
 import path from 'path'
+import fs from 'fs'
+
+// Custom plugin to handle ?base64 imports
+function base64ImagesPlugin() {
+  return {
+    name: 'vite-plugin-base64-images',
+    async transform(src, id) {
+      // Check if this is a ?base64 request
+      if (id.endsWith('?base64')) {
+        const filePath = id.replace('?base64', '')
+        // For Windows paths
+        const normalizedPath = filePath.startsWith('/') ? filePath.slice(1) : filePath
+        
+        try {
+          // Read the file and convert to base64
+          const data = await fs.promises.readFile(normalizedPath)
+          const base64 = data.toString('base64')
+          return {
+            code: `export default "${base64}"`,
+            map: null
+          }
+        } catch (error) {
+          console.error('Failed to load image as base64:', error)
+          return {
+            code: `export default ""`,
+            map: null
+          }
+        }
+      }
+    }
+  }
+}
 
 // https://vite.dev/config/
 export default defineConfig({

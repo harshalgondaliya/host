@@ -3,14 +3,18 @@ import React, { useEffect, useState } from "react";
 // Define fallback placeholder if videos can't be loaded
 const placeholderImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f2f2f2'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24' fill='%23333333'%3ETooMore%3C/text%3E%3C/svg%3E";
 
+// Import videos directly to ensure proper bundling
+import desktopLoaderVideo from '../assets/images/Desktop.mp4';
+import mobileLoaderVideo from '../assets/images/Mobile.mp4';
+
 const Preloader = ({ setLoading }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [desktopVideoLoaded, setDesktopVideoLoaded] = useState(false);
   const [mobileVideoLoaded, setMobileVideoLoaded] = useState(false);
   
-  // Get video URLs using relative paths
-  const desktopLoader = "/src/assets/images/Desktop.mp4";
-  const mobileLoader = "/src/assets/images/Mobile.mp4";
+  // Use imported video paths
+  const desktopLoader = desktopLoaderVideo;
+  const mobileLoader = mobileLoaderVideo;
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -19,13 +23,20 @@ const Preloader = ({ setLoading }) => {
 
     window.addEventListener("resize", checkScreenSize);
 
-    // Shorter preloader timeout
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500); // Reduced from 2000ms
+    // Only start the timeout after detecting if the videos loaded or failed
+    const handleInitialLoad = () => {
+      // Keep preloader visible a little longer even if videos load quickly
+      const minDisplayTime = setTimeout(() => {
+        setLoading(false);
+      }, 1500); 
+      
+      return () => clearTimeout(minDisplayTime);
+    };
+    
+    // Start the loading process
+    handleInitialLoad();
 
     return () => {
-      clearTimeout(timer);
       window.removeEventListener("resize", checkScreenSize);
     };
   }, [setLoading]);
@@ -57,6 +68,7 @@ const Preloader = ({ setLoading }) => {
           <video
             src={desktopLoader}
             autoPlay
+            playsInline
             muted
             onError={(e) => handleVideoError(e, 'desktop')}
             onLoadedData={() => setDesktopVideoLoaded(true)}
@@ -76,6 +88,7 @@ const Preloader = ({ setLoading }) => {
           <video
             src={mobileLoader}
             autoPlay
+            playsInline
             muted
             onError={(e) => handleVideoError(e, 'mobile')}
             onLoadedData={() => setMobileVideoLoaded(true)}

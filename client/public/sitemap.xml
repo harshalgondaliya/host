@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-image/1.1
+        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.toomorebeverages.in/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.toomorebeverages.in/src/assets/images/bg.webp</image:loc>
+      <image:title>Too More - Premium Natural Juices</image:title>
+    </image:image>
+  </url>
+
+  <!-- Product Pages -->
+  <url>
+    <loc>https://www.toomorebeverages.in/skyberry</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.toomorebeverages.in/src/assets/images/skyberry.webp</image:loc>
+      <image:title>Skyberry Juice</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/grapes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.toomorebeverages.in/src/assets/images/Grapes_Story.webp</image:loc>
+      <image:title>Grapes Juice</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/pineapple</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.toomorebeverages.in/src/assets/images/Pineapple_Story.webp</image:loc>
+      <image:title>Pineapple Juice</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/mango</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.toomorebeverages.in/src/assets/images/Mango_Story.webp</image:loc>
+      <image:title>Mango Juice</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/lychee</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.toomorebeverages.in/src/assets/images/Lychee_Story.webp</image:loc>
+      <image:title>Lychee Juice</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/strawberry</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.toomorebeverages.in/src/assets/images/Strawberry_Story.webp</image:loc>
+      <image:title>Strawberry Juice</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/pomegranate</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.toomorebeverages.in/src/assets/images/Pomegranate_Story.webp</image:loc>
+      <image:title>Pomegranate Juice</image:title>
+    </image:image>
+  </url>
+
+  <!-- Category Pages -->
+  <url>
+    <loc>https://www.toomorebeverages.in/juices</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/soft-drinks</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/energy-drinks</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/drinking-water</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About Pages -->
+  <url>
+    <loc>https://www.toomorebeverages.in/our-story</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Sustainability Pages -->
+  <url>
+    <loc>https://www.toomorebeverages.in/env-impact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/water-conservation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/community-support</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/sustainability-reports</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/certifications</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Support Pages -->
+  <url>
+    <loc>https://www.toomorebeverages.in/contact-us</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/feedback</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/FAQs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/distributor-support</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/customer-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Other important pages -->
+  <url>
+    <loc>https://www.toomorebeverages.in/search</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.toomorebeverages.in/states</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset> 
