@@ -50,6 +50,11 @@ const OptimizedImage = React.memo(({
  */
 export const loadImage = (path) => {
   try {
+    // Handle alias
+    if (path.startsWith('@assets')) {
+      path = path.replace('@assets', '/src/assets');
+    }
+    
     // Remove leading slash if present for consistency
     const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
     

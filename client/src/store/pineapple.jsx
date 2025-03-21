@@ -3,7 +3,7 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 // Dynamically import images
 const pineapple = loadImage('/assets/images/products/pineapple.webp');
-const label = loadImage('/assets/images/products/grapes.webp');
+const label = loadImage('/assets/images/PineappleMo.webp');
 const PineappleS = loadImage('/assets/images/products/PineappleS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";

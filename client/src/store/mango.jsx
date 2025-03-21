@@ -8,7 +8,7 @@ import { AppContext } from "../context/AppContext";
 import cartData from "../cart/data.json";
 // Dynamically import images
 const mango = loadImage('/assets/images/products/mango.webp');
-const label = loadImage('/assets/images/products/lychee.webp');
+const label = loadImage('/assets/images/MangoMo.webp');
 const MangoS = loadImage('/assets/images/products/MangoS.webp');
 
 const Mango = () => {
@@ -27,10 +27,10 @@ const Mango = () => {
     { src: mango, alt: "mango image" },
     { src: label, alt: "label image" },
     { src: MangoS, alt: "MangoS image" }
-  ], [label, mango, MangoS]);
+  ], [mango, label, MangoS]);
   
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(imageThumbnails[1].src); // Default main image (mango)
+  const [selectedImage, setSelectedImage] = useState(imageThumbnails[0].src); // Default main image (mango)
 
   // Scroll Functions
   const scrollUp = () =>

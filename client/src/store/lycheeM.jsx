@@ -7,7 +7,7 @@ const LycheeS = loadImage('/assets/images/products/LycheeS.webp');
 // Dynamically import lychee
 const lychee = loadImage('/assets/images/products/lychee.webp');
 // Dynamically import label
-const label = loadImage('/assets/images/products/mango.webp');
+const label = loadImage('/assets/images/LycheeMo.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -27,8 +27,8 @@ const LycheeM = () => {
   // Memoized image thumbnails array
   const imageThumbnails = useMemo(() => [
     { src: lychee, alt: 'Lychee' },
-    { src: LycheeS, alt: 'Lychee Small' },
-    { src: label, alt: 'Lychee Label' }
+    { src: label, alt: 'Lychee Label' },
+    { src: LycheeS, alt: 'Lychee Small' }
   ], [lychee, LycheeS, label]);
   
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);

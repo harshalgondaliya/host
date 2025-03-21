@@ -9,7 +9,7 @@ import cartData from "../cart/data.json";
 
 // Dynamically import images
 const strawberry = loadImage('/assets/images/products/strawberry.webp');
-const label = loadImage('/assets/images/products/mango.webp');
+const label = loadImage('/assets/images/StrawberryMo.webp');
 const StrawberryS = loadImage('/assets/images/products/StrawberryS.webp');
 
 const Strawberry = () => {

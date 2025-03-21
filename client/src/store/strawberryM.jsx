@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 const strawberry = loadImage('/assets/images/products/strawberry.webp');
-const label = loadImage('/assets/images/products/mango.webp');
+const label = loadImage('/assets/images/StrawberryMo.webp');
 const StrawberryS = loadImage('/assets/images/products/StrawberryS.webp');
 import Nav from "../cart/Nav";
 import Footer from "../components/Footer";

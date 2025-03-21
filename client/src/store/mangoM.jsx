@@ -4,7 +4,7 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 // Dynamically import MangoS
 const MangoS = loadImage('/assets/images/products/MangoS.webp');
 // Dynamically import label
-const label = loadImage('/assets/images/products/lychee.webp');
+const label = loadImage('/assets/images/MangoMo.webp');
 // Dynamically import mango
 const mango = loadImage('/assets/images/products/mango.webp');
 import Nav from "../cart/Nav";

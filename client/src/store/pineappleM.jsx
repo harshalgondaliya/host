@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Dynamically import pineapple
 const pineapple = loadImage('/assets/images/products/pineapple.webp');
 // Dynamically import label
-const label = loadImage('/assets/images/products/grapes.webp');
+const label = loadImage('/assets/images/PineappleMo.webp');
 // Dynamically import PineappleS
 const PineappleS = loadImage('/assets/images/products/PineappleS.webp');
 import Nav from "../cart/Nav";
@@ -27,8 +27,8 @@ const PineappleM = () => {
   // Memoized image thumbnails array
   const imageThumbnails = useMemo(() => [
     { src: pineapple, alt: 'Pineapple' },
-    { src: PineappleS, alt: 'Pineapple Small' },
-    { src: label, alt: 'Pineapple Label' }
+    { src: label, alt: 'Pineapple Label' },
+    { src: PineappleS, alt: 'Pineapple Small' }
   ], [pineapple, PineappleS, label]);
   
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
