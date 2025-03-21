@@ -103,8 +103,7 @@ i18n
     
     // React specific options
     react: {
-      useSuspense: true,
-      wait: true
+      useSuspense: false
     }
   })
   .then(() => {
