@@ -17,9 +17,9 @@ connectDB();
 // Update CORS to include both development and production URLs
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://authen-client.vercel.app',  // Add the deployed client URL here
+  'https://toomorebeverages.vercel.app',  // Remove trailing slash
   process.env.CLIENT_URL, // Optional: Use environment variable if set
-  /\.onrender\.com$/      // Allow all onrender.com subdomains
+  /\.vercel\.app$/      // Allow all vercel.app subdomains
 ];
 
 app.use(cors({  
