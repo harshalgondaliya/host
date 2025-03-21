@@ -32,9 +32,10 @@ export const register = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure : process.env.Node_Env === 'production',
-      sameSite: process.env.Node_Env === 'production' ? 'none' : 'strict',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      path: '/'
     });
 
     // sending email
@@ -46,6 +47,8 @@ export const register = async (req, res) => {
     }
 
     await transporter.sendMail(mailOptions);
+
+    console.log("User registered successfully, token set");
 
     return res.json({success:true});
   } 
@@ -78,10 +81,13 @@ export const login = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure : process.env.Node_Env === 'production',
-      sameSite: process.env.Node_Env === 'production' ? 'none' : 'strict',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      path: '/'
     });
+
+    console.log("User logged in successfully, token set");
 
     return res.json({success:true});
   }
@@ -92,6 +98,14 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   try {
+    res.cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      path: '/'
+    });
+    console.log("User logged out, token cleared");
     return res.json({success:true , message: "Logged Out"});
   } catch (error) {
     res.json({success:false, message: error.message });
@@ -105,7 +119,7 @@ export const sendVerifyOtp = async (req, res) => {
 
     const user = await userModel.findById(userId);
 
-    if(user.isAccountverified) {
+    if(user.isAccountVerified) {
       return res.json({success:false, message: "Account Already verified" });
     }
 
@@ -171,6 +185,16 @@ export const verifyEmail = async (req, res) => {
 // check if user is authenticated
 export const isAuthenticated = async (req, res) => {
   try {
+    const userId = req.body.userId;
+    if (!userId) {
+      return res.json({success:false, message: "User not authenticated"});
+    }
+    
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.json({success:false, message: "User not found"});
+    }
+    
     return res.json({success:true});
   }
   catch (error) {

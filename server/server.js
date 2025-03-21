@@ -14,9 +14,14 @@ const app = express();
 const port = process.env.PORT || 4000;
 connectDB();
 
+// Check the environment we're running in
+const isProduction = process.env.NODE_ENV === 'production';
+console.log(`Server running in ${isProduction ? 'production' : 'development'} mode`);
+
 // Update CORS to include both development and production URLs
 const allowedOrigins = [
   'http://localhost:5173',
+  'http://localhost:3000',
   'https://toomorebeverages.vercel.app',  // Remove trailing slash
   process.env.CLIENT_URL, // Optional: Use environment variable if set
   /\.vercel\.app$/      // Allow all vercel.app subdomains
@@ -36,6 +41,7 @@ app.use(cors({
     });
     
     if (!originIsAllowed) {
+      console.log(`Origin ${origin} not allowed by CORS`);
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
@@ -44,9 +50,23 @@ app.use(cors({
   credentials: true
 }));
 
+// Configure cookie parser middleware
+app.use(cookieParser());
+
+// Configure express to parse JSON and URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cookieParser());
+
+// Log all requests for debugging
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  if (req.cookies && req.cookies.token) {
+    console.log('Token found in cookies');
+  } else {
+    console.log('No token in cookies');
+  }
+  next();
+});
 
 app.get('/', (req, res) => res.send("API Working"));
 app.use('/api/auth', authRouter);
