@@ -81,24 +81,42 @@ export const AppContextProvider = (props) => {
   // Existing function to check authentication state
   const getAuthState = async () => {
     try {
+      console.log("Checking authentication state...");
       const { data } = await axios.get(backendUrl + '/api/auth/is-auth');
+      console.log("Auth check response:", data);
 
       if (data.success) {
         setIsLoggedin(true);
         getUserData();
+      } else {
+        setIsLoggedin(false);
+        setUserData(null);
+        console.log("Auth check failed:", data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      console.error("Auth check error:", error);
+      setIsLoggedin(false);
+      setUserData(null);
     }
   };
 
   // Existing function to fetch user data
   const getUserData = async () => {
     try {
+      console.log("Fetching user data...");
       const { data } = await axios.get(backendUrl + '/api/user/data');
-      data.success ? setUserData(data.userData) : toast.error(data.message);
+      console.log("User data response:", data);
+      
+      if (data.success) {
+        setUserData(data.userData);
+      } else {
+        toast.error(data.message);
+        setUserData(null);
+      }
     } catch (error) {
-      toast.error(error.message);
+      console.error("User data fetch error:", error);
+      toast.error(error.message || "Failed to fetch user data");
+      setUserData(null);
     }
   };
 

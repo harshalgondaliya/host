@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import logo from "../assets/images/back.png";
 
-const login = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   const { backendUrl, setIsLoggedin, getUserData } = useContext(AppContext);
@@ -20,15 +20,19 @@ const login = () => {
   const onSubmitHandler = async (e) => {
     try {
       e.preventDefault();
-
+      console.log("Login/Signup attempt with:", { email, password, state });
+      
       axios.defaults.withCredentials = true;
 
       if (state === "Sign Up") {
+        console.log("Attempting signup with:", { name, email, password });
         const { data } = await axios.post(backendUrl + "/api/auth/register", {
           name,
           email,
           password,
         });
+        
+        console.log("Signup response:", data);
 
         if (data.success) {
           setIsLoggedin(true);
@@ -38,20 +42,24 @@ const login = () => {
           toast.error(data.message);
         }
       } else {
+        console.log("Attempting login with:", { email, password });
         const { data } = await axios.post(backendUrl + "/api/auth/login", {
           email,
           password,
         });
+        
+        console.log("Login response:", data);
 
         if (data.success) {
           setIsLoggedin(true);
           getUserData();
           navigate("/");
         } else {
-          toast.error(error.response?.data?.message || "Invalid Credentials !");
+          toast.error(data.message || "Invalid Credentials !");
         }
       }
     } catch (error) {
+      console.error("Auth error:", error);
       toast.error(error.response?.data?.message || "Invalid Credential !");
     }
   };
@@ -155,4 +163,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
