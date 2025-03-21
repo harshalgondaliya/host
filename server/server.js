@@ -19,6 +19,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'https://authen-client.vercel.app',  // Add the deployed client URL here
   process.env.CLIENT_URL, // Optional: Use environment variable if set
+  /\.onrender\.com$/      // Allow all onrender.com subdomains
 ];
 
 app.use(cors({  
@@ -26,7 +27,15 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps, curl requests)
     if (!origin) return callback(null, true);
     
-    if (allowedOrigins.indexOf(origin) === -1) {
+    // Check if origin matches any allowed origin or the onrender.com pattern
+    const originIsAllowed = allowedOrigins.some(allowedOrigin => {
+      if (allowedOrigin instanceof RegExp) {
+        return allowedOrigin.test(origin);
+      }
+      return origin === allowedOrigin;
+    });
+    
+    if (!originIsAllowed) {
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
