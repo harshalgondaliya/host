@@ -28,7 +28,7 @@ const Preloader = ({ setLoading }) => {
       // Keep preloader visible a little longer even if videos load quickly
       const minDisplayTime = setTimeout(() => {
         setLoading(false);
-      }, 1500); 
+      }, 3000); 
       
       return () => clearTimeout(minDisplayTime);
     };
