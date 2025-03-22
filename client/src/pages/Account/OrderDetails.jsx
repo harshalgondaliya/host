@@ -4,10 +4,9 @@ import axios from "axios";
 import { AppContext } from "../../context/AppContext";
 import { toast } from "react-toastify";
 import { FaArrowLeft, FaBox, FaTruck, FaMoneyBillWave, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
-import logo from "../../assets/logo1.png";
 
 // Import product images
-import skyberryImage from "../../assets/images/products/Skyberry.webp";
+import skyberryImage from "../../assets/images/sb.webp";
 import grapesImage from "../../assets/images/products/grapes.webp";
 import pineappleImage from "../../assets/images/products/pineapple.webp";
 import mangoImage from "../../assets/images/products/mango.webp";
@@ -15,13 +14,6 @@ import lycheeImage from "../../assets/images/products/lychee.webp";
 import strawberryImage from "../../assets/images/products/strawberry.webp";
 import pomegranateImage from "../../assets/images/products/Pomegranate.webp";
 
-// Import alternative sizes
-import skyberrySImage from "../../assets/images/SkyBerryS.webp";
-import grapesSImage from "../../assets/images/products/GrapesS.webp";
-import pineappleSImage from "../../assets/images/products/PineappleS.webp";
-import mangoSImage from "../../assets/images/products/MangoS.webp";
-import lycheeSImage from "../../assets/images/products/LycheeS.webp";
-import strawberrySImage from "../../assets/images/products/StrawberryS.webp";
 
 const OrderDetails = () => {
   const { orderId } = useParams();
