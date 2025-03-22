@@ -6,6 +6,8 @@ import Home from "../Home/Home";
 import Login from "../auth/Login";
 import ResetPassword from "../auth/ResetPassword";
 import EmailVerify from "../auth/EmailVerify";
+import Checkout from "../pages/Checkout";
+import Notifications from "../pages/Notifications";
 
 // Components
 import OurStory from "../components/OurStory";
@@ -53,6 +55,9 @@ import DrinkingWater from "../pages/Products/DrinkingWater";
 import CartWrapper from "../cart/CartWrapper";
 import ShoppingCartWrapper from "../cart/ShoppingCartWrapper";
 
+// Import OrderDetails component (Create this file if it doesn't exist)
+import OrderDetails from "../pages/Account/OrderDetails";
+
 // Store
 import SkyberryWrapper from "../store/skyberryWrapper";
 import GrapesWrapper from "../store/grapesWrapper";
@@ -80,6 +85,12 @@ const AppRoutes = () => {
       {/* Cart */}
       <Route path="/cart" element={<CartWrapper />} />
       <Route path="/shopping-cart" element={<ShoppingCartWrapper />} />
+      <Route path="/checkout" element={<Checkout />} />
+      
+      {/* User Account */}
+      <Route path="/notifications" element={<Notifications />} />
+      <Route path="/account/notifications" element={<Notifications />} />
+      <Route path="/account/orders/:orderId" element={<OrderDetails />} />
 
       {/* Products */}
       <Route path="/juices" element={<Juices />} />

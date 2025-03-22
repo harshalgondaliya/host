@@ -2,12 +2,41 @@ import logo from "../assets/logo1.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext"; // Ensure this import is correct
+import { FaBell } from "react-icons/fa";
+import axios from "axios";
 
 const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
   const navigate = useNavigate();
-  const { userData } = useContext(AppContext);
+  const { userData, backendUrl } = useContext(AppContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(0);
+
+  // Fetch notification count when userData changes
+  useEffect(() => {
+    if (userData && backendUrl) {
+      const fetchNotificationCount = async () => {
+        try {
+          const response = await axios.get(`${backendUrl}/api/notifications?limit=1&unreadOnly=true`, {
+            withCredentials: true
+          });
+          
+          if (response.data.success) {
+            setNotificationCount(response.data.unreadCount || 0);
+          }
+        } catch (error) {
+          console.error("Error fetching notification count:", error);
+        }
+      };
+      
+      fetchNotificationCount();
+      
+      // Set up interval to check for new notifications every minute
+      const intervalId = setInterval(fetchNotificationCount, 60000);
+      
+      return () => clearInterval(intervalId);
+    }
+  }, [userData, backendUrl]);
 
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -118,27 +147,18 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
           </div>
         )}
 
-        <div className="relative group">
-          <button className="bg-gray-800 text-white p-2 rounded-full hover:bg-orange-500 transition duration-300">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-              />
-            </svg>
-            <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-1">
-              {0}
-            </span>
-          </button>
-        </div>
+        {userData && (
+          <div className="relative">
+            <Link to="/account/notifications" className="text-white hover:text-yellow-400 transition-colors relative">
+              <FaBell className="text-2xl" />
+              {notificationCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {notificationCount > 9 ? '9+' : notificationCount}
+                </span>
+              )}
+            </Link>
+          </div>
+        )}
 
         <div className="relative flex items-center space-x-1">
           <button
@@ -228,6 +248,11 @@ const Nav = ({ totalItems = 0, totalPrice = 0, onClick }) => {
                       Shopping Cart
                     </Link>
                   </li>
+                  <li>
+                        <Link to="/account/notifications" className="block py-2 hover:text-orange-500 transition-colors">
+                          Notifications
+                        </Link>
+                      </li>
                   <li>
                     <Link to="/pineapple" className="block hover:text-white">
                       Pineapple

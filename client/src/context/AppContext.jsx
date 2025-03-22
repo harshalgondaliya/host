@@ -83,7 +83,7 @@ export const AppContextProvider = (props) => {
     try {
       console.log("Checking authentication state...");
       
-      const { data } = await axios.get(backendUrl + '/api/auth/is-auth', {
+      const { data } = await axios.get(`${backendUrl}/api/auth/is-auth`, {
         withCredentials: true,
         timeout: 8000 // Add timeout to prevent long-hanging requests
       });
@@ -100,8 +100,12 @@ export const AppContextProvider = (props) => {
       }
     } catch (error) {
       console.error("Auth check error:", error);
-      setIsLoggedin(false);
-      setUserData(null);
+      // Don't change isLoggedin state on connection errors
+      // Only set to false for auth failures
+      if (error.response && error.response.status === 401) {
+        setIsLoggedin(false);
+        setUserData(null);
+      }
     }
   };
 

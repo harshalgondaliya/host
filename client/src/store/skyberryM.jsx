@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useContext } from "react";
 import OptimizedImage, { loadImage } from "../components/ImageOptimizer";
 import { ChevronUp, ChevronDown } from "lucide-react";
 // Dynamically import skyberry
-const skyberry = loadImage('/assets/images/products/SkyBerry.webp');
+const skyberry = loadImage('/assets/images/products/Skyberry.webp');
 // Dynamically import label
 const label = loadImage('/assets/images/SkyBerryLabel.webp');
 // Dynamically import Small

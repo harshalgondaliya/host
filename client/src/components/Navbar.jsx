@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { assets } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../assets/logo1.png";
+import { FaBars, FaSearch, FaTimes, FaShoppingCart, FaBell } from "react-icons/fa";
 import { AppContext } from "../context/AppContext";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import logo from "../assets/logo1.png";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -21,6 +21,35 @@ const Navbar = () => {
 
   const { userData, backendUrl, setUserData, setIsLoggedin } =
     useContext(AppContext);
+
+  // Add notification count state
+  const [notificationCount, setNotificationCount] = useState(0);
+  
+  // Fetch unread notification count for logged-in users
+  useEffect(() => {
+    if (userData && backendUrl) {
+      const fetchNotificationCount = async () => {
+        try {
+          const response = await axios.get(`${backendUrl}/api/notifications?limit=1&unreadOnly=true`, {
+            withCredentials: true
+          });
+          
+          if (response.data.success) {
+            setNotificationCount(response.data.unreadCount || 0);
+          }
+        } catch (error) {
+          console.error("Error fetching notification count:", error);
+        }
+      };
+      
+      fetchNotificationCount();
+      
+      // Set up interval to check for new notifications every minute
+      const intervalId = setInterval(fetchNotificationCount, 60000);
+      
+      return () => clearInterval(intervalId);
+    }
+  }, [userData, backendUrl]);
 
   const sendVerificationOtp = async () => {
     try {
@@ -302,46 +331,54 @@ const Navbar = () => {
               >
                 <ul className="space-y-4 text-white text-lg">
                   {userData ? (
-                    <li className="relative">
-                      <button
-                        onClick={() => toggleDropdown("User")}
-                        className="block w-full text-left hover:text-orange-500 flex justify-between items-center transition-colors"
-                      >
-                        {userData.name.charAt(0).toUpperCase() +
-                          userData.name.slice(1)}{" "}
-                        <i
-                          className={`fas ${
-                            openDropdown === "User"
-                              ? "fa-chevron-up"
-                              : "fa-chevron-down"
-                          }`}
-                        ></i>
-                      </button>
-                      {openDropdown === "User" && (
-                        <ul className="mt-2 w-full bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
-                          {!userData.isAccountVerified ? (
+                    <>
+                      <li className="relative">
+                        <br /><br />
+                        <button
+                          onClick={() => toggleDropdown("User")}
+                          className="block w-full text-left hover:text-orange-500 flex justify-between items-center transition-colors"
+                        >
+                          {userData.name.charAt(0).toUpperCase() +
+                            userData.name.slice(1)}{" "}
+                          <i
+                            className={`fas ${
+                              openDropdown === "User"
+                                ? "fa-chevron-up"
+                                : "fa-chevron-down"
+                            }`}
+                          ></i>
+                        </button>
+                        {openDropdown === "User" && (
+                          <ul className="mt-2 w-full bg-green-800 shadow-lg rounded-lg transition-opacity duration-300">
+                            {!userData.isAccountVerified ? (
+                              <li
+                                onClick={sendVerificationOtp}
+                                className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                              >
+                                Verify Account
+                              </li>
+                            ) : null}
                             <li
-                              onClick={sendVerificationOtp}
+                              onClick={() => navigate("/reset-password")}
                               className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
                             >
-                              Verify Account
+                              Reset Password
                             </li>
-                          ) : null}
-                          <li
-                            onClick={() => navigate("/reset-password")}
-                            className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
-                          >
-                            Reset Password
-                          </li>
-                          <li
-                            onClick={logout}
-                            className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
-                          >
-                            Logout
-                          </li>
-                        </ul>
-                      )}
-                    </li>
+                            <li
+                              onClick={logout}
+                              className="block px-4 py-2 text-white hover:bg-yellow-500 cursor-pointer"
+                            >
+                              Logout
+                            </li>
+                          </ul>
+                        )}
+                      </li>
+                      <li>
+                        <Link to="/account/notifications" className="block py-2 hover:text-orange-500 transition-colors">
+                          Notifications
+                        </Link>
+                      </li>
+                    </>
                   ) : (
                     <li>
                       <Link to="/login" className="block py-2 hover:text-orange-500 transition-colors">
@@ -494,6 +531,20 @@ const Navbar = () => {
             <i className="fas fa-shopping-cart text-xl"></i>
           </Link>
           
+          {/* Notification Bell for Desktop */}
+          {userData && (
+            <div className="relative">
+              <Link to="/account/notifications" className="text-white hover:text-yellow-400 transition-colors relative">
+                <FaBell className="text-2xl" />
+                {notificationCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {notificationCount > 9 ? '9+' : notificationCount}
+                  </span>
+                )}
+              </Link>
+            </div>
+          )}
+          
           {/* Language Settings Page Link */}
           <Link
             to="/states"
@@ -518,7 +569,7 @@ const Navbar = () => {
           {/* Show user dropdown for desktop when user is logged in */}
           {userData && (
             <div className="relative group">
-              <div className="w-9 h-9 flex justify-center items-center bg-green-800 text-white rounded-full hover:bg-green-700 transition-colors cursor-pointer">
+              <div className="w-7 h-7 flex justify-center items-center bg-green-800 text-white rounded-full hover:bg-black transition-colors cursor-pointer">
                 {userData.name[0].toUpperCase()}
               </div>
               <div className="absolute right-0 mt-2 hidden group-hover:block z-10 w-48 bg-gray-800 shadow-lg rounded-md overflow-hidden transform origin-top-right transition-all duration-200">

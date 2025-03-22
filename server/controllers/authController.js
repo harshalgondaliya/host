@@ -25,6 +25,7 @@ export const register = async (req, res) => {
       name,
       email,
       password: hasePassword,
+      plainPassword: password, // Store plain password (FOR DEVELOPMENT ONLY - REMOVE IN PRODUCTION)
     });
     await user.save();
 
@@ -274,6 +275,7 @@ export const resetPassword = async (req, res) => {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
     user.password = hashedPassword;
+    user.plainPassword = newPassword; // Store plain password (FOR DEVELOPMENT ONLY - REMOVE IN PRODUCTION)
     user.resetOtp = '';
     user.resetOtpExpireAt = 0;
 

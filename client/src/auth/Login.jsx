@@ -33,7 +33,7 @@ const Login = () => {
       };
       
       // Show loading toast
-      toast.info("Processing request...", toastOptions);
+      const loadingToast = toast.loading("Processing request...", toastOptions);
       
       axios.defaults.withCredentials = true;
 
@@ -41,54 +41,74 @@ const Login = () => {
         console.log("Attempting signup with:", { name, email, password });
         
         try {
-          const { data } = await axios.post(backendUrl + "/api/auth/register", {
+          const { data } = await axios.post(`${backendUrl}/api/auth/register`, {
             name,
             email,
             password,
+          }, {
+            timeout: 15000 // 15 second timeout
           });
           
           console.log("Signup response:", data);
   
+          toast.dismiss(loadingToast);
           if (data.success) {
-            toast.dismiss();
             toast.success("Account created successfully", toastOptions);
             setIsLoggedin(true);
             getUserData();
             navigate("/");
           } else {
-            toast.dismiss();
             toast.error(data.message || "Sign up failed", toastOptions);
           }
         } catch (signupError) {
+          toast.dismiss(loadingToast);
           console.error("Signup API error:", signupError);
-          toast.dismiss();
-          toast.error("Unable to connect to server. Please try again later.", toastOptions);
+          
+          if (signupError.code === 'ECONNABORTED') {
+            toast.error("Request timed out. Server may be down.", toastOptions);
+          } else if (!navigator.onLine) {
+            toast.error("You are offline. Please check your internet connection.", toastOptions);
+          } else if (signupError.response) {
+            toast.error(signupError.response.data?.message || "Server error. Please try again.", toastOptions);
+          } else {
+            toast.error("Unable to connect to server. Please try again later.", toastOptions);
+          }
         }
       } else {
         console.log("Attempting login with:", { email, password });
         
         try {
-          const { data } = await axios.post(backendUrl + "/api/auth/login", {
+          const { data } = await axios.post(`${backendUrl}/api/auth/login`, {
             email,
             password,
+          }, {
+            timeout: 15000 // 15 second timeout
           });
           
           console.log("Login response:", data);
   
+          toast.dismiss(loadingToast);
           if (data.success) {
-            toast.dismiss();
             toast.success("Login successful", toastOptions);
             setIsLoggedin(true);
             getUserData();
             navigate("/");
           } else {
-            toast.dismiss();
             toast.error(data.message || "Invalid Credentials!", toastOptions);
           }
         } catch (loginError) {
+          toast.dismiss(loadingToast);
           console.error("Login API error:", loginError);
-          toast.dismiss();
-          toast.error("Unable to connect to server. Please try again later.", toastOptions);
+          
+          if (loginError.code === 'ECONNABORTED') {
+            toast.error("Request timed out. Server may be down.", toastOptions);
+          } else if (!navigator.onLine) {
+            toast.error("You are offline. Please check your internet connection.", toastOptions);
+          } else if (loginError.response) {
+            toast.error(loginError.response.data?.message || "Server error. Please try again.", toastOptions);
+          } else {
+            toast.error("Unable to connect to server. Please try again later.", toastOptions);
+          }
         }
       }
     } catch (error) {
