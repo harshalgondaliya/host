@@ -1,0 +1,19 @@
+# Enable rewriting
+RewriteEngine On
+
+# If the requested file or directory doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite all requests to the root index.html
+RewriteRule ^ index.html [QSA,L]
+
+# Set caching headers for static assets
+<FilesMatch "\.(ico|pdf|jpg|jpeg|png|webp|gif|svg|js|css|woff|woff2)$">
+  Header set Cache-Control "max-age=31536000, public, immutable"
+</FilesMatch>
+
+# Set cache control for HTML document
+<FilesMatch "index\.html$">
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+</FilesMatch> 
