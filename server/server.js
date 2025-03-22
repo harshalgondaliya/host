@@ -26,6 +26,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://toomorebeverages.vercel.app',
   'https://authen-client.vercel.app',
+  'https://www.toomorebeverages.in',
   process.env.CLIENT_URL,
   /\.vercel\.app$/      // Allow all vercel.app subdomains
 ];
@@ -59,6 +60,28 @@ app.use(cookieParser());
 // Configure express to parse JSON and URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Handle OPTIONS requests explicitly
+app.options('*', (req, res) => {
+  // Get the origin from the request
+  const origin = req.headers.origin;
+  // Check if the origin is allowed
+  if (origin && allowedOrigins.some(allowedOrigin => {
+    if (allowedOrigin instanceof RegExp) {
+      return allowedOrigin.test(origin);
+    }
+    return origin === allowedOrigin;
+  })) {
+    res.header('Access-Control-Allow-Origin', origin);
+  } else {
+    res.header('Access-Control-Allow-Origin', '*');
+  }
+  
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.status(200).end();
+});
 
 // Add headers middleware for CORS and cookies
 app.use((req, res, next) => {
