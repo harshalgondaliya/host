@@ -33,12 +33,18 @@
         width: 100%;
         aspect-ratio: 2/1;
         content-visibility: auto;
+        background-image: url('data:image/webp;base64,UklGRtQAAABXRUJQVlA4WAoAAAAQAAAAFwAADgAAQUxQSCIAAAABF6CgbQM4ehIRCelraEREcLYNMw4AAPUXdAAAAABXUDggNAAAAPABAJ0BKhgADwA+JQyJRKIhqBgCADEKALAQAimEP4kxIcgAAAA==');
+        background-size: cover;
+        background-position: center;
       }
       .valley-image-placeholder {
         background-color: #f7e9c1;
         width: 101%;
         height: 230px;
         content-visibility: auto;
+        background-image: url('data:image/webp;base64,UklGRtQAAABXRUJQVlA4WAoAAAAQAAAAFwAADgAAQUxQSCIAAAABF6CgbQM4ehIRCelraEREcLYNMw4AAPUXdAAAAABXUDggNAAAAPABAJ0BKhgADwA+JQyJRKIhqBgCADEKALAQAimEP4kxIcgAAAA==');
+        background-size: cover;
+        background-position: center;
       }
       /* Optimize image display */
       img { 
@@ -62,10 +68,33 @@
       };
     </script>
     
-    <!-- Preload critical assets with high priority and resource hints -->
-    <link rel="preload" as="image" href="/assets/webp/bg-BZH3Gk7M.webp" type="image/webp" fetchpriority="high" />
-    <link rel="preload" as="image" href="/assets/webp/valley-DgzDPz1a.webp" type="image/webp" fetchpriority="high" />
-    <link rel="preload" href="/src/assets/fonts/ComicSans.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Optimized image loading strategy -->
+    <script>
+      // Function to handle image loading
+      function loadImages() {
+        const bgImage = new Image();
+        const valleyImage = new Image();
+        
+        // Set up image loading
+        bgImage.onload = function() {
+          document.querySelector('.bg-image-placeholder').style.backgroundImage = `url(${this.src})`;
+        };
+        valleyImage.onload = function() {
+          document.querySelector('.valley-image-placeholder').style.backgroundImage = `url(${this.src})`;
+        };
+        
+        // Start loading images
+        bgImage.src = '/src/assets/images/bg.webp';
+        valleyImage.src = '/src/assets/images/valley.webp';
+      }
+      
+      // Start loading images after DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadImages);
+      } else {
+        loadImages();
+      }
+    </script>
     
     <!-- Resource hints - optimized for this app -->
     <link rel="preconnect" href="/" crossorigin />
